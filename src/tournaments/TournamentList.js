@@ -31,20 +31,24 @@ const TournamentList = () => {
 
   if (!tournaments) return <LoadingSpinner />;
 
-  console.log(tournaments);
-
   return (
-    <div className="col-md-6 offset-md-3 text-center">
-      <h1 className="display-3 mb-5">CCGC Tournaments</h1>
-      {tournaments.map((t) => (
-        <TournamentCard
-          key={t.date}
-          date={t.date}
-          courseHandle={t.courseHandle}
-          courseName={t.courseName}
-          seasonEndYEar={t.seasonEndYEar}
-        />
-      ))}
+    <div className="text-center">
+      <h1 className="display-3 mb-3">Club Tournaments</h1>
+      <p className="lead mb-5">
+        Select a tournament to view the strokes and putts leaderboards for that
+        tournament date.
+      </p>
+      <div className="col-md-6 offset-md-3">
+        {tournaments.map((t) => (
+          <TournamentCard
+            key={t.date}
+            date={t.date}
+            courseHandle={t.courseHandle}
+            courseName={t.courseName}
+            seasonEndYEar={t.seasonEndYEar}
+          />
+        ))}
+      </div>
     </div>
   );
 };

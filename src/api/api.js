@@ -45,6 +45,12 @@ class CcgcApi {
     return res.users;
   }
 
+  /**Get details (all rounds played) by a particular club member. */
+  static async getMember(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
   /** Update a user profile  */
   static async updateProfile(username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
@@ -65,7 +71,7 @@ class CcgcApi {
     return res.tournaments;
   }
 
-  /** Get details on a tournament by handle. */
+  /** Get details on a tournament by date. */
 
   static async getTournament(date) {
     let res = await this.request(`tournaments/${date}`);

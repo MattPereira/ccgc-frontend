@@ -31,18 +31,25 @@ const CourseList = () => {
   if (!courses) return <LoadingSpinner />;
 
   return (
-    <div className="CourseList col-md-10 offset-md-1">
-      {courses.map((c) => (
-        <CourseCard
-          key={c.handle}
-          handle={c.handle}
-          name={c.name}
-          rating={c.rating}
-          slope={c.slope}
-          pars={c.pars}
-          handicaps={c.handicaps}
-        />
-      ))}
+    <div className="text-center">
+      <h1 className="display-3 mb-3">Golf Courses</h1>
+      <p className="lead mb-5">
+        Information about the rating, slope, pars, and handicaps for each course
+        played by the Contra Costa Golf Club.
+      </p>
+      <div className="CourseList col-md-10 offset-md-1">
+        {courses.map((c) => (
+          <CourseCard
+            key={c.handle}
+            handle={c.handle}
+            name={c.name}
+            rating={c.rating}
+            slope={c.slope}
+            pars={c.pars}
+            handicaps={c.handicaps}
+          />
+        ))}
+      </div>
     </div>
   );
 };

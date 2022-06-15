@@ -8,7 +8,6 @@ import React from "react";
  */
 
 const HolesRow = ({ extended }) => {
-  console.log(extended);
   return (
     <tr className="table-dark">
       <th>HOLE</th>

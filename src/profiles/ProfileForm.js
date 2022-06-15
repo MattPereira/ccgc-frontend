@@ -30,6 +30,7 @@ const ProfileForm = () => {
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
+    bio: currentUser.bio,
     email: currentUser.email,
     password: "",
   });
@@ -76,6 +77,7 @@ const ProfileForm = () => {
       lastName: formData.lastName,
       email: formData.email,
       password: formData.password,
+      bio: formData.bio,
     };
 
     let updatedUser;
@@ -101,7 +103,7 @@ const ProfileForm = () => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-sm-8">
+      <div className="col-md-8">
         <Card className="px-5 py-3">
           <CardBody>
             <CardTitle className="display-4 text-center">
@@ -109,56 +111,82 @@ const ProfileForm = () => {
             </CardTitle>
 
             <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="firstName">First Name</Label>
-                <Input
-                  className="form-control"
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.firstName}
-                  required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="lastName">Last Name</Label>
-                <Input
-                  className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.lastName}
-                  required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  className="form-control"
-                  id="email"
-                  name="email"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.email}
-                  autoComplete="email"
-                  required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={handleChange}
-                  value={formData.password}
-                  required
-                  autoComplete="current-password"
-                ></Input>
-              </FormGroup>
+              <div className="row">
+                <div className="col-lg-6">
+                  <FormGroup>
+                    <Label htmlFor="firstName">First Name</Label>
+                    <Input
+                      className="form-control"
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      onChange={handleChange}
+                      value={formData.firstName}
+                      required
+                    ></Input>
+                  </FormGroup>
+                </div>
+                <div className="col-lg-6">
+                  <FormGroup>
+                    <Label htmlFor="lastName">Last Name</Label>
+                    <Input
+                      className="form-control"
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      onChange={handleChange}
+                      value={formData.lastName}
+                      required
+                    ></Input>
+                  </FormGroup>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-lg-6">
+                  <FormGroup>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      type="text"
+                      onChange={handleChange}
+                      value={formData.email}
+                      autoComplete="email"
+                      required
+                    ></Input>
+                  </FormGroup>
+                </div>
+                <div className="col-lg-6">
+                  <FormGroup>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      className="form-control"
+                      id="password"
+                      name="password"
+                      type="password"
+                      onChange={handleChange}
+                      value={formData.password}
+                      required
+                      autoComplete="current-password"
+                    ></Input>
+                  </FormGroup>
+                </div>
+
+                <FormGroup>
+                  <Label htmlFor="bio">Bio</Label>
+                  <Input
+                    className="form-control"
+                    id="bio"
+                    name="bio"
+                    type="textarea"
+                    onChange={handleChange}
+                    value={formData.bio}
+                    required
+                  ></Input>
+                </FormGroup>
+              </div>
 
               {formErrors.length
                 ? formErrors.map((err) => (
