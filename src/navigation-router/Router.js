@@ -39,7 +39,7 @@ function Router({ login, register }) {
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/courses" element={<CourseList />} />
       <Route exact path="/tournaments" element={<TournamentList />} />
-      <Route path="/tournaments/:id" element={<TournamentDetails />} />
+      <Route path="/tournaments/:date" element={<TournamentDetails />} />
 
       {/* Redirect to homepage if route doesn't exist */}
       <Route path="*" element={<Navigate to="/" replace />} />

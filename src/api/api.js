@@ -65,6 +65,13 @@ class CcgcApi {
     return res.tournaments;
   }
 
+  /** Get details on a tournament by handle. */
+
+  static async getTournament(date) {
+    let res = await this.request(`tournaments/${date}`);
+    return res.tournament;
+  }
+
   /** Register for site.  */
   static async register(data) {
     let res = await this.request(`auth/register`, data, "post");

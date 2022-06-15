@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Link } from "react-router-dom";
+import "./TournamentCard.css";
 
 /**
  *
@@ -8,13 +10,18 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
  */
 
 const TournamentCard = ({ date, courseHandle, courseName, seasonEndYEar }) => {
+  date = date.slice(0, 10);
   return (
     <div className="mb-3">
-      <Card body className="TournamentCard">
-        <CardTitle>{courseName}</CardTitle>
-        <CardText>{date.replace("T07:00:00.000Z", "")}</CardText>
-        <CardText>{seasonEndYEar}</CardText>
-      </Card>
+      <Link to={`/tournaments/${date}`} className="TournamentCard-link">
+        <Card body className="TournamentCard-card">
+          <CardBody>
+            <CardTitle tag="h5">{courseName}</CardTitle>
+            <CardText className="lead">{date}</CardText>
+            <CardText>{seasonEndYEar}</CardText>
+          </CardBody>
+        </Card>
+      </Link>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const TournamentList = () => {
 
   return (
     <div className="col-md-6 offset-md-3 text-center">
-      <h1 className="display-3">All Tournaments</h1>
+      <h1 className="display-3 mb-5">CCGC Tournaments</h1>
       {tournaments.map((t) => (
         <TournamentCard
           key={t.date}

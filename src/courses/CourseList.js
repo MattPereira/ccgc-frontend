@@ -29,11 +29,9 @@ const CourseList = () => {
   }, []);
 
   if (!courses) return <LoadingSpinner />;
-  console.log(courses);
 
   return (
     <div className="CourseList col-md-10 offset-md-1">
-      <h1 className="display-3 text-center mb-5">All Courses</h1>
       {courses.map((c) => (
         <CourseCard
           key={c.handle}

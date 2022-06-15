@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText, Table } from "reactstrap";
+import HolesRow from "../common/HolesRow";
 
 /**
  * CourseCard component shows
@@ -29,15 +30,11 @@ const CourseCard = ({ handle, name, rating, slope, pars, handicaps }) => {
             Rating : {rating} / Slope : {slope}
           </CardText>
           <CardText></CardText>
-          <Table responsive bordered className="text-center">
+          <Table responsive bordered hover className="text-center">
+            <thead>
+              <HolesRow />
+            </thead>
             <tbody>
-              <tr className="bg-dark text-white">
-                <th>Hole</th>
-                {Array.from({ length: 18 }, (_, i) => (
-                  <td key={i + 1}>{i + 1}</td>
-                ))}
-                <td>TOT</td>
-              </tr>
               <tr>
                 <th>HC</th>
                 {Object.values(handicaps).map((h, idx) => (
