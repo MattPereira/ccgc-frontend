@@ -30,6 +30,7 @@ const TournamentTable = ({ title, data }) => {
             key={r.id}
             rowHeader={`${r.firstName} ${r.lastName[0]}`}
             holeValues={r.strokes ? r.strokes : r.putts}
+            parValues={data.pars}
             calculations={
               r.totalStrokes
                 ? {

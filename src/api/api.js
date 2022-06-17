@@ -69,6 +69,24 @@ class CcgcApi {
     return res.course;
   }
 
+  /** Create a new course */
+  static async createCourse(data) {
+    let res = await this.request("courses", data, "post");
+    return res.course;
+  }
+
+  /** Update a course */
+  static async updateCourse(handle, data) {
+    let res = await this.request(`courses/${handle}`, data, "patch");
+    return res.course;
+  }
+
+  /** Delete a course */
+  static async deleteCourse(handle, data) {
+    let res = await this.request(`courses/${handle}`, data, "delete");
+    return res.deleted;
+  }
+
   /** Get tournaments */
   static async getTournaments() {
     let res = await this.request("tournaments");

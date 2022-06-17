@@ -4,7 +4,8 @@ import Homepage from "../homepage/Homepage";
 
 import CourseList from "../courses/CourseList";
 import CourseDetails from "../courses/CourseDetails";
-import CourseForm from "../courses/CourseForm";
+import NewCourseForm from "../courses/NewCourseForm";
+import EditCourse from "../courses/EditCourse";
 
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
@@ -45,8 +46,9 @@ function Router({ login, register }) {
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />
       <Route exact path="/courses" element={<CourseList />} />
-      <Route exact path="/courses/new" element={<CourseForm />} />
+      <Route exact path="/courses/new" element={<NewCourseForm />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
+      <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route path="/tournaments/:date" element={<TournamentDetails />} />
 
