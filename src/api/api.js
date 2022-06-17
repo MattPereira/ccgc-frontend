@@ -58,21 +58,24 @@ class CcgcApi {
   }
 
   /** Get courses */
-
   static async getCourses() {
     let res = await this.request("courses");
     return res.courses;
   }
 
-  /** Get tournaments */
+  /** Get a course by handle */
+  static async getCourse(handle) {
+    let res = await this.request(`courses/${handle}`);
+    return res.course;
+  }
 
+  /** Get tournaments */
   static async getTournaments() {
     let res = await this.request("tournaments");
     return res.tournaments;
   }
 
   /** Get details on a tournament by date. */
-
   static async getTournament(date) {
     let res = await this.request(`tournaments/${date}`);
     return res.tournament;

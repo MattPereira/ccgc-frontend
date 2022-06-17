@@ -12,13 +12,13 @@ const HolesRow = ({ extended }) => {
     <tr className="table-dark">
       <th>HOLE</th>
       {Array.from({ length: 18 }, (_, i) => (
-        <td key={i + 1}>{i + 1}</td>
+        <th key={i + 1}>{i + 1}</th>
       ))}
-      <td>TOT</td>
+      <th>TOT</th>
       {extended ? (
         <>
-          <td>HCP</td>
-          <td>NET</td>
+          <th>HCP</th>
+          <th>NET</th>
         </>
       ) : null}
     </tr>

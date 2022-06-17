@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import CourseCard from "./CourseCard";
+import UserContext from "../auth/UserContext";
+
+import { Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 /** Show page with all courses listed
  *
@@ -13,6 +17,8 @@ import CourseCard from "./CourseCard";
  */
 
 const CourseList = () => {
+  const { currentUser } = useContext(UserContext);
+
   console.debug("CourseList");
 
   const [courses, setCourses] = useState(null);
@@ -33,10 +39,17 @@ const CourseList = () => {
   return (
     <div className="text-center">
       <h1 className="display-3 mb-3">Golf Courses</h1>
-      <p className="lead mb-5">
-        Information about the rating, slope, pars, and handicaps for each course
-        played by the Contra Costa Golf Club.
-      </p>
+
+      {currentUser ? (
+        currentUser.isAdmin ? (
+          <Link to="/courses/new">
+            <Button color="primary" className="mb-5 rounded-pill">
+              New Course
+            </Button>
+          </Link>
+        ) : null
+      ) : null}
+
       <div className="CourseList col-md-10 offset-md-1">
         {courses.map((c) => (
           <CourseCard

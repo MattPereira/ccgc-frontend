@@ -9,7 +9,6 @@ const Homepage = () => {
   return (
     <div className="text-center">
       <h1 className="display-3">Contra Costa Golf Club</h1>
-      <p className="lead">This is the CCGC homepage!</p>
       {currentUser ? (
         <p>
           Welcome back, {currentUser.firstName} {currentUser.lastName}!
@@ -22,6 +21,13 @@ const Homepage = () => {
           <span> to input your round scores!</span>
         </>
       )}
+      <div>
+        <img
+          src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png"
+          alt="ccgc-logo"
+          className="img-fluid"
+        />
+      </div>
     </div>
   );
 };

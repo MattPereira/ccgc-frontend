@@ -63,11 +63,6 @@ const Navigation = ({ logout }) => {
     return (
       <>
         <NavItem>
-          <NavLink tag={RRNavLink} to="/courses">
-            Courses
-          </NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink tag={RRNavLink} to="/tournaments">
             Tournaments
           </NavLink>
@@ -75,6 +70,11 @@ const Navigation = ({ logout }) => {
         <NavItem>
           <NavLink tag={RRNavLink} to="/members">
             Members
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RRNavLink} to="/courses">
+            Courses
           </NavLink>
         </NavItem>
         <NavItem>
@@ -95,7 +95,7 @@ const Navigation = ({ logout }) => {
     <div>
       <Navbar color="success" dark expand="md" light>
         <NavLink tag={RRNavLink} to="/" className="navbar-brand">
-          Home
+          CCGC
         </NavLink>
         {/* onClick toggle whether navbar drops down to display links */}
         <NavbarToggler

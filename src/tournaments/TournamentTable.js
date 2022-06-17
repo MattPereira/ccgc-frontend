@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "reactstrap";
 import HolesRow from "../common/HolesRow";
-import ScoresRow from "../common/ScoresRow";
+import DataRow from "../common/DataRow";
 
 /** TournamentTable component
  *
@@ -9,28 +9,28 @@ import ScoresRow from "../common/ScoresRow";
  * leaderboard tables
  *
  *
- * TournamentDetails -> TournamentTable
+ * TournamentDetails -> TournamentTable -> { HolesRow, DataRow }
  *
  */
 
 const TournamentTable = ({ title, data }) => {
   return (
-    <Table responsive bordered striped className="my-5">
+    <Table responsive bordered striped>
       <thead>
-        <tr className="table-dark">
+        {/* <tr className="table-dark">
           <th colSpan="22" className="h5">
             {title}
           </th>
-        </tr>
+        </tr> */}
         <HolesRow extended={title === "STROKES" ? true : false} />
       </thead>
       <tbody>
         {data.rounds.map((r) => (
-          <ScoresRow
+          <DataRow
             key={r.id}
             rowHeader={`${r.firstName} ${r.lastName[0]}`}
-            holeScores={r.strokes ? r.strokes : r.putts}
-            totalScores={
+            holeValues={r.strokes ? r.strokes : r.putts}
+            calculations={
               r.totalStrokes
                 ? {
                     total: r.totalStrokes,
@@ -41,6 +41,14 @@ const TournamentTable = ({ title, data }) => {
             }
           />
         ))}
+        {data.pars ? (
+          <DataRow
+            rowColor="table-dark"
+            rowHeader="PAR"
+            holeValues={data.pars}
+            calculations={{ handicap: "--", net: "--" }}
+          />
+        ) : null}
       </tbody>
     </Table>
   );

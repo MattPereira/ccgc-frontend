@@ -1,58 +1,39 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardText, Table } from "reactstrap";
-import HolesRow from "../common/HolesRow";
+import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Link } from "react-router-dom";
+import CourseTable from "./CourseTable";
+
+import "./CourseCard.css";
 
 /**
- * CourseCard component shows
- *
- * the the pars and handicaps for each hole of a course
+ * Course card component.
  *
  *
- * but its actually probably just gunna be rows
- * so that we can combo this component with
- * round scorecard (or rooundRow) components
+ * show information about a golf course
  *
- * actually so a component with just a row
- * could possibly be used for putts,scores,
- * handicaps, and pars???
+ * CourseCard is rendered by CourseList to show a
+ * "card" for each course.
+ *
+ * CourseList -> CourseCard
  */
 
 const CourseCard = ({ handle, name, rating, slope, pars, handicaps }) => {
   return (
     <div className="mb-3">
-      <Card body className="CompanyCard-card text-center">
-        <CardBody>
-          <CardTitle tag="h3" className="display-6">
-            {name}
-          </CardTitle>
+      <Link to={`/courses/${handle}`} className="CourseCard-link">
+        <Card body className="CourseCard-card text-center">
+          <CardBody>
+            <CardTitle tag="h3" className="display-6">
+              {name}
+            </CardTitle>
 
-          <CardText className="lead">
-            Rating : {rating} / Slope : {slope}
-          </CardText>
-          <CardText></CardText>
-          <Table responsive bordered hover className="text-center">
-            <thead>
-              <HolesRow />
-            </thead>
-            <tbody>
-              <tr>
-                <th>HC</th>
-                {Object.values(handicaps).map((h, idx) => (
-                  <td key={idx}>{h}</td>
-                ))}
-                <td></td>
-              </tr>
-              <tr>
-                <th>Par</th>
-                {Object.values(pars).map((p, idx) => (
-                  <td key={idx}>{p}</td>
-                ))}
-                <td>{Object.values(pars).reduce((a, b) => a + b, 0)}</td>
-              </tr>
-            </tbody>
-          </Table>
-        </CardBody>
-      </Card>
+            <CardText className="lead">
+              Rating : {rating} / Slope : {slope}
+            </CardText>
+            <CourseTable pars={pars} handicaps={handicaps} />
+          </CardBody>
+        </Card>
+      </Link>
     </div>
   );
 };

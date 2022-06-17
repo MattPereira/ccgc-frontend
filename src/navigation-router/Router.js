@@ -1,9 +1,14 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
+
 import CourseList from "../courses/CourseList";
+import CourseDetails from "../courses/CourseDetails";
+import CourseForm from "../courses/CourseForm";
+
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
+
 import MemberList from "../members/MemberList";
 import MemberDetails from "../members/MemberDetails";
 
@@ -40,6 +45,8 @@ function Router({ login, register }) {
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />
       <Route exact path="/courses" element={<CourseList />} />
+      <Route exact path="/courses/new" element={<CourseForm />} />
+      <Route exact path="/courses/:handle" element={<CourseDetails />} />
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route path="/tournaments/:date" element={<TournamentDetails />} />
 
