@@ -31,21 +31,6 @@ const Navigation = ({ logout }) => {
     return (
       <>
         <NavItem>
-          <NavLink tag={RRNavLink} to="/tournaments">
-            Tournaments
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/members">
-            Members
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/courses">
-            Courses
-          </NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink tag={RRNavLink} to="/profile">
             Profile
           </NavLink>
@@ -62,21 +47,6 @@ const Navigation = ({ logout }) => {
   function loggedOutNav() {
     return (
       <>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/tournaments">
-            Tournaments
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/members">
-            Members
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/courses">
-            Courses
-          </NavLink>
-        </NavItem>
         <NavItem>
           <NavLink tag={RRNavLink} to="/login">
             Login
@@ -105,6 +75,27 @@ const Navigation = ({ logout }) => {
         />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/tournaments">
+                Tournaments
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/members">
+                Members
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/courses">
+                Courses
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/constitution">
+                Constitution
+              </NavLink>
+            </NavItem>
+
             {currentUser ? loggedInNav() : loggedOutNav()}
           </Nav>
         </Collapse>

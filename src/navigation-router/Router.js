@@ -18,6 +18,7 @@ import MemberDetails from "../members/MemberDetails";
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
 import ProfileForm from "../profiles/ProfileForm";
+import Constitution from "../homepage/Constitution";
 
 /** Site-wide routes.
  *
@@ -53,6 +54,8 @@ function Router({ login, register }) {
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/new" element={<NewTournament />} />
+      <Route exact path="/constitution" element={<Constitution />} />
+
       <Route
         exact
         path="/tournaments/:date/edit"
