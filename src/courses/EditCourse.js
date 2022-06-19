@@ -31,6 +31,8 @@ const EditCourse = () => {
 
   console.debug("EditCourse", "course=", course);
 
+  // if (!course) return <LoadingSpinner />;????
+
   return course ? <EditCourseForm course={course} /> : <LoadingSpinner />;
 };
 

@@ -35,7 +35,7 @@ const TournamentTable = ({ title, data }) => {
               r.totalStrokes
                 ? {
                     total: r.totalStrokes,
-                    handicap: r.courseHandicap,
+                    handicap: r.playerIndex,
                     net: r.netStrokes,
                   }
                 : { total: r.totalPutts }

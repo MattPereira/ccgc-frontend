@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card, CardBody, CardTitle, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import CourseTable from "./CourseTable";
 
@@ -17,19 +17,28 @@ import "./CourseCard.css";
  * CourseList -> CourseCard
  */
 
-const CourseCard = ({ handle, name, rating, slope, pars, handicaps }) => {
+const CourseCard = ({
+  handle,
+  name,
+  rating,
+  slope,
+  pars,
+  handicaps,
+  imgUrl,
+}) => {
   return (
     <div className="mb-3">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
-        <Card body className="CourseCard-card text-center">
+        <Card className="CourseCard-card text-center">
+          <CardImg alt={`${name} photo`} src={imgUrl} top />
           <CardBody>
             <CardTitle tag="h3" className="display-6">
               {name}
             </CardTitle>
-
-            <CardText className="lead">
-              Rating : {rating} / Slope : {slope}
-            </CardText>
+            <div className="row justify-content-center mb-3">
+              <div className="col-auto">Rating : {rating}</div>
+              <div className="col-auto">Slope : {slope}</div>
+            </div>
             <CourseTable pars={pars} handicaps={handicaps} />
           </CardBody>
         </Card>

@@ -53,48 +53,58 @@ const MemberDetails = () => {
         by date.
       </p>
       <div className="col-md-10 offset-md-1">
-        {member.rounds.map((r) => (
-          <div key={r.id} className="mb-5">
-            <h5 className="display-6 mb-0">{r.courseName}</h5>
-            <p className="lead mb-1">{r.tournamentDate.split("T")[0]}</p>
-            <Table responsive bordered key={r.id}>
-              <thead>
-                <HolesRow extended />
-              </thead>
-              <tbody>
-                <DataRow
-                  key={uuidv4()}
-                  rowColor="bg-white"
-                  rowHeader="STROKES"
-                  holeValues={r.strokes}
-                  calculations={{
-                    total: r.totalStrokes,
-                    handicap: r.courseHandicap,
-                    net: r.netStrokes,
-                  }}
-                />
+        {member.rounds ? (
+          member.rounds.map((r) => (
+            <div key={r.id} className="mb-5">
+              <h5 className="display-6 mb-0">{r.courseName}</h5>
+              <p className="lead mb-1">
+                {new Date(r.tournamentDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+              <Table responsive bordered key={r.id}>
+                <thead>
+                  <HolesRow extended />
+                </thead>
+                <tbody>
+                  <DataRow
+                    key={uuidv4()}
+                    rowColor="bg-white"
+                    rowHeader="STROKES"
+                    holeValues={r.strokes}
+                    calculations={{
+                      total: r.totalStrokes,
+                      handicap: r.courseHandicap,
+                      net: r.netStrokes,
+                    }}
+                  />
 
-                <DataRow
-                  key={uuidv4()}
-                  rowHeader="PUTTS"
-                  rowColor="bg-white"
-                  holeValues={r.putts}
-                  calculations={{
-                    total: r.totalPutts,
-                    handicap: "--",
-                    net: "--",
-                  }}
-                />
-                <DataRow
-                  rowColor="table-dark"
-                  rowHeader="PAR"
-                  holeValues={r.pars}
-                  calculations={{ handicap: "--", net: "--" }}
-                />
-              </tbody>
-            </Table>
-          </div>
-        ))}
+                  <DataRow
+                    key={uuidv4()}
+                    rowHeader="PUTTS"
+                    rowColor="bg-white"
+                    holeValues={r.putts}
+                    calculations={{
+                      total: r.totalPutts,
+                      handicap: "--",
+                      net: "--",
+                    }}
+                  />
+                  <DataRow
+                    rowColor="table-dark"
+                    rowHeader="PAR"
+                    holeValues={r.pars}
+                    calculations={{ handicap: "--", net: "--" }}
+                  />
+                </tbody>
+              </Table>
+            </div>
+          ))
+        ) : (
+          <p>{member.firstName} has not submitted any rounds yet!</p>
+        )}
       </div>
     </div>
   );

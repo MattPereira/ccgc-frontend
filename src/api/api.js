@@ -18,7 +18,7 @@ class CcgcApi {
     console.debug("API Call:", endpoint, data, method);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
-    //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
+    //this has been provided to show you another way to pass the token.
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${CcgcApi.token}` };
     const params = method === "get" ? data : {};
@@ -93,9 +93,21 @@ class CcgcApi {
     return res.tournaments;
   }
 
-  /** Get details on a tournament by date. */
+  /** Get a tournament by date. */
   static async getTournament(date) {
     let res = await this.request(`tournaments/${date}`);
+    return res.tournament;
+  }
+
+  /** Create a new tournament */
+  static async createTournament(data) {
+    let res = await this.request("tournaments", data, "post");
+    return res.tournament;
+  }
+
+  /** Delete a tournament by date */
+  static async deleteTournament(date, data) {
+    let res = await this.request(`tournaments/${date}`, data, "delete");
     return res.tournament;
   }
 

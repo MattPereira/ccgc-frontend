@@ -4,6 +4,7 @@ import CcgcApi from "../api/api";
 import {
   Card,
   CardBody,
+  CardText,
   CardTitle,
   Form,
   Label,
@@ -109,6 +110,10 @@ const ProfileForm = () => {
             <CardTitle className="display-4 text-center">
               Edit Profile
             </CardTitle>
+
+            <CardText className="lead">
+              Be aware the password you enter here will change your password
+            </CardText>
 
             <Form onSubmit={handleSubmit}>
               <div className="row">

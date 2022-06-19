@@ -44,7 +44,7 @@ const CourseList = () => {
         currentUser.isAdmin ? (
           <Link to="/courses/new">
             <Button color="primary" className="mb-5 rounded-pill">
-              New Course
+              Create Course
             </Button>
           </Link>
         ) : null
@@ -58,6 +58,7 @@ const CourseList = () => {
             name={c.name}
             rating={c.rating}
             slope={c.slope}
+            imgUrl={c.imgUrl}
             pars={c.pars}
             handicaps={c.handicaps}
           />

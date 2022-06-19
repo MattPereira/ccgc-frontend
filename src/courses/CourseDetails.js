@@ -56,8 +56,15 @@ const CourseDetails = () => {
   return (
     <div className="text-center">
       <h1 className="display-3 mb-5">{course.name}</h1>
-      <h5 className="display-6 mb-3">Rating : {course.rating}</h5>
-      <h5 className="display-6 mb-3">Slope : {course.slope}</h5>
+      <img
+        src={course.imgUrl}
+        alt={`${course.name}`}
+        className="img-fluid mb-3"
+      />
+      <div className="row justify-content-end">
+        <div className="col-auto">Rating : {course.rating}</div>
+        <div className="col-auto">Slope : {course.slope}</div>
+      </div>
       <div className="mb-5">
         <CourseTable
           key={course.handle}
@@ -97,12 +104,12 @@ const CourseDetails = () => {
                   isOpen={popoverOpen}
                 >
                   <PopoverHeader className="bg-warning text-center">
-                    Danger!
+                    WARNING!
                   </PopoverHeader>
                   <PopoverBody>
                     <p>
-                      Are you sure you want to delete this course? Cannot be
-                      undone!
+                      Are you sure you want to delete this course? This action
+                      cannot be undone!
                     </p>
                     <Button
                       color="danger"

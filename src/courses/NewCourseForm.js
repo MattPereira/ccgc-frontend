@@ -17,9 +17,7 @@ import "./CourseForm.css";
  *
  * Displays course form and handles changes to local form state.
  * Submission of form calls the API to save the course and redirects
- * to the courses list page.
- *
- * Redirects to CourseDetails page upon form submission.
+ * to the newly created course details page.
  *
  * Routed as /courses/new
  * Routes -> NewCourseForm
@@ -32,6 +30,7 @@ const NewCourseForm = () => {
     name: "",
     rating: "",
     slope: "",
+    imgUrl: "",
     par1: "",
     par2: "",
     par3: "",
@@ -116,6 +115,7 @@ const NewCourseForm = () => {
       name: formData.name,
       rating: +formData.rating,
       slope: +formData.slope,
+      imgUrl: formData.imgUrl,
       pars: {
         hole1: +formData.par1,
         hole2: +formData.par2,
@@ -166,9 +166,8 @@ const NewCourseForm = () => {
       return;
     }
 
-    //redirect or "navigate" to the course detail page for the new course?
+    //navigate to the course detail page for the newly created course
     navigate(`/courses/${courseHandle}`);
-    // setFormErrors([]);
   };
 
   return (
@@ -191,6 +190,20 @@ const NewCourseForm = () => {
                     type="text"
                     onChange={handleChange}
                     value={formData.name}
+                    required
+                  ></Input>
+                </FormGroup>
+              </div>
+              <div className="row">
+                <FormGroup>
+                  <Label htmlFor="name">Image Url</Label>
+                  <Input
+                    className="form-control"
+                    id="imgUrl"
+                    name="imgUrl"
+                    type="text"
+                    onChange={handleChange}
+                    value={formData.imgUrl}
                     required
                   ></Input>
                 </FormGroup>
