@@ -49,7 +49,7 @@ const TournamentDetails = () => {
 
   const { strokesLeaderboard, puttsLeaderboard } = tournament;
 
-  console.log(strokesLeaderboard);
+  console.log(tournament);
 
   //transform date from db format to better display format
   const dateObj = new Date(date);
@@ -66,10 +66,12 @@ const TournamentDetails = () => {
 
   return (
     <div className="row justify-content-center text-center">
-      <h1 className="display-3 mb-3">{strokesLeaderboard.courseName}</h1>
+      <h1 className="display-1 mb-3">Tournament</h1>
       <hr
-        style={{ border: "2px solid grey", width: "50%", marginBottom: "5px" }}
+        style={{ border: "2px solid grey", width: "30%", marginBottom: "1rem" }}
       ></hr>
+      <h2 className="mb-3 text-secondary">{tournament.courseName}</h2>
+
       <p className="lead mb-5">{displayDate}</p>
       {currentUser ? (
         currentUser.isAdmin ? (

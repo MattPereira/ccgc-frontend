@@ -37,9 +37,15 @@ const CourseList = () => {
   if (!courses) return <LoadingSpinner />;
 
   return (
-    <div className="text-center">
-      <h1 className="display-3 mb-3">Golf Courses</h1>
-
+    <div className="text-center row justify-content-center">
+      <h1 className="display-3 mb-3">Courses</h1>
+      <hr
+        className="mb-4"
+        style={{ border: "2px solid grey", width: "20%" }}
+      ></hr>
+      <p className="lead mb-5">
+        List of all golf courses played by the Contra Costa Golf Club.
+      </p>
       {currentUser ? (
         currentUser.isAdmin ? (
           <Link to="/courses/new">
@@ -50,7 +56,7 @@ const CourseList = () => {
         ) : null
       ) : null}
 
-      <div className="CourseList col-md-10 offset-md-1">
+      <div className="CourseList col-md-10">
         {courses.map((c) => (
           <CourseCard
             key={c.handle}

@@ -28,23 +28,12 @@ const DataRow = ({
   rowColor,
   parValues,
 }) => {
-  //THIS DOES NOT WORK THE FOR LOOP DOES NOT RUN?!?
-  // const parsArr = Object.values(parValues);
-  // const strokesArr = Object.values(holeValues);
-
-  // for (let i = 0; i < parsArr; i++) {
-  //   console.log(parsArr[i]);
-  //   if (strokesArr[i] > parsArr[i]) {
-  //     strokesArr[i] = "birdie";
-  //   }
-  // }
-
   return (
     <tr className={rowColor}>
       <th>{rowHeader}</th>
-      {Object.values(holeValues).map((val, idx) => (
-        <td key={idx}>{val}</td>
-      ))}
+      {holeValues
+        ? Object.values(holeValues).map((val, idx) => <td key={idx}>{val}</td>)
+        : null}
       {calculations
         ? Object.values(calculations).map((val, idx) => (
             <td key={idx}>{val}</td>

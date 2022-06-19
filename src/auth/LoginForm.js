@@ -9,6 +9,7 @@ import {
   Input,
   FormGroup,
   Alert,
+  CardImg,
 } from "reactstrap";
 
 /** Login form.
@@ -63,14 +64,22 @@ const LoginForm = ({ login }) => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-sm-8">
-        <Card className="px-5 py-3">
-          <CardBody>
-            <CardTitle className="display-4 text-center">Login</CardTitle>
+      <div className="col-sm-10 col-md-8">
+        <Card className="shadow">
+          <h1 className="display-2 text-center bg-dark text-white py-2 mb-0">
+            Login
+          </h1>
+
+          <CardImg
+            src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"
+            alt="Login card image"
+          />
+          <CardBody className="px-5 py-5">
+            {/* <CardTitle className="display-4 text-center">Login</CardTitle> */}
 
             <Form onSubmit={handleSubmit}>
               <FormGroup>
-                <Label htmlFor="email">email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   className="form-control"
                   id="email"
@@ -105,7 +114,7 @@ const LoginForm = ({ login }) => {
               <div className="row justify-content-end">
                 <div className="col-auto">
                   <button className="btn btn-primary btn-block px-4">
-                    submit
+                    Login
                   </button>
                 </div>
               </div>

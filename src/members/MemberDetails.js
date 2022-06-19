@@ -44,15 +44,19 @@ const MemberDetails = () => {
   console.log(member);
 
   return (
-    <div className="text-center">
+    <div className="text-center row justify-content-center">
       <h1 className="display-3 mb-3">
         {member.firstName} {member.lastName}
       </h1>
+      <hr
+        className="mb-4"
+        style={{ border: "2px solid grey", width: "20%" }}
+      ></hr>
       <p className="lead mb-5">
         Scorecards for each round played with the Contra Costa Golf Club ordered
         by date.
       </p>
-      <div className="col-md-10 offset-md-1">
+      <div className="col-md-10">
         {member.rounds ? (
           member.rounds.map((r) => (
             <div key={r.id} className="mb-5">

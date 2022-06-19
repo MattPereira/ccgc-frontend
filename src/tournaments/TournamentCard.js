@@ -28,8 +28,10 @@ const TournamentCard = ({
     <div className="mb-3">
       <Link to={`/tournaments/${date}`} className="TournamentCard-link">
         <Card className="TournamentCard-card">
-          <CardImg alt={`${courseName} photo`} src={imgUrl} top />
-          <div className="bg-primary text-white h6 py-1">{tourYears} Tour</div>
+          <div className="img-container">
+            <CardImg alt={`${courseName}`} src={imgUrl} top />
+          </div>
+          <div className="bg-dark text-white h6 py-1">{tourYears} Tour</div>
           <CardBody>
             <CardTitle tag="h5">{courseName}</CardTitle>
             <CardText className="lead">{displayDate}</CardText>

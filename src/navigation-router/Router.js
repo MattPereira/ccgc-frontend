@@ -10,6 +10,7 @@ import EditCourse from "../courses/EditCourse";
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
 import NewTournament from "../tournaments/NewTournament";
+import EditTournament from "../tournaments/EditTournament";
 
 import MemberList from "../members/MemberList";
 import MemberDetails from "../members/MemberDetails";
@@ -52,6 +53,12 @@ function Router({ login, register }) {
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/new" element={<NewTournament />} />
+      <Route
+        exact
+        path="/tournaments/:date/edit"
+        element={<EditTournament />}
+      />
+
       <Route path="/tournaments/:date" element={<TournamentDetails />} />
 
       {/* Redirect to homepage if route doesn't exist */}

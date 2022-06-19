@@ -105,6 +105,12 @@ class CcgcApi {
     return res.tournament;
   }
 
+  /** Update a tournament by date */
+  static async updateTournament(date, data) {
+    let res = await this.request(`tournaments/${date}`, data, "patch");
+    return res.tournament;
+  }
+
   /** Delete a tournament by date */
   static async deleteTournament(date, data) {
     let res = await this.request(`tournaments/${date}`, data, "delete");

@@ -9,6 +9,7 @@ import {
   Input,
   FormGroup,
   Alert,
+  CardImg,
 } from "reactstrap";
 
 /** Register form.
@@ -67,10 +68,15 @@ const RegisterForm = ({ register }) => {
   return (
     <div className="row justify-content-center">
       <div className="col-sm-8">
-        <Card className="px-5 py-3">
-          <CardBody>
-            <CardTitle className="display-4 text-center">Register</CardTitle>
-
+        <Card className="shadow">
+          <CardTitle className="display-2 text-center bg-dark text-white py-2 mb-0">
+            Register
+          </CardTitle>
+          <CardImg
+            src="https://images.unsplash.com/photo-1605144156683-5ebde77feed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
+            alt="Register card image"
+          />
+          <CardBody className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label htmlFor="email">Email</Label>

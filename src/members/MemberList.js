@@ -31,13 +31,17 @@ const MemberList = () => {
   if (!members) return <LoadingSpinner />;
 
   return (
-    <div className="text-center">
-      <h1 className="display-3 mb-3">Club Members</h1>
+    <div className="text-center row justify-content-center">
+      <h1 className="display-3 mb-3">Members</h1>
+      <hr
+        className="mb-4"
+        style={{ border: "2px solid grey", width: "20%" }}
+      ></hr>
       <p className="lead mb-5">
         Select a member to view all of their rounds played with the Contra Costa
         Golf Club
       </p>
-      <div className=" col-md-6 offset-md-3">
+      <div className=" col-md-6">
         {members.length ? (
           <div className="CompanyList-list">
             {members.map((m) => (
