@@ -80,7 +80,7 @@ const MemberDetails = () => {
                     holeValues={r.strokes}
                     calculations={{
                       total: r.totalStrokes,
-                      handicap: r.courseHandicap,
+                      handicap: r.playerIndex,
                       net: r.netStrokes,
                     }}
                   />

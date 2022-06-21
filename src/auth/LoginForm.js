@@ -65,10 +65,10 @@ const LoginForm = ({ login }) => {
   return (
     <div className="row justify-content-center">
       <div className="col-sm-10 col-md-8">
-        <Card className="shadow">
-          <h1 className="display-2 text-center bg-dark text-white py-2 mb-0">
+        <Card className="shadow mb-5">
+          <CardTitle className="display-2 text-center bg-dark text-white py-2 mb-0">
             Login
-          </h1>
+          </CardTitle>
 
           <CardImg
             src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"

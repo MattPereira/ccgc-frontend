@@ -117,6 +117,12 @@ class CcgcApi {
     return res.tournament;
   }
 
+  /** Create a new round */
+  static async createRound(data) {
+    let res = await this.request("rounds", data, "post");
+    return res.round;
+  }
+
   /** Register for site.  */
   static async register(data) {
     let res = await this.request(`auth/register`, data, "post");

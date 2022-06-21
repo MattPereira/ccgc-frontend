@@ -3,6 +3,13 @@ import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import NewTournamentForm from "./NewTournamentForm";
 
+/** This component is used to fetch courseHandle data to pass to <NewTournamentForm/>
+ *  in order to populate the form's select field with the course options
+ *
+ * Routed as /tournaments/:date/new
+ * Routes -> NewTournament -> NewTournamentForm
+ */
+
 const NewTournament = () => {
   /** Fetch the courses data first to set formData state properly */
   const [courses, setCourses] = useState(null);
@@ -10,7 +17,7 @@ const NewTournament = () => {
   // Grab all courses from API to make an array of course handles for select input
   /* On component mount, load courses from API */
   useEffect(function getCoursesOnMount() {
-    console.debug("CourseList useEffect getCoursesOnMount");
+    console.debug("NewTournament useEffect getCoursesOnMount");
 
     async function fetchAllCourses() {
       let courses = await CcgcApi.getCourses();

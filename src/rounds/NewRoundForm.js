@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import CcgcApi from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import UserContext from "../auth/UserContext";
+
 import {
   Card,
   CardBody,
@@ -11,69 +14,69 @@ import {
   FormGroup,
   Alert,
 } from "reactstrap";
-import "./CourseForms.css";
 
-/** Form to edit a course
+/** Form to create a new round
  *
- * Displays edit course form and handles changes to local form state.
- * Submission of form calls the API to save the course and redirects
- * to the courses list page.
  *
- * Redirects to CourseDetails page upon form submission.
+ * Displays new round form and handles changes to local form state.
+ * Submission of form calls the API to save the round and redirects
+ * to the tournament details page.
  *
- * Routed as /courses/:handle/edit
- * Routes -> EditCourse -> EditCourseForm
+ * Routed as /rounds/:date/new
+ *
+ * Routes -> NewRoundForm
+ *
  */
 
-const EditCourseForm = ({ course }) => {
+const NewRoundForm = ({ usernames }) => {
   let navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
+  const { date } = useParams();
 
   const [formData, setFormData] = useState({
-    name: course.name,
-    rating: course.rating,
-    slope: course.slope,
-    par1: course.pars.hole1,
-    par2: course.pars.hole2,
-    par3: course.pars.hole3,
-    par4: course.pars.hole4,
-    par5: course.pars.hole5,
-    par6: course.pars.hole6,
-    par7: course.pars.hole7,
-    par8: course.pars.hole8,
-    par9: course.pars.hole9,
-    par10: course.pars.hole10,
-    par11: course.pars.hole11,
-    par12: course.pars.hole12,
-    par13: course.pars.hole13,
-    par14: course.pars.hole14,
-    par15: course.pars.hole15,
-    par16: course.pars.hole16,
-    par17: course.pars.hole17,
-    par18: course.pars.hole18,
-    handicap1: course.handicaps.hole1,
-    handicap2: course.handicaps.hole2,
-    handicap3: course.handicaps.hole3,
-    handicap4: course.handicaps.hole4,
-    handicap5: course.handicaps.hole5,
-    handicap6: course.handicaps.hole6,
-    handicap7: course.handicaps.hole7,
-    handicap8: course.handicaps.hole8,
-    handicap9: course.handicaps.hole9,
-    handicap10: course.handicaps.hole10,
-    handicap11: course.handicaps.hole11,
-    handicap12: course.handicaps.hole12,
-    handicap13: course.handicaps.hole13,
-    handicap14: course.handicaps.hole14,
-    handicap15: course.handicaps.hole15,
-    handicap16: course.handicaps.hole16,
-    handicap17: course.handicaps.hole17,
-    handicap18: course.handicaps.hole18,
+    username: currentUser.username,
+    strokes1: "",
+    strokes2: "",
+    strokes3: "",
+    strokes4: "",
+    strokes5: "",
+    strokes6: "",
+    strokes7: "",
+    strokes8: "",
+    strokes9: "",
+    strokes10: "",
+    strokes11: "",
+    strokes12: "",
+    strokes13: "",
+    strokes14: "",
+    strokes15: "",
+    strokes16: "",
+    strokes17: "",
+    strokes18: "",
+    putts1: "",
+    putts2: "",
+    putts3: "",
+    putts4: "",
+    putts5: "",
+    putts6: "",
+    putts7: "",
+    putts8: "",
+    putts9: "",
+    putts10: "",
+    putts11: "",
+    putts12: "",
+    putts13: "",
+    putts14: "",
+    putts15: "",
+    putts16: "",
+    putts17: "",
+    putts18: "",
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug(
-    "EditCourseForm",
+    "NewRoundForm",
     "formData=",
     formData,
     "formErrors=",
@@ -104,185 +107,146 @@ const EditCourseForm = ({ course }) => {
 
     //package the formData into the format that the API wants
     //including converting strings to integers/numbers
-    let courseData = {
-      name: formData.name,
-      rating: +formData.rating,
-      slope: +formData.slope,
-      pars: {
-        hole1: +formData.par1,
-        hole2: +formData.par2,
-        hole3: +formData.par3,
-        hole4: +formData.par4,
-        hole5: +formData.par5,
-        hole6: +formData.par6,
-        hole7: +formData.par7,
-        hole8: +formData.par8,
-        hole9: +formData.par9,
-        hole10: +formData.par10,
-        hole11: +formData.par11,
-        hole12: +formData.par12,
-        hole13: +formData.par13,
-        hole14: +formData.par14,
-        hole15: +formData.par15,
-        hole16: +formData.par16,
-        hole17: +formData.par17,
-        hole18: +formData.par18,
+    let roundData = {
+      tournamentDate: date,
+      username: formData.username,
+      strokes: {
+        hole1: +formData.strokes1,
+        hole2: +formData.strokes2,
+        hole3: +formData.strokes3,
+        hole4: +formData.strokes4,
+        hole5: +formData.strokes5,
+        hole6: +formData.strokes6,
+        hole7: +formData.strokes7,
+        hole8: +formData.strokes8,
+        hole9: +formData.strokes9,
+        hole10: +formData.strokes10,
+        hole11: +formData.strokes11,
+        hole12: +formData.strokes12,
+        hole13: +formData.strokes13,
+        hole14: +formData.strokes14,
+        hole15: +formData.strokes15,
+        hole16: +formData.strokes16,
+        hole17: +formData.strokes17,
+        hole18: +formData.strokes18,
       },
-      handicaps: {
-        hole1: +formData.handicap1,
-        hole2: +formData.handicap2,
-        hole3: +formData.handicap3,
-        hole4: +formData.handicap4,
-        hole5: +formData.handicap5,
-        hole6: +formData.handicap6,
-        hole7: +formData.handicap7,
-        hole8: +formData.handicap8,
-        hole9: +formData.handicap9,
-        hole10: +formData.handicap10,
-        hole11: +formData.handicap11,
-        hole12: +formData.handicap12,
-        hole13: +formData.handicap13,
-        hole14: +formData.handicap14,
-        hole15: +formData.handicap15,
-        hole16: +formData.handicap16,
-        hole17: +formData.handicap17,
-        hole18: +formData.handicap18,
+      putts: {
+        hole1: +formData.putts1,
+        hole2: +formData.putts2,
+        hole3: +formData.putts3,
+        hole4: +formData.putts4,
+        hole5: +formData.putts5,
+        hole6: +formData.putts6,
+        hole7: +formData.putts7,
+        hole8: +formData.putts8,
+        hole9: +formData.putts9,
+        hole10: +formData.putts10,
+        hole11: +formData.putts11,
+        hole12: +formData.putts12,
+        hole13: +formData.putts13,
+        hole14: +formData.putts14,
+        hole15: +formData.putts15,
+        hole16: +formData.putts16,
+        hole17: +formData.putts17,
+        hole18: +formData.putts18,
       },
     };
 
+    console.log(roundData);
+
     try {
-      await CcgcApi.updateCourse(course.handle, courseData);
+      await CcgcApi.createRound(roundData);
     } catch (errors) {
       debugger;
       setFormErrors(errors);
       return;
     }
 
-    //redirect or "navigate" to the course detail page for the new course?
-    navigate(`/courses/${course.handle}`);
-    // setFormErrors([]);
+    //navigate to the course detail page for the newly created course
+    navigate(`/tournaments/${date}`);
   };
 
   return (
     <div className="row justify-content-center">
       <div className="col-md-8">
-        <Card className="px-5 py-3">
+        <Card className="px-5 py-3 mb-5">
           <CardBody>
             <CardTitle className="display-4 text-center mb-3">
-              Update Course
+              New Round
             </CardTitle>
 
             <Form onSubmit={handleSubmit}>
               <div className="row">
                 <FormGroup>
-                  <Label htmlFor="name">Course Name</Label>
+                  <Label htmlFor="name" className="fw-bold">
+                    Tournament Date
+                  </Label>
                   <Input
                     className="form-control"
-                    id="name"
-                    name="name"
                     type="text"
-                    onChange={handleChange}
-                    value={formData.name}
-                    required
+                    value={new Date(date).toLocaleDateString()}
+                    readOnly
                   ></Input>
                 </FormGroup>
               </div>
-
               <div className="row">
-                <div className="col-6">
-                  <FormGroup>
-                    <Label htmlFor="rating">Rating</Label>
-                    <Input
-                      className="form-control"
-                      id="rating"
-                      name="rating"
-                      type="number"
-                      step="0.1"
-                      onChange={handleChange}
-                      value={formData.rating}
-                      required
-                    ></Input>
-                  </FormGroup>
-                </div>
-                <div className="col-6">
-                  <FormGroup>
-                    <Label htmlFor="slope">Slope</Label>
-                    <Input
-                      className="form-control"
-                      id="slope"
-                      name="slope"
-                      type="number"
-                      onChange={handleChange}
-                      value={formData.slope}
-                      required
-                    ></Input>
-                  </FormGroup>
-                </div>
+                <FormGroup>
+                  <Label htmlFor="name" className="fw-bold">
+                    Username
+                  </Label>
+                  <Input
+                    className="form-control"
+                    id="username"
+                    name="username"
+                    type="select"
+                    onChange={handleChange}
+                    value={formData.username}
+                    required
+                  >
+                    {usernames.map((username) => (
+                      <option key={username} value={username}>
+                        {username}
+                      </option>
+                    ))}
+                  </Input>
+                </FormGroup>
               </div>
 
               <div className="row text-center">
                 <div className="col-2">
-                  <Label>Hole</Label>
+                  <Label className="fw-bold">Hole</Label>
                 </div>
                 <div className="col-5">
-                  <Label>Par</Label>
+                  <Label className="fw-bold">Strokes</Label>
                 </div>
                 <div className="col-5">
-                  <Label>Handicap</Label>
+                  <Label className="fw-bold">Putts</Label>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#1</label>
+                  <Label className="fw-bold">#1</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par1"
-                    name="par1"
+                    id="strokes1"
+                    name="strokes1"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par1}
+                    value={formData.strokes1}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap1"
-                    name="handicap1"
+                    id="putts1"
+                    name="putts1"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap1}
-                    required
-                  ></Input>
-                </div>
-              </div>
-
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <label>#2</label>
-                </div>
-                <div className="col-5 align-self-center">
-                  <Input
-                    className="form-control"
-                    id="par2"
-                    name="par2"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par2}
-                    required
-                  ></Input>
-                </div>
-                <div className="col-5">
-                  <Input
-                    className="form-control"
-                    id="handicap2"
-                    name="handicap2"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap2}
+                    value={formData.putts1}
                     required
                   ></Input>
                 </div>
@@ -290,27 +254,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#3</label>
+                  <Label className="fw-bold">#2</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par3"
-                    name="par3"
+                    id="strokes2"
+                    name="strokes2"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par3}
+                    value={formData.strokes2}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap3"
-                    name="handicap3"
+                    id="putts2"
+                    name="putts2"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap3}
+                    value={formData.putts2}
                     required
                   ></Input>
                 </div>
@@ -318,27 +282,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#4</label>
+                  <Label className="fw-bold">#3</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par4"
-                    name="par4"
+                    id="strokes3"
+                    name="strokes3"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par4}
+                    value={formData.strokes3}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap4"
-                    name="handicap4"
+                    id="putts3"
+                    name="putts3"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap4}
+                    value={formData.putts3}
                     required
                   ></Input>
                 </div>
@@ -346,27 +310,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#5</label>
+                  <Label className="fw-bold">#4</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par5"
-                    name="par5"
+                    id="strokes4"
+                    name="strokes4"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par5}
+                    value={formData.strokes4}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap5"
-                    name="handicap5"
+                    id="putts4"
+                    name="putts4"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap5}
+                    value={formData.putts4}
                     required
                   ></Input>
                 </div>
@@ -374,27 +338,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#6</label>
+                  <Label className="fw-bold">#5</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par6"
-                    name="par6"
+                    id="strokes5"
+                    name="strokes5"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par6}
+                    value={formData.strokes5}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap6"
-                    name="handicap6"
+                    id="putts5"
+                    name="putts5"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap6}
+                    value={formData.putts5}
                     required
                   ></Input>
                 </div>
@@ -402,27 +366,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#7</label>
+                  <Label className="fw-bold">#6</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par7"
-                    name="par7"
+                    id="strokes6"
+                    name="strokes6"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par7}
+                    value={formData.strokes6}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap7"
-                    name="handicap7"
+                    id="putts6"
+                    name="putts6"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap7}
+                    value={formData.putts6}
                     required
                   ></Input>
                 </div>
@@ -430,27 +394,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#8</label>
+                  <Label className="fw-bold">#7</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par8"
-                    name="par8"
+                    id="strokes7"
+                    name="strokes7"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par8}
+                    value={formData.strokes7}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap8"
-                    name="handicap8"
+                    id="putts7"
+                    name="putts7"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap8}
+                    value={formData.putts7}
                     required
                   ></Input>
                 </div>
@@ -458,27 +422,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#9</label>
+                  <Label className="fw-bold">#8</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par9"
-                    name="par9"
+                    id="strokes8"
+                    name="strokes8"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par9}
+                    value={formData.strokes8}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap9"
-                    name="handicap9"
+                    id="putts8"
+                    name="putts8"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap9}
+                    value={formData.putts8}
                     required
                   ></Input>
                 </div>
@@ -486,27 +450,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#10</label>
+                  <Label className="fw-bold">#9</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par10"
-                    name="par10"
+                    id="strokes9"
+                    name="strokes9"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par10}
+                    value={formData.strokes9}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap10"
-                    name="handicap10"
+                    id="putts9"
+                    name="putts9"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap10}
+                    value={formData.putts9}
                     required
                   ></Input>
                 </div>
@@ -514,27 +478,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#11</label>
+                  <Label className="fw-bold">#10</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par11"
-                    name="par11"
+                    id="strokes10"
+                    name="strokes10"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par11}
+                    value={formData.strokes10}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap11"
-                    name="handicap11"
+                    id="putts10"
+                    name="putts10"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap11}
+                    value={formData.putts10}
                     required
                   ></Input>
                 </div>
@@ -542,27 +506,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#12</label>
+                  <Label className="fw-bold">#11</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par12"
-                    name="par12"
+                    id="strokes11"
+                    name="strokes11"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par12}
+                    value={formData.strokes11}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap12"
-                    name="handicap12"
+                    id="putts11"
+                    name="putts11"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap12}
+                    value={formData.putts11}
                     required
                   ></Input>
                 </div>
@@ -570,27 +534,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#13</label>
+                  <Label className="fw-bold">#12</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par13"
-                    name="par13"
+                    id="strokes12"
+                    name="strokes12"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par13}
+                    value={formData.strokes12}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap13"
-                    name="handicap13"
+                    id="putts12"
+                    name="putts12"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap13}
+                    value={formData.putts12}
                     required
                   ></Input>
                 </div>
@@ -598,27 +562,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#14</label>
+                  <Label className="fw-bold">#13</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par14"
-                    name="par14"
+                    id="strokes13"
+                    name="strokes13"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par14}
+                    value={formData.strokes13}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap14"
-                    name="handicap14"
+                    id="putts13"
+                    name="putts13"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap14}
+                    value={formData.putts13}
                     required
                   ></Input>
                 </div>
@@ -626,27 +590,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#15</label>
+                  <Label className="fw-bold">#14</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par15"
-                    name="par15"
+                    id="strokes14"
+                    name="strokes14"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par15}
+                    value={formData.strokes14}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap15"
-                    name="handicap15"
+                    id="putts14"
+                    name="putts14"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap15}
+                    value={formData.putts14}
                     required
                   ></Input>
                 </div>
@@ -654,27 +618,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#16</label>
+                  <Label className="fw-bold">#15</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par16"
-                    name="par16"
+                    id="strokes15"
+                    name="strokes15"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par16}
+                    value={formData.strokes15}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap16"
-                    name="handicap16"
+                    id="putts15"
+                    name="putts15"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap16}
+                    value={formData.putts15}
                     required
                   ></Input>
                 </div>
@@ -682,27 +646,27 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#17</label>
+                  <Label className="fw-bold">#16</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par17"
-                    name="par17"
+                    id="strokes16"
+                    name="strokes16"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par17}
+                    value={formData.strokes16}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap17"
-                    name="handicap17"
+                    id="putts16"
+                    name="putts16"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap17}
+                    value={formData.putts16}
                     required
                   ></Input>
                 </div>
@@ -710,27 +674,55 @@ const EditCourseForm = ({ course }) => {
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#18</label>
+                  <Label className="fw-bold">#17</Label>
                 </div>
                 <div className="col-5 align-self-center">
                   <Input
                     className="form-control"
-                    id="par18"
-                    name="par18"
+                    id="strokes17"
+                    name="strokes17"
                     type="number"
                     onChange={handleChange}
-                    value={formData.par18}
+                    value={formData.strokes17}
                     required
                   ></Input>
                 </div>
                 <div className="col-5">
                   <Input
                     className="form-control"
-                    id="handicap18"
-                    name="handicap18"
+                    id="putts17"
+                    name="putts17"
                     type="number"
                     onChange={handleChange}
-                    value={formData.handicap18}
+                    value={formData.putts17}
+                    required
+                  ></Input>
+                </div>
+              </div>
+
+              <div className="row align-items-center mb-3">
+                <div className="col-2 text-center">
+                  <Label className="fw-bold">#18</Label>
+                </div>
+                <div className="col-5 align-self-center">
+                  <Input
+                    className="form-control"
+                    id="strokes18"
+                    name="strokes18"
+                    type="number"
+                    onChange={handleChange}
+                    value={formData.strokes18}
+                    required
+                  ></Input>
+                </div>
+                <div className="col-5">
+                  <Input
+                    className="form-control"
+                    id="putts18"
+                    name="putts18"
+                    type="number"
+                    onChange={handleChange}
+                    value={formData.putts18}
                     required
                   ></Input>
                 </div>
@@ -759,4 +751,4 @@ const EditCourseForm = ({ course }) => {
   );
 };
 
-export default EditCourseForm;
+export default NewRoundForm;

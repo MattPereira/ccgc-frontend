@@ -91,8 +91,8 @@ const Navigation = ({ logout }) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/constitution">
-                Constitution
+              <NavLink tag={RRNavLink} to="/information">
+                Info
               </NavLink>
             </NavItem>
 

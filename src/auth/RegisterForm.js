@@ -68,7 +68,7 @@ const RegisterForm = ({ register }) => {
   return (
     <div className="row justify-content-center">
       <div className="col-sm-8">
-        <Card className="shadow">
+        <Card className="shadow mb-5">
           <CardTitle className="display-2 text-center bg-dark text-white py-2 mb-0">
             Register
           </CardTitle>

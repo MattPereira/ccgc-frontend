@@ -11,11 +11,11 @@ import {
   FormGroup,
   Alert,
 } from "reactstrap";
-import "./CourseForm.css";
+import "./CourseForms.css";
 
 /** Form to create a new course
  *
- * Displays course form and handles changes to local form state.
+ * Displays new course form and handles changes to local form state.
  * Submission of form calls the API to save the course and redirects
  * to the newly created course details page.
  *

@@ -3,10 +3,10 @@ import HorizontalRule from "../common/HorizontalRule";
 
 import { Table } from "reactstrap";
 
-const ConstitutionDetails = () => {
+const Information = () => {
   return (
     <div className="row justify-content-center">
-      <h1 className="display-3 text-center">Constitution</h1>
+      <h1 className="display-3 text-center">Information</h1>
       <HorizontalRule width="35%" />
 
       <p className="lead text-center mb-5">
@@ -213,4 +213,4 @@ const ConstitutionDetails = () => {
   );
 };
 
-export default ConstitutionDetails;
+export default Information;
