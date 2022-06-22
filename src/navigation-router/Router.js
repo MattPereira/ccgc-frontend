@@ -15,7 +15,9 @@ import TournamentDetails from "../tournaments/TournamentDetails";
 import NewTournament from "../tournaments/NewTournament";
 import EditTournament from "../tournaments/EditTournament";
 
+import RoundDetails from "../rounds/RoundDetails";
 import NewRound from "../rounds/NewRound";
+import EditRound from "../rounds/EditRound";
 
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
@@ -68,7 +70,9 @@ function Router({ login, register }) {
         element={<EditTournament />}
       />
 
+      <Route exact path="/rounds/:id" element={<RoundDetails />} />
       <Route exact path="/rounds/:date/new" element={<NewRound />} />
+      <Route exact path="/rounds/:id/edit" element={<EditRound />} />
 
       {/* Redirect to homepage if route doesn't exist */}
       <Route path="*" element={<Navigate to="/" replace />} />

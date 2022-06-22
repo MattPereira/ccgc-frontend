@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { Table } from "reactstrap";
-
-import HolesRow from "../common/HolesRow";
-import DataRow from "../common/DataRow";
-
-import { v4 as uuidv4 } from "uuid";
+import RoundTable from "../rounds/RoundTable";
 
 /** Member details page.
  *
@@ -16,9 +11,11 @@ import { v4 as uuidv4 } from "uuid";
  *
  * This is routed to path "/members/:username"
  *
- * Routes -> MemberDetails -> { MemberRoundCard -> {HolesRow, StrokesRow, PuttsRow} }
+ * Routes -> MemberDetails -> { MemberRoundTable -> {HolesRow, DataRow} }
  *
  */
+
+/// ADD LINKS TO GET TO INDIVIDUAL ROUND PAGE!!
 
 const MemberDetails = () => {
   const { username } = useParams();
@@ -60,50 +57,18 @@ const MemberDetails = () => {
         {member.rounds ? (
           member.rounds.map((r) => (
             <div key={r.id} className="mb-5">
-              <h5 className="display-6 mb-0">{r.courseName}</h5>
-              <p className="lead mb-1">
-                {new Date(r.tournamentDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
-              <Table responsive bordered key={r.id}>
-                <thead>
-                  <HolesRow extended />
-                </thead>
-                <tbody>
-                  <DataRow
-                    key={uuidv4()}
-                    rowColor="bg-white"
-                    rowHeader="STROKES"
-                    holeValues={r.strokes}
-                    calculations={{
-                      total: r.totalStrokes,
-                      handicap: r.playerIndex,
-                      net: r.netStrokes,
-                    }}
-                  />
-
-                  <DataRow
-                    key={uuidv4()}
-                    rowHeader="PUTTS"
-                    rowColor="bg-white"
-                    holeValues={r.putts}
-                    calculations={{
-                      total: r.totalPutts,
-                      handicap: "--",
-                      net: "--",
-                    }}
-                  />
-                  <DataRow
-                    rowColor="table-dark"
-                    rowHeader="PAR"
-                    holeValues={r.pars}
-                    calculations={{ handicap: "--", net: "--" }}
-                  />
-                </tbody>
-              </Table>
+              <RoundTable
+                roundId={r.id}
+                courseName={r.courseName}
+                tournamentDate={r.tournamentDate}
+                strokes={r.strokes}
+                putts={r.putts}
+                totalStrokes={r.totalStrokes}
+                playerIndex={r.playerIndex}
+                netStrokes={r.netStrokes}
+                totalPutts={r.totalPutts}
+                pars={r.pars}
+              />
             </div>
           ))
         ) : (

@@ -1,5 +1,6 @@
 import React from "react";
 import "./DataRow.css";
+import { Link } from "react-router-dom";
 
 /**DataRow component
  *
@@ -19,18 +20,29 @@ import "./DataRow.css";
  * how to feed in the par values to this component is tricky
  * since we are mapping over the data.rounds :(
  *
+ *
+ * If there is a roundId, then we want to link to the round page
+ * through the <th>RowHeader</th>
+ *
  */
 
 const DataRow = ({
+  roundId,
   rowHeader,
   holeValues,
   calculations,
   rowColor,
-  parValues,
 }) => {
   return (
     <tr className={rowColor}>
-      <th>{rowHeader}</th>
+      {roundId ? (
+        <th>
+          <Link to={`/rounds/${roundId}`}>{rowHeader}</Link>
+        </th>
+      ) : (
+        <th>{rowHeader}</th>
+      )}
+
       {holeValues
         ? Object.values(holeValues).map((val, idx) => <td key={idx}>{val}</td>)
         : null}

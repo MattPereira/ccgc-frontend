@@ -7,10 +7,10 @@ import UserContext from "../auth/UserContext";
 import HorizontalRule from "../common/HorizontalRule";
 
 import TournamentTable from "./TournamentTable";
+import EditAndDeleteBtns from "../common/EditDeleteBtns";
 
 import { Link } from "react-router-dom";
-import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-
+import { Button } from "reactstrap";
 /** Tournament details page.
  *
  * On component mount, load the tournament from API
@@ -33,10 +33,6 @@ const TournamentDetails = () => {
 
   console.debug("TournamentDetails");
   const [tournament, setTournament] = useState(null);
-
-  //popover stuff
-  const [popoverOpen, setPopoverOpen] = useState(false);
-  const toggle = () => setPopoverOpen(!popoverOpen);
 
   /* On component mount, load company from API */
   useEffect(
@@ -70,61 +66,22 @@ const TournamentDetails = () => {
     navigate("/tournaments");
   };
 
-  // Edit and Delete tournament buttons for currentUser.isAdmin = true only!
-  const adminBtns = (
-    <div className="row justify-content-center mb-3">
-      <div className="col-auto">
-        <Link to={`/tournaments/${date}/edit`}>
-          <Button color="warning" className="px-4 rounded-pill">
-            Edit
-          </Button>
-        </Link>
-      </div>
-      <div className="col-auto">
-        <div>
-          <Button
-            id="Popover1"
-            type="button"
-            className="btn-danger rounded-pill"
-          >
-            Delete
-          </Button>
-          <Popover
-            flip
-            placement="bottom"
-            target="Popover1"
-            toggle={toggle}
-            isOpen={popoverOpen}
-          >
-            <PopoverHeader className="bg-warning text-center">
-              WARNING!
-            </PopoverHeader>
-            <PopoverBody>
-              <p>
-                Are you sure you want to delete this tournament? This action
-                cannot be undone!
-              </p>
-              <Button
-                color="danger"
-                className="mb-5 rounded-pill"
-                onClick={handleDelete}
-              >
-                Confirm
-              </Button>
-            </PopoverBody>
-          </Popover>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="row justify-content-center text-center">
       <h1 className="display-1 mb-3">Tournament</h1>
-      {currentUser ? (currentUser.isAdmin ? adminBtns : null) : null}
 
       <HorizontalRule width="30%" />
-
+      <p className="lead">
+        Select a player by name to view, update, or delete a round's details
+      </p>
+      {currentUser ? (
+        currentUser.isAdmin ? (
+          <EditAndDeleteBtns
+            editPath={`/tournaments/${date}/edit`}
+            handleDelete={handleDelete}
+          />
+        ) : null
+      ) : null}
       <h2 className="mb-3 text-secondary">{tournament.courseName}</h2>
 
       <p className="lead mb-5">{displayDate}</p>
@@ -132,7 +89,7 @@ const TournamentDetails = () => {
         <div className="mb-5">
           <Link to={`/rounds/${date}/new`}>
             <Button color="primary" className="rounded-pill">
-              Input Round Scores
+              Input Scores
             </Button>
           </Link>
         </div>

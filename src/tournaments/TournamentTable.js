@@ -17,17 +17,13 @@ const TournamentTable = ({ title, data }) => {
   return (
     <Table responsive bordered striped>
       <thead>
-        {/* <tr className="table-dark">
-          <th colSpan="22" className="h5">
-            {title}
-          </th>
-        </tr> */}
         <HolesRow extended={title === "STROKES" ? true : false} />
       </thead>
       <tbody>
         {data.rounds.map((r) => (
           <DataRow
             key={r.id}
+            roundId={r.id}
             rowHeader={`${r.firstName} ${r.lastName[0]}`}
             holeValues={r.strokes ? r.strokes : r.putts}
             parValues={data.pars}
@@ -35,7 +31,7 @@ const TournamentTable = ({ title, data }) => {
               r.totalStrokes
                 ? {
                     total: r.totalStrokes,
-                    handicap: r.playerIndex,
+                    handicap: r.courseHandicap,
                     net: r.netStrokes,
                   }
                 : { total: r.totalPutts }

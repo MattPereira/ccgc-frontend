@@ -114,13 +114,31 @@ class CcgcApi {
   /** Delete a tournament by date */
   static async deleteTournament(date, data) {
     let res = await this.request(`tournaments/${date}`, data, "delete");
-    return res.tournament;
+    return res.deleted;
+  }
+
+  /** Get a round by id*/
+  static async getRound(id) {
+    let res = await this.request(`rounds/${id}`);
+    return res.round;
   }
 
   /** Create a new round */
   static async createRound(data) {
     let res = await this.request("rounds", data, "post");
     return res.round;
+  }
+
+  /** Edit a round by id */
+  static async updateRound(id, data) {
+    let res = await this.request(`rounds/${id}`, data, "patch");
+    return res.round;
+  }
+
+  /** Delete a round by id */
+  static async deleteRound(id, data) {
+    let res = await this.request(`rounds/${id}`, data, "delete");
+    return res.deleted;
   }
 
   /** Register for site.  */

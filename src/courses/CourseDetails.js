@@ -9,6 +9,8 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import CourseTable from "./CourseTable";
+import EditDeleteBtns from "../common/EditDeleteBtns";
+import HorizontalRule from "../common/HorizontalRule";
 
 /** Course details page.
  *
@@ -20,6 +22,8 @@ import CourseTable from "./CourseTable";
  * Routes -> CourseDetails -> CourseCard
  *
  */
+
+/// ADD LINKS TO GET TO INDIVIDUAL ROUND PAGE!!
 
 const CourseDetails = () => {
   const { handle } = useParams();
@@ -54,8 +58,19 @@ const CourseDetails = () => {
   };
 
   return (
-    <div className="text-center">
-      <h1 className="display-3 mb-5">{course.name}</h1>
+    <div className="text-center mb-5 row justify-content-center">
+      <h1 className="display-3 mb-3">{course.name}</h1>
+      <HorizontalRule width={"30%"} />
+
+      {currentUser ? (
+        currentUser.isAdmin ? (
+          <EditDeleteBtns
+            editPath={`/courses/${course.handle}/edit`}
+            handleDelete={handleDelete}
+          />
+        ) : null
+      ) : null}
+
       <img
         src={course.imgUrl}
         alt={`${course.name}`}
@@ -76,55 +91,6 @@ const CourseDetails = () => {
           handicaps={course.handicaps}
         />
       </div>
-
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <div className="row justify-content-end">
-            <div className="col-auto">
-              <Link to={`/courses/${course.handle}/edit`}>
-                <Button color="primary" className="px-4 rounded-pill">
-                  Edit
-                </Button>
-              </Link>
-            </div>
-            <div className="col-auto">
-              <div>
-                <Button
-                  id="Popover1"
-                  type="button"
-                  className="btn-danger rounded-pill"
-                >
-                  Delete
-                </Button>
-                <Popover
-                  flip
-                  placement="bottom"
-                  target="Popover1"
-                  toggle={toggle}
-                  isOpen={popoverOpen}
-                >
-                  <PopoverHeader className="bg-warning text-center">
-                    WARNING!
-                  </PopoverHeader>
-                  <PopoverBody>
-                    <p>
-                      Are you sure you want to delete this course? This action
-                      cannot be undone!
-                    </p>
-                    <Button
-                      color="danger"
-                      className="mb-5 rounded-pill"
-                      onClick={handleDelete}
-                    >
-                      Confirm
-                    </Button>
-                  </PopoverBody>
-                </Popover>
-              </div>
-            </div>
-          </div>
-        ) : null
-      ) : null}
     </div>
   );
 };

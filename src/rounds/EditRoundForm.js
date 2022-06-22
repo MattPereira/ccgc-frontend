@@ -1,8 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import CcgcApi from "../api/api";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import UserContext from "../auth/UserContext";
 
 import {
   Card,
@@ -15,62 +13,61 @@ import {
   Alert,
 } from "reactstrap";
 
-/** Form to create a new round
+/** Form to edit a golf round
  *
  *
- * Displays new round form and handles changes to local form state.
+ * Displays EditRoundForm and handles changes to local form state.
  * Submission of form calls the API to save the round and redirects
  * to the tournament details page.
  *
- * Routed as /rounds/:date/new
+ * Routed as /rounds/:id/edit
  *
- * Routes -> NewRoundForm
+ * Routes -> EditRound -> EditRoundForm
  *
  */
 
-const NewRoundForm = ({ usernames }) => {
+const EditRoundForm = ({ round }) => {
   let navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
-  const { date } = useParams();
+
+  console.log(round);
 
   const [formData, setFormData] = useState({
-    username: currentUser.username,
-    strokes1: "",
-    strokes2: "",
-    strokes3: "",
-    strokes4: "",
-    strokes5: "",
-    strokes6: "",
-    strokes7: "",
-    strokes8: "",
-    strokes9: "",
-    strokes10: "",
-    strokes11: "",
-    strokes12: "",
-    strokes13: "",
-    strokes14: "",
-    strokes15: "",
-    strokes16: "",
-    strokes17: "",
-    strokes18: "",
-    putts1: "",
-    putts2: "",
-    putts3: "",
-    putts4: "",
-    putts5: "",
-    putts6: "",
-    putts7: "",
-    putts8: "",
-    putts9: "",
-    putts10: "",
-    putts11: "",
-    putts12: "",
-    putts13: "",
-    putts14: "",
-    putts15: "",
-    putts16: "",
-    putts17: "",
-    putts18: "",
+    strokes1: round.strokes.hole1,
+    strokes2: round.strokes.hole2,
+    strokes3: round.strokes.hole3,
+    strokes4: round.strokes.hole4,
+    strokes5: round.strokes.hole5,
+    strokes6: round.strokes.hole6,
+    strokes7: round.strokes.hole7,
+    strokes8: round.strokes.hole8,
+    strokes9: round.strokes.hole9,
+    strokes10: round.strokes.hole10,
+    strokes11: round.strokes.hole11,
+    strokes12: round.strokes.hole12,
+    strokes13: round.strokes.hole13,
+    strokes14: round.strokes.hole14,
+    strokes15: round.strokes.hole15,
+    strokes16: round.strokes.hole16,
+    strokes17: round.strokes.hole17,
+    strokes18: round.strokes.hole18,
+    putts1: round.putts.hole1,
+    putts2: round.putts.hole2,
+    putts3: round.putts.hole3,
+    putts4: round.putts.hole4,
+    putts5: round.putts.hole5,
+    putts6: round.putts.hole6,
+    putts7: round.putts.hole7,
+    putts8: round.putts.hole8,
+    putts9: round.putts.hole9,
+    putts10: round.putts.hole10,
+    putts11: round.putts.hole11,
+    putts12: round.putts.hole12,
+    putts13: round.putts.hole13,
+    putts14: round.putts.hole14,
+    putts15: round.putts.hole15,
+    putts16: round.putts.hole16,
+    putts17: round.putts.hole17,
+    putts18: round.putts.hole18,
   });
 
   const [formErrors, setFormErrors] = useState([]);
@@ -108,8 +105,6 @@ const NewRoundForm = ({ usernames }) => {
     //package the formData into the format that the API wants
     //including converting strings to integers/numbers
     let roundData = {
-      tournamentDate: date,
-      username: formData.username,
       strokes: {
         hole1: +formData.strokes1,
         hole2: +formData.strokes2,
@@ -152,10 +147,8 @@ const NewRoundForm = ({ usernames }) => {
       },
     };
 
-    console.log(roundData);
-
     try {
-      await CcgcApi.createRound(roundData);
+      await CcgcApi.updateRound(round.id, roundData);
     } catch (errors) {
       debugger;
       setFormErrors(errors);
@@ -163,10 +156,8 @@ const NewRoundForm = ({ usernames }) => {
     }
 
     //navigate to the course detail page for the newly created course
-    navigate(`/tournaments/${date}`);
+    navigate(`/rounds/${round.id}`);
   };
-
-  //Should I allow only admins to create rounds for other users?
 
   return (
     <div className="row justify-content-center">
@@ -174,7 +165,7 @@ const NewRoundForm = ({ usernames }) => {
         <Card className="px-5 py-3 mb-5">
           <CardBody>
             <CardTitle className="display-4 text-center mb-3">
-              New Round
+              Edit Round
             </CardTitle>
 
             <Form onSubmit={handleSubmit}>
@@ -186,7 +177,7 @@ const NewRoundForm = ({ usernames }) => {
                   <Input
                     className="form-control"
                     type="text"
-                    value={new Date(date).toLocaleDateString()}
+                    value={new Date(round.tournamentDate).toLocaleDateString()}
                     readOnly
                   ></Input>
                 </FormGroup>
@@ -198,19 +189,10 @@ const NewRoundForm = ({ usernames }) => {
                   </Label>
                   <Input
                     className="form-control"
-                    id="username"
-                    name="username"
-                    type="select"
-                    onChange={handleChange}
-                    value={formData.username}
-                    required
-                  >
-                    {usernames.map((username) => (
-                      <option key={username} value={username}>
-                        {username}
-                      </option>
-                    ))}
-                  </Input>
+                    type="text"
+                    value={round.username}
+                    readOnly
+                  ></Input>
                 </FormGroup>
               </div>
 
@@ -753,4 +735,4 @@ const NewRoundForm = ({ usernames }) => {
   );
 };
 
-export default NewRoundForm;
+export default EditRoundForm;
