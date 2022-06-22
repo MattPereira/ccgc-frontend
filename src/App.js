@@ -7,9 +7,6 @@ import LoadingSpinner from "./common/LoadingSpinner";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
-// jsonwebtoken causes BIG webpack errors.
-// import jwt from "jsonwebtoken";
-
 /** Contra Costa Golf Club App
  *
  *  * - infoLoaded: has user data been pulled from API?

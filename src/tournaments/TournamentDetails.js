@@ -7,23 +7,23 @@ import UserContext from "../auth/UserContext";
 import HorizontalRule from "../common/HorizontalRule";
 
 import TournamentTable from "./TournamentTable";
-import EditAndDeleteBtns from "../common/EditDeleteBtns";
+import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
 
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
 /** Tournament details page.
  *
  * On component mount, load the tournament from API
- * which includes the rounds for that tournament
+ * which includes all the rounds for that tournament
  *
  * The TournamentDetails component is responsible for:
  * - Displaying the strokes and putts leaderboards
- * - Offering edit and delete buttons for admins
+ * - Offering tournament edit and delete buttons for admins
  * - Offering new round creation buttons for all users
  *
  * This is routed to path  "/tournaments/:date"
  *
- * Routes -> TournamentDetails -> TournamentTable
+ * Routes -> TournamentDetails -> {TournamentTable, EditAndDeleteBtns}
  */
 
 const TournamentDetails = () => {
@@ -70,10 +70,7 @@ const TournamentDetails = () => {
     <div className="row justify-content-center text-center">
       <h1 className="display-1 mb-3">Tournament</h1>
 
-      <HorizontalRule width="30%" />
-      <p className="lead">
-        Select a player by name to view, update, or delete a round's details
-      </p>
+      <HorizontalRule width="25%" />
       {currentUser ? (
         currentUser.isAdmin ? (
           <EditAndDeleteBtns
@@ -82,9 +79,11 @@ const TournamentDetails = () => {
           />
         ) : null
       ) : null}
+
       <h2 className="mb-3 text-secondary">{tournament.courseName}</h2>
 
       <p className="lead mb-5">{displayDate}</p>
+
       {currentUser ? (
         <div className="mb-5">
           <Link to={`/rounds/${date}/new`}>

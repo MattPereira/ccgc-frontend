@@ -20,7 +20,7 @@ import {
  * - redirects to "/" route
  *
  * Routes -> RegisterForm
- * Routed as /register
+ * Routed to "/register"
  */
 
 const RegisterForm = ({ register }) => {

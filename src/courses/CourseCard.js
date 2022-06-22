@@ -5,14 +5,11 @@ import CourseTable from "./CourseTable";
 
 import "./CourseCard.css";
 
-/**
- * Course card component.
+/** Course card component.
  *
+ * Show information about a golf course
  *
- * show information about a golf course
- *
- * CourseCard is rendered by CourseList to show a
- * "card" for each course.
+ * CourseCard is rendered by CourseList to show a "card" for each course.
  *
  * CourseList -> CourseCard
  */

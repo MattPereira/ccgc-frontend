@@ -1,25 +1,24 @@
 import React, { useEffect, useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
 import { useNavigate } from "react-router-dom";
-
-import { Link } from "react-router-dom";
-import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-
 import { useParams } from "react-router-dom";
 import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
+
 import CourseTable from "./CourseTable";
-import EditDeleteBtns from "../common/EditDeleteBtns";
 import HorizontalRule from "../common/HorizontalRule";
+import LoadingSpinner from "../common/LoadingSpinner";
+import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
 
 /** Course details page.
  *
  * On component mount, load the course data from API
- * which includes all the rounds played at that particular course
+ * which includes the pars and handicaps for the course.
+ *
+ * Also offer edit and delete buttons for admins users only.
  *
  * This is routed to path "/courses/:handle"
  *
- * Routes -> CourseDetails -> CourseCard
+ * Routes -> CourseDetails -> {EditAndDeleteBtns, CourseTable}
  *
  */
 
@@ -33,9 +32,6 @@ const CourseDetails = () => {
   console.debug("CourseDetails", "handle=", handle);
 
   const [course, setCourse] = useState(null);
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const toggle = () => setPopoverOpen(!popoverOpen);
 
   /* On component mount, load course data from API */
   useEffect(
@@ -62,21 +58,12 @@ const CourseDetails = () => {
       <h1 className="display-3 mb-3">{course.name}</h1>
       <HorizontalRule width={"30%"} />
 
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <EditDeleteBtns
-            editPath={`/courses/${course.handle}/edit`}
-            handleDelete={handleDelete}
-          />
-        ) : null
-      ) : null}
-
       <img
         src={course.imgUrl}
         alt={`${course.name}`}
-        className="img-fluid mb-3"
+        className="img-fluid mb-5 mt-3"
       />
-      <div className="row justify-content-end">
+      <div className="row justify-content-end mb-1">
         <div className="col-auto">Rating : {course.rating}</div>
         <div className="col-auto">Slope : {course.slope}</div>
       </div>
@@ -91,6 +78,15 @@ const CourseDetails = () => {
           handicaps={course.handicaps}
         />
       </div>
+
+      {currentUser ? (
+        currentUser.isAdmin ? (
+          <EditAndDeleteBtns
+            editPath={`/courses/${course.handle}/edit`}
+            handleDelete={handleDelete}
+          />
+        ) : null
+      ) : null}
     </div>
   );
 };

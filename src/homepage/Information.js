@@ -3,11 +3,20 @@ import HorizontalRule from "../common/HorizontalRule";
 
 import { Table } from "reactstrap";
 
+/** Show club information page
+ *
+ * Display points tables
+ *
+ * Display club handicap computation information
+ *
+ * Router -> Information
+ */
+
 const Information = () => {
   return (
     <div className="row justify-content-center">
       <h1 className="display-3 text-center">Information</h1>
-      <HorizontalRule width="35%" />
+      <HorizontalRule width="20%" />
 
       <p className="lead text-center mb-5">
         The Contra Costa Golf Club calculates member standings on the basis of

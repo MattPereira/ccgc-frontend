@@ -33,12 +33,27 @@ class CcgcApi {
   }
 
   // Individual API routes
+
+  //////////////////// AUTH ROUTES ////////////////////
+  /** Register for site.  */
+  static async register(data) {
+    let res = await this.request(`auth/register`, data, "post");
+    return res.token;
+  }
+
+  /** login to site.  */
+  static async login(data) {
+    let res = await this.request(`auth/token`, data, "post");
+    return res.token;
+  }
+
   /**Get the current user. */
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
 
+  //////////////////// USER ROUTES ////////////////////
   /**Get all club members. */
   static async getMembers() {
     let res = await this.request(`users`);
@@ -57,6 +72,7 @@ class CcgcApi {
     return res.user;
   }
 
+  //////////////////// COURSE ROUTES ////////////////////
   /** Get courses */
   static async getCourses() {
     let res = await this.request("courses");
@@ -87,6 +103,7 @@ class CcgcApi {
     return res.deleted;
   }
 
+  //////////////////// TOURNAMENT ROUTES ////////////////////
   /** Get tournaments */
   static async getTournaments() {
     let res = await this.request("tournaments");
@@ -117,6 +134,7 @@ class CcgcApi {
     return res.deleted;
   }
 
+  //////////////////// ROUND ROUTES ////////////////////
   /** Get a round by id*/
   static async getRound(id) {
     let res = await this.request(`rounds/${id}`);
@@ -140,24 +158,6 @@ class CcgcApi {
     let res = await this.request(`rounds/${id}`, data, "delete");
     return res.deleted;
   }
-
-  /** Register for site.  */
-  static async register(data) {
-    let res = await this.request(`auth/register`, data, "post");
-    return res.token;
-  }
-
-  /** login to site.  */
-  static async login(data) {
-    let res = await this.request(`auth/token`, data, "post");
-    return res.token;
-  }
 }
-
-// for now, put token ("testuser" / "password" on class)
-// CcgcApi.token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default CcgcApi;

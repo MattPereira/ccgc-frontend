@@ -3,26 +3,19 @@ import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./TournamentCard.css";
 
-/**
+/** Tournament card component.
  *
- * TournamentCard component is child of TournamentList
+ * Show tournament tourYear, date, course name, and course image.
+ * TournamentCard also functions as link to each tournament's detail page.
+ *
+ * TournamentCard is rendered by TournamentList to show a "card" for each tournament.
+ *
+ * TournamentList -> TournamentCard
  *
  */
 
-const TournamentCard = ({
-  date,
-  courseHandle,
-  courseName,
-  tourYears,
-  imgUrl,
-}) => {
+const TournamentCard = ({ date, courseName, tourYears, imgUrl }) => {
   //transform date from db format to better display format
-  const dateObj = new Date(date);
-  const displayDate = dateObj.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <div className="mb-3">
@@ -34,7 +27,13 @@ const TournamentCard = ({
           <div className="bg-dark text-white h6 py-1">{tourYears} Tour</div>
           <CardBody>
             <CardTitle tag="h5">{courseName}</CardTitle>
-            <CardText className="lead">{displayDate}</CardText>
+            <CardText className="lead">
+              {new Date(date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </CardText>
           </CardBody>
         </Card>
       </Link>

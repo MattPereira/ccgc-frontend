@@ -4,15 +4,20 @@ import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 /** Edit And Delete Buttons component
  *
- *
- * renders a edit and delete button for these compononents:
+ * renders an edit and delete button for these compononents:
  * - RoundDetails
  * - TournamentDetails
  * - CourseDetails
  *
+ * Props needed:
+ *  -editPath: the path to the edit page
+ *  -handleDelete: function to handle the deletion of a round,
+ *    tournament, or course
+ *
+ *  Note: delete button is nested inside popover for extra caution
  */
 
-const EditDeleteBtns = ({ editPath, handleDelete }) => {
+const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
   console.debug(
     "EditDeleteBtns",
     "editLink=",
@@ -25,7 +30,9 @@ const EditDeleteBtns = ({ editPath, handleDelete }) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const toggle = () => setPopoverOpen(!popoverOpen);
 
-  // Edit and Delete tournament buttons for currentUser.isAdmin = true only!
+  //grab item for deletion warning message
+  const item = editPath.split("/")[1].slice(0, -1);
+
   return (
     <div className="row justify-content-center mb-3">
       <div className="col-auto">
@@ -56,8 +63,8 @@ const EditDeleteBtns = ({ editPath, handleDelete }) => {
             </PopoverHeader>
             <PopoverBody>
               <p>
-                Are you sure you want to delete this tournament? This action
-                cannot be undone!
+                Are you sure you want to delete this {item}? This action cannot
+                be undone!
               </p>
               <Button
                 color="danger"
@@ -74,4 +81,4 @@ const EditDeleteBtns = ({ editPath, handleDelete }) => {
   );
 };
 
-export default EditDeleteBtns;
+export default EditAndDeleteBtns;

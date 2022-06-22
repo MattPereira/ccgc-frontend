@@ -5,24 +5,18 @@ import { Link } from "react-router-dom";
 /**DataRow component
  *
  * displays all the strokes or putts for a given round
- *
+ * also currently being used for displaying pars row
  *
  * rowHeader is the <th> for the row
  * holeValues is an object with the values for each hole
+ * i.e. {hole1: 3, hole2: 4, ... hole18: 5}
+ *
  * calculations is an object with calculated values for the row
- *
- * idea: pass through parValues and handicapValues to calculate
- * birdies, skins, etc?
- *
- * might want to rename this to strokesRow for the fancy logic
- * and puts putts/pars in a different row component
- *
- * how to feed in the par values to this component is tricky
- * since we are mapping over the data.rounds :(
+ * i.e. {totalStrokes: 85, courseHandicap: 12, netStrokes: 73}
  *
  *
- * If there is a roundId, then we want to link to the round page
- * through the <th>RowHeader</th>
+ * If there is a roundId, then create link to the round details page
+ * through the <th>RowHeader</th> using the path "/rounds/:roundId"
  *
  */
 
@@ -43,9 +37,10 @@ const DataRow = ({
         <th>{rowHeader}</th>
       )}
 
-      {holeValues
-        ? Object.values(holeValues).map((val, idx) => <td key={idx}>{val}</td>)
-        : null}
+      {Object.values(holeValues).map((val, idx) => (
+        <td key={idx}>{val}</td>
+      ))}
+
       {calculations
         ? Object.values(calculations).map((val, idx) => (
             <td key={idx}>{val}</td>

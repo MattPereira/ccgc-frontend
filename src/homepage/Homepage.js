@@ -2,6 +2,15 @@ import React, { useContext } from "react";
 import UserContext from "../auth/UserContext";
 import { Link } from "react-router-dom";
 
+/** Homepage component
+ *
+ * welcome message and club logo
+ *
+ * This is routed to path "/"
+ *
+ * Router -> Homepage
+ */
+
 const Homepage = () => {
   const { currentUser } = useContext(UserContext);
   console.debug("Homepage");

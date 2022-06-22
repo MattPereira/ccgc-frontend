@@ -5,12 +5,11 @@ import DataRow from "../common/DataRow";
 
 /** TournamentTable component
  *
- * handles the display of both strokes and putts
- * leaderboard tables
+ * handles displaying of the strokes and putts
+ * leaderboards
  *
  *
  * TournamentDetails -> TournamentTable -> { HolesRow, DataRow }
- *
  */
 
 const TournamentTable = ({ title, data }) => {

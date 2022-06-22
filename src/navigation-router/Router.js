@@ -7,13 +7,13 @@ import MemberDetails from "../members/MemberDetails";
 
 import CourseList from "../courses/CourseList";
 import CourseDetails from "../courses/CourseDetails";
-import NewCourseForm from "../courses/NewCourseForm";
-import EditCourse from "../courses/EditCourse";
+import NewCourseForm from "../courses/forms/NewCourseForm";
+import EditCourse from "../courses/forms/EditCourse";
 
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
-import NewTournament from "../tournaments/NewTournament";
-import EditTournament from "../tournaments/EditTournament";
+import NewTournament from "../tournaments/forms/NewTournament";
+import EditTournament from "../tournaments/forms/EditTournament";
 
 import RoundDetails from "../rounds/RoundDetails";
 import NewRound from "../rounds/NewRound";

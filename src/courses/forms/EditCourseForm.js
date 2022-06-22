@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CcgcApi from "../api/api";
+import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -13,66 +13,67 @@ import {
 } from "reactstrap";
 import "./CourseForms.css";
 
-/** Form to create a new course
+/** Form to edit a course
  *
- * Displays new course form and handles changes to local form state.
+ * Displays edit course form and handles changes to local form state.
  * Submission of form calls the API to save the course and redirects
- * to the newly created course details page.
+ * to the courses list page.
  *
- * Routed as /courses/new
- * Routes -> NewCourseForm
+ * Redirects to CourseDetails page upon form submission.
+ *
+ * Routed as /courses/:handle/edit
+ * Routes -> EditCourse -> EditCourseForm
  */
 
-const NewCourseForm = () => {
+const EditCourseForm = ({ course }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
-    rating: "",
-    slope: "",
-    imgUrl: "",
-    par1: "",
-    par2: "",
-    par3: "",
-    par4: "",
-    par5: "",
-    par6: "",
-    par7: "",
-    par8: "",
-    par9: "",
-    par10: "",
-    par11: "",
-    par12: "",
-    par13: "",
-    par14: "",
-    par15: "",
-    par16: "",
-    par17: "",
-    par18: "",
-    handicap1: "",
-    handicap2: "",
-    handicap3: "",
-    handicap4: "",
-    handicap5: "",
-    handicap6: "",
-    handicap7: "",
-    handicap8: "",
-    handicap9: "",
-    handicap10: "",
-    handicap11: "",
-    handicap12: "",
-    handicap13: "",
-    handicap14: "",
-    handicap15: "",
-    handicap16: "",
-    handicap17: "",
-    handicap18: "",
+    name: course.name,
+    rating: course.rating,
+    slope: course.slope,
+    par1: course.pars.hole1,
+    par2: course.pars.hole2,
+    par3: course.pars.hole3,
+    par4: course.pars.hole4,
+    par5: course.pars.hole5,
+    par6: course.pars.hole6,
+    par7: course.pars.hole7,
+    par8: course.pars.hole8,
+    par9: course.pars.hole9,
+    par10: course.pars.hole10,
+    par11: course.pars.hole11,
+    par12: course.pars.hole12,
+    par13: course.pars.hole13,
+    par14: course.pars.hole14,
+    par15: course.pars.hole15,
+    par16: course.pars.hole16,
+    par17: course.pars.hole17,
+    par18: course.pars.hole18,
+    handicap1: course.handicaps.hole1,
+    handicap2: course.handicaps.hole2,
+    handicap3: course.handicaps.hole3,
+    handicap4: course.handicaps.hole4,
+    handicap5: course.handicaps.hole5,
+    handicap6: course.handicaps.hole6,
+    handicap7: course.handicaps.hole7,
+    handicap8: course.handicaps.hole8,
+    handicap9: course.handicaps.hole9,
+    handicap10: course.handicaps.hole10,
+    handicap11: course.handicaps.hole11,
+    handicap12: course.handicaps.hole12,
+    handicap13: course.handicaps.hole13,
+    handicap14: course.handicaps.hole14,
+    handicap15: course.handicaps.hole15,
+    handicap16: course.handicaps.hole16,
+    handicap17: course.handicaps.hole17,
+    handicap18: course.handicaps.hole18,
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug(
-    "NewCourseForm",
+    "EditCourseForm",
     "formData=",
     formData,
     "formErrors=",
@@ -101,21 +102,12 @@ const NewCourseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //create course handle from formData.name
-    const courseHandle = formData.name
-      .toLowerCase()
-      .split(" ")
-      .slice(0, 2)
-      .join("-");
-
     //package the formData into the format that the API wants
     //including converting strings to integers/numbers
     let courseData = {
-      handle: courseHandle,
       name: formData.name,
       rating: +formData.rating,
       slope: +formData.slope,
-      imgUrl: formData.imgUrl,
       pars: {
         hole1: +formData.par1,
         hole2: +formData.par2,
@@ -159,15 +151,16 @@ const NewCourseForm = () => {
     };
 
     try {
-      await CcgcApi.createCourse(courseData);
+      await CcgcApi.updateCourse(course.handle, courseData);
     } catch (errors) {
       debugger;
       setFormErrors(errors);
       return;
     }
 
-    //navigate to the course detail page for the newly created course
-    navigate(`/courses/${courseHandle}`);
+    //redirect or "navigate" to the course detail page for the new course?
+    navigate(`/courses/${course.handle}`);
+    // setFormErrors([]);
   };
 
   return (
@@ -176,7 +169,7 @@ const NewCourseForm = () => {
         <Card className="px-5 py-3">
           <CardBody>
             <CardTitle className="display-4 text-center mb-3">
-              Create Course
+              Update Course
             </CardTitle>
 
             <Form onSubmit={handleSubmit}>
@@ -190,20 +183,6 @@ const NewCourseForm = () => {
                     type="text"
                     onChange={handleChange}
                     value={formData.name}
-                    required
-                  ></Input>
-                </FormGroup>
-              </div>
-              <div className="row">
-                <FormGroup>
-                  <Label htmlFor="name">Image Url</Label>
-                  <Input
-                    className="form-control"
-                    id="imgUrl"
-                    name="imgUrl"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.imgUrl}
                     required
                   ></Input>
                 </FormGroup>
@@ -780,4 +759,4 @@ const NewCourseForm = () => {
   );
 };
 
-export default NewCourseForm;
+export default EditCourseForm;

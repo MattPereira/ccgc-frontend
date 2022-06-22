@@ -2,7 +2,9 @@ import React from "react";
 
 /**
  *
- * Component for displaying hole numbers, tot, hcp, and net.
+ * Component for displaying hole numbers 1-18
+ *
+ * if exteded is true, then display TOT, HCP, and NET
  *
  *
  */

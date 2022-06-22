@@ -13,7 +13,7 @@ import { Button } from "reactstrap";
  *
  * This is routed to path "/courses"
  *
- * Routes -> CourseCard
+ * Router -> CourseList -> CourseCard
  */
 
 const CourseList = () => {

@@ -19,8 +19,8 @@ import {
  * - calls login function prop
  * - redirects to "/" route
  *
- * Routes -> SignupForm
- * Routed as /login
+ * Router -> RegisterForm
+ * Routed to "/login"
  */
 
 const LoginForm = ({ login }) => {
@@ -74,9 +74,8 @@ const LoginForm = ({ login }) => {
             src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"
             alt="Login card image"
           />
-          <CardBody className="px-5 py-5">
-            {/* <CardTitle className="display-4 text-center">Login</CardTitle> */}
 
+          <CardBody className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label htmlFor="email">Email</Label>

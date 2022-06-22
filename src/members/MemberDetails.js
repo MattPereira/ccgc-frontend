@@ -38,13 +38,14 @@ const MemberDetails = () => {
 
   if (!member) return <LoadingSpinner />;
 
-  console.log(member);
+  console.log("MEMBER:", member);
 
   return (
     <div className="text-center row justify-content-center">
       <h1 className="display-3 mb-3">
         {member.firstName} {member.lastName}
       </h1>
+
       <hr
         className="mb-4"
         style={{ border: "2px solid grey", width: "20%" }}

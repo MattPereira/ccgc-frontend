@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../api/api";
+import CcgcApi from "../../api/api";
 import { useParams } from "react-router-dom";
 import EditTournamentForm from "./EditTournamentForm";
-import LoadingSpinner from "../common/LoadingSpinner";
+import LoadingSpinner from "../../common/LoadingSpinner";
 
 /** This component is used to fetch tournament data to pass to <EditTournamentForm/>
  *  in order to populate the form with the course's current data.

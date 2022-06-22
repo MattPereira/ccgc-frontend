@@ -5,7 +5,8 @@ import "./MemberCard.css";
 
 /** Member card component.
  *
- * Show information about a member and function as link to member's detail page.
+ * Show information about a member
+ * MemberCard also functions as link to each member's detail page.
  *
  * MemberCard is rendered by MemberList to show a "card" for each member.
  *

@@ -5,18 +5,19 @@ import CcgcApi from "../api/api";
 import RoundTable from "./RoundTable";
 import { useNavigate } from "react-router-dom";
 import HorizontalRule from "../common/HorizontalRule";
-import EditDeleteBtns from "../common/EditDeleteBtns";
+import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
 import UserContext from "../auth/UserContext";
 
-/**
- * Round details page
+/** Round details page.
  *
- * fetch round details from API
+ * On component mount, load the round data from API
+ * which includes the strokes, putts, and calculations
+ * for each round
  *
- * offer edit and delete buttons for logged in users.
- *
- * Only show edit and delete buttons if isAdmin or
+ * Only show edit and delete buttons if user isAdmin or
  * if the user is the owner of the round
+ *
+ * Router -> RoundDetails -> {EditAndDeleteBtns, RoundTable}
  */
 
 const RoundDetails = () => {
@@ -49,31 +50,44 @@ const RoundDetails = () => {
     navigate(`/tournaments/${round.tournamentDate}`);
   };
 
+  //transform a username like "tom-moore" to "Tom Moore" lol
+  const transformUsername = (username) => {
+    const nameArr = username.split("-");
+    let result = "";
+    for (let name of nameArr) {
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+      result += name + " ";
+    }
+    return result.trim();
+  };
+
   return (
     <div className="text-center row justify-content-center">
-      <h1 className="display-3">
-        {round.username.split("-").join(" ")}'s Round
-      </h1>
+      <h1 className="display-3">{transformUsername(round.username)}'s Round</h1>
 
       <HorizontalRule width="30%" />
-      {currentUser.username === round.username || currentUser.isAdmin ? (
-        <EditDeleteBtns
-          editPath={`/rounds/${id}/edit`}
-          handleDelete={handleDelete}
+      <div className="mb-5 mt-3">
+        <RoundTable
+          roundId={round.id}
+          courseName={round.courseName}
+          tournamentDate={round.tournamentDate}
+          strokes={round.strokes}
+          putts={round.putts}
+          totalStrokes={round.totalStrokes}
+          playerIndex={round.playerIndex}
+          netStrokes={round.netStrokes}
+          totalPutts={round.totalPutts}
         />
-      ) : null}
+      </div>
 
-      <RoundTable
-        roundId={round.id}
-        courseName={round.courseName}
-        tournamentDate={round.tournamentDate}
-        strokes={round.strokes}
-        putts={round.putts}
-        totalStrokes={round.totalStrokes}
-        playerIndex={round.playerIndex}
-        netStrokes={round.netStrokes}
-        totalPutts={round.totalPutts}
-      />
+      {currentUser ? (
+        currentUser.username === round.username || currentUser.isAdmin ? (
+          <EditAndDeleteBtns
+            editPath={`/rounds/${id}/edit`}
+            handleDelete={handleDelete}
+          />
+        ) : null
+      ) : null}
     </div>
   );
 };
