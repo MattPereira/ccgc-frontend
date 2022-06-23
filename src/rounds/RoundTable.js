@@ -1,6 +1,7 @@
 import React from "react";
 import DataRow from "../common/DataRow";
 import HolesRow from "../common/HolesRow";
+import { Link } from "react-router-dom";
 
 import { Table } from "reactstrap";
 import { v4 as uuidv4 } from "uuid";
@@ -33,13 +34,15 @@ const RoundTable = ({
   return (
     <div>
       <h5 className="display-6 mb-0">{courseName}</h5>
-      <p className="lead mb-1">
-        {new Date(tournamentDate).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
+      <Link to={`/tournaments/${tournamentDate}`}>
+        <p className="lead mb-1">
+          {new Date(tournamentDate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </p>
+      </Link>
       <Table responsive bordered key={roundId}>
         <thead>
           <HolesRow extended />
