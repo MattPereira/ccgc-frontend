@@ -27,15 +27,20 @@ const CourseCard = ({
     <div className="mb-3">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
         <Card className="CourseCard-card text-center">
-          <CardImg alt={`${name} photo`} src={imgUrl} top />
+          <CardTitle
+            tag="h3"
+            className="display-6 bg-dark mb-0 py-3 text-white"
+          >
+            {name}
+          </CardTitle>
+          <div className="CourseCard-crop">
+            <CardImg alt={`${name} photo`} src={imgUrl} top />
+          </div>
           <CardBody>
-            <CardTitle tag="h3" className="display-6">
-              {name}
-            </CardTitle>
-            <div className="row justify-content-center mb-3">
+            {/* <div className="row justify-content-center mb-3">
               <div className="col-auto">Rating : {rating}</div>
               <div className="col-auto">Slope : {slope}</div>
-            </div>
+            </div> */}
             <CourseTable pars={pars} handicaps={handicaps} />
           </CardBody>
         </Card>

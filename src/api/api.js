@@ -158,6 +158,13 @@ class CcgcApi {
     let res = await this.request(`rounds/${id}`, data, "delete");
     return res.deleted;
   }
+
+  //////////////////// GREENIE ROUTES ////////////////////
+  /** Get all greenies (optionally filter by tournament_date) */
+  static async getGreenies(date) {
+    let res = await this.request("greenies", { date: date });
+    return res.greenies;
+  }
 }
 
 export default CcgcApi;

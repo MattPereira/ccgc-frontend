@@ -10,6 +10,8 @@ import CourseDetails from "../courses/CourseDetails";
 import NewCourseForm from "../courses/forms/NewCourseForm";
 import EditCourse from "../courses/forms/EditCourse";
 
+import GreenieList from "../greenies/GreenieList";
+
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
 import NewTournament from "../tournaments/forms/NewTournament";
@@ -22,7 +24,7 @@ import EditRound from "../rounds/EditRound";
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
 import ProfileForm from "../profiles/ProfileForm";
-import Information from "../homepage/Information";
+import Standings from "../standings/Standings";
 
 /** Site-wide routes.
  *
@@ -43,7 +45,7 @@ function Router({ login, register }) {
   return (
     <Routes>
       <Route exact path="/" element={<Homepage />} />
-      <Route exact path="/information" element={<Information />} />
+      <Route exact path="/standings" element={<Standings />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route
@@ -60,6 +62,8 @@ function Router({ login, register }) {
       <Route exact path="/courses/new" element={<NewCourseForm />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
+
+      <Route exact path="/greenies" element={<GreenieList />} />
 
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/new" element={<NewTournament />} />

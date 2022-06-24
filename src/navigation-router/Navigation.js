@@ -27,11 +27,15 @@ const Navigation = ({ logout }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   function loggedInNav() {
     return (
       <>
         <NavItem>
-          <NavLink tag={RRNavLink} to="/profile">
+          <NavLink tag={RRNavLink} to="/profile" onClick={closeMenu}>
             Profile
           </NavLink>
         </NavItem>
@@ -48,12 +52,12 @@ const Navigation = ({ logout }) => {
     return (
       <>
         <NavItem>
-          <NavLink tag={RRNavLink} to="/login">
+          <NavLink tag={RRNavLink} to="/login" onClick={closeMenu}>
             Login
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={RRNavLink} to="/register">
+          <NavLink tag={RRNavLink} to="/register" onClick={closeMenu}>
             Register
           </NavLink>
         </NavItem>
@@ -63,7 +67,7 @@ const Navigation = ({ logout }) => {
 
   return (
     <div>
-      <Navbar color="success" dark expand="md" light>
+      <Navbar color="dark" dark expand="md" light>
         <NavLink tag={RRNavLink} to="/" className="navbar-brand">
           CCGC
         </NavLink>
@@ -76,23 +80,28 @@ const Navigation = ({ logout }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/tournaments">
+              <NavLink tag={RRNavLink} to="/tournaments" onClick={closeMenu}>
                 Tournaments
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/members">
+              <NavLink tag={RRNavLink} to="/greenies" onClick={closeMenu}>
+                Greenies
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/members" onClick={closeMenu}>
                 Members
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/courses">
+              <NavLink tag={RRNavLink} to="/courses" onClick={closeMenu}>
                 Courses
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RRNavLink} to="/information">
-                Info
+              <NavLink tag={RRNavLink} to="/standings" onClick={closeMenu}>
+                Standings
               </NavLink>
             </NavItem>
 

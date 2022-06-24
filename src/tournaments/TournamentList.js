@@ -44,7 +44,7 @@ const TournamentList = () => {
     <div className="text-center row justify-content-center">
       <h1 className="display-3 mb-3">Tournaments</h1>
       <hr
-        style={{ border: "2px solid grey", width: "30%", marginBottom: "1rem" }}
+        style={{ border: "2px solid grey", width: "20%", marginBottom: "1rem" }}
       ></hr>
       <p className="lead mb-5">
         Select a tournament to view the strokes and putts leaderboards.

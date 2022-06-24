@@ -1,23 +1,22 @@
-.TournamentCard-link {
+.GreenieCard-link {
     text-decoration: none;
     color: black;
 }
 
 
-.TournamentCard-card:hover { /* <Card /> that is also a <Link /> */
+.GreenieCard-card:hover { /* <Card /> that is also a <Link /> */
     text-decoration: none;
     color: #198754;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 
-  .TournamentCard-crop {
-    height: 300px;
+  .GreenieCard-crop {
+    height: 100px;
     overflow: hidden;
   }
 
-  .TournamentCard-crop img {
+  .GreenieCard-crop img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-

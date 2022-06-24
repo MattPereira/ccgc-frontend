@@ -18,22 +18,26 @@ const TournamentCard = ({ date, courseName, tourYears, imgUrl }) => {
   //transform date from db format to better display format
 
   return (
-    <div className="mb-3">
+    <div className="mb-5">
       <Link to={`/tournaments/${date}`} className="TournamentCard-link">
         <Card className="TournamentCard-card">
-          <div className="img-container">
+          <CardTitle tag="h3" className="bg-dark text-white mb-0 py-4">
+            {courseName}
+          </CardTitle>
+
+          <div className="TournamentCard-crop">
             <CardImg alt={`${courseName}`} src={imgUrl} top />
           </div>
-          <div className="bg-dark text-white h6 py-1">{tourYears} Tour</div>
-          <CardBody>
-            <CardTitle tag="h5">{courseName}</CardTitle>
-            <CardText className="lead">
+
+          <CardBody className="">
+            <h5 className="mb-0">
+              {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
-            </CardText>
+            </h5>
           </CardBody>
         </Card>
       </Link>

@@ -3,19 +3,21 @@ import HorizontalRule from "../common/HorizontalRule";
 
 import { Table } from "reactstrap";
 
-/** Show club information page
+/** Show club standings page
+ *
+ * Display club standings table
  *
  * Display points tables
  *
- * Display club handicap computation information
+ * Display club handicap computation info
  *
- * Router -> Information
+ * Router -> Standings
  */
 
-const Information = () => {
+const Standings = () => {
   return (
     <div className="row justify-content-center">
-      <h1 className="display-3 text-center">Information</h1>
+      <h1 className="display-3 text-center">Club Standings</h1>
       <HorizontalRule width="20%" />
 
       <p className="lead text-center mb-5">
@@ -222,4 +224,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default Standings;
