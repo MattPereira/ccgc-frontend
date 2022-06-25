@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../common/LoadingSpinner";
 import NewRoundForm from "./NewRoundForm";
 
 const NewRound = () => {

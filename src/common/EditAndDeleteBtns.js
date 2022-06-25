@@ -37,7 +37,7 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
     <div className="row justify-content-center mb-3">
       <div className="col-auto">
         <Link to={editPath}>
-          <Button color="warning" className="px-4 rounded-pill">
+          <Button color="outline-primary" className="px-3 btn-sm">
             Edit
           </Button>
         </Link>
@@ -45,9 +45,10 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
       <div className="col-auto">
         <div>
           <Button
+            color="outline-danger"
             id="Popover1"
             type="button"
-            className="btn-danger rounded-pill"
+            className="btn-sm"
           >
             Delete
           </Button>
@@ -68,7 +69,7 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
               </p>
               <Button
                 color="danger"
-                className="mb-5 rounded-pill"
+                className="mb-5 btn-sm"
                 onClick={handleDelete}
               >
                 Confirm

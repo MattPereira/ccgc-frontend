@@ -8,9 +8,7 @@ import React from "react";
  */
 
 const HorizontalRule = ({ width }) => {
-  return (
-    <hr className="mb-4" style={{ border: "2px solid grey", width: width }} />
-  );
+  return <hr style={{ border: "2px solid grey", width: width }} />;
 };
 
 export default HorizontalRule;

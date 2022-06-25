@@ -147,7 +147,7 @@ class CcgcApi {
     return res.round;
   }
 
-  /** Edit a round by id */
+  /** Update a round by id */
   static async updateRound(id, data) {
     let res = await this.request(`rounds/${id}`, data, "patch");
     return res.round;
@@ -164,6 +164,30 @@ class CcgcApi {
   static async getGreenies(date) {
     let res = await this.request("greenies", { date: date });
     return res.greenies;
+  }
+
+  /** Get a greenie by id */
+  static async getGreenie(id) {
+    let res = await this.request(`greenies/${id}`);
+    return res.greenie;
+  }
+
+  /** Create a new greenie */
+  static async createGreenie(data) {
+    let res = await this.request(`greenies`, data, "post");
+    return res.greenie;
+  }
+
+  /** Update a greenie by id */
+  static async updateGreenie(id, data) {
+    let res = await this.request(`greenies/${id}`, data, "patch");
+    return res.greenie;
+  }
+
+  /** Delete a greenie by id */
+  static async deleteGreenie(id, data) {
+    let res = await this.request(`greenies/${id}`, data, "delete");
+    return res.greenie;
   }
 }
 

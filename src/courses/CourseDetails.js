@@ -22,8 +22,6 @@ import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
  *
  */
 
-/// ADD LINKS TO GET TO INDIVIDUAL ROUND PAGE!!
-
 const CourseDetails = () => {
   const { handle } = useParams();
   let navigate = useNavigate();
@@ -57,7 +55,14 @@ const CourseDetails = () => {
     <div className="text-center mb-5 row justify-content-center">
       <h1 className="display-3 mb-3">{course.name}</h1>
       <HorizontalRule width={"30%"} />
-
+      {currentUser ? (
+        currentUser.isAdmin ? (
+          <EditAndDeleteBtns
+            editPath={`/courses/${course.handle}/edit`}
+            handleDelete={handleDelete}
+          />
+        ) : null
+      ) : null}
       <img
         src={course.imgUrl}
         alt={`${course.name}`}
@@ -78,15 +83,6 @@ const CourseDetails = () => {
           handicaps={course.handicaps}
         />
       </div>
-
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <EditAndDeleteBtns
-            editPath={`/courses/${course.handle}/edit`}
-            handleDelete={handleDelete}
-          />
-        ) : null
-      ) : null}
     </div>
   );
 };

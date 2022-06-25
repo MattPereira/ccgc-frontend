@@ -11,6 +11,9 @@ import NewCourseForm from "../courses/forms/NewCourseForm";
 import EditCourse from "../courses/forms/EditCourse";
 
 import GreenieList from "../greenies/GreenieList";
+import GreenieDetails from "../greenies/GreenieDetails";
+import NewGreenie from "../greenies/forms/NewGreenie";
+import UpdateGreenie from "../greenies/forms/UpdateGreenie";
 
 import TournamentList from "../tournaments/TournamentList";
 import TournamentDetails from "../tournaments/TournamentDetails";
@@ -18,8 +21,8 @@ import NewTournament from "../tournaments/forms/NewTournament";
 import EditTournament from "../tournaments/forms/EditTournament";
 
 import RoundDetails from "../rounds/RoundDetails";
-import NewRound from "../rounds/NewRound";
-import EditRound from "../rounds/EditRound";
+import NewRound from "../rounds/forms/NewRound";
+import EditRound from "../rounds/forms/EditRound";
 
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
@@ -63,8 +66,6 @@ function Router({ login, register }) {
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
 
-      <Route exact path="/greenies" element={<GreenieList />} />
-
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/new" element={<NewTournament />} />
       <Route exact path="/tournaments/:date" element={<TournamentDetails />} />
@@ -77,6 +78,11 @@ function Router({ login, register }) {
       <Route exact path="/rounds/:id" element={<RoundDetails />} />
       <Route exact path="/rounds/:date/new" element={<NewRound />} />
       <Route exact path="/rounds/:id/edit" element={<EditRound />} />
+
+      <Route exact path="/greenies" element={<GreenieList />} />
+      <Route exact path="/greenies/:id" element={<GreenieDetails />} />
+      <Route exact path="/greenies/:id/update" element={<UpdateGreenie />} />
+      <Route exact path="/greenies/:date/new" element={<NewGreenie />} />
 
       {/* Redirect to homepage if route doesn't exist */}
       <Route path="*" element={<Navigate to="/" replace />} />

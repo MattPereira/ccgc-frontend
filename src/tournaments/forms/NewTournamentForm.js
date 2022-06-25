@@ -14,14 +14,11 @@ import {
 
 /** Form to create a new tournament
  *
- *  Make call to API to fetch courseHandles to populate
- *  the Golf Course select input
  *
  * Displays tournament form and handles changes to local form state.
- * Submission of form calls the API to save the course and redirects
- * to the newly created tournament details page.
+ * Submission of form calls the API to save the course.
  *
- * Redirects to CourseDetails page upon form submission.
+ * Redirects to the tournament details page upon form submission.
  *
  * Routed as /tournaments/new
  * Routes -> NewTournamentForm

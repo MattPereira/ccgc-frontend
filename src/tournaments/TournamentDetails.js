@@ -7,6 +7,7 @@ import UserContext from "../auth/UserContext";
 import HorizontalRule from "../common/HorizontalRule";
 
 import TournamentTable from "./TournamentTable";
+import GreenieCardList from "../greenies/GreenieCardList";
 import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
 
 import { Link } from "react-router-dom";
@@ -68,9 +69,6 @@ const TournamentDetails = () => {
 
   return (
     <div className="row justify-content-center text-center">
-      <h1 className="display-1 mb-3">Tournament</h1>
-
-      <HorizontalRule width="25%" />
       {currentUser ? (
         currentUser.isAdmin ? (
           <EditAndDeleteBtns
@@ -79,32 +77,47 @@ const TournamentDetails = () => {
           />
         ) : null
       ) : null}
-
-      <h2 className="mb-3 text-secondary">{tournament.courseName}</h2>
-
-      <p className="lead mb-5">{displayDate}</p>
+      <h1 className="display-1 mb-3">Tournament</h1>
+      <h3 className="text-muted">{tournament.courseName}</h3>
+      <HorizontalRule width="30%" />
+      <h5 className="text-muted">{displayDate}</h5>
 
       {currentUser ? (
-        <div className="mb-5">
-          <Link to={`/rounds/${date}/new`}>
-            <Button color="primary" className="rounded-pill">
-              Input Scores
-            </Button>
-          </Link>
+        <div className="my-5 row justify-content-center">
+          <div className="col-auto">
+            <Link to={`/rounds/${date}/new`}>
+              <Button color="primary" className="rounded-pill">
+                Add Round
+              </Button>
+            </Link>
+          </div>
+          <div className="col-auto">
+            <Link to={`/greenies/${date}/new`}>
+              <Button color="success" className="rounded-pill">
+                Add Greenie
+              </Button>
+            </Link>
+          </div>
         </div>
       ) : null}
       <div className="col-md-10">
         <div className="mb-5">
-          <h3 className="display-6">
+          <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
           <TournamentTable title="STROKES" data={strokesLeaderboard} />
         </div>
         <div className="mb-5">
-          <h3 className="display-6">
+          <h3 className="display-6 mb-3">
             <b>Putts</b>
           </h3>
           <TournamentTable title="PUTTS" data={puttsLeaderboard} />
+        </div>
+        <div className="mb-5">
+          <h3 className="display-6 mb-3">
+            <b>Greenies</b>
+          </h3>
+          <GreenieCardList greenies={tournament.greenies} />
         </div>
       </div>
     </div>

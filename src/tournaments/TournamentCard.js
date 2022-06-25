@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
+import { Card, CardTitle, CardImg } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./TournamentCard.css";
 
@@ -29,7 +29,7 @@ const TournamentCard = ({ date, courseName, tourYears, imgUrl }) => {
             <CardImg alt={`${courseName}`} src={imgUrl} top />
           </div>
 
-          <CardBody className="">
+          <div className="bg-secondary text-white py-2">
             <h5 className="mb-0">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
@@ -38,7 +38,7 @@ const TournamentCard = ({ date, courseName, tourYears, imgUrl }) => {
                 day: "numeric",
               })}
             </h5>
-          </CardBody>
+          </div>
         </Card>
       </Link>
     </div>
