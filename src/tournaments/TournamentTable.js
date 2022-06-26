@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "reactstrap";
+import { Table } from "react-bootstrap";
 import HolesRow from "../common/HolesRow";
 import DataRow from "../common/DataRow";
 

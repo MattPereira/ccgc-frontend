@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 
 /** Form to create a new tournament
  *
@@ -88,10 +79,10 @@ const NewTournamentForm = ({ courseHandles }) => {
     <div className="row justify-content-center">
       <div className="col-md-8">
         <Card className="px-5 py-3">
-          <CardBody>
-            <CardTitle className="display-4 text-center">
+          <Card.Body>
+            <Card.Title className="display-4 text-center">
               New Tournament
-            </CardTitle>
+            </Card.Title>
 
             <ul>
               <li>The golf course must already exist in the database.</li>
@@ -99,23 +90,21 @@ const NewTournamentForm = ({ courseHandles }) => {
             </ul>
 
             <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="firstName">Date</Label>
-                <Input
-                  className="form-control"
+              <Form.Group>
+                <Form.Label htmlFor="firstName">Date</Form.Label>
+                <Form.Control
                   id="date"
                   name="date"
-                  type="date"
+                  type="datetime-local"
                   onChange={handleChange}
                   value={formData.date}
                   required
-                ></Input>
-              </FormGroup>
+                ></Form.Control>
+              </Form.Group>
 
-              <FormGroup>
-                <Label htmlFor="courseHandle">Golf Course</Label>
-                <Input
-                  className="form-control"
+              <Form.Group>
+                <Form.Label htmlFor="courseHandle">Golf Course</Form.Label>
+                <Form.Select
                   id="courseHandle"
                   name="courseHandle"
                   type="select"
@@ -128,13 +117,12 @@ const NewTournamentForm = ({ courseHandles }) => {
                       {handle}
                     </option>
                   ))}
-                </Input>
-              </FormGroup>
+                </Form.Select>
+              </Form.Group>
 
-              <FormGroup>
-                <Label htmlFor="tourYears">Tour Year</Label>
-                <Input
-                  className="form-control"
+              <Form.Group>
+                <Form.Label htmlFor="tourYears">Tour Year</Form.Label>
+                <Form.Select
                   id="tourYears"
                   name="tourYears"
                   type="select"
@@ -147,8 +135,8 @@ const NewTournamentForm = ({ courseHandles }) => {
                   <option>2023-24</option>
                   <option>2024-25</option>
                   <option>2025-26</option>
-                </Input>
-              </FormGroup>
+                </Form.Select>
+              </Form.Group>
 
               {formErrors.length
                 ? formErrors.map((err) => (
@@ -166,7 +154,7 @@ const NewTournamentForm = ({ courseHandles }) => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

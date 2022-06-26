@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardImg } from "reactstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CourseTable from "./CourseTable";
 
@@ -27,22 +27,22 @@ const CourseCard = ({
     <div className="mb-3">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
         <Card className="CourseCard-card text-center">
-          <CardTitle
+          <Card.Title
             tag="h3"
             className="display-6 bg-dark mb-0 py-3 text-white"
           >
             {name}
-          </CardTitle>
+          </Card.Title>
           <div className="CourseCard-crop">
-            <CardImg alt={`${name} photo`} src={imgUrl} top />
+            <Card.Img alt={`${name} photo`} src={imgUrl} top />
           </div>
-          <CardBody>
+          <Card.Body>
             {/* <div className="row justify-content-center mb-3">
               <div className="col-auto">Rating : {rating}</div>
               <div className="col-auto">Slope : {slope}</div>
             </div> */}
             <CourseTable pars={pars} handicaps={handicaps} />
-          </CardBody>
+          </Card.Body>
         </Card>
       </Link>
     </div>

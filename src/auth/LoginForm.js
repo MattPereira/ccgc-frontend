@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-  CardImg,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 
 /** Login form.
  *
@@ -66,20 +56,20 @@ const LoginForm = ({ login }) => {
     <div className="row justify-content-center">
       <div className="col-sm-10 col-md-8">
         <Card className="shadow mb-5">
-          <CardTitle className="display-2 text-center bg-dark text-white py-2 mb-0">
+          <Card.Title className="display-2 text-center bg-dark text-white py-2 mb-0">
             Login
-          </CardTitle>
+          </Card.Title>
 
-          <CardImg
+          <Card.Img
             src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"
             alt="Login card image"
           />
 
-          <CardBody className="px-5 py-5">
+          <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="email">Email</Label>
-                <Input
+              <Form.Group>
+                <Form.Label htmlFor="email">Email</Form.Label>
+                <input
                   className="form-control"
                   id="email"
                   name="email"
@@ -87,11 +77,11 @@ const LoginForm = ({ login }) => {
                   onChange={handleChange}
                   required
                   autoComplete="email"
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="password">Password</Label>
-                <Input
+                ></input>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <input
                   className="form-control"
                   id="password"
                   name="password"
@@ -99,8 +89,8 @@ const LoginForm = ({ login }) => {
                   onChange={handleChange}
                   required
                   autoComplete="current-password"
-                ></Input>
-              </FormGroup>
+                ></input>
+              </Form.Group>
 
               {formErrors.length
                 ? formErrors.map((err) => (
@@ -118,7 +108,7 @@ const LoginForm = ({ login }) => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

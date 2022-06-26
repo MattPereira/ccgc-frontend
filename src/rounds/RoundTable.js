@@ -3,7 +3,7 @@ import DataRow from "../common/DataRow";
 import HolesRow from "../common/HolesRow";
 import { Link } from "react-router-dom";
 
-import { Table } from "reactstrap";
+import { Table } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 
 /** Member round table component

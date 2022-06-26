@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 import "./CourseForms.css";
 
 /** Form to edit a course
@@ -167,16 +158,16 @@ const EditCourseForm = ({ course }) => {
     <div className="row justify-content-center">
       <div className="col-md-8">
         <Card className="px-5 py-3">
-          <CardBody>
-            <CardTitle className="display-4 text-center mb-3">
+          <Card.Body>
+            <Card.Title className="display-4 text-center mb-3">
               Update Course
-            </CardTitle>
+            </Card.Title>
 
             <Form onSubmit={handleSubmit}>
               <div className="row">
-                <FormGroup>
-                  <Label htmlFor="name">Course Name</Label>
-                  <Input
+                <Form.Group>
+                  <Form.Label htmlFor="name">Course Name</Form.Label>
+                  <input
                     className="form-control"
                     id="name"
                     name="name"
@@ -184,15 +175,15 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.name}
                     required
-                  ></Input>
-                </FormGroup>
+                  ></input>
+                </Form.Group>
               </div>
 
               <div className="row">
                 <div className="col-6">
-                  <FormGroup>
-                    <Label htmlFor="rating">Rating</Label>
-                    <Input
+                  <Form.Group>
+                    <Form.Label htmlFor="rating">Rating</Form.Label>
+                    <input
                       className="form-control"
                       id="rating"
                       name="rating"
@@ -201,13 +192,13 @@ const EditCourseForm = ({ course }) => {
                       onChange={handleChange}
                       value={formData.rating}
                       required
-                    ></Input>
-                  </FormGroup>
+                    ></input>
+                  </Form.Group>
                 </div>
                 <div className="col-6">
-                  <FormGroup>
-                    <Label htmlFor="slope">Slope</Label>
-                    <Input
+                  <Form.Group>
+                    <Form.Label htmlFor="slope">Slope</Form.Label>
+                    <input
                       className="form-control"
                       id="slope"
                       name="slope"
@@ -215,29 +206,29 @@ const EditCourseForm = ({ course }) => {
                       onChange={handleChange}
                       value={formData.slope}
                       required
-                    ></Input>
-                  </FormGroup>
+                    ></input>
+                  </Form.Group>
                 </div>
               </div>
 
               <div className="row text-center">
                 <div className="col-2">
-                  <Label>Hole</Label>
+                  <Form.Label>Hole</Form.Label>
                 </div>
                 <div className="col-5">
-                  <Label>Par</Label>
+                  <Form.Label>Par</Form.Label>
                 </div>
                 <div className="col-5">
-                  <Label>Handicap</Label>
+                  <Form.Label>Handicap</Form.Label>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#1</label>
+                  <Form.Label>#1</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par1"
                     name="par1"
@@ -245,10 +236,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par1}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap1"
                     name="handicap1"
@@ -256,16 +247,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap1}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#2</label>
+                  <Form.Label>#2</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par2"
                     name="par2"
@@ -273,10 +264,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par2}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap2"
                     name="handicap2"
@@ -284,16 +275,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap2}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#3</label>
+                  <Form.Label>#3</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par3"
                     name="par3"
@@ -301,10 +292,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par3}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap3"
                     name="handicap3"
@@ -312,16 +303,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap3}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#4</label>
+                  <Form.Label>#4</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par4"
                     name="par4"
@@ -329,10 +320,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par4}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap4"
                     name="handicap4"
@@ -340,16 +331,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap4}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#5</label>
+                  <Form.Label>#5</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par5"
                     name="par5"
@@ -357,10 +348,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par5}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap5"
                     name="handicap5"
@@ -368,16 +359,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap5}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#6</label>
+                  <Form.Label>#6</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par6"
                     name="par6"
@@ -385,10 +376,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par6}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap6"
                     name="handicap6"
@@ -396,16 +387,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap6}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#7</label>
+                  <Form.Label>#7</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par7"
                     name="par7"
@@ -413,10 +404,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par7}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap7"
                     name="handicap7"
@@ -424,16 +415,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap7}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#8</label>
+                  <Form.Label>#8</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par8"
                     name="par8"
@@ -441,10 +432,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par8}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap8"
                     name="handicap8"
@@ -452,16 +443,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap8}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#9</label>
+                  <Form.Label>#9</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par9"
                     name="par9"
@@ -469,10 +460,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par9}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap9"
                     name="handicap9"
@@ -480,16 +471,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap9}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#10</label>
+                  <Form.Label>#10</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par10"
                     name="par10"
@@ -497,10 +488,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par10}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap10"
                     name="handicap10"
@@ -508,16 +499,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap10}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#11</label>
+                  <Form.Label>#11</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par11"
                     name="par11"
@@ -525,10 +516,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par11}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap11"
                     name="handicap11"
@@ -536,16 +527,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap11}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#12</label>
+                  <Form.Label>#12</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par12"
                     name="par12"
@@ -553,10 +544,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par12}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap12"
                     name="handicap12"
@@ -564,16 +555,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap12}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#13</label>
+                  <Form.Label>#13</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par13"
                     name="par13"
@@ -581,10 +572,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par13}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap13"
                     name="handicap13"
@@ -592,16 +583,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap13}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#14</label>
+                  <Form.Label>#14</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par14"
                     name="par14"
@@ -609,10 +600,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par14}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap14"
                     name="handicap14"
@@ -620,16 +611,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap14}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#15</label>
+                  <Form.Label>#15</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par15"
                     name="par15"
@@ -637,10 +628,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par15}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap15"
                     name="handicap15"
@@ -648,16 +639,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap15}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#16</label>
+                  <Form.Label>#16</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par16"
                     name="par16"
@@ -665,10 +656,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par16}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap16"
                     name="handicap16"
@@ -676,16 +667,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap16}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#17</label>
+                  <Form.Label>#17</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par17"
                     name="par17"
@@ -693,10 +684,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par17}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap17"
                     name="handicap17"
@@ -704,16 +695,16 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap17}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
               <div className="row align-items-center mb-3">
                 <div className="col-2 text-center">
-                  <label>#18</label>
+                  <Form.Label>#18</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <Input
+                  <input
                     className="form-control"
                     id="par18"
                     name="par18"
@@ -721,10 +712,10 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.par18}
                     required
-                  ></Input>
+                  ></input>
                 </div>
                 <div className="col-5">
-                  <Input
+                  <input
                     className="form-control"
                     id="handicap18"
                     name="handicap18"
@@ -732,7 +723,7 @@ const EditCourseForm = ({ course }) => {
                     onChange={handleChange}
                     value={formData.handicap18}
                     required
-                  ></Input>
+                  ></input>
                 </div>
               </div>
 
@@ -752,7 +743,7 @@ const EditCourseForm = ({ course }) => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

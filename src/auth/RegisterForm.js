@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-  CardImg,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 
 /** Register form.
  *
@@ -69,18 +59,18 @@ const RegisterForm = ({ register }) => {
     <div className="row justify-content-center">
       <div className="col-sm-8">
         <Card className="shadow mb-5">
-          <CardTitle className="display-2 text-center bg-dark text-white py-2 mb-0">
+          <Card.Title className="display-2 text-center bg-dark text-white py-2 mb-0">
             Register
-          </CardTitle>
-          <CardImg
+          </Card.Title>
+          <Card.Img
             src="https://images.unsplash.com/photo-1605144156683-5ebde77feed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
             alt="Register card image"
           />
-          <CardBody className="px-5 py-5">
+          <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
-              <FormGroup>
-                <Label htmlFor="email">Email</Label>
-                <Input
+              <Form.Group>
+                <Form.Label htmlFor="email">Email</Form.Label>
+                <input
                   className="form-control"
                   id="email"
                   name="email"
@@ -89,11 +79,11 @@ const RegisterForm = ({ register }) => {
                   onChange={handleChange}
                   autoComplete="email"
                   required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="password">Password</Label>
-                <Input
+                ></input>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <input
                   className="form-control"
                   id="password"
                   name="password"
@@ -102,11 +92,11 @@ const RegisterForm = ({ register }) => {
                   onChange={handleChange}
                   autoComplete="current-password"
                   required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="firstName">First Name</Label>
-                <Input
+                ></input>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="firstName">First Name</Form.Label>
+                <input
                   className="form-control"
                   id="firstName"
                   name="firstName"
@@ -114,11 +104,11 @@ const RegisterForm = ({ register }) => {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                ></Input>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="lastName">Last Name</Label>
-                <Input
+                ></input>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                <input
                   className="form-control"
                   id="lastName"
                   name="lastName"
@@ -126,8 +116,8 @@ const RegisterForm = ({ register }) => {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                ></Input>
-              </FormGroup>
+                ></input>
+              </Form.Group>
 
               {formErrors.length
                 ? formErrors.map((err) => (
@@ -145,7 +135,7 @@ const RegisterForm = ({ register }) => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

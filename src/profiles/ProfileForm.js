@@ -1,17 +1,7 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../auth/UserContext";
 import CcgcApi from "../api/api";
-import {
-  Card,
-  CardBody,
-  CardText,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 
 /** Form to edit user profile
  *
@@ -106,35 +96,34 @@ const ProfileForm = () => {
     <div className="row justify-content-center">
       <div className="col-md-8">
         <Card className="px-5 py-3">
-          <CardBody>
-            <CardTitle className="display-4 text-center">
+          <Card.Body>
+            <Card.Title className="display-4 text-center">
               Update Profile
-            </CardTitle>
+            </Card.Title>
 
-            <CardText className="lead">
+            <Card.Text className="lead">
               Be aware the password you enter here will change your password
-            </CardText>
+            </Card.Text>
 
             <Form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-6">
-                  <FormGroup>
-                    <Label htmlFor="firstName">First Name</Label>
-                    <Input
-                      className="form-control"
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="firstName">First Name</Form.Label>
+                    <Form.Control
                       id="firstName"
                       name="firstName"
                       type="text"
                       onChange={handleChange}
                       value={formData.firstName}
                       required
-                    ></Input>
-                  </FormGroup>
+                    ></Form.Control>
+                  </Form.Group>
                 </div>
                 <div className="col-lg-6">
-                  <FormGroup>
-                    <Label htmlFor="lastName">Last Name</Label>
-                    <Input
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                    <Form.Control
                       className="form-control"
                       id="lastName"
                       name="lastName"
@@ -142,16 +131,16 @@ const ProfileForm = () => {
                       onChange={handleChange}
                       value={formData.lastName}
                       required
-                    ></Input>
-                  </FormGroup>
+                    ></Form.Control>
+                  </Form.Group>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-lg-6">
-                  <FormGroup>
-                    <Label htmlFor="email">Email</Label>
-                    <Input
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="email">Email</Form.Label>
+                    <Form.Control
                       className="form-control"
                       id="email"
                       name="email"
@@ -160,13 +149,13 @@ const ProfileForm = () => {
                       value={formData.email}
                       autoComplete="email"
                       required
-                    ></Input>
-                  </FormGroup>
+                    ></Form.Control>
+                  </Form.Group>
                 </div>
                 <div className="col-lg-6">
-                  <FormGroup>
-                    <Label htmlFor="password">Password</Label>
-                    <Input
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Control
                       className="form-control"
                       id="password"
                       name="password"
@@ -175,13 +164,13 @@ const ProfileForm = () => {
                       value={formData.password}
                       required
                       autoComplete="current-password"
-                    ></Input>
-                  </FormGroup>
+                    ></Form.Control>
+                  </Form.Group>
                 </div>
 
-                <FormGroup>
-                  <Label htmlFor="bio">Bio</Label>
-                  <Input
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="bio">Bio</Form.Label>
+                  <Form.Control
                     className="form-control"
                     id="bio"
                     name="bio"
@@ -189,8 +178,8 @@ const ProfileForm = () => {
                     onChange={handleChange}
                     value={formData.bio}
                     required
-                  ></Input>
-                </FormGroup>
+                  ></Form.Control>
+                </Form.Group>
               </div>
 
               {formErrors.length
@@ -213,7 +202,7 @@ const ProfileForm = () => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

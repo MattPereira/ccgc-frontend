@@ -1,7 +1,7 @@
 import React from "react";
 import HorizontalRule from "../common/HorizontalRule";
 
-import { Table } from "reactstrap";
+import { Table } from "react-bootstrap";
 
 /** Show club standings page
  *
@@ -31,7 +31,7 @@ const Standings = () => {
 
       <div className="row mb-4">
         <div className="col-md-6 col-lg-3">
-          <Table bordered dark striped>
+          <Table bordered striped variant="dark">
             <thead>
               <tr>
                 <th colSpan="2" className="text-center">
@@ -68,7 +68,7 @@ const Standings = () => {
           </Table>
         </div>
         <div className="col-md-6 col-lg-3">
-          <Table bordered dark striped>
+          <Table bordered variant="dark" striped>
             <thead>
               <tr>
                 <th colSpan="2" className="text-center">
@@ -97,7 +97,7 @@ const Standings = () => {
           </Table>
         </div>
         <div className="col-md-6 col-lg-3">
-          <Table bordered dark striped>
+          <Table bordered variant="dark" striped>
             <thead>
               <tr>
                 <th colSpan="2" className="text-center">
@@ -134,7 +134,7 @@ const Standings = () => {
           </Table>
         </div>
         <div className="col-md-6 col-lg-3">
-          <Table bordered dark striped>
+          <Table bordered variant="dark" striped>
             <thead>
               <tr>
                 <th colSpan="2" className="text-center">
@@ -169,7 +169,7 @@ const Standings = () => {
       </div>
 
       <h3 className="text-center">Club Handicaps</h3>
-      <Table bordered dark striped>
+      <Table bordered variant="dark" striped>
         <thead>
           <tr>
             <td>Name</td>

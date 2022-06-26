@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import { Button, Popover, OverlayTrigger } from "react-bootstrap";
 
 /** Edit And Delete Buttons component
  *
@@ -27,55 +27,50 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
   );
 
   //popover stuff
-  const [popoverOpen, setPopoverOpen] = useState(false);
-  const toggle = () => setPopoverOpen(!popoverOpen);
+  // const [popoverOpen, setPopoverOpen] = useState(false);
+  // const toggle = () => setPopoverOpen(!popoverOpen);
 
   //grab item for deletion warning message
   const item = editPath.split("/")[1].slice(0, -1);
+
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Header className="bg-warning text-center">
+        WARNING!
+      </Popover.Header>
+      <Popover.Body>
+        <p>
+          Are you sure you want to delete this {item}? This action cannot be
+          undone!
+        </p>
+        <Button variant="danger" className="mb-5 btn-sm" onClick={handleDelete}>
+          Confirm
+        </Button>
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <div className="row justify-content-center mb-3">
       <div className="col-auto">
         <Link to={editPath}>
-          <Button color="outline-primary" className="px-3 btn-sm">
+          <Button variant="outline-primary" className="px-3 btn-sm">
             Edit
           </Button>
         </Link>
       </div>
       <div className="col-auto">
         <div>
-          <Button
-            color="outline-danger"
-            id="Popover1"
-            type="button"
-            className="btn-sm"
-          >
-            Delete
-          </Button>
-          <Popover
-            flip
-            placement="bottom"
-            target="Popover1"
-            toggle={toggle}
-            isOpen={popoverOpen}
-          >
-            <PopoverHeader className="bg-warning text-center">
-              WARNING!
-            </PopoverHeader>
-            <PopoverBody>
-              <p>
-                Are you sure you want to delete this {item}? This action cannot
-                be undone!
-              </p>
-              <Button
-                color="danger"
-                className="mb-5 btn-sm"
-                onClick={handleDelete}
-              >
-                Confirm
-              </Button>
-            </PopoverBody>
-          </Popover>
+          <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+            <Button
+              variant="outline-danger"
+              id="Popover1"
+              type="button"
+              className="btn-sm"
+            >
+              Delete
+            </Button>
+          </OverlayTrigger>
         </div>
       </div>
     </div>

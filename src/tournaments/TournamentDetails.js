@@ -11,7 +11,7 @@ import GreenieCardList from "../greenies/GreenieCardList";
 import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
 
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button } from "react-bootstrap";
 /** Tournament details page.
  *
  * On component mount, load the tournament from API
@@ -86,7 +86,7 @@ const TournamentDetails = () => {
         <div className="my-5 row justify-content-center">
           <div className="col-auto">
             <Link to={`/rounds/${date}/new`}>
-              <Button color="primary" className="rounded-pill">
+              <Button variant="primary" className="rounded-pill">
                 Add Round
               </Button>
             </Link>
@@ -94,7 +94,7 @@ const TournamentDetails = () => {
           {tournament.strokesLeaderboard.rounds.length === 0 ? null : (
             <div className="col-auto">
               <Link to={`/greenies/${date}/new`}>
-                <Button color="success" className="rounded-pill">
+                <Button variant="success" className="rounded-pill">
                   Add Greenie
                 </Button>
               </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardText, Table } from "reactstrap";
+import { Card, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./GreenieCard.css";
 
@@ -33,9 +33,9 @@ const GreenieCard = ({
     <div className="mb-3">
       <Link to={`/greenies/${id}`} className="TournamentCard-link">
         <Card className="GreenieCard-card">
-          <CardTitle tag="h5" className="bg-dark mb-0 py-2 text-white">
+          <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white">
             {courseName.split(" ").slice(0, 2).join(" ")}
-          </CardTitle>
+          </Card.Title>
 
           <div className="GreenieCard-crop">
             <img alt={`${courseName}`} src={courseImg} />
@@ -47,8 +47,8 @@ const GreenieCard = ({
               day: "numeric",
             })}
           </div>
-          <CardBody>
-            <CardText className="lead">{owner}</CardText>
+          <Card.Body>
+            <Card.Text className="lead">{owner}</Card.Text>
             <Table responsive>
               <thead>
                 <tr>
@@ -65,7 +65,7 @@ const GreenieCard = ({
                 </tr>
               </tbody>
             </Table>
-          </CardBody>
+          </Card.Body>
         </Card>
       </Link>
     </div>

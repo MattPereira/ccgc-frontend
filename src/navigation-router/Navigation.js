@@ -2,14 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import "./Navigation.css";
-import {
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-  NavbarToggler,
-  Collapse,
-} from "reactstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 /** Navigation bar for site that shows on every page
  *
@@ -34,16 +27,16 @@ const Navigation = ({ logout }) => {
   function loggedInNav() {
     return (
       <>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/profile" onClick={closeMenu}>
+        <Nav.Item>
+          <Nav.Link as={RRNavLink} to="/profile" onClick={closeMenu}>
             Profile
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/logout" onClick={logout}>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={RRNavLink} to="/logout" onClick={logout}>
             Logout {currentUser.firstName}
-          </NavLink>
-        </NavItem>
+          </Nav.Link>
+        </Nav.Item>
       </>
     );
   }
@@ -51,63 +44,59 @@ const Navigation = ({ logout }) => {
   function loggedOutNav() {
     return (
       <>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/login" onClick={closeMenu}>
+        <Nav.Item>
+          <Nav.Link as={RRNavLink} to="/login" onClick={closeMenu}>
             Login
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RRNavLink} to="/register" onClick={closeMenu}>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={RRNavLink} to="/register" onClick={closeMenu}>
             Register
-          </NavLink>
-        </NavItem>
+          </Nav.Link>
+        </Nav.Item>
       </>
     );
   }
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md" light>
-        <NavLink tag={RRNavLink} to="/" className="navbar-brand">
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Nav.Link as={RRNavLink} to="/" className="navbar-brand">
           CCGC
-        </NavLink>
+        </Nav.Link>
         {/* onClick toggle whether navbar drops down to display links */}
-        <NavbarToggler
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        />
-        <Collapse isOpen={isOpen} navbar>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto" navbar>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/standings" onClick={closeMenu}>
+            <Nav.Item>
+              <Nav.Link as={RRNavLink} to="/standings" onClick={closeMenu}>
                 Standings
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/tournaments" onClick={closeMenu}>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={RRNavLink} to="/tournaments" onClick={closeMenu}>
                 Tournaments
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/greenies" onClick={closeMenu}>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={RRNavLink} to="/greenies" onClick={closeMenu}>
                 Greenies
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/members" onClick={closeMenu}>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={RRNavLink} to="/members" onClick={closeMenu}>
                 Members
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/courses" onClick={closeMenu}>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={RRNavLink} to="/courses" onClick={closeMenu}>
                 Courses
-              </NavLink>
-            </NavItem>
+              </Nav.Link>
+            </Nav.Item>
 
             {currentUser ? loggedInNav() : loggedOutNav()}
           </Nav>
-        </Collapse>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );

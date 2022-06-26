@@ -4,7 +4,7 @@ import CcgcApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import TournamentCard from "./TournamentCard";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button } from "react-bootstrap";
 
 /** Show page with all tournaments listed
  *

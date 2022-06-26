@@ -5,14 +5,7 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../api/api";
 import { Link } from "react-router-dom";
 
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  CardImg,
-  Table,
-} from "reactstrap";
+import { Card, Table } from "react-bootstrap";
 
 import HorizontalRule from "../common/HorizontalRule";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -84,12 +77,12 @@ const GreenieDetails = () => {
             to={`/tournaments/${tournamentDate}`}
             style={{ textDecoration: "none" }}
           >
-            <CardTitle tag="h5" className="bg-dark mb-0 py-2 text-white">
+            <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white">
               {courseName.split(" ").slice(0, 2).join(" ")}
-            </CardTitle>
+            </Card.Title>
 
             <div className="GreenieCard-crop">
-              <CardImg alt={`${courseName}`} src={courseImg} top />
+              <Card.Img alt={`${courseName}`} src={courseImg} top />
             </div>
             <div className="bg-success text-white h6 py-1">
               {new Date(tournamentDate).toLocaleDateString("en-US", {
@@ -99,10 +92,10 @@ const GreenieDetails = () => {
               })}
             </div>
           </Link>
-          <CardBody>
-            <CardText className="lead">
+          <Card.Body>
+            <Card.Text className="lead">
               {firstName} {lastName}
-            </CardText>
+            </Card.Text>
             <Table responsive>
               <thead>
                 <tr>
@@ -127,7 +120,7 @@ const GreenieDetails = () => {
                 />
               ) : null
             ) : null}
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

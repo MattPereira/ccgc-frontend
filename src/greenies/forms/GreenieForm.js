@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  Label,
-  Input,
-  FormGroup,
-  Alert,
-} from "reactstrap";
+import { Card, Form, Alert } from "react-bootstrap";
 
 /** Form to create a new greenie
  *
@@ -99,27 +90,25 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
     <div className="row justify-content-center">
       <div className="col-sm-10 col-md-8 col-lg-6">
         <Card>
-          <CardTitle className="display-4 text-center bg-success py-2 text-white">
+          <Card.Title className="display-4 text-center bg-success py-2 text-white">
             {greenie ? "Update" : "New"} Greenie
-          </CardTitle>
-          <CardBody>
+          </Card.Title>
+          <Card.Body>
             <Form onSubmit={handleSubmit}>
-              <FormGroup className="row align-items-center justify-content-center">
+              <Form.Group className="row align-items-center justify-content-center mb-3">
                 <div className="col-3 col-lg-auto">
-                  <Label htmlFor="roundId" className="mb-0">
+                  <Form.Label htmlFor="roundId" className="mb-0">
                     Name
-                  </Label>
+                  </Form.Label>
                 </div>
                 <div className="col-9">
                   {greenie ? (
-                    <Input
-                      className="form-control"
+                    <Form.Control
                       value={greenie.firstName + " " + greenie.lastName}
                       readOnly
-                    ></Input>
+                    ></Form.Control>
                   ) : (
-                    <Input
-                      className="form-control"
+                    <Form.Select
                       id="roundId"
                       name="roundId"
                       type="select"
@@ -132,41 +121,39 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                           {r[1]}
                         </option>
                       ))}
-                    </Input>
+                    </Form.Select>
                   )}
                 </div>
-              </FormGroup>
+              </Form.Group>
 
               {greenie ? (
-                <FormGroup className="row align-items-center justify-content-center">
+                <Form.Group className="row align-items-center justify-content-center mb-3">
                   <div className="col-3 col-lg-auto">
-                    <Label htmlFor="roundId" className="mb-0">
+                    <Form.Label htmlFor="roundId" className="mb-0">
                       Date
-                    </Label>
+                    </Form.Label>
                   </div>
                   <div className="col-9">
-                    <Input
-                      className="form-control"
+                    <Form.Control
                       value={new Date(
                         greenie.tournamentDate
                       ).toLocaleDateString()}
                       readOnly
-                    ></Input>
+                    ></Form.Control>
                   </div>
-                </FormGroup>
+                </Form.Group>
               ) : null}
 
               <div className="">
-                <FormGroup className="row justify-content-center align-items-center">
+                <Form.Group className="row justify-content-center align-items-center mb-3">
                   <div className="col-3 col-lg-auto">
-                    <Label htmlFor="holeNumber" className="mb-0">
+                    <Form.Label htmlFor="holeNumber" className="mb-0">
                       Hole #
-                    </Label>
+                    </Form.Label>
                   </div>
                   <div className="col-9">
                     {greenie ? (
-                      <Input
-                        className="form-control"
+                      <Form.Control
                         id="holeNumber"
                         name="holeNumber"
                         type="number"
@@ -175,7 +162,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                         readOnly
                       />
                     ) : (
-                      <Input
+                      <Form.Select
                         className="form-control"
                         id="holeNumber"
                         name="holeNumber"
@@ -189,20 +176,20 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                             {num}
                           </option>
                         ))}
-                      </Input>
+                      </Form.Select>
                     )}
                   </div>
-                </FormGroup>
+                </Form.Group>
               </div>
               <div className="">
-                <FormGroup className="row justify-content-center align-items-center">
+                <Form.Group className="row justify-content-center align-items-center mb-3">
                   <div className="col-3 col-lg-auto">
-                    <Label htmlFor="feet" className="mb-0">
+                    <Form.Label htmlFor="feet" className="mb-0">
                       Feet
-                    </Label>
+                    </Form.Label>
                   </div>
                   <div className="col-9">
-                    <Input
+                    <input
                       className="form-control"
                       id="feet"
                       name="feet"
@@ -211,19 +198,19 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                       onChange={handleChange}
                       value={formData.feet}
                       required
-                    ></Input>
+                    ></input>
                   </div>
-                </FormGroup>
+                </Form.Group>
               </div>
               <div className="">
-                <FormGroup className="row justify-content-center align-items-center">
+                <Form.Group className="row justify-content-center align-items-center mb-3">
                   <div className="col-3 col-lg-auto">
-                    <Label htmlFor="inches" className="mb-0">
+                    <Form.Label htmlFor="inches" className="mb-0">
                       Inches
-                    </Label>
+                    </Form.Label>
                   </div>
                   <div className="col-9">
-                    <Input
+                    <input
                       className="form-control"
                       id="inches"
                       name="inches"
@@ -231,9 +218,9 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                       onChange={handleChange}
                       value={formData.inches}
                       required
-                    ></Input>
+                    ></input>
                   </div>
-                </FormGroup>
+                </Form.Group>
               </div>
 
               {formErrors.length
@@ -252,7 +239,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                 </div>
               </div>
             </Form>
-          </CardBody>
+          </Card.Body>
         </Card>
       </div>
     </div>

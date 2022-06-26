@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card } from "react-bootstrap";
 import "./MemberCard.css";
 
 /** Member card component.
@@ -18,15 +18,15 @@ const MemberCard = ({ username, email, firstName, lastName, bio }) => {
     <div className="mb-3 text-center">
       <Link to={`/members/${username}`} className="MemberCard-link">
         <Card body className="MemberCard-card">
-          <CardBody>
-            <CardTitle tag="h5">
+          <Card.Body>
+            <Card.Title tag="h5">
               {firstName} {lastName}
-            </CardTitle>
-            <CardText className="mb-2">{email}</CardText>
-            <CardText>
+            </Card.Title>
+            <Card.Text className="mb-2">{email}</Card.Text>
+            <Card.Text>
               <i>{bio}</i>
-            </CardText>
-          </CardBody>
+            </Card.Text>
+          </Card.Body>
         </Card>
       </Link>
     </div>

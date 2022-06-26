@@ -5,7 +5,7 @@ import CourseCard from "./CourseCard";
 import UserContext from "../auth/UserContext";
 
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button } from "react-bootstrap";
 
 /** Show page with all courses listed
  *

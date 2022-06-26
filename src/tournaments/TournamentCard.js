@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle, CardImg } from "reactstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./TournamentCard.css";
 
@@ -14,19 +14,17 @@ import "./TournamentCard.css";
  *
  */
 
-const TournamentCard = ({ date, courseName, tourYears, imgUrl }) => {
-  //transform date from db format to better display format
-
+const TournamentCard = ({ date, courseName, imgUrl, tourYears }) => {
   return (
     <div className="mb-5">
       <Link to={`/tournaments/${date}`} className="TournamentCard-link">
         <Card className="TournamentCard-card">
-          <CardTitle tag="h3" className="bg-dark text-white mb-0 py-4">
+          <Card.Title tag="h3" className="bg-dark text-white mb-0 py-4">
             {courseName}
-          </CardTitle>
+          </Card.Title>
 
           <div className="TournamentCard-crop">
-            <CardImg alt={`${courseName}`} src={imgUrl} top />
+            <img alt={`${courseName}`} src={imgUrl} />
           </div>
 
           <div className="bg-secondary text-white py-2">
