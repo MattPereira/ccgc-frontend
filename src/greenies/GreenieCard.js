@@ -38,7 +38,7 @@ const GreenieCard = ({
           </CardTitle>
 
           <div className="GreenieCard-crop">
-            <img alt={`${courseName}`} src={courseImg} top />
+            <img alt={`${courseName}`} src={courseImg} />
           </div>
           <div className="bg-success text-white h6 py-1">
             {new Date(date).toLocaleDateString("en-US", {

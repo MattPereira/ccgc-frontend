@@ -108,7 +108,7 @@ const ProfileForm = () => {
         <Card className="px-5 py-3">
           <CardBody>
             <CardTitle className="display-4 text-center">
-              Edit Profile
+              Update Profile
             </CardTitle>
 
             <CardText className="lead">

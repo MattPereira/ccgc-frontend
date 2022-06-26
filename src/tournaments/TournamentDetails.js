@@ -91,13 +91,15 @@ const TournamentDetails = () => {
               </Button>
             </Link>
           </div>
-          <div className="col-auto">
-            <Link to={`/greenies/${date}/new`}>
-              <Button color="success" className="rounded-pill">
-                Add Greenie
-              </Button>
-            </Link>
-          </div>
+          {tournament.strokesLeaderboard.rounds.length === 0 ? null : (
+            <div className="col-auto">
+              <Link to={`/greenies/${date}/new`}>
+                <Button color="success" className="rounded-pill">
+                  Add Greenie
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       ) : null}
       <div className="col-md-10">

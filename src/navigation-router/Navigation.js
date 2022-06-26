@@ -80,6 +80,11 @@ const Navigation = ({ logout }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
             <NavItem>
+              <NavLink tag={RRNavLink} to="/standings" onClick={closeMenu}>
+                Standings
+              </NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink tag={RRNavLink} to="/tournaments" onClick={closeMenu}>
                 Tournaments
               </NavLink>
@@ -97,11 +102,6 @@ const Navigation = ({ logout }) => {
             <NavItem>
               <NavLink tag={RRNavLink} to="/courses" onClick={closeMenu}>
                 Courses
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} to="/standings" onClick={closeMenu}>
-                Standings
               </NavLink>
             </NavItem>
 

@@ -45,9 +45,15 @@ const NewGreenie = () => {
     return [r.id, name];
   });
 
+  const par3HoleNums = Object.entries(tournament.strokesLeaderboard.pars)
+    .filter((p) => p[1] === 3)
+    .map((h) => h[0])
+    .map((h) => h.split("e")[1]);
+  console.log(par3HoleNums);
+
   return (
     <div>
-      <GreenieForm roundIds={roundIds} />
+      <GreenieForm roundIds={roundIds} par3HoleNums={par3HoleNums} />
     </div>
   );
 };

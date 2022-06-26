@@ -24,13 +24,15 @@ import {
  * Routes -> NewGreenie -> NewGreenieForm
  */
 
-const GreenieForm = ({ roundIds, greenie }) => {
+const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
   let navigate = useNavigate();
   const { date } = useParams();
 
+  //dynamically set formData initial state based on whether creating or updating
+  //a greenie by looking to see if greenie is passed in as a prop
   const [formData, setFormData] = useState({
     roundId: greenie ? greenie.id : roundIds[0][0],
-    holeNumber: greenie ? greenie.holeNumber : 1,
+    holeNumber: greenie ? greenie.holeNumber : par3HoleNums[0],
     feet: greenie ? greenie.feet : "",
     inches: greenie ? greenie.inches : "",
   });
@@ -162,21 +164,33 @@ const GreenieForm = ({ roundIds, greenie }) => {
                     </Label>
                   </div>
                   <div className="col-9">
-                    <Input
-                      className="form-control"
-                      id="holeNumber"
-                      name="holeNumber"
-                      type="select"
-                      onChange={handleChange}
-                      value={formData.holeNumber}
-                      required
-                    >
-                      {Array.from({ length: 18 }, (_, i) => i + 1).map((h) => (
-                        <option key={h} value={h}>
-                          {h}
-                        </option>
-                      ))}
-                    </Input>
+                    {greenie ? (
+                      <Input
+                        className="form-control"
+                        id="holeNumber"
+                        name="holeNumber"
+                        type="number"
+                        value={greenie.holeNumber}
+                        required
+                        readOnly
+                      />
+                    ) : (
+                      <Input
+                        className="form-control"
+                        id="holeNumber"
+                        name="holeNumber"
+                        type="select"
+                        onChange={handleChange}
+                        value={formData.holeNumber}
+                        required
+                      >
+                        {par3HoleNums.map((num) => (
+                          <option key={num} value={num}>
+                            {num}
+                          </option>
+                        ))}
+                      </Input>
+                    )}
                   </div>
                 </FormGroup>
               </div>
