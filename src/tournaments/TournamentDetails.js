@@ -72,7 +72,7 @@ const TournamentDetails = () => {
       {currentUser ? (
         currentUser.isAdmin ? (
           <EditAndDeleteBtns
-            editPath={`/tournaments/${date}/edit`}
+            editPath={`/tournaments/${date}/update`}
             handleDelete={handleDelete}
           />
         ) : null
@@ -85,7 +85,7 @@ const TournamentDetails = () => {
       {currentUser ? (
         <div className="my-5 row justify-content-center">
           <div className="col-auto">
-            <Link to={`/rounds/${date}/new`}>
+            <Link to={`/rounds/new/${date}`}>
               <Button variant="primary" className="rounded-pill">
                 Add Round
               </Button>

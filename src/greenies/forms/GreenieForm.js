@@ -19,7 +19,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
   let navigate = useNavigate();
   const { date } = useParams();
 
-  //dynamically set formData initial state based on whether creating or updating
+  //dynamically set initial state of formData based on whether creating or updating
   //a greenie by looking to see if greenie is passed in as a prop
   const [formData, setFormData] = useState({
     roundId: greenie ? greenie.id : roundIds[0][0],
@@ -215,6 +215,8 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                       id="inches"
                       name="inches"
                       type="number"
+                      min="0"
+                      max="11"
                       onChange={handleChange}
                       value={formData.inches}
                       required
@@ -225,7 +227,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
 
               {formErrors.length
                 ? formErrors.map((err) => (
-                    <Alert key={err} color="danger">
+                    <Alert key={err} variant="danger">
                       {err}
                     </Alert>
                   ))

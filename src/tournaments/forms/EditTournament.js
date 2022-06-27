@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import { useParams } from "react-router-dom";
-import EditTournamentForm from "./EditTournamentForm";
+import TournamentForm from "./TournamentForm";
 import LoadingSpinner from "../../common/LoadingSpinner";
 
 /** This component is used to fetch tournament data to pass to <EditTournamentForm/>
@@ -41,14 +41,13 @@ const EditTournament = () => {
 
   if (!tournament || !courses) return <LoadingSpinner />;
 
+  console.log(tournament);
+
   const courseHandles = courses.map((c) => c.handle);
 
   return (
     <div>
-      <EditTournamentForm
-        tournament={tournament}
-        courseHandles={courseHandles}
-      />
+      <TournamentForm tournament={tournament} courseHandles={courseHandles} />
     </div>
   );
 };

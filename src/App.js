@@ -7,6 +7,8 @@ import LoadingSpinner from "./common/LoadingSpinner";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
+import { Container } from "react-bootstrap";
+
 /** Contra Costa Golf Club App
  *
  *  * - infoLoaded: has user data been pulled from API?
@@ -116,9 +118,9 @@ function App() {
         }}
       >
         <Navigation logout={logout} />
-        <div className="container mt-5">
+        <Container className="my-5">
           <Router login={login} register={register} />
-        </div>
+        </Container>
       </UserContext.Provider>
     </div>
   );

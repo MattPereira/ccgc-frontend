@@ -14,61 +14,55 @@ import "./CourseForms.css";
  * Routes -> NewCourseForm
  */
 
-const NewCourseForm = () => {
+const CourseForm = ({ course }) => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: "",
-    rating: "",
-    slope: "",
-    imgUrl: "",
-    par1: "",
-    par2: "",
-    par3: "",
-    par4: "",
-    par5: "",
-    par6: "",
-    par7: "",
-    par8: "",
-    par9: "",
-    par10: "",
-    par11: "",
-    par12: "",
-    par13: "",
-    par14: "",
-    par15: "",
-    par16: "",
-    par17: "",
-    par18: "",
-    handicap1: "",
-    handicap2: "",
-    handicap3: "",
-    handicap4: "",
-    handicap5: "",
-    handicap6: "",
-    handicap7: "",
-    handicap8: "",
-    handicap9: "",
-    handicap10: "",
-    handicap11: "",
-    handicap12: "",
-    handicap13: "",
-    handicap14: "",
-    handicap15: "",
-    handicap16: "",
-    handicap17: "",
-    handicap18: "",
+    name: course ? course.name : "",
+    rating: course ? course.rating : "",
+    slope: course ? course.slope : "",
+    imgUrl: course ? course.imgUrl : "",
+    par1: course ? course.pars.hole1 : "",
+    par2: course ? course.pars.hole2 : "",
+    par3: course ? course.pars.hole3 : "",
+    par4: course ? course.pars.hole4 : "",
+    par5: course ? course.pars.hole5 : "",
+    par6: course ? course.pars.hole6 : "",
+    par7: course ? course.pars.hole7 : "",
+    par8: course ? course.pars.hole8 : "",
+    par9: course ? course.pars.hole9 : "",
+    par10: course ? course.pars.hole10 : "",
+    par11: course ? course.pars.hole11 : "",
+    par12: course ? course.pars.hole12 : "",
+    par13: course ? course.pars.hole13 : "",
+    par14: course ? course.pars.hole14 : "",
+    par15: course ? course.pars.hole15 : "",
+    par16: course ? course.pars.hole16 : "",
+    par17: course ? course.pars.hole17 : "",
+    par18: course ? course.pars.hole18 : "",
+    handicap1: course ? course.handicaps.hole1 : "",
+    handicap2: course ? course.handicaps.hole2 : "",
+    handicap3: course ? course.handicaps.hole3 : "",
+    handicap4: course ? course.handicaps.hole4 : "",
+    handicap5: course ? course.handicaps.hole5 : "",
+    handicap6: course ? course.handicaps.hole6 : "",
+    handicap7: course ? course.handicaps.hole7 : "",
+    handicap8: course ? course.handicaps.hole8 : "",
+    handicap9: course ? course.handicaps.hole9 : "",
+    handicap10: course ? course.handicaps.hole10 : "",
+    handicap11: course ? course.handicaps.hole11 : "",
+    handicap12: course ? course.handicaps.hole12 : "",
+    handicap13: course ? course.handicaps.hole13 : "",
+    handicap14: course ? course.handicaps.hole14 : "",
+    handicap15: course ? course.handicaps.hole15 : "",
+    handicap16: course ? course.handicaps.hole16 : "",
+    handicap17: course ? course.handicaps.hole17 : "",
+    handicap18: course ? course.handicaps.hole18 : "",
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
-  console.debug(
-    "NewCourseForm",
-    "formData=",
-    formData,
-    "formErrors=",
-    formErrors
-  );
+  console.debug("CourseForm", "formData=", formData, "formErrors=", formErrors);
 
   //update state of formData onChange of any form input field
   const handleChange = (e) => {
@@ -150,29 +144,37 @@ const NewCourseForm = () => {
     };
 
     try {
-      await CcgcApi.createCourse(courseData);
+      if (course) {
+        delete courseData.handle;
+        await CcgcApi.updateCourse(course.handle, courseData);
+      } else {
+        await CcgcApi.createCourse(courseData);
+      }
     } catch (errors) {
       debugger;
       setFormErrors(errors);
       return;
     }
 
-    //navigate to the course detail page for the newly created course
-    navigate(`/courses/${courseHandle}`);
+    //navigate to the course detail page for the newly created or updated course
+    if (course) {
+      navigate(`/courses/${course.handle}`);
+    } else {
+      navigate(`/courses/${courseHandle}`);
+    }
   };
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-8">
-        <Card className="px-5 py-3">
+      <div className="col-md-9 col-lg-7">
+        <Card>
+          <Card.Title className="display-4 text-center mb-4 py-2 bg-dark text-white">
+            {course ? "Update" : "Create"} Course
+          </Card.Title>
           <Card.Body>
-            <Card.Title className="display-4 text-center mb-3">
-              Create Course
-            </Card.Title>
-
             <Form onSubmit={handleSubmit}>
               <div className="row">
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="name">Course Name</Form.Label>
                   <input
                     className="form-control"
@@ -186,7 +188,7 @@ const NewCourseForm = () => {
                 </Form.Group>
               </div>
               <div className="row">
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="name">Image Url</Form.Label>
                   <input
                     className="form-control"
@@ -200,9 +202,9 @@ const NewCourseForm = () => {
                 </Form.Group>
               </div>
 
-              <div className="row">
+              <div className="row justify-content-center">
                 <div className="col-6">
-                  <Form.Group>
+                  <Form.Group className="mb-3">
                     <Form.Label htmlFor="rating">Rating</Form.Label>
                     <input
                       className="form-control"
@@ -217,7 +219,7 @@ const NewCourseForm = () => {
                   </Form.Group>
                 </div>
                 <div className="col-6">
-                  <Form.Group>
+                  <Form.Group className="mb-3">
                     <Form.Label htmlFor="slope">Slope</Form.Label>
                     <input
                       className="form-control"
@@ -771,4 +773,4 @@ const NewCourseForm = () => {
   );
 };
 
-export default NewCourseForm;
+export default CourseForm;

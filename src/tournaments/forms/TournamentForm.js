@@ -3,36 +3,35 @@ import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert } from "react-bootstrap";
 
-/** Form to edit a tournament
+/** Form to create a new tournament
  *
  *
- * Displays tournament form that is pre-populated with the current tournament data
- * and handles changes to local form state.
+ * Displays tournament form and handles changes to local form state.
+ * Submission of form calls the API to save the course.
  *
- * Submission of form calls the API to save the course and redirects
- * to the newly created tournament details page.
+ * Redirects to the tournament details page upon form submission.
  *
- * Redirects to TournamentDetails page upon form submission.
- *
- * Routed as /tournaments/:date/edit
- * Routes -> EditTournament -> EditTournamentForm
+ * Routed as /tournaments/new
+ * Routes -> NewTournamentForm
  */
 
-const EditTournamentForm = ({ tournament, courseHandles }) => {
+const TournamentForm = ({ courseHandles, tournament }) => {
   let navigate = useNavigate();
 
+  //dynamically set initial state of formData based on whether creating or updating
+  //a tournament by looking to see if a tournament is defined
   const [formData, setFormData] = useState({
-    date: tournament.date,
-    courseHandle: tournament.courseHandle,
-    tourYears: tournament.tourYears,
+    date: tournament ? tournament.date : "",
+    courseHandle: tournament ? tournament.courseHandle : courseHandles[0],
+    tourYears: tournament ? tournament.tourYears : "2021-22",
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug(
-    "EditTournamentForm",
-    "tournament=",
-    tournament,
+    "NewTournamentForm",
+    "courseHandles=",
+    courseHandles,
     "formData=",
     formData,
     "formErrors=",
@@ -60,13 +59,27 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let updateData = {
-      courseHandle: formData.courseHandle,
-      tourYears: formData.tourYears,
-    };
+    let tournamentData;
+
+    if (tournament) {
+      tournamentData = {
+        courseHandle: formData.courseHandle,
+        tourYears: formData.tourYears,
+      };
+    } else {
+      tournamentData = {
+        date: formData.date,
+        courseHandle: formData.courseHandle,
+        tourYears: formData.tourYears,
+      };
+    }
 
     try {
-      await CcgcApi.updateTournament(tournament.date, updateData);
+      if (tournament) {
+        await CcgcApi.updateTournament(tournament.date, tournamentData);
+      } else {
+        await CcgcApi.createTournament(tournamentData);
+      }
     } catch (errors) {
       debugger;
       setFormErrors(errors);
@@ -79,36 +92,46 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-8">
-        <Card className="px-5 py-3">
+      <div className="col-sm-10 col-md-8 col-lg-6">
+        <Card>
+          <Card.Title className="display-6 text-center bg-primary py-3 text-white">
+            {tournament ? "Update" : "New"} Tournament
+          </Card.Title>
           <Card.Body>
-            <Card.Title className="display-4 text-center">
-              Edit Tournament
-            </Card.Title>
-
-            <ul>
-              <li>The golf course must already exist in the database.</li>
-              <li>The tournament date cannot be changed after creation.</li>
-            </ul>
-
             <Form onSubmit={handleSubmit}>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="firstName">Date</Form.Label>
-                <Form.Control
-                  readOnly
-                  value={new Date(tournament.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                ></Form.Control>
+
+                {tournament ? (
+                  <Form.Control
+                    value={new Date(tournament.date).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }
+                    )}
+                    readOnly
+                  ></Form.Control>
+                ) : (
+                  <Form.Control
+                    id="date"
+                    name="date"
+                    type="date"
+                    onChange={handleChange}
+                    value={formData.date}
+                    required
+                  ></Form.Control>
+                )}
               </Form.Group>
 
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="courseHandle">Golf Course</Form.Label>
                 <Form.Select
                   id="courseHandle"
                   name="courseHandle"
+                  type="select"
                   onChange={handleChange}
                   value={formData.courseHandle}
                   required
@@ -121,11 +144,12 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="tourYears">Tour Year</Form.Label>
                 <Form.Select
                   id="tourYears"
                   name="tourYears"
+                  type="select"
                   onChange={handleChange}
                   value={formData.tourYears}
                   required
@@ -140,7 +164,7 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
 
               {formErrors.length
                 ? formErrors.map((err) => (
-                    <Alert key={err} color="danger">
+                    <Alert key={err} variant="danger">
                       {err}
                     </Alert>
                   ))
@@ -149,7 +173,7 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
               <div className="row justify-content-end">
                 <div className="col-auto">
                   <button className="btn btn-primary btn-block px-4">
-                    Update
+                    Submit
                   </button>
                 </div>
               </div>
@@ -161,4 +185,4 @@ const EditTournamentForm = ({ tournament, courseHandles }) => {
   );
 };
 
-export default EditTournamentForm;
+export default TournamentForm;

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import "./Navigation.css";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 /** Navigation bar for site that shows on every page
  *
@@ -13,27 +13,23 @@ import { Navbar, Nav } from "react-bootstrap";
  * Rendered by App
  */
 
+//MIGHT HAVE TO NAVBAR BACK TO "REACTSTRAP" TO GET WORKING PROPERLY?
+
 const Navigation = ({ logout }) => {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);
   console.debug("Navigation");
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
   function loggedInNav() {
     return (
       <>
         <Nav.Item>
-          <Nav.Link as={RRNavLink} to="/profile" onClick={closeMenu}>
+          <Nav.Link eventKey={6} as={RRNavLink} to="/profile">
             Profile
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={RRNavLink} to="/logout" onClick={logout}>
+          <Nav.Link eventKey={7} as={RRNavLink} to="/logout" onClick={logout}>
             Logout {currentUser.firstName}
           </Nav.Link>
         </Nav.Item>
@@ -45,12 +41,12 @@ const Navigation = ({ logout }) => {
     return (
       <>
         <Nav.Item>
-          <Nav.Link as={RRNavLink} to="/login" onClick={closeMenu}>
+          <Nav.Link eventKey={8} as={RRNavLink} to="/login">
             Login
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={RRNavLink} to="/register" onClick={closeMenu}>
+          <Nav.Link eventKey={9} as={RRNavLink} to="/register">
             Register
           </Nav.Link>
         </Nav.Item>
@@ -60,43 +56,44 @@ const Navigation = ({ logout }) => {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Nav.Link as={RRNavLink} to="/" className="navbar-brand">
-          CCGC
-        </Nav.Link>
-        {/* onClick toggle whether navbar drops down to display links */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto" navbar>
-            <Nav.Item>
-              <Nav.Link as={RRNavLink} to="/standings" onClick={closeMenu}>
-                Standings
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link as={RRNavLink} to="/tournaments" onClick={closeMenu}>
-                Tournaments
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link as={RRNavLink} to="/greenies" onClick={closeMenu}>
-                Greenies
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link as={RRNavLink} to="/members" onClick={closeMenu}>
-                Members
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link as={RRNavLink} to="/courses" onClick={closeMenu}>
-                Courses
-              </Nav.Link>
-            </Nav.Item>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container fluid>
+          <Navbar.Brand as={RRNavLink} to="/" className="navbar-brand">
+            CCGC
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <Nav.Item>
+                <Nav.Link eventKey={1} as={RRNavLink} to="/standings">
+                  Standings
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={2} as={RRNavLink} to="/tournaments">
+                  Tournaments
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={3} as={RRNavLink} to="/greenies">
+                  Greenies
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={4} as={RRNavLink} to="/members">
+                  Members
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={5} as={RRNavLink} to="/courses">
+                  Courses
+                </Nav.Link>
+              </Nav.Item>
 
-            {currentUser ? loggedInNav() : loggedOutNav()}
-          </Nav>
-        </Navbar.Collapse>
+              {currentUser ? loggedInNav() : loggedOutNav()}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </div>
   );

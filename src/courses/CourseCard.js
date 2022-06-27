@@ -34,7 +34,7 @@ const CourseCard = ({
             {name}
           </Card.Title>
           <div className="CourseCard-crop">
-            <Card.Img alt={`${name} photo`} src={imgUrl} top />
+            <img alt={`${name}`} src={imgUrl} />
           </div>
           <Card.Body>
             {/* <div className="row justify-content-center mb-3">

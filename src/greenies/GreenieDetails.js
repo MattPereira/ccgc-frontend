@@ -66,7 +66,7 @@ const GreenieDetails = () => {
   } = greenie;
 
   return (
-    <div className="text-center mb-5 row justify-content-center">
+    <div className="text-center row justify-content-center">
       <h1 className="display-3 mb-3">Greenie Details</h1>
       <div className="row justify-content-center">
         <HorizontalRule width={"25%"} />

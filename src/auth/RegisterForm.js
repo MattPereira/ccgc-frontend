@@ -68,7 +68,7 @@ const RegisterForm = ({ register }) => {
           />
           <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="email">Email</Form.Label>
                 <input
                   className="form-control"
@@ -81,7 +81,7 @@ const RegisterForm = ({ register }) => {
                   required
                 ></input>
               </Form.Group>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="password">Password</Form.Label>
                 <input
                   className="form-control"
@@ -94,7 +94,7 @@ const RegisterForm = ({ register }) => {
                   required
                 ></input>
               </Form.Group>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="firstName">First Name</Form.Label>
                 <input
                   className="form-control"
@@ -106,7 +106,7 @@ const RegisterForm = ({ register }) => {
                   required
                 ></input>
               </Form.Group>
-              <Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="lastName">Last Name</Form.Label>
                 <input
                   className="form-control"

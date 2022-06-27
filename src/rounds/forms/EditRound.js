@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../common/LoadingSpinner";
-import EditRoundForm from "./EditRoundForm";
+import RoundForm from "./RoundForm";
 
 /** Edit Round component
  *
@@ -38,9 +38,11 @@ const EditRound = () => {
 
   if (!round) return <LoadingSpinner />;
 
+  console.log("ROUND", round);
+
   return (
     <div>
-      <EditRoundForm round={round} />
+      <RoundForm round={round} />
     </div>
   );
 };

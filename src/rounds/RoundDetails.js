@@ -66,7 +66,18 @@ const RoundDetails = () => {
       <h1 className="display-3">{transformUsername(round.username)}'s Round</h1>
 
       <HorizontalRule width="30%" />
-      <div className="mb-5 mt-3">
+      <div className="my-3">
+        {currentUser ? (
+          currentUser.username === round.username || currentUser.isAdmin ? (
+            <EditAndDeleteBtns
+              editPath={`/rounds/${id}/edit`}
+              handleDelete={handleDelete}
+            />
+          ) : null
+        ) : null}
+      </div>
+
+      <div className="mb-5">
         <RoundTable
           roundId={round.id}
           courseName={round.courseName}
@@ -79,15 +90,6 @@ const RoundDetails = () => {
           totalPutts={round.totalPutts}
         />
       </div>
-
-      {currentUser ? (
-        currentUser.username === round.username || currentUser.isAdmin ? (
-          <EditAndDeleteBtns
-            editPath={`/rounds/${id}/edit`}
-            handleDelete={handleDelete}
-          />
-        ) : null
-      ) : null}
     </div>
   );
 };

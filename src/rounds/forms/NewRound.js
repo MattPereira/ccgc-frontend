@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../common/LoadingSpinner";
-import NewRoundForm from "./NewRoundForm";
+import RoundForm from "./RoundForm";
 
 const NewRound = () => {
   /** Fetch the courses data first to set formData state properly */
@@ -28,7 +28,7 @@ const NewRound = () => {
 
   return (
     <div>
-      <NewRoundForm usernames={usernamesArr} />
+      <RoundForm usernames={usernamesArr} />
     </div>
   );
 };

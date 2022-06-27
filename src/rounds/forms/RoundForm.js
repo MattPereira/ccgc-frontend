@@ -1,75 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import UserContext from "../../auth/UserContext";
 
 import { Card, Form, Alert } from "react-bootstrap";
 
-/** Form to edit a golf round
+/** Form to create a new round
  *
  *
- * Displays EditRoundForm and handles changes to local form state.
+ * Displays new round form and handles changes to local form state.
  * Submission of form calls the API to save the round and redirects
  * to the tournament details page.
  *
- * Routed as /rounds/:id/edit
+ * Routed as /rounds/:date/new
  *
- * Routes -> EditRound -> EditRoundForm
+ * Routes -> NewRoundForm
  *
  */
 
-const EditRoundForm = ({ round }) => {
+const RoundForm = ({ usernames, round }) => {
   let navigate = useNavigate();
-
-  console.log(round);
+  const { currentUser } = useContext(UserContext);
+  const { date } = useParams();
 
   const [formData, setFormData] = useState({
-    strokes1: round.strokes.hole1,
-    strokes2: round.strokes.hole2,
-    strokes3: round.strokes.hole3,
-    strokes4: round.strokes.hole4,
-    strokes5: round.strokes.hole5,
-    strokes6: round.strokes.hole6,
-    strokes7: round.strokes.hole7,
-    strokes8: round.strokes.hole8,
-    strokes9: round.strokes.hole9,
-    strokes10: round.strokes.hole10,
-    strokes11: round.strokes.hole11,
-    strokes12: round.strokes.hole12,
-    strokes13: round.strokes.hole13,
-    strokes14: round.strokes.hole14,
-    strokes15: round.strokes.hole15,
-    strokes16: round.strokes.hole16,
-    strokes17: round.strokes.hole17,
-    strokes18: round.strokes.hole18,
-    putts1: round.putts.hole1,
-    putts2: round.putts.hole2,
-    putts3: round.putts.hole3,
-    putts4: round.putts.hole4,
-    putts5: round.putts.hole5,
-    putts6: round.putts.hole6,
-    putts7: round.putts.hole7,
-    putts8: round.putts.hole8,
-    putts9: round.putts.hole9,
-    putts10: round.putts.hole10,
-    putts11: round.putts.hole11,
-    putts12: round.putts.hole12,
-    putts13: round.putts.hole13,
-    putts14: round.putts.hole14,
-    putts15: round.putts.hole15,
-    putts16: round.putts.hole16,
-    putts17: round.putts.hole17,
-    putts18: round.putts.hole18,
+    username: round ? round.username : currentUser.username,
+    strokes1: round ? round.strokes.hole1 : "",
+    strokes2: round ? round.strokes.hole2 : "",
+    strokes3: round ? round.strokes.hole3 : "",
+    strokes4: round ? round.strokes.hole4 : "",
+    strokes5: round ? round.strokes.hole5 : "",
+    strokes6: round ? round.strokes.hole6 : "",
+    strokes7: round ? round.strokes.hole7 : "",
+    strokes8: round ? round.strokes.hole8 : "",
+    strokes9: round ? round.strokes.hole9 : "",
+    strokes10: round ? round.strokes.hole10 : "",
+    strokes11: round ? round.strokes.hole11 : "",
+    strokes12: round ? round.strokes.hole12 : "",
+    strokes13: round ? round.strokes.hole13 : "",
+    strokes14: round ? round.strokes.hole14 : "",
+    strokes15: round ? round.strokes.hole15 : "",
+    strokes16: round ? round.strokes.hole16 : "",
+    strokes17: round ? round.strokes.hole17 : "",
+    strokes18: round ? round.strokes.hole18 : "",
+    putts1: round ? round.putts.hole1 : "",
+    putts2: round ? round.putts.hole2 : "",
+    putts3: round ? round.putts.hole3 : "",
+    putts4: round ? round.putts.hole4 : "",
+    putts5: round ? round.putts.hole5 : "",
+    putts6: round ? round.putts.hole6 : "",
+    putts7: round ? round.putts.hole7 : "",
+    putts8: round ? round.putts.hole8 : "",
+    putts9: round ? round.putts.hole9 : "",
+    putts10: round ? round.putts.hole10 : "",
+    putts11: round ? round.putts.hole11 : "",
+    putts12: round ? round.putts.hole12 : "",
+    putts13: round ? round.putts.hole13 : "",
+    putts14: round ? round.putts.hole14 : "",
+    putts15: round ? round.putts.hole15 : "",
+    putts16: round ? round.putts.hole16 : "",
+    putts17: round ? round.putts.hole17 : "",
+    putts18: round ? round.putts.hole18 : "",
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
-  console.debug(
-    "NewRoundForm",
-    "formData=",
-    formData,
-    "formErrors=",
-    formErrors
-  );
+  console.debug("RoundForm", "formData=", formData, "formErrors=", formErrors);
 
   //update state of formData onChange of any form input field
   const handleChange = (e) => {
@@ -94,8 +91,9 @@ const EditRoundForm = ({ round }) => {
     e.preventDefault();
 
     //package the formData into the format that the API wants
-    //including converting strings to integers/numbers
     let roundData = {
+      tournamentDate: round ? round.tournamentDate : date,
+      username: formData.username,
       strokes: {
         hole1: +formData.strokes1,
         hole2: +formData.strokes2,
@@ -139,7 +137,13 @@ const EditRoundForm = ({ round }) => {
     };
 
     try {
-      await CcgcApi.updateRound(round.id, roundData);
+      if (round) {
+        delete roundData.tournamentDate;
+        delete roundData.username;
+        await CcgcApi.updateRound(round.id, roundData);
+      } else {
+        await CcgcApi.createRound(roundData);
+      }
     } catch (errors) {
       debugger;
       setFormErrors(errors);
@@ -147,43 +151,75 @@ const EditRoundForm = ({ round }) => {
     }
 
     //navigate to the course detail page for the newly created course
-    navigate(`/rounds/${round.id}`);
+    if (round) {
+      navigate(`/tournaments/${round.tournamentDate}`);
+    } else {
+      navigate(`/tournaments/${date}`);
+    }
   };
+
+  //Should I allow only admins to create rounds for other users?
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-8">
-        <Card className="px-5 py-3 mb-5">
+      <div className="col-sm-10 col-md-7 col-lg-5">
+        <Card>
+          <Card.Title className="display-4 text-center mb-3 py-2 bg-primary text-white">
+            {round ? "Edit" : "New"} Round
+          </Card.Title>
           <Card.Body>
-            <Card.Title className="display-4 text-center mb-3">
-              Edit Round
-            </Card.Title>
-
             <Form onSubmit={handleSubmit}>
               <div className="row">
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="name" className="fw-bold">
                     Tournament Date
                   </Form.Label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={new Date(round.tournamentDate).toLocaleDateString()}
-                    readOnly
-                  ></input>
+                  {round ? (
+                    <Form.Control
+                      className="form-control"
+                      type="text"
+                      value={new Date(
+                        round.tournamentDate
+                      ).toLocaleDateString()}
+                      readOnly
+                    ></Form.Control>
+                  ) : (
+                    <Form.Control
+                      className="form-control"
+                      type="text"
+                      value={new Date(date).toLocaleDateString()}
+                      readOnly
+                    ></Form.Control>
+                  )}
                 </Form.Group>
               </div>
               <div className="row">
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Label htmlFor="name" className="fw-bold">
                     Username
                   </Form.Label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    value={round.username}
-                    readOnly
-                  ></input>
+                  {round ? (
+                    <Form.Control
+                      value={formData.username}
+                      readOnly
+                    ></Form.Control>
+                  ) : (
+                    <Form.Select
+                      className="form-control"
+                      id="username"
+                      name="username"
+                      type="select"
+                      onChange={handleChange}
+                      value={formData.username}
+                      required
+                    >
+                      {usernames.map((username) => (
+                        <option key={username} value={username}>
+                          {username}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  )}
                 </Form.Group>
               </div>
 
@@ -204,18 +240,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#1</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes1"
                     name="strokes1"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes1}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts1"
                     name="putts1"
@@ -223,7 +260,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts1}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -232,18 +269,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#2</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes2"
                     name="strokes2"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes2}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts2"
                     name="putts2"
@@ -251,7 +289,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts2}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -260,18 +298,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#3</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes3"
                     name="strokes3"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes3}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts3"
                     name="putts3"
@@ -279,7 +318,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts3}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -288,18 +327,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#4</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes4"
                     name="strokes4"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes4}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts4"
                     name="putts4"
@@ -307,7 +347,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts4}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -316,18 +356,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#5</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes5"
                     name="strokes5"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes5}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts5"
                     name="putts5"
@@ -335,7 +376,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts5}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -344,18 +385,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#6</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes6"
                     name="strokes6"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes6}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts6"
                     name="putts6"
@@ -363,7 +405,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts6}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -372,18 +414,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#7</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes7"
                     name="strokes7"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes7}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts7"
                     name="putts7"
@@ -391,7 +434,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts7}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -400,18 +443,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#8</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes8"
                     name="strokes8"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes8}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts8"
                     name="putts8"
@@ -419,7 +463,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts8}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -428,18 +472,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#9</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes9"
                     name="strokes9"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes9}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts9"
                     name="putts9"
@@ -447,7 +492,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts9}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -456,18 +501,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#10</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes10"
                     name="strokes10"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes10}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts10"
                     name="putts10"
@@ -475,7 +521,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts10}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -484,18 +530,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#11</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes11"
                     name="strokes11"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes11}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts11"
                     name="putts11"
@@ -503,7 +550,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts11}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -512,18 +559,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#12</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes12"
                     name="strokes12"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes12}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts12"
                     name="putts12"
@@ -531,7 +579,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts12}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -540,18 +588,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#13</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes13"
                     name="strokes13"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes13}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts13"
                     name="putts13"
@@ -559,7 +608,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts13}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -568,18 +617,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#14</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes14"
                     name="strokes14"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes14}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts14"
                     name="putts14"
@@ -587,7 +637,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts14}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -596,18 +646,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#15</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes15"
                     name="strokes15"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes15}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts15"
                     name="putts15"
@@ -615,7 +666,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts15}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -624,18 +675,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#16</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes16"
                     name="strokes16"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes16}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts16"
                     name="putts16"
@@ -643,7 +695,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts16}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -652,18 +704,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#17</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes17"
                     name="strokes17"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes17}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts17"
                     name="putts17"
@@ -671,7 +724,7 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts17}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
@@ -680,18 +733,19 @@ const EditRoundForm = ({ round }) => {
                   <Form.Label className="fw-bold">#18</Form.Label>
                 </div>
                 <div className="col-5 align-self-center">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="strokes18"
                     name="strokes18"
                     type="number"
+                    min="1"
                     onChange={handleChange}
                     value={formData.strokes18}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
                 <div className="col-5">
-                  <input
+                  <Form.Control
                     className="form-control"
                     id="putts18"
                     name="putts18"
@@ -699,13 +753,13 @@ const EditRoundForm = ({ round }) => {
                     onChange={handleChange}
                     value={formData.putts18}
                     required
-                  ></input>
+                  ></Form.Control>
                 </div>
               </div>
 
               {formErrors.length
                 ? formErrors.map((err) => (
-                    <Alert key={err} color="danger">
+                    <Alert key={err} variant="danger">
                       {err}
                     </Alert>
                   ))
@@ -726,4 +780,4 @@ const EditRoundForm = ({ round }) => {
   );
 };
 
-export default EditRoundForm;
+export default RoundForm;

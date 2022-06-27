@@ -16,7 +16,7 @@ import { Table } from "react-bootstrap";
 
 const Standings = () => {
   return (
-    <div className="row justify-content-center">
+    <div className="row justify-content-center text-center">
       <h1 className="display-3 text-center">Club Standings</h1>
       <HorizontalRule width="20%" />
 

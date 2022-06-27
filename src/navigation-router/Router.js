@@ -7,7 +7,7 @@ import MemberDetails from "../members/MemberDetails";
 
 import CourseList from "../courses/CourseList";
 import CourseDetails from "../courses/CourseDetails";
-import NewCourseForm from "../courses/forms/NewCourseForm";
+import CourseForm from "../courses/forms/CourseForm";
 import EditCourse from "../courses/forms/EditCourse";
 
 import GreenieList from "../greenies/GreenieList";
@@ -62,7 +62,7 @@ function Router({ login, register }) {
       <Route exact path="/members/:username" element={<MemberDetails />} />
 
       <Route exact path="/courses" element={<CourseList />} />
-      <Route exact path="/courses/new" element={<NewCourseForm />} />
+      <Route exact path="/courses/new" element={<CourseForm />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
 
@@ -71,12 +71,12 @@ function Router({ login, register }) {
       <Route exact path="/tournaments/:date" element={<TournamentDetails />} />
       <Route
         exact
-        path="/tournaments/:date/edit"
+        path="/tournaments/:date/update"
         element={<EditTournament />}
       />
 
       <Route exact path="/rounds/:id" element={<RoundDetails />} />
-      <Route exact path="/rounds/:date/new" element={<NewRound />} />
+      <Route exact path="/rounds/new/:date" element={<NewRound />} />
       <Route exact path="/rounds/:id/edit" element={<EditRound />} />
 
       <Route exact path="/greenies" element={<GreenieList />} />
