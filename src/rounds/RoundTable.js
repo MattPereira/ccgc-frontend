@@ -32,7 +32,7 @@ const RoundTable = ({
   pars,
 }) => {
   return (
-    <div>
+    <div className="mb-4">
       <h5 className="display-6 mb-0">{courseName}</h5>
       <Link to={`/tournaments/${tournamentDate}`}>
         <p className="lead mb-1">

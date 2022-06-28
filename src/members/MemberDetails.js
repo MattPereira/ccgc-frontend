@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import RoundTable from "../rounds/RoundTable";
+import GreenieCardList from "../greenies/GreenieCardList";
 
 /** Member details page.
  *
@@ -54,7 +55,7 @@ const MemberDetails = () => {
         Scorecards for each round played with the Contra Costa Golf Club ordered
         by date.
       </p>
-      <div className="col-md-10">
+      <div className="col-md-10 mb-3">
         {member.rounds ? (
           member.rounds.map((r) => (
             <div key={r.id} className="mb-5">
@@ -70,6 +71,7 @@ const MemberDetails = () => {
                 totalPutts={r.totalPutts}
                 pars={r.pars}
               />
+              <GreenieCardList greenies={r.greenies} />
             </div>
           ))
         ) : (

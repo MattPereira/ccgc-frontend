@@ -17,11 +17,11 @@ const MemberCard = ({ username, email, firstName, lastName, bio }) => {
   return (
     <div className="mb-3 text-center">
       <Link to={`/members/${username}`} className="MemberCard-link">
-        <Card body className="MemberCard-card">
+        <Card className="MemberCard-card">
+          <Card.Title tag="h5" className="bg-dark text-white py-3">
+            {firstName} {lastName}
+          </Card.Title>
           <Card.Body>
-            <Card.Title tag="h5">
-              {firstName} {lastName}
-            </Card.Title>
             <Card.Text className="mb-2">{email}</Card.Text>
             <Card.Text>
               <i>{bio}</i>
