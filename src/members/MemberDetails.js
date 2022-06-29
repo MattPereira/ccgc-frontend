@@ -52,8 +52,7 @@ const MemberDetails = () => {
         style={{ border: "2px solid grey", width: "20%" }}
       ></hr>
       <p className="lead mb-5">
-        Scorecards for each round played with the Contra Costa Golf Club ordered
-        by date.
+        Scorecards and greenies for each round played ordered by date.
       </p>
       <div className="col-md-10 mb-3">
         {member.rounds ? (

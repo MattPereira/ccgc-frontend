@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HorizontalRule from "../common/HorizontalRule";
-
+import CcgcApi from "../api/api";
 import { Table } from "react-bootstrap";
+import LoadingSpinner from "../common/LoadingSpinner";
+import { Link } from "react-router-dom";
+import "./Standings.css";
 
 /** Show club standings page
  *
  * Display club standings table
  *
- * Display points tables
+ * Display tour points tables
  *
  * Display club handicap computation info
  *
@@ -15,21 +18,77 @@ import { Table } from "react-bootstrap";
  */
 
 const Standings = () => {
+  console.debug("Standings");
+  const [standings, setStandings] = useState(null);
+
+  /* On component mount, load club standings from API */
+  useEffect(function getStandingsOnMount() {
+    console.debug("Standings useEffect getStandingsOnMount");
+
+    async function getStandings() {
+      setStandings(await CcgcApi.getStandings());
+    }
+    getStandings();
+  }, []);
+
+  if (!standings) return <LoadingSpinner />;
+  console.log(standings);
+
   return (
-    <div className="row justify-content-center text-center">
+    <div className="row justify-content-center">
       <h1 className="display-3 text-center">Club Standings</h1>
       <HorizontalRule width="20%" />
 
-      <p className="lead text-center mb-5">
+      <p className="lead text-center my-5">
         The Contra Costa Golf Club calculates member standings on the basis of
         total points accrued over the course of a tour year. After the final
         round of the season, the player with the most points is crowned the
         champion.
       </p>
 
-      <h3 className="text-center mb-3">Tour Points</h3>
+      <h2 className="text-center mb-3">2021-22 TOUR</h2>
+      <Table responsive striped bordered variant="dark" className="text-center">
+        <thead>
+          <tr>
+            <th>RNK</th>
+            <th>PLAYER</th>
+            <th>PLY</th>
+            <th>STR</th>
+            <th>PTT</th>
+            <th>GRN</th>
+            <th>PAR</th>
+            <th>BRD</th>
+            <th>EGL</th>
+            <th>ACE</th>
+            <th>TOT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standings.map((row, idx) => (
+            <tr key={row.username}>
+              <th>{idx + 1}</th>
+              <th>
+                <Link to={`/members/${row.username}`} className="text-white">
+                  {row.firstName} {row.lastName[0]}
+                </Link>
+              </th>
+              <td>{row.participations}</td>
+              <td>{row.strokes}</td>
+              <td>{row.putts}</td>
+              <td>{row.greenies}</td>
+              <td>{row.pars}</td>
+              <td>{row.birdies}</td>
+              <td>{row.eagles}</td>
+              <td>{row.aces}</td>
+              <td>{row.total}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
-      <div className="row mb-4">
+      <h3 className="text-center mb-3 mt-5">POINTS</h3>
+
+      <div className="row mb-5 text-center">
         <div className="col-md-6 col-lg-3">
           <Table bordered striped variant="dark">
             <thead>
@@ -111,7 +170,7 @@ const Standings = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Participation</td>
+                <td>Play</td>
                 <td>5</td>
               </tr>
               <tr>
@@ -168,36 +227,34 @@ const Standings = () => {
         </div>
       </div>
 
-      <h3 className="text-center">Club Handicaps</h3>
-      <Table bordered variant="dark" striped>
+      <h3 className="text-center">HANDICAPS</h3>
+      <Table bordered variant="dark" responsive striped>
         <thead>
           <tr>
-            <td>Name</td>
-            <td>Calculation</td>
-            <td>Description</td>
+            <th>Name</th>
+            <th>Calculation</th>
+            <th>Description</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="Handicaps">
           <tr>
             <td>Total Strokes</td>
             <td>Hole1 + Hole2 + ... + Hole18</td>
-            <td>Sum of the strokes for all 18 holes</td>
+            <td>Sum of the strokes for all 18 holes.</td>
           </tr>
           <tr>
             <td>Score Differential</td>
             <td>(113/Slope) * (Total Strokes - Rating)</td>
             <td>
-              measures the performance of a round in relation to the relative
-              difficulty of the course that was played
+              Measures the performance of a round in relation to the relative
+              difficulty of the course that was played.
             </td>
           </tr>
           <tr>
             <td>Handicap Index</td>
+            <td>AVG of lowest 2 score diffs of last 4 rounds</td>
             <td>
-              Average of lowest 2 Score Differentials of last 4 club rounds
-            </td>
-            <td>
-              each golfer's playing ability on a 113 Slope golf course, a course
+              Each golfer's playing ability on a 113 Slope golf course, a course
               of standard difficulty.
             </td>
           </tr>

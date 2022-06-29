@@ -26,13 +26,16 @@ const DataRow = ({
   holeValues,
   calculations,
   rowColor,
+  rank,
 }) => {
   return (
     <tr className={rowColor}>
       {roundId ? (
-        <th>
-          <Link to={`/rounds/${roundId}`}>{rowHeader}</Link>
-        </th>
+        <>
+          <th>
+            <Link to={`/rounds/${roundId}`}>{rowHeader}</Link>
+          </th>
+        </>
       ) : (
         <th>{rowHeader}</th>
       )}
