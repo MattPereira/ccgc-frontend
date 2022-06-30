@@ -9,7 +9,7 @@ import { Card, Table } from "react-bootstrap";
 
 import HorizontalRule from "../common/HorizontalRule";
 import LoadingSpinner from "../common/LoadingSpinner";
-import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
+import AdminButtons from "../common/AdminButtons";
 
 /** Greenie details page.
  *
@@ -19,7 +19,7 @@ import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
  *
  * This is routed to path "/greenies/:id"
  *
- * Routes -> GreenieDetails -> {EditAndDeleteBtns, GreenieCard}
+ * Routes -> GreenieDetails -> {AdminButtons, GreenieCard}
  *
  */
 
@@ -114,8 +114,8 @@ const GreenieDetails = () => {
             </Table>
             {currentUser ? (
               currentUser.isAdmin ? (
-                <EditAndDeleteBtns
-                  editPath={`/greenies/${greenie.id}/update`}
+                <AdminButtons
+                  updatePath={`/greenies/${greenie.id}/update`}
                   handleDelete={handleDelete}
                 />
               ) : null

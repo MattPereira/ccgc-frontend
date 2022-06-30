@@ -94,7 +94,7 @@ const LoginForm = ({ login }) => {
 
               {formErrors.length
                 ? formErrors.map((err) => (
-                    <Alert color="danger" key={err}>
+                    <Alert variant="danger" key={err}>
                       {err}
                     </Alert>
                   ))

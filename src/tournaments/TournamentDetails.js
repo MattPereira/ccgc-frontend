@@ -8,7 +8,7 @@ import HorizontalRule from "../common/HorizontalRule";
 
 import TournamentTable from "./TournamentTable";
 import GreenieCardList from "../greenies/GreenieCardList";
-import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
+import AdminButtons from "../common/AdminButtons";
 
 import { Link } from "react-router-dom";
 import { Button, Table } from "react-bootstrap";
@@ -25,7 +25,7 @@ import { Button, Table } from "react-bootstrap";
  *
  * This is routed to path  "/tournaments/:date"
  *
- * Routes -> TournamentDetails -> {TournamentTable, EditAndDeleteBtns}
+ * Routes -> TournamentDetails -> {TournamentTable, AdminButtons}
  */
 
 const TournamentDetails = () => {
@@ -61,7 +61,7 @@ const TournamentDetails = () => {
     navigate("/tournaments");
   };
 
-  //buttons for adding a round and adding a greenie
+  //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
     <div className="my-5 row justify-content-center">
       <div className="col-auto">
@@ -87,8 +87,8 @@ const TournamentDetails = () => {
     <div className="row justify-content-center text-center">
       {currentUser ? (
         currentUser.isAdmin ? (
-          <EditAndDeleteBtns
-            editPath={`/tournaments/${date}/update`}
+          <AdminButtons
+            updatePath={`/tournaments/${date}/update`}
             handleDelete={handleDelete}
           />
         ) : null
@@ -105,6 +105,23 @@ const TournamentDetails = () => {
       </h5>
 
       {currentUser ? AddBtns : null}
+
+      <Table responsive bordered striped>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>TOT</th>
+            <th>HCP</th>
+            <th>NET</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+          </tr>
+        </tbody>
+      </Table>
       <div className="col-lg-10">
         <div className="mb-5">
           <h3 className="display-6 mb-3">

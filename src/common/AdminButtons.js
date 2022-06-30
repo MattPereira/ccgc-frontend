@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Popover, OverlayTrigger } from "react-bootstrap";
 
-/** Edit And Delete Buttons component
+/** Admin only buttons component
  *
  * renders an edit and delete button for these compononents:
  * - RoundDetails
@@ -10,18 +10,18 @@ import { Button, Popover, OverlayTrigger } from "react-bootstrap";
  * - CourseDetails
  *
  * Props needed:
- *  -editPath: the path to the edit page
+ *  -updatePath: the path to the edit page
  *  -handleDelete: function to handle the deletion of a round,
  *    tournament, or course
  *
  *  Note: delete button is nested inside popover for extra caution
  */
 
-const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
+const AdminButtons = ({ updatePath, handleDelete }) => {
   console.debug(
     "EditDeleteBtns",
-    "editLink=",
-    editPath,
+    "updatePath=",
+    updatePath,
     "handleDelete=",
     handleDelete
   );
@@ -31,7 +31,7 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
   // const toggle = () => setPopoverOpen(!popoverOpen);
 
   //grab item for deletion warning message
-  const item = editPath.split("/")[1].slice(0, -1);
+  const item = updatePath.split("/")[1].slice(0, -1);
 
   const popover = (
     <Popover id="popover-basic">
@@ -53,7 +53,7 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
   return (
     <div className="row justify-content-center mb-3">
       <div className="col-auto">
-        <Link to={editPath}>
+        <Link to={updatePath}>
           <Button variant="outline-primary" className="px-3 btn-sm">
             Edit
           </Button>
@@ -77,4 +77,4 @@ const EditAndDeleteBtns = ({ editPath, handleDelete }) => {
   );
 };
 
-export default EditAndDeleteBtns;
+export default AdminButtons;

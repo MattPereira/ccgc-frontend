@@ -184,7 +184,7 @@ const ProfileForm = () => {
 
               {formErrors.length
                 ? formErrors.map((err) => (
-                    <Alert key={err} color="danger">
+                    <Alert key={err} variant="danger">
                       {err}
                     </Alert>
                   ))

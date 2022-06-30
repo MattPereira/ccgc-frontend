@@ -7,7 +7,7 @@ import CcgcApi from "../api/api";
 import CourseTable from "./CourseTable";
 import HorizontalRule from "../common/HorizontalRule";
 import LoadingSpinner from "../common/LoadingSpinner";
-import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
+import AdminButtons from "../common/AdminButtons";
 
 /** Course details page.
  *
@@ -18,7 +18,7 @@ import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
  *
  * This is routed to path "/courses/:handle"
  *
- * Routes -> CourseDetails -> {EditAndDeleteBtns, CourseTable}
+ * Routes -> CourseDetails -> {AdminButtons, CourseTable}
  *
  */
 
@@ -57,8 +57,8 @@ const CourseDetails = () => {
       <HorizontalRule width={"30%"} />
       {currentUser ? (
         currentUser.isAdmin ? (
-          <EditAndDeleteBtns
-            editPath={`/courses/${course.handle}/edit`}
+          <AdminButtons
+            updatePath={`/courses/${course.handle}/edit`}
             handleDelete={handleDelete}
           />
         ) : null

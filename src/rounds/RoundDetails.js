@@ -5,7 +5,7 @@ import CcgcApi from "../api/api";
 import RoundTable from "./RoundTable";
 import { useNavigate } from "react-router-dom";
 import HorizontalRule from "../common/HorizontalRule";
-import EditAndDeleteBtns from "../common/EditAndDeleteBtns";
+import AdminButtons from "../common/AdminButtons";
 import UserContext from "../auth/UserContext";
 
 /** Round details page.
@@ -17,7 +17,7 @@ import UserContext from "../auth/UserContext";
  * Only show edit and delete buttons if user isAdmin or
  * if the user is the owner of the round
  *
- * Router -> RoundDetails -> {EditAndDeleteBtns, RoundTable}
+ * Router -> RoundDetails -> {AdminButtons, RoundTable}
  */
 
 const RoundDetails = () => {
@@ -69,8 +69,8 @@ const RoundDetails = () => {
       <div className="my-3">
         {currentUser ? (
           currentUser.username === round.username || currentUser.isAdmin ? (
-            <EditAndDeleteBtns
-              editPath={`/rounds/${id}/edit`}
+            <AdminButtons
+              updatePath={`/rounds/${id}/edit`}
               handleDelete={handleDelete}
             />
           ) : null

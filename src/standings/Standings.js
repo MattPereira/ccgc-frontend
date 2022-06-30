@@ -86,7 +86,7 @@ const Standings = () => {
         </tbody>
       </Table>
 
-      <h3 className="text-center mb-3 mt-5">POINTS</h3>
+      <h3 className="text-center mb-3 mt-5">TOURNAMENT POINTS</h3>
 
       <div className="row mb-5 text-center">
         <div className="col-md-6 col-lg-3">
@@ -207,7 +207,7 @@ const Standings = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Par 3 in regulation</td>
+                <td>Greenie</td>
                 <td>1</td>
               </tr>
               <tr>
