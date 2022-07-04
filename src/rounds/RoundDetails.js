@@ -88,6 +88,7 @@ const RoundDetails = () => {
           playerIndex={round.playerIndex}
           netStrokes={round.netStrokes}
           totalPutts={round.totalPutts}
+          pars={round.pars}
         />
       </div>
     </div>

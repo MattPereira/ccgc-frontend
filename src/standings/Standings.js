@@ -56,10 +56,10 @@ const Standings = () => {
             <th>STR</th>
             <th>PTT</th>
             <th>GRN</th>
-            <th>PAR</th>
-            <th>BRD</th>
-            <th>EGL</th>
-            <th>ACE</th>
+            <th className="d-none d-sm-table-cell">PAR</th>
+            <th className="d-none d-sm-table-cell">BRD</th>
+            <th className="d-none d-sm-table-cell">EGL</th>
+            <th className="d-none d-sm-table-cell">ACE</th>
             <th>TOT</th>
           </tr>
         </thead>
@@ -76,10 +76,10 @@ const Standings = () => {
               <td>{row.strokes}</td>
               <td>{row.putts}</td>
               <td>{row.greenies}</td>
-              <td>{row.pars}</td>
-              <td>{row.birdies}</td>
-              <td>{row.eagles}</td>
-              <td>{row.aces}</td>
+              <td className="d-none d-sm-table-cell">{row.pars}</td>
+              <td className="d-none d-sm-table-cell">{row.birdies}</td>
+              <td className="d-none d-sm-table-cell">{row.eagles}</td>
+              <td className="d-none d-sm-table-cell">{row.aces}</td>
               <td>{row.total}</td>
             </tr>
           ))}

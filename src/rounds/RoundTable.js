@@ -35,7 +35,7 @@ const RoundTable = ({
     <div className="mb-4">
       <h5 className="display-6 mb-0">{courseName}</h5>
       <Link to={`/tournaments/${tournamentDate}`}>
-        <p className="lead mb-1">
+        <p className="lead mb-3">
           {new Date(tournamentDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
@@ -45,7 +45,7 @@ const RoundTable = ({
       </Link>
       <Table responsive bordered key={roundId}>
         <thead>
-          <HolesRow extended />
+          <HolesRow />
         </thead>
         <tbody>
           <DataRow
@@ -55,8 +55,6 @@ const RoundTable = ({
             holeValues={strokes}
             calculations={{
               total: totalStrokes,
-              handicap: playerIndex,
-              net: netStrokes,
             }}
           />
 
@@ -67,17 +65,10 @@ const RoundTable = ({
             holeValues={putts}
             calculations={{
               total: totalPutts,
-              handicap: "--",
-              net: "--",
             }}
           />
           {pars ? (
-            <DataRow
-              rowColor="table-dark"
-              rowHeader="PAR"
-              holeValues={pars}
-              calculations={{ handicap: "--", net: "--" }}
-            />
+            <DataRow rowColor="table-dark" rowHeader="PAR" holeValues={pars} />
           ) : null}
         </tbody>
       </Table>

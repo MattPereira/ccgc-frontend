@@ -105,98 +105,38 @@ const TournamentDetails = () => {
       </h5>
 
       {currentUser ? AddBtns : null}
-      <p className="lead">Select a player name to view round details</p>
+      <p className="lead mb-5">Select a player name to view round details</p>
 
       <div className="col-lg-10">
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
-          <Table bordered striped>
-            <thead>
-              <tr className="table-dark">
-                <th className="position-col">POS</th>
-                <th>PLAYER</th>
-                <th>TOT</th>
-                <th>HCP</th>
-                <th>NET</th>
-              </tr>
-            </thead>
-            <tbody>
-              {strokesLeaderboard.rounds.map((r, i) => (
-                <tr>
-                  <th className="position-col">{i + 1}</th>
-                  <th>
-                    <Link to={`/rounds/${r.id}`}>
-                      {r.firstName} {r.lastName[0]}
-                    </Link>
-                  </th>
-                  <td>{r.totalStrokes}</td>
-                  <td>{r.courseHandicap}</td>
-                  <td>{r.netStrokes}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          {/* <TournamentTable title="STROKES" data={strokesLeaderboard} /> */}
+          <TournamentTable title="STROKES" data={strokesLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Putts</b>
           </h3>
-          <Table responsive bordered striped>
-            <thead>
-              <tr className="table-dark">
-                <th className="position-col">POS</th>
-                <th>PLAYER</th>
-                <th>TOT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {puttsLeaderboard.rounds.map((r, i) => (
-                <tr>
-                  <th className="position-col">{i + 1}</th>
-                  <th>
-                    <Link to={`/rounds/${r.id}`}>
-                      {r.firstName} {r.lastName[0]}
-                    </Link>
-                  </th>
-                  <td>{r.totalPutts}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          {/* <TournamentTable title="PUTTS" data={puttsLeaderboard} /> */}
-        </div>
-        <div className="mb-5">
-          <h3 className="display-6 mb-3">
-            <b>Greenies</b>
-          </h3>
-          <GreenieCardList greenies={tournament.greenies} />
+          <TournamentTable data={puttsLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Points</b>
           </h3>
-          <Table
-            responsive
-            striped
-            bordered
-            variant="dark"
-            className="text-center"
-          >
+          <Table responsive striped bordered className="text-center">
             <thead>
-              <tr>
-                <th>RANK</th>
+              <tr className="table-dark">
+                <th>POS</th>
                 <th>PLAYER</th>
-                <th>PLAY</th>
-                <th>STROKE</th>
-                <th>PUTT</th>
-                <th>GREEN</th>
-                <th>PAR</th>
-                <th>BRD</th>
-                <th>EGL</th>
-                <th>ACE</th>
+                <th className="d-none d-md-table-cell">PLY</th>
+                <th>STR</th>
+                <th>PUT</th>
+                <th>GRN</th>
+                <th className="d-none d-sm-table-cell">PAR</th>
+                <th className="d-none d-sm-table-cell">BRD</th>
+                <th className="d-none d-sm-table-cell">EGL</th>
+                <th className="d-none d-sm-table-cell">ACE</th>
                 <th>TOT</th>
               </tr>
             </thead>
@@ -207,19 +147,27 @@ const TournamentDetails = () => {
                   <th>
                     {row.firstName} {row.lastName[0]}
                   </th>
-                  <td>{row.participation}</td>
+                  <td className="d-none d-md-table-cell">
+                    {row.participation}
+                  </td>
                   <td>{row.strokes}</td>
                   <td>{row.putts}</td>
                   <td>{row.greenies}</td>
-                  <td>{row.pars}</td>
-                  <td>{row.birdies}</td>
-                  <td>{row.eagles}</td>
-                  <td>{row.aces}</td>
+                  <td className="d-none d-sm-table-cell">{row.pars}</td>
+                  <td className="d-none d-sm-table-cell">{row.birdies}</td>
+                  <td className="d-none d-sm-table-cell">{row.eagles}</td>
+                  <td className="d-none d-sm-table-cell">{row.aces}</td>
                   <td>{row.total}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
+        </div>
+        <div className="mb-5">
+          <h3 className="display-6 mb-3">
+            <b>Greenies</b>
+          </h3>
+          <GreenieCardList greenies={tournament.greenies} />
         </div>
       </div>
     </div>
