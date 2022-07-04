@@ -43,7 +43,9 @@ const GreenieList = () => {
       <hr
         style={{ border: "2px solid grey", width: "30%", marginBottom: "1rem" }}
       ></hr>
-      <p className="lead mb-5">All greenies sorted by distance from the cup.</p>
+      <p className="lead mb-5 mt-4">
+        All greenies sorted by distance from the cup.
+      </p>
 
       <GreenieCardList greenies={greenies} />
     </div>

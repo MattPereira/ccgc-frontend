@@ -152,7 +152,7 @@ const RoundForm = ({ usernames, round }) => {
 
     //navigate to the course detail page for the newly created course
     if (round) {
-      navigate(`/tournaments/${round.tournamentDate}`);
+      navigate(`/rounds/${round.id}`);
     } else {
       navigate(`/tournaments/${date}`);
     }

@@ -93,7 +93,7 @@ const TournamentDetails = () => {
           />
         ) : null
       ) : null}
-      <h1 className="display-1 mb-3">Leaderboard</h1>
+      <h1 className="display-1 mb-3">Tournament</h1>
       <h3 className="text-muted">{tournament.courseName}</h3>
       <HorizontalRule width="30%" />
       <h5 className="text-muted">
@@ -112,7 +112,7 @@ const TournamentDetails = () => {
           <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
-          <TournamentTable title="STROKES" data={strokesLeaderboard} />
+          <TournamentTable data={strokesLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">

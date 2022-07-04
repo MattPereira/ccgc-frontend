@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CourseTable from "./CourseTable";
 
 import "./CourseCard.css";
 
@@ -24,25 +23,18 @@ const CourseCard = ({
   imgUrl,
 }) => {
   return (
-    <div className="mb-3">
+    <div className="mb-5">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
         <Card className="CourseCard-card text-center">
+          <div className="CourseCard-crop">
+            <img alt={`${name}`} src={imgUrl} />
+          </div>
           <Card.Title
             tag="h3"
             className="display-6 bg-dark mb-0 py-3 text-white"
           >
             {name}
           </Card.Title>
-          <div className="CourseCard-crop">
-            <img alt={`${name}`} src={imgUrl} />
-          </div>
-          <Card.Body>
-            {/* <div className="row justify-content-center mb-3">
-              <div className="col-auto">Rating : {rating}</div>
-              <div className="col-auto">Slope : {slope}</div>
-            </div> */}
-            <CourseTable pars={pars} handicaps={handicaps} />
-          </Card.Body>
         </Card>
       </Link>
     </div>

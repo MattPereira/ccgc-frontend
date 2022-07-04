@@ -91,7 +91,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
       <div className="col-sm-10 col-md-8 col-lg-6">
         <Card>
           <Card.Title className="display-4 text-center bg-success py-2 text-white">
-            {greenie ? "Update" : "New"} Greenie
+            {greenie ? "Edit" : "New"} Greenie
           </Card.Title>
           <Card.Body>
             <Form onSubmit={handleSubmit}>
@@ -105,6 +105,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                   {greenie ? (
                     <Form.Control
                       value={greenie.firstName + " " + greenie.lastName}
+                      className="text-center"
                       readOnly
                     ></Form.Control>
                   ) : (
@@ -135,6 +136,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                   </div>
                   <div className="col-9">
                     <Form.Control
+                      className="text-center"
                       value={new Date(
                         greenie.tournamentDate
                       ).toLocaleDateString()}

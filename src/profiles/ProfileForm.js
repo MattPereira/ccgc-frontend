@@ -95,16 +95,11 @@ const ProfileForm = () => {
   return (
     <div className="row justify-content-center">
       <div className="col-md-8">
-        <Card className="px-5 py-3">
-          <Card.Body>
-            <Card.Title className="display-4 text-center">
-              Update Profile
-            </Card.Title>
-
-            <Card.Text className="lead">
-              Be aware the password you enter here will change your password
-            </Card.Text>
-
+        <Card>
+          <Card.Title className="display-4 text-center bg-secondary py-3 text-white">
+            Update Profile
+          </Card.Title>
+          <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-6">

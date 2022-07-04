@@ -30,7 +30,7 @@ const GreenieCard = ({
   courseImg,
 }) => {
   return (
-    <div className="mb-3">
+    <div className="mb-4">
       <Link to={`/greenies/${id}`} className="TournamentCard-link">
         <Card className="GreenieCard-card">
           <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white">

@@ -9,10 +9,14 @@ import { Link } from "react-router-dom";
  *
  * some funky if else logic going on here
  *
+ * IMPORT UUID FOR KEYS ON <td>'s
+ *
  * TournamentDetails -> TournamentTable
  */
 
 const TournamentTable = ({ data }) => {
+  console.log("DATA", data);
+
   return (
     <Table responsive bordered striped>
       <thead>
@@ -25,11 +29,13 @@ const TournamentTable = ({ data }) => {
             </th>
           ))}
           <th>TOT</th>
-          {data.rounds[0].courseHandicap ? (
-            <>
-              <th>HCP</th>
-              <th>NET</th>
-            </>
+          {data.rounds.length > 0 ? (
+            data.rounds[0].courseHandicap ? (
+              <>
+                <th>HCP</th>
+                <th>NET</th>
+              </>
+            ) : null
           ) : null}
           <th>PTS</th>
         </tr>
@@ -51,7 +57,6 @@ const TournamentTable = ({ data }) => {
                 : null}
               {r.strokes ? (
                 <>
-                  {" "}
                   <td>{r.totalStrokes}</td>
                   <td>{r.courseHandicap}</td>
                   <td>{r.netStrokes}</td>
