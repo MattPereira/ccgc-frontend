@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
  * handles displaying of the strokes and putts
  * leaderboards
  *
- * some funky if else logic going on here
+ * some funky if else logic going on here could be cleaned up
  *
  * IMPORT UUID FOR KEYS ON <td>'s
+ *
+ * FIX THIS EVENTUALLY!!!
  *
  * TournamentDetails -> TournamentTable
  */
@@ -51,7 +53,7 @@ const TournamentTable = ({ data }) => {
                 </Link>
               </th>
               {r.strokes
-                ? Object.values(r.strokes).map((s) => (
+                ? Object.values(r.strokes).map((s, idx) => (
                     <td className="d-none d-sm-table-cell">{s}</td>
                   ))
                 : null}
@@ -63,7 +65,7 @@ const TournamentTable = ({ data }) => {
                 </>
               ) : null}
               {r.putts
-                ? Object.values(r.putts).map((p) => (
+                ? Object.values(r.putts).map((p, idx) => (
                     <td className="d-none d-sm-table-cell">{p}</td>
                   ))
                 : null}

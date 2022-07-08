@@ -110,7 +110,7 @@ class CcgcApi {
     return res.tournaments;
   }
 
-  /** Get a tournament by date. */
+  /** Get a tournament  by date. */
   static async getTournament(date) {
     let res = await this.request(`tournaments/${date}`);
     return res.tournament;

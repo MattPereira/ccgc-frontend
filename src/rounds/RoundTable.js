@@ -26,8 +26,6 @@ const RoundTable = ({
   strokes,
   putts,
   totalStrokes,
-  playerIndex,
-  netStrokes,
   totalPutts,
   pars,
 }) => {
@@ -48,6 +46,14 @@ const RoundTable = ({
           <HolesRow />
         </thead>
         <tbody>
+          {pars ? (
+            <tr className="table-secondary">
+              <th>PAR</th>
+              {Object.values(pars).map((p) => (
+                <th key={uuidv4()}>{p}</th>
+              ))}
+            </tr>
+          ) : null}
           <DataRow
             key={uuidv4()}
             rowColor="bg-white"
@@ -67,9 +73,6 @@ const RoundTable = ({
               total: totalPutts,
             }}
           />
-          {pars ? (
-            <DataRow rowColor="table-dark" rowHeader="PAR" holeValues={pars} />
-          ) : null}
         </tbody>
       </Table>
     </div>

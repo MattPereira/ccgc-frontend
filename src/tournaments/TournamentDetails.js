@@ -36,7 +36,7 @@ const TournamentDetails = () => {
   console.debug("TournamentDetails");
   const [tournament, setTournament] = useState(null);
 
-  /* On component mount, load company from API */
+  /* On component mount, load tournament from API */
   useEffect(
     function getTournamentOnMount() {
       console.debug("TournamentDetails useEffect getTournamentOnMount");

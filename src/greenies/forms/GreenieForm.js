@@ -59,18 +59,23 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let greenieData = {
+    let newGreenieData = {
       roundId: formData.roundId,
       holeNumber: formData.holeNumber,
       feet: formData.feet,
       inches: formData.inches,
     };
 
+    let updateGreenieData = {
+      feet: formData.feet,
+      inches: formData.inches,
+    };
+
     try {
       if (greenie) {
-        await CcgcApi.updateGreenie(greenie.id, greenieData);
+        await CcgcApi.updateGreenie(greenie.id, updateGreenieData);
       } else {
-        await CcgcApi.createGreenie(greenieData);
+        await CcgcApi.createGreenie(newGreenieData);
       }
     } catch (errors) {
       debugger;

@@ -45,7 +45,8 @@ const NewGreenie = () => {
     return [r.id, name];
   });
 
-  const par3HoleNums = Object.entries(tournament.strokesLeaderboard.pars)
+  //array of par 3 hole numbers for select input
+  const par3HoleNums = Object.entries(tournament.pars)
     .filter((p) => p[1] === 3)
     .map((h) => h[0])
     .map((h) => h.split("e")[1]);
