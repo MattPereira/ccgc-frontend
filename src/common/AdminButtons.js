@@ -53,13 +53,6 @@ const AdminButtons = ({ updatePath, handleDelete }) => {
   return (
     <div className="row justify-content-center mb-3">
       <div className="col-auto">
-        <Link to={updatePath}>
-          <Button variant="outline-primary" className="px-3 btn-sm">
-            Edit
-          </Button>
-        </Link>
-      </div>
-      <div className="col-auto">
         <div>
           <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
             <Button
@@ -72,6 +65,13 @@ const AdminButtons = ({ updatePath, handleDelete }) => {
             </Button>
           </OverlayTrigger>
         </div>
+      </div>
+      <div className="col-auto">
+        <Link to={updatePath}>
+          <Button variant="outline-primary" className="px-3 btn-sm">
+            Edit
+          </Button>
+        </Link>
       </div>
     </div>
   );

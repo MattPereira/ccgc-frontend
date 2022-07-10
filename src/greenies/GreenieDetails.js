@@ -82,7 +82,7 @@ const GreenieDetails = () => {
             </Card.Title>
 
             <div className="GreenieCard-crop">
-              <Card.Img alt={`${courseName}`} src={courseImg} top />
+              <img alt={`${courseName}`} src={courseImg} />
             </div>
             <div className="bg-success text-white h6 py-1">
               {new Date(tournamentDate).toLocaleDateString("en-US", {

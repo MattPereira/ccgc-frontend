@@ -15,14 +15,14 @@ import { Card, Form, Alert } from "react-bootstrap";
  * Routes -> NewGreenie -> NewGreenieForm
  */
 
-const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
+const GreenieForm = ({ par3HoleNums, playerName, greenie }) => {
   let navigate = useNavigate();
-  const { date } = useParams();
+  const { roundId } = useParams();
 
   //dynamically set initial state of formData based on whether creating or updating
   //a greenie by looking to see if greenie is passed in as a prop
   const [formData, setFormData] = useState({
-    roundId: greenie ? greenie.id : roundIds[0][0],
+    roundId: greenie ? greenie.roundId : roundId,
     holeNumber: greenie ? greenie.holeNumber : par3HoleNums[0],
     feet: greenie ? greenie.feet : "",
     inches: greenie ? greenie.inches : "",
@@ -87,7 +87,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
     if (greenie) {
       navigate(`/greenies/${greenie.id}`);
     } else {
-      navigate(`/tournaments/${date}`);
+      navigate(`/rounds/${roundId}`);
     }
   };
 
@@ -114,20 +114,7 @@ const GreenieForm = ({ roundIds, par3HoleNums, greenie }) => {
                       readOnly
                     ></Form.Control>
                   ) : (
-                    <Form.Select
-                      id="roundId"
-                      name="roundId"
-                      type="select"
-                      onChange={handleChange}
-                      value={formData.roundId}
-                      required
-                    >
-                      {roundIds.map((r) => (
-                        <option key={r[0]} value={r[0]}>
-                          {r[1]}
-                        </option>
-                      ))}
-                    </Form.Select>
+                    <Form.Control value={playerName} readOnly></Form.Control>
                   )}
                 </div>
               </Form.Group>

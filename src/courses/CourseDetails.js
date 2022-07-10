@@ -53,8 +53,6 @@ const CourseDetails = () => {
 
   return (
     <div className="text-center mb-5 row justify-content-center">
-      <h1 className="display-3 mb-3">{course.name}</h1>
-      <HorizontalRule width={"30%"} />
       {currentUser ? (
         currentUser.isAdmin ? (
           <AdminButtons
@@ -63,6 +61,9 @@ const CourseDetails = () => {
           />
         ) : null
       ) : null}
+      <h1 className="display-3 mb-3">{course.name}</h1>
+      <HorizontalRule width={"30%"} />
+
       <img
         src={course.imgUrl}
         alt={`${course.name}`}

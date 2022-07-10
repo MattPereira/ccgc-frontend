@@ -48,7 +48,7 @@ const TournamentTable = ({ data }) => {
             <tr>
               <th>{idx + 1}</th>
               <th>
-                <Link to={`/rounds/${r.id}`}>
+                <Link to={`/rounds/${r.id}`} className="text-decoration-none">
                   {r.firstName} {r.lastName[0]}
                 </Link>
               </th>

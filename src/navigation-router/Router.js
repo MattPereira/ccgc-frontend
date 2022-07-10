@@ -80,9 +80,9 @@ function Router({ login, register }) {
       <Route exact path="/rounds/:id/edit" element={<EditRound />} />
 
       <Route exact path="/greenies" element={<GreenieList />} />
+      <Route exact path="/greenies/new/:roundId" element={<NewGreenie />} />
       <Route exact path="/greenies/:id" element={<GreenieDetails />} />
       <Route exact path="/greenies/:id/update" element={<UpdateGreenie />} />
-      <Route exact path="/greenies/:date/new" element={<NewGreenie />} />
 
       {/* Redirect to homepage if route doesn't exist */}
       <Route path="*" element={<Navigate to="/" replace />} />

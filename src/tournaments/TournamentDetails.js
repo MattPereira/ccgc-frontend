@@ -11,7 +11,7 @@ import GreenieCardList from "../greenies/GreenieCardList";
 import AdminButtons from "../common/AdminButtons";
 
 import { Link } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Alert } from "react-bootstrap";
 
 /** Tournament details page.
  *
@@ -35,6 +35,7 @@ const TournamentDetails = () => {
 
   console.debug("TournamentDetails");
   const [tournament, setTournament] = useState(null);
+  const [deletionErrors, setDeletionErrors] = useState([]);
 
   /* On component mount, load tournament from API */
   useEffect(
@@ -57,8 +58,12 @@ const TournamentDetails = () => {
 
   //function to handle deletion of tournament passed to EditAndDeleteBtns
   const handleDelete = async () => {
-    await CcgcApi.deleteTournament(date);
-    navigate("/tournaments");
+    try {
+      await CcgcApi.deleteTournament(date);
+      navigate("/tournaments");
+    } catch (errors) {
+      setDeletionErrors(errors);
+    }
   };
 
   //buttons for adding rounds and greenies to a tournament
@@ -71,7 +76,7 @@ const TournamentDetails = () => {
           </Button>
         </Link>
       </div>
-      {tournament.strokesLeaderboard.rounds.length === 0 ? null : (
+      {/* {tournament.strokesLeaderboard.rounds.length === 0 ? null : (
         <div className="col-auto">
           <Link to={`/greenies/${date}/new`}>
             <Button variant="success" className="rounded-pill">
@@ -79,7 +84,7 @@ const TournamentDetails = () => {
             </Button>
           </Link>
         </div>
-      )}
+      )} */}
     </div>
   );
 
@@ -93,6 +98,15 @@ const TournamentDetails = () => {
           />
         ) : null
       ) : null}
+
+      {deletionErrors.length
+        ? deletionErrors.map((err) => (
+            <Alert key={err} variant="danger">
+              {err}
+            </Alert>
+          ))
+        : null}
+
       <h1 className="display-1 mb-3">Tournament</h1>
       <h3 className="text-muted">{tournament.courseName}</h3>
       <HorizontalRule width="30%" />
@@ -105,7 +119,9 @@ const TournamentDetails = () => {
       </h5>
 
       {currentUser ? AddBtns : null}
-      <p className="lead mb-5">Select a player name to view round details</p>
+      <p className="lead mb-5">
+        Select player name to view round details and add greenies.
+      </p>
 
       <div className="col-lg-10">
         <div className="mb-5">
@@ -145,8 +161,13 @@ const TournamentDetails = () => {
                 <tr key={row.username}>
                   <th>{idx + 1}</th>
                   <th>
-                    {row.firstName} {row.lastName[0]}
-                  </th>
+                    <Link
+                      to={`/rounds/${row.roundId}`}
+                      className="text-decoration-none"
+                    >
+                      {row.firstName} {row.lastName[0]}
+                    </Link>
+                  </th>{" "}
                   <td className="d-none d-md-table-cell">
                     {row.participation}
                   </td>

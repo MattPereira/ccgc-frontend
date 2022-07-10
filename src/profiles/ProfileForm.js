@@ -96,7 +96,7 @@ const ProfileForm = () => {
     <div className="row justify-content-center">
       <div className="col-md-8">
         <Card>
-          <Card.Title className="display-4 text-center bg-secondary py-3 text-white">
+          <Card.Title className="display-4 text-center bg-dark py-3 text-white">
             Update Profile
           </Card.Title>
           <Card.Body className="px-5 py-5">
