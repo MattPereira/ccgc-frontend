@@ -43,13 +43,9 @@ const Standings = () => {
       <HorizontalRule width="20%" />
 
       <p className="lead text-center my-5">
-        The Contra Costa Golf Club calculates member standings on the basis of
-        total points accrued over the course of a tour year. After the final
-        round of the season, the player with the most points is crowned the
-        champion.
+        Aggregate points per player for the 2021-22 season.
       </p>
       <div className="col-lg-8">
-        <h2 className="text-center mb-3">2022 TOUR</h2>
         <Table
           responsive
           striped

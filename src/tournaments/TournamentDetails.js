@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import HorizontalRule from "../common/HorizontalRule";
 
-import TournamentTable from "./TournamentTable";
+import TournamentPointsTable from "./TournamentPointsTable";
+import TournamentPuttsTable from "./TournamentPuttsTable";
+import TournamentStrokesTable from "./TournamentStrokesTable";
 import GreenieCardList from "../greenies/GreenieCardList";
 import AdminButtons from "../common/AdminButtons";
 
 import { Link } from "react-router-dom";
-import { Button, Table, Alert } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 
 /** Tournament details page.
  *
@@ -68,23 +70,12 @@ const TournamentDetails = () => {
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
-    <div className="my-5 row justify-content-center">
-      <div className="col-auto">
-        <Link to={`/rounds/new/${date}`}>
-          <Button variant="primary" className="rounded-pill">
-            Add Round
-          </Button>
-        </Link>
-      </div>
-      {/* {tournament.strokesLeaderboard.rounds.length === 0 ? null : (
-        <div className="col-auto">
-          <Link to={`/greenies/${date}/new`}>
-            <Button variant="success" className="rounded-pill">
-              Add Greenie
-            </Button>
-          </Link>
-        </div>
-      )} */}
+    <div className="col-auto my-5">
+      <Link to={`/rounds/new/${date}`}>
+        <Button variant="primary" className="rounded-pill">
+          Add Round
+        </Button>
+      </Link>
     </div>
   );
 
@@ -128,61 +119,19 @@ const TournamentDetails = () => {
           <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
-          <TournamentTable data={strokesLeaderboard} />
+          <TournamentStrokesTable data={strokesLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Putts</b>
           </h3>
-          <TournamentTable data={puttsLeaderboard} />
+          <TournamentPuttsTable data={puttsLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Points</b>
           </h3>
-          <Table responsive striped bordered className="text-center">
-            <thead>
-              <tr className="table-dark">
-                <th>POS</th>
-                <th>PLAYER</th>
-                <th className="d-none d-md-table-cell">PLY</th>
-                <th>STR</th>
-                <th>PUT</th>
-                <th>GRN</th>
-                <th className="d-none d-sm-table-cell">PAR</th>
-                <th className="d-none d-sm-table-cell">BRD</th>
-                <th className="d-none d-sm-table-cell">EGL</th>
-                <th className="d-none d-sm-table-cell">ACE</th>
-                <th>TOT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pointsLeaderboard.map((row, idx) => (
-                <tr key={row.username}>
-                  <th>{idx + 1}</th>
-                  <th>
-                    <Link
-                      to={`/rounds/${row.roundId}`}
-                      className="text-decoration-none"
-                    >
-                      {row.firstName} {row.lastName[0]}
-                    </Link>
-                  </th>{" "}
-                  <td className="d-none d-md-table-cell">
-                    {row.participation}
-                  </td>
-                  <td>{row.strokes}</td>
-                  <td>{row.putts}</td>
-                  <td>{row.greenies}</td>
-                  <td className="d-none d-sm-table-cell">{row.pars}</td>
-                  <td className="d-none d-sm-table-cell">{row.birdies}</td>
-                  <td className="d-none d-sm-table-cell">{row.eagles}</td>
-                  <td className="d-none d-sm-table-cell">{row.aces}</td>
-                  <td>{row.total}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <TournamentPointsTable data={pointsLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">

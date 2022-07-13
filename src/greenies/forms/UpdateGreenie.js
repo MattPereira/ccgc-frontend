@@ -10,7 +10,7 @@ import GreenieForm from "./GreenieForm";
  *
  *
  *
- * Routed as /greenies/:date/new
+ * Routed as /greenies/new/:roundId
  * Routes -> NewGreenie -> NewGreenieForm
  */
 

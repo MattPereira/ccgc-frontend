@@ -127,8 +127,8 @@ const PointsAccordion = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Play</td>
-                    <td>5</td>
+                    <td>Participation</td>
+                    <td>3</td>
                   </tr>
                   <tr>
                     <td>Par</td>

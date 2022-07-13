@@ -257,6 +257,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts1"
                     name="putts1"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts1}
                     required
@@ -286,6 +287,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts2"
                     name="putts2"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts2}
                     required
@@ -315,6 +317,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts3"
                     name="putts3"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts3}
                     required
@@ -344,6 +347,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts4"
                     name="putts4"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts4}
                     required
@@ -373,6 +377,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts5"
                     name="putts5"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts5}
                     required
@@ -402,6 +407,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts6"
                     name="putts6"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts6}
                     required
@@ -431,6 +437,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts7"
                     name="putts7"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts7}
                     required
@@ -459,6 +466,7 @@ const RoundForm = ({ usernames, round }) => {
                     className="form-control"
                     id="putts8"
                     name="putts8"
+                    min="0"
                     type="number"
                     onChange={handleChange}
                     value={formData.putts8}
@@ -489,6 +497,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts9"
                     name="putts9"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts9}
                     required
@@ -518,6 +527,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts10"
                     name="putts10"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts10}
                     required
@@ -547,6 +557,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts11"
                     name="putts11"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts11}
                     required
@@ -576,6 +587,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts12"
                     name="putts12"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts12}
                     required
@@ -605,6 +617,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts13"
                     name="putts13"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts13}
                     required
@@ -634,6 +647,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts14"
                     name="putts14"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts14}
                     required
@@ -663,6 +677,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts15"
                     name="putts15"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts15}
                     required
@@ -692,6 +707,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts16"
                     name="putts16"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts16}
                     required
@@ -721,6 +737,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts17"
                     name="putts17"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts17}
                     required
@@ -750,6 +767,7 @@ const RoundForm = ({ usernames, round }) => {
                     id="putts18"
                     name="putts18"
                     type="number"
+                    min="0"
                     onChange={handleChange}
                     value={formData.putts18}
                     required
