@@ -60,15 +60,15 @@ const GreenieForm = ({ par3HoleNums, playerName, greenie }) => {
     e.preventDefault();
 
     let newGreenieData = {
-      roundId: formData.roundId,
-      holeNumber: formData.holeNumber,
-      feet: formData.feet,
-      inches: formData.inches,
+      roundId: +formData.roundId,
+      holeNumber: +formData.holeNumber,
+      feet: +formData.feet,
+      inches: +formData.inches,
     };
 
     let updateGreenieData = {
-      feet: formData.feet,
-      inches: formData.inches,
+      feet: +formData.feet,
+      inches: +formData.inches,
     };
 
     try {

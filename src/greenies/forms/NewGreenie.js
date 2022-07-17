@@ -38,7 +38,7 @@ const NewGreenie = () => {
   if (!round) return <LoadingSpinner />;
   console.log(round);
 
-  //LEGACY : ADDING GREENIES ON THE TOURNAMENTS PAGE
+  ///// LEGACY : ADDING GREENIES ON THE TOURNAMENTS PAGE //////
   // make nested array of names and corresponding roundIds for select input
   //[[98, 'Tom Moore'], [105, 'Brian Moore'], ...]
   // const roundIds = tournament.strokesLeaderboard.rounds.map((r) => {

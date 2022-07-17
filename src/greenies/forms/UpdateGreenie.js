@@ -37,6 +37,7 @@ const UpdateGreenie = () => {
   );
 
   if (!greenie) return <LoadingSpinner />;
+
   console.log(greenie);
 
   return (

@@ -52,7 +52,13 @@ const TournamentList = () => {
       {currentUser ? (
         currentUser.isAdmin ? (
           <Link to="/tournaments/new">
-            <Button color="primary" className="mb-5 rounded-pill">
+            <Button
+              style={{
+                backgroundColor: "#6f42c1",
+                border: "2px solid #6f42c1",
+              }}
+              className="mb-5 rounded-pill"
+            >
               New Tournament
             </Button>
           </Link>

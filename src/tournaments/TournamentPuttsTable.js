@@ -18,7 +18,7 @@ const TournamentPuttsTable = ({ data }) => {
     <Table responsive bordered striped>
       <thead>
         <tr className="table-dark">
-          <th>RNK</th>
+          <th>POS</th>
           <th>PLAYER</th>
           {Array.from({ length: 18 }, (_, i) => (
             <th key={i + 1} className="d-none d-sm-table-cell">

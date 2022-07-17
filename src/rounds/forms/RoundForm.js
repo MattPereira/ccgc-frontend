@@ -172,7 +172,7 @@ const RoundForm = ({ usernames, round }) => {
               <div className="row">
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="name" className="fw-bold">
-                    Tournament Date
+                    Date
                   </Form.Label>
                   {round ? (
                     <Form.Control
@@ -196,7 +196,7 @@ const RoundForm = ({ usernames, round }) => {
               <div className="row">
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="name" className="fw-bold">
-                    Username
+                    Player
                   </Form.Label>
                   {round ? (
                     <Form.Control
