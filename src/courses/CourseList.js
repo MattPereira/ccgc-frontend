@@ -56,7 +56,7 @@ const CourseList = () => {
         ) : null
       ) : null}
 
-      <div className="CourseList col-sm-12 col-md-10 col-lg-8">
+      <div className="CourseList col-sm-10 col-md-8 col-lg-7">
         {courses.map((c) => (
           <CourseCard
             key={c.handle}

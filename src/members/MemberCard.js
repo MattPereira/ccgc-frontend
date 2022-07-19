@@ -25,10 +25,7 @@ const MemberCard = ({
     <div className="mb-5 text-center">
       <Link to={`/members/${username}`} className="MemberCard-link">
         <Card className="MemberCard-card">
-          <Card.Title
-            tag="h5"
-            className="text-white py-3 mb-0 MemberCard-title"
-          >
+          <Card.Title tag="h5" className="text-white py-3 mb-0 bg-dark">
             {firstName} {lastName}
           </Card.Title>
           <Card.Body>
