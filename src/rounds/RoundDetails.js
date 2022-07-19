@@ -77,13 +77,18 @@ const RoundDetails = () => {
       <h1 className="display-3">{transformUsername(round.username)}'s Round</h1>
 
       <HorizontalRule width="30%" />
-      <div className="my-4">
-        <Link to={`/greenies/new/${round.id}`}>
-          <Button variant="success" className="rounded-pill">
-            Add Greenie
-          </Button>
-        </Link>
-      </div>
+
+      {currentUser ? (
+        currentUser.isAdmin || currentUser.username === round.username ? (
+          <div className="my-4">
+            <Link to={`/greenies/new/${round.id}`}>
+              <Button variant="success" className="rounded-pill">
+                Add Greenie
+              </Button>
+            </Link>
+          </div>
+        ) : null
+      ) : null}
       <div className="my-4">
         <RoundTable
           roundId={round.id}
