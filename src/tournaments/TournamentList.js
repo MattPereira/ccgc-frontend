@@ -52,19 +52,13 @@ const TournamentList = () => {
       {currentUser ? (
         currentUser.isAdmin ? (
           <Link to="/tournaments/new">
-            <Button
-              style={{
-                backgroundColor: "#6f42c1",
-                border: "2px solid #6f42c1",
-              }}
-              className="mb-5 rounded-pill"
-            >
+            <Button variant="primary" className="mb-5 rounded-pill">
               New Tournament
             </Button>
           </Link>
         ) : null
       ) : null}
-      <div className="col-md-8">
+      <div className="col-md-8 col-lg-7">
         {tournaments.map((t) => (
           <TournamentCard
             key={t.date}

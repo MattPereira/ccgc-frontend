@@ -9,6 +9,7 @@ import HorizontalRule from "../common/HorizontalRule";
 import TournamentPointsTable from "./TournamentPointsTable";
 import TournamentPuttsTable from "./TournamentPuttsTable";
 import TournamentStrokesTable from "./TournamentStrokesTable";
+import GreenieTable from "../greenies/GreenieTable";
 import GreenieCardList from "../greenies/GreenieCardList";
 import AdminButtons from "../common/AdminButtons";
 
@@ -117,6 +118,12 @@ const TournamentDetails = () => {
       <div className="col-lg-10">
         <div className="mb-5">
           <h3 className="display-6 mb-3">
+            <b>Points</b>
+          </h3>
+          <TournamentPointsTable data={pointsLeaderboard} />
+        </div>
+        <div className="mb-5">
+          <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
           <TournamentStrokesTable data={strokesLeaderboard} />
@@ -129,15 +136,16 @@ const TournamentDetails = () => {
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
-            <b>Points</b>
+            {tournament.greenies.length ? <b>Greenies</b> : null}
           </h3>
-          <TournamentPointsTable data={pointsLeaderboard} />
-        </div>
-        <div className="mb-5">
-          <h3 className="display-6 mb-3">
-            <b>Greenies</b>
-          </h3>
-          <GreenieCardList greenies={tournament.greenies} />
+          {/* <div className="row justify-content-center"> */}
+          <div className="d-lg-none">
+            <GreenieTable greenies={tournament.greenies} />
+          </div>
+          <div className="d-none d-lg-block">
+            <GreenieCardList greenies={tournament.greenies} />
+          </div>
+          {/* </div> */}
         </div>
       </div>
     </div>

@@ -41,14 +41,9 @@ const GreenieCard = ({
             <img alt={`${courseName}`} src={courseImg} />
           </div>
           <div className="bg-success text-white h6 py-1">
-            {new Date(date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            <Card.Text className="lead">{owner}</Card.Text>
           </div>
           <Card.Body>
-            <Card.Text className="lead">{owner}</Card.Text>
             <Table responsive>
               <thead>
                 <tr>
@@ -58,7 +53,7 @@ const GreenieCard = ({
               </thead>
               <tbody>
                 <tr>
-                  <td>{holeNumber}</td>
+                  <td>#{holeNumber}</td>
                   <td>
                     {feet}' {inches}"
                   </td>

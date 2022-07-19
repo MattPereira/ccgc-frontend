@@ -150,15 +150,14 @@ const RoundForm = ({ usernames, round }) => {
       return;
     }
 
-    //navigate to the course detail page for the newly created course
     if (round) {
+      //navigate to the round details page for an updated round
       navigate(`/rounds/${round.id}`);
     } else {
+      //navigate to the tournament details page for a newly created round
       navigate(`/tournaments/${date}`);
     }
   };
-
-  //Should I allow only admins to create rounds for other users?
 
   return (
     <div className="row justify-content-center">

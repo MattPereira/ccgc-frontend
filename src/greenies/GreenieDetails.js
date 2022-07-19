@@ -47,6 +47,7 @@ const GreenieDetails = () => {
 
   if (!greenie) return <LoadingSpinner />;
   console.log(greenie);
+  console.log(currentUser);
 
   const handleDelete = async () => {
     await CcgcApi.deleteGreenie(id);
@@ -63,6 +64,7 @@ const GreenieDetails = () => {
     inches,
     firstName,
     lastName,
+    username,
   } = greenie;
 
   return (
@@ -113,7 +115,7 @@ const GreenieDetails = () => {
               </tbody>
             </Table>
             {currentUser ? (
-              currentUser.isAdmin ? (
+              currentUser.isAdmin || currentUser.username === username ? (
                 <AdminButtons
                   updatePath={`/greenies/${greenie.id}/update`}
                   handleDelete={handleDelete}

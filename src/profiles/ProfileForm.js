@@ -21,7 +21,6 @@ const ProfileForm = () => {
   const [formData, setFormData] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
-    bio: currentUser.bio,
     email: currentUser.email,
     password: "",
   });
@@ -68,7 +67,6 @@ const ProfileForm = () => {
       lastName: formData.lastName,
       email: formData.email,
       password: formData.password,
-      bio: formData.bio,
     };
 
     let updatedUser;
@@ -94,88 +92,65 @@ const ProfileForm = () => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-8">
+      <div className="col-md-8 col-lg-6">
         <Card>
           <Card.Title className="display-4 text-center bg-dark py-3 text-white">
             Update Profile
           </Card.Title>
           <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-lg-6">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="firstName">First Name</Form.Label>
-                    <Form.Control
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      onChange={handleChange}
-                      value={formData.firstName}
-                      required
-                    ></Form.Control>
-                  </Form.Group>
-                </div>
-                <div className="col-lg-6">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="lastName">Last Name</Form.Label>
-                    <Form.Control
-                      className="form-control"
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      onChange={handleChange}
-                      value={formData.lastName}
-                      required
-                    ></Form.Control>
-                  </Form.Group>
-                </div>
-              </div>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="firstName">First Name</Form.Label>
+                <Form.Control
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  onChange={handleChange}
+                  value={formData.firstName}
+                  required
+                ></Form.Control>
+              </Form.Group>
 
-              <div className="row">
-                <div className="col-lg-6">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email">Email</Form.Label>
-                    <Form.Control
-                      className="form-control"
-                      id="email"
-                      name="email"
-                      type="text"
-                      onChange={handleChange}
-                      value={formData.email}
-                      autoComplete="email"
-                      required
-                    ></Form.Control>
-                  </Form.Group>
-                </div>
-                <div className="col-lg-6">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Password</Form.Label>
-                    <Form.Control
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      type="password"
-                      onChange={handleChange}
-                      value={formData.password}
-                      required
-                      autoComplete="current-password"
-                    ></Form.Control>
-                  </Form.Group>
-                </div>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                <Form.Control
+                  className="form-control"
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  onChange={handleChange}
+                  value={formData.lastName}
+                  required
+                ></Form.Control>
+              </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="bio">Bio</Form.Label>
-                  <Form.Control
-                    className="form-control"
-                    id="bio"
-                    name="bio"
-                    type="textarea"
-                    onChange={handleChange}
-                    value={formData.bio}
-                    required
-                  ></Form.Control>
-                </Form.Group>
-              </div>
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="email">Email</Form.Label>
+                <Form.Control
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  type="text"
+                  onChange={handleChange}
+                  value={formData.email}
+                  autoComplete="email"
+                  required
+                ></Form.Control>
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Control
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={handleChange}
+                  value={formData.password}
+                  required
+                  autoComplete="current-password"
+                ></Form.Control>
+              </Form.Group>
 
               {formErrors.length
                 ? formErrors.map((err) => (
@@ -186,7 +161,7 @@ const ProfileForm = () => {
                 : null}
 
               {updateConfirmed ? (
-                <Alert type="success">Profile information updated!</Alert>
+                <Alert variant="success">Profile information updated!</Alert>
               ) : null}
 
               <div className="row justify-content-end">

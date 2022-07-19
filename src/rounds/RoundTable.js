@@ -33,7 +33,7 @@ const RoundTable = ({
     <div className="mb-4">
       <h5 className="display-6 mb-0">{courseName}</h5>
       <Link to={`/tournaments/${tournamentDate}`} className="">
-        <p className="fs-4 mb-3">
+        <p className="fs-5 mb-3">
           {new Date(tournamentDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",

@@ -26,15 +26,15 @@ const CourseCard = ({
     <div className="mb-5">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
         <Card className="CourseCard-card text-center">
-          <div className="CourseCard-crop">
-            <img alt={`${name}`} src={imgUrl} />
-          </div>
           <Card.Title
             tag="h3"
             className="display-6 bg-dark mb-0 py-3 text-white"
           >
             {name}
           </Card.Title>
+          <div className="CourseCard-crop">
+            <img alt={`${name}`} src={imgUrl} />
+          </div>
         </Card>
       </Link>
     </div>

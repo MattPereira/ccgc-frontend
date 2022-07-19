@@ -20,6 +20,7 @@ const NewRound = () => {
   }, []);
 
   if (!members) return <LoadingSpinner />;
+  console.log(members);
 
   //CAN I SOMEHOW MANIPULATE THE usernamesArr to remove users who already have rounds for
   //this tournament using the {date} parameter in the URL?

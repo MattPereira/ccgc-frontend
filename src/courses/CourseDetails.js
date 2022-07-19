@@ -53,36 +53,40 @@ const CourseDetails = () => {
 
   return (
     <div className="text-center mb-5 row justify-content-center">
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <AdminButtons
-            updatePath={`/courses/${course.handle}/edit`}
-            handleDelete={handleDelete}
-          />
-        ) : null
-      ) : null}
       <h1 className="display-3 mb-3">{course.name}</h1>
       <HorizontalRule width={"30%"} />
-
-      <img
-        src={course.imgUrl}
-        alt={`${course.name}`}
-        className="img-fluid mb-5 mt-3"
-      />
-      <div className="row justify-content-end mb-1">
-        <div className="col-auto">Rating : {course.rating}</div>
-        <div className="col-auto">Slope : {course.slope}</div>
+      <div className="mt-3">
+        {currentUser ? (
+          currentUser.isAdmin ? (
+            <AdminButtons
+              updatePath={`/courses/${course.handle}/edit`}
+              handleDelete={handleDelete}
+            />
+          ) : null
+        ) : null}
       </div>
-      <div className="mb-5">
-        <CourseTable
-          key={course.handle}
-          handle={course.handle}
-          name={course.name}
-          rating={course.rating}
-          slope={course.slope}
-          pars={course.pars}
-          handicaps={course.handicaps}
+
+      <div className="col-lg-10">
+        <img
+          src={course.imgUrl}
+          alt={`${course.name}`}
+          className="img-fluid mb-5 mt-3"
         />
+        <div className="row justify-content-end mb-1">
+          <div className="col-auto">Rating : {course.rating}</div>
+          <div className="col-auto">Slope : {course.slope}</div>
+        </div>
+        <div className="mb-5">
+          <CourseTable
+            key={course.handle}
+            handle={course.handle}
+            name={course.name}
+            rating={course.rating}
+            slope={course.slope}
+            pars={course.pars}
+            handicaps={course.handicaps}
+          />
+        </div>
       </div>
     </div>
   );

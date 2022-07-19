@@ -11,7 +11,7 @@
   }
 
   .TournamentCard-crop {
-    height: 300px;
+    height: 250px;
     overflow: hidden;
   }
 
@@ -20,7 +20,3 @@
     height: 100%;
     object-fit: cover;
   }
-
-.TournamentCard-body {
-  background-color: #6f42c1;
-}

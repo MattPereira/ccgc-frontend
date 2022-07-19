@@ -42,7 +42,7 @@ const Standings = () => {
       <h1 className="display-3 text-center">Standings</h1>
       <HorizontalRule width="20%" />
 
-      <p className="lead text-center my-5">
+      <p className="lead text-center mb-5 mt-4">
         Aggregate points per player for the 2021-22 season.
       </p>
       <div className="col-lg-8">
@@ -54,7 +54,7 @@ const Standings = () => {
           className="text-center mb-5"
         >
           <thead>
-            <tr>
+            <tr className="table-dark">
               <th>RNK</th>
               <th>PLAYER</th>
               <th>PLY</th>
@@ -80,7 +80,7 @@ const Standings = () => {
                     {row.firstName} {row.lastName[0]}
                   </Link>
                 </th>
-                <td>{row.participations}</td>
+                <td>{row.participation}</td>
                 <td>{row.strokes}</td>
                 <td>{row.putts}</td>
                 <td>{row.greenies}</td>

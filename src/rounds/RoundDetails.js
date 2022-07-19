@@ -67,7 +67,7 @@ const RoundDetails = () => {
   return (
     <div className="text-center row justify-content-center">
       {currentUser ? (
-        currentUser.username === round.username || currentUser.isAdmin ? (
+        currentUser.isAdmin ? (
           <AdminButtons
             updatePath={`/rounds/${id}/edit`}
             handleDelete={handleDelete}
@@ -77,15 +77,14 @@ const RoundDetails = () => {
       <h1 className="display-3">{transformUsername(round.username)}'s Round</h1>
 
       <HorizontalRule width="30%" />
-      <div className="mt-3 mb-4">
+      <div className="my-4">
         <Link to={`/greenies/new/${round.id}`}>
           <Button variant="success" className="rounded-pill">
             Add Greenie
           </Button>
         </Link>
       </div>
-
-      <div className="mb-5">
+      <div className="my-4">
         <RoundTable
           roundId={round.id}
           courseName={round.courseName}
@@ -99,6 +98,7 @@ const RoundDetails = () => {
           pars={round.pars}
         />
       </div>
+
       <div className="mb-5">
         <GreenieCardList greenies={round.greenies} />
       </div>

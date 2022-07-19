@@ -12,7 +12,7 @@ import GreenieCardList from "../greenies/GreenieCardList";
  *
  * This is routed to path "/members/:username"
  *
- * Routes -> MemberDetails -> { MemberRoundTable -> {HolesRow, DataRow} }
+ * Routes -> MemberDetails -> { RoundTable -> {HolesRow, DataRow} }
  *
  */
 
@@ -43,17 +43,17 @@ const MemberDetails = () => {
 
   return (
     <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-3">
+      <h1 className="display-3 mb-1">
         {member.firstName} {member.lastName}
       </h1>
+      <p className="fs-6 text-muted fst-italic">{member.email}</p>
 
       <hr
         className="mb-4"
         style={{ border: "2px solid grey", width: "20%" }}
       ></hr>
-      <p className="lead mb-5">
-        Scorecards and greenies for each round played ordered by date.
-      </p>
+
+      <p className="lead mb-5 mt-4">Scorecards and greenies for each round.</p>
       <div className="col-md-10 mb-3">
         {member.rounds ? (
           member.rounds.map((r) => (

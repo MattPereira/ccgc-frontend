@@ -21,7 +21,7 @@ const TournamentCard = ({ date, courseName, imgUrl, tourYears }) => {
         <Card className="TournamentCard-card">
           <Card.Title
             tag="h3"
-            className=" display-6 bg-dark text-white mb-0 py-4"
+            className=" display-6 bg-dark text-white mb-0 py-3"
           >
             {courseName}
           </Card.Title>
@@ -30,7 +30,7 @@ const TournamentCard = ({ date, courseName, imgUrl, tourYears }) => {
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
 
-          <Card.Body className="TournamentCard-body text-white py-2">
+          <Card.Body className="bg-primary text-white py-2">
             <p className="mb-0 lead">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {

@@ -29,6 +29,7 @@ const MemberList = () => {
   }, []);
 
   if (!members) return <LoadingSpinner />;
+  console.log(members);
 
   return (
     <div className="text-center row justify-content-center">
@@ -41,17 +42,18 @@ const MemberList = () => {
         Select a member to view all of their rounds played with the Contra Costa
         Golf Club
       </p>
-      <div className=" col-md-6">
+      <div className="col-sm-10 col-md-7 col-lg-5">
         {members.length ? (
-          <div className="CompanyList-list">
+          <div className="MemberCard-list">
             {members.map((m) => (
               <MemberCard
                 key={m.username}
                 username={m.username}
                 firstName={m.firstName}
                 lastName={m.lastName}
-                email={m.email}
-                bio={m.bio}
+                avgPutts={m.avgPutts}
+                avgStrokes={m.avgStrokes}
+                avgGreenies={m.avgGreenies}
               />
             ))}
           </div>
