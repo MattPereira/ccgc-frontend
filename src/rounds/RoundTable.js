@@ -38,7 +38,7 @@ const RoundTable = ({
   );
 
   const strokesRow = (
-    <tr>
+    <tr className="bg-white">
       <th>STROKES</th>
       {Object.values(strokes).map((s) => (
         <td key={uuidv4()}>{s}</td>
@@ -48,7 +48,7 @@ const RoundTable = ({
   );
 
   const puttsRow = (
-    <tr>
+    <tr className="bg-white">
       <th>PUTTS</th>
       {Object.values(putts).map((p) => (
         <td key={uuidv4()}>{p}</td>

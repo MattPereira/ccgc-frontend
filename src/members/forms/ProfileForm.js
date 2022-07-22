@@ -100,7 +100,7 @@ const ProfileForm = () => {
           <Card.Body className="px-5 py-5">
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="firstName">First Name</Form.Label>
+                <Form.Label htmlFor="firstName">First Name :</Form.Label>
                 <Form.Control
                   id="firstName"
                   name="firstName"
@@ -112,7 +112,7 @@ const ProfileForm = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                <Form.Label htmlFor="lastName">Last Name :</Form.Label>
                 <Form.Control
                   className="form-control"
                   id="lastName"
@@ -125,7 +125,7 @@ const ProfileForm = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="email">Email</Form.Label>
+                <Form.Label htmlFor="email">Email :</Form.Label>
                 <Form.Control
                   className="form-control"
                   id="email"
@@ -139,7 +139,7 @@ const ProfileForm = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Label htmlFor="password">Password :</Form.Label>
                 <Form.Control
                   className="form-control"
                   id="password"

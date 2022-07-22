@@ -17,7 +17,7 @@ const TournamentTable = ({ data, type }) => {
   console.log("DATA", data);
 
   return (
-    <Table responsive bordered striped>
+    <Table responsive bordered striped className="bg-white">
       <thead>
         <tr className="table-dark">
           <th>POS</th>

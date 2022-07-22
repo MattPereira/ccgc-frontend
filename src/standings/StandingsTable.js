@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const StandingsTable = ({ data }) => {
   return (
-    <Table responsive striped bordered className="text-center">
+    <Table responsive striped bordered className="text-center bg-white">
       <thead>
         <tr className="table-dark">
           <th>POS</th>
