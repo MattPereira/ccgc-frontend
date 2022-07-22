@@ -1,8 +1,11 @@
 
 # [Contra Costa Golf Club](https://ccgc.surge.sh/)
-### A full-stack web application by Matt Pereira deployed at [ccgc.surge.sh/](https://ccgc.surge.sh/)
+#### A full-stack web application deployed at [ccgc.surge.sh/](https://ccgc.surge.sh/)
 
-[Connect with me on LinkedIn](https://www.linkedin.com/in/matt-pereira-32428a63/)
+![](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.surge.sh/)
 
@@ -13,7 +16,7 @@
 
 
 ## Description
-The site displays all of the [tournaments](https://ccgc.surge.sh/tournaments), [greenies](https://ccgc.surge.sh/greenies), [members](https://ccgc.surge.sh/members), [courses](https://ccgc.surge.sh/courses), and [standings](https://ccgc.surge.sh/standings) data for the 2022 season. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
+The site displays all of the [tournaments](https://ccgc.surge.sh/tournaments), [greenies](https://ccgc.surge.sh/greenies), [members](https://ccgc.surge.sh/members), [courses](https://ccgc.surge.sh/courses), and [standings](https://ccgc.surge.sh/standings) data for the 2021-22 season. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
 
 
 ## Features
@@ -23,6 +26,7 @@ The site displays all of the [tournaments](https://ccgc.surge.sh/tournaments), [
 
 **Internal API**
   * deployed on heroku at [contra-costa-golf-club.herokuapp.com](https://contra-costa-golf-club.herokuapp.com/)
+  * JSON Schema validation
   
 **User authentication and authorization**
   * Using JSON Web Tokens 
