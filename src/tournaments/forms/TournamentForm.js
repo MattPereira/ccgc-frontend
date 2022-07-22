@@ -100,7 +100,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
           <Card.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="firstName">Date</Form.Label>
+                <Form.Label htmlFor="date">Date</Form.Label>
 
                 {tournament ? (
                   <Form.Control

@@ -1,12 +1,12 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import AdminButtons from "./AdminButtons";
+import HolesRow from "./HolesRow";
 
 it("renders without crashing", function () {
   render(
     <MemoryRouter>
-      <AdminButtons updatePath="/courses/pebble-beach/edit" />
+      <HolesRow updatePath="/courses/pebble-beach/edit" />
     </MemoryRouter>
   );
 });
@@ -14,7 +14,7 @@ it("renders without crashing", function () {
 it("matches snapshot", function () {
   const { asFragment } = render(
     <MemoryRouter>
-      <AdminButtons updatePath="/courses/pebble-beach/edit" />
+      <HolesRow updatePath="/courses/pebble-beach/edit" />
     </MemoryRouter>
   );
   expect(asFragment()).toMatchSnapshot();
@@ -23,13 +23,16 @@ it("matches snapshot", function () {
 it("displays", function () {
   render(
     <MemoryRouter>
-      <AdminButtons updatePath="/courses/pebble-beach/edit" />
+      <HolesRow />
     </MemoryRouter>
   );
 
-  const editBtn = screen.getByText("Edit");
-  expect(editBtn).toBeInTheDocument();
+  const row = screen.getByRole("row");
+  expect(row).toBeInTheDocument();
 
-  const deleteBtn = screen.getByText("Delete");
-  expect(deleteBtn).toBeInTheDocument();
+  const holeTableHeader = screen.getByText("HOLE");
+  expect(holeTableHeader).toBeInTheDocument();
+
+  const totalTableHeader = screen.getByText("TOT");
+  expect(totalTableHeader).toBeInTheDocument();
 });

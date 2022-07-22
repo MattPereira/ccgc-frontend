@@ -194,7 +194,7 @@ const RoundForm = ({ usernames, round }) => {
               </div>
               <div className="row">
                 <Form.Group className="mb-3">
-                  <Form.Label htmlFor="name" className="fw-bold">
+                  <Form.Label htmlFor="username" className="fw-bold">
                     Player
                   </Form.Label>
                   {round ? (

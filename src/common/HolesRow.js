@@ -1,15 +1,13 @@
 import React from "react";
 
 /**
- *
  * Component for displaying hole numbers 1-18
  *
- * if exteded is true, then display TOT, HCP, and NET
  *
  *
  */
 
-const HolesRow = ({ extended }) => {
+const HolesRow = () => {
   return (
     <tr className="table-dark">
       <th>HOLE</th>
@@ -17,12 +15,6 @@ const HolesRow = ({ extended }) => {
         <th key={i + 1}>{i + 1}</th>
       ))}
       <th>TOT</th>
-      {extended ? (
-        <>
-          <th>HCP</th>
-          <th>NET</th>
-        </>
-      ) : null}
     </tr>
   );
 };

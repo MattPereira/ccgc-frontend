@@ -98,5 +98,7 @@ it("displays standings table", function () {
 
   const table = screen.getByRole("table");
   expect(table).toBeInTheDocument();
-  screen.debug();
+
+  const tableHead = screen.getAllByRole("row", { hidden: true });
+  expect(tableHead[0]).toBeInTheDocument();
 });

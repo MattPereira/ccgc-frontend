@@ -1,0 +1,834 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="row justify-content-center"
+  >
+    <div
+      class="col-sm-10 col-md-7 col-lg-5"
+    >
+      <div
+        class="card"
+      >
+        <div
+          class="display-4 text-center mb-3 py-2 bg-primary text-white card-title h5"
+        >
+          New Round
+        </div>
+        <div
+          class="card-body"
+        >
+          <form
+            class=""
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="mb-3"
+              >
+                <label
+                  class="fw-bold form-label"
+                  for="name"
+                >
+                  Date
+                </label>
+                <input
+                  class="form-control form-control"
+                  readonly=""
+                  type="text"
+                  value="Invalid Date"
+                />
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="mb-3"
+              >
+                <label
+                  class="fw-bold form-label"
+                  for="username"
+                >
+                  Player
+                </label>
+                <select
+                  class="form-control form-select"
+                  id="username"
+                  name="username"
+                  required=""
+                  type="select"
+                >
+                  <option
+                    value="happy-gilmore"
+                  >
+                    happy-gilmore
+                  </option>
+                  <option
+                    value="shooter-mcgavin"
+                  >
+                    shooter-mcgavin
+                  </option>
+                  <option
+                    value="tiger-woods"
+                  >
+                    tiger-woods
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              class="row text-center"
+            >
+              <div
+                class="col-2"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  Hole
+                </label>
+              </div>
+              <div
+                class="col-5"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  Strokes
+                </label>
+              </div>
+              <div
+                class="col-5"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  Putts
+                </label>
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #1
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes1"
+                  min="1"
+                  name="strokes1"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts1"
+                  min="0"
+                  name="putts1"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #2
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes2"
+                  min="1"
+                  name="strokes2"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts2"
+                  min="0"
+                  name="putts2"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #3
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes3"
+                  min="1"
+                  name="strokes3"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts3"
+                  min="0"
+                  name="putts3"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #4
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes4"
+                  min="1"
+                  name="strokes4"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts4"
+                  min="0"
+                  name="putts4"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #5
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes5"
+                  min="1"
+                  name="strokes5"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts5"
+                  min="0"
+                  name="putts5"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #6
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes6"
+                  min="1"
+                  name="strokes6"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts6"
+                  min="0"
+                  name="putts6"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #7
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes7"
+                  min="1"
+                  name="strokes7"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts7"
+                  min="0"
+                  name="putts7"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #8
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes8"
+                  min="1"
+                  name="strokes8"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts8"
+                  min="0"
+                  name="putts8"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #9
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes9"
+                  min="1"
+                  name="strokes9"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts9"
+                  min="0"
+                  name="putts9"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #10
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes10"
+                  min="1"
+                  name="strokes10"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts10"
+                  min="0"
+                  name="putts10"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #11
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes11"
+                  min="1"
+                  name="strokes11"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts11"
+                  min="0"
+                  name="putts11"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #12
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes12"
+                  min="1"
+                  name="strokes12"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts12"
+                  min="0"
+                  name="putts12"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #13
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes13"
+                  min="1"
+                  name="strokes13"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts13"
+                  min="0"
+                  name="putts13"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #14
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes14"
+                  min="1"
+                  name="strokes14"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts14"
+                  min="0"
+                  name="putts14"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #15
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes15"
+                  min="1"
+                  name="strokes15"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts15"
+                  min="0"
+                  name="putts15"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #16
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes16"
+                  min="1"
+                  name="strokes16"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts16"
+                  min="0"
+                  name="putts16"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #17
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes17"
+                  min="1"
+                  name="strokes17"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts17"
+                  min="0"
+                  name="putts17"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row align-items-center mb-3"
+            >
+              <div
+                class="col-2 text-center"
+              >
+                <label
+                  class="fw-bold form-label"
+                >
+                  #18
+                </label>
+              </div>
+              <div
+                class="col-5 align-self-center"
+              >
+                <input
+                  class="form-control form-control"
+                  id="strokes18"
+                  min="1"
+                  name="strokes18"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+              <div
+                class="col-5"
+              >
+                <input
+                  class="form-control form-control"
+                  id="putts18"
+                  min="0"
+                  name="putts18"
+                  required=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="row justify-content-end"
+            >
+              <div
+                class="col-auto"
+              >
+                <button
+                  class="btn btn-primary btn-block px-4"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
