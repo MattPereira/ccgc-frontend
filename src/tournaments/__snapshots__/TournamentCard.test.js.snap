@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-5"
+  >
+    <a
+      class="TournamentCard-link"
+      href="/tournaments/2022-02-02"
+    >
+      <div
+        class="TournamentCard-card card"
+      >
+        <div
+          class=" display-6 bg-dark text-white mb-0 py-3 card-title h5"
+          tag="h3"
+        >
+          Pebble Beach Golf Course
+        </div>
+        <div
+          class="TournamentCard-crop"
+        >
+          <img
+            alt="Pebble Beach Golf Course"
+            src="/course-photos/pebble-beach"
+          />
+        </div>
+        <div
+          class="py-3 card-body"
+        >
+          <p
+            class="mb-0 lead"
+          >
+             February 2, 2022
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+</DocumentFragment>
+`;

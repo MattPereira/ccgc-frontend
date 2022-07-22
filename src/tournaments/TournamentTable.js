@@ -2,16 +2,18 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-/** TournamentTable component
+/** Tournament Strokes Table Component
  *
- * handles display of the putts leaderboard for a tournament
+ * handles display of the strokes leaderboard
+ *
+ * some funky if else logic going on here could be cleaned up
  *
  * IMPORT UUID FOR KEYS ON <td>'s
  *
- * TournamentDetails -> TournamentPuttsTable
+ * TournamentDetails -> TournamentTable
  */
 
-const TournamentPuttsTable = ({ data }) => {
+const TournamentTable = ({ data, type }) => {
   console.log("DATA", data);
 
   return (
@@ -26,11 +28,18 @@ const TournamentPuttsTable = ({ data }) => {
             </th>
           ))}
           <th>TOT</th>
+          {type === "strokes" ? (
+            <>
+              <th>HCP</th>
+              <th>NET</th>
+            </>
+          ) : null}
+
           <th>PTS</th>
         </tr>
       </thead>
       <tbody>
-        {data.rounds.map((r, idx) => (
+        {data.map((r, idx) => (
           <tr key={r.id}>
             <th>{idx + 1}</th>
             <th>
@@ -38,13 +47,21 @@ const TournamentPuttsTable = ({ data }) => {
                 {r.firstName} {r.lastName[0]}
               </Link>
             </th>
-
-            {Object.values(r.putts).map((p, idx) => (
+            {Object.values(r.strokes || r.putts).map((s, idx) => (
               <td key={idx} className="d-none d-sm-table-cell">
-                {p}
+                {s}
               </td>
             ))}
-            {r.putts ? <td>{r.totalPutts}</td> : null}
+            {type === "strokes" ? (
+              <>
+                <td>{r.totalStrokes}</td>
+                <td>{r.courseHandicap}</td>
+                <td>{r.netStrokes}</td>
+              </>
+            ) : (
+              <td>{r.totalPutts}</td>
+            )}
+
             <td>{r.points}</td>
           </tr>
         ))}
@@ -53,4 +70,4 @@ const TournamentPuttsTable = ({ data }) => {
   );
 };
 
-export default TournamentPuttsTable;
+export default TournamentTable;

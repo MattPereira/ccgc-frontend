@@ -13,8 +13,6 @@ import { Navbar, Nav, Container } from "react-bootstrap";
  * Rendered by App
  */
 
-//MIGHT HAVE TO NAVBAR BACK TO "REACTSTRAP" TO GET WORKING PROPERLY?
-
 const Navigation = ({ logout }) => {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);

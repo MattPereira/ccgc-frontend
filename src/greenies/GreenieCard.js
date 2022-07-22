@@ -21,7 +21,6 @@ import "./GreenieCard.css";
 
 const GreenieCard = ({
   id,
-  date,
   holeNumber,
   feet,
   inches,

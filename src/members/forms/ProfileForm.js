@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../auth/UserContext";
-import CcgcApi from "../api/api";
+import UserContext from "../../auth/UserContext";
+import CcgcApi from "../../api/api";
 import { Card, Form, Alert } from "react-bootstrap";
 
 /** Form to edit user profile
@@ -167,7 +167,7 @@ const ProfileForm = () => {
               <div className="row justify-content-end">
                 <div className="col-auto">
                   <button className="btn btn-primary btn-block px-4">
-                    Update
+                    Submit
                   </button>
                 </div>
               </div>

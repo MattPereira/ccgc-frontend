@@ -26,8 +26,9 @@ import EditRound from "../rounds/forms/EditRound";
 
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
-import ProfileForm from "../profiles/ProfileForm";
-import Standings from "../standings/Standings";
+import ProfileForm from "../members/forms/ProfileForm";
+
+import StandingsDetails from "../standings/StandingsDetails";
 
 /** Site-wide routes.
  *
@@ -48,7 +49,7 @@ function Router({ login, register }) {
   return (
     <Routes>
       <Route exact path="/" element={<Homepage />} />
-      <Route exact path="/standings" element={<Standings />} />
+      <Route exact path="/standings" element={<StandingsDetails />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route

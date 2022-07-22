@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 import CourseForm from "./CourseForm";
 import LoadingSpinner from "../../common/LoadingSpinner";
 
-/** This component is used to fetch course data to pass to <EditCourseForm/>
+/** This component is used to fetch course data to pass to <CourseForm/>
  *  in order to populate the form with the course's current data.
  *
  * Routed as /course/:handle/edit
- * Routes -> EditCourse -> EditCourseForm
+ * Routes -> EditCourse -> CourseForm
  */
 
 const EditCourse = () => {
@@ -31,6 +31,7 @@ const EditCourse = () => {
 
   console.debug("EditCourse", "course=", course);
 
+  // alternative loading spinner rendering method
   // if (!course) return <LoadingSpinner />;????
 
   return course ? <CourseForm course={course} /> : <LoadingSpinner />;

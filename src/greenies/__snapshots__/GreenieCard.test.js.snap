@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-4"
+  >
+    <a
+      class="TournamentCard-link"
+      href="/greenies/1"
+    >
+      <div
+        class="GreenieCard-card card"
+      >
+        <div
+          class="bg-dark mb-0 py-2 text-white card-title h5"
+          tag="h5"
+        >
+          Pebble Beach
+        </div>
+        <div
+          class="GreenieCard-crop"
+        >
+          <img
+            alt="Pebble Beach Golf Course"
+            src="/course-photos/pebble-beach.jpg"
+          />
+        </div>
+        <div
+          class="bg-success text-white h6 py-1"
+        >
+          <p
+            class="lead card-text"
+          >
+            Happy Gilmore
+          </p>
+        </div>
+        <div
+          class="card-body"
+        >
+          <div
+            class="table-responsive"
+          >
+            <table
+              class="table"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Hole
+                  </th>
+                  <th>
+                    Distance
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    #1
+                  </td>
+                  <td>
+                    11' 11"
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</DocumentFragment>
+`;

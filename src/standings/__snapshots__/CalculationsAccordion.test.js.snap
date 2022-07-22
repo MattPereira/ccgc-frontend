@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="accordion"
+    variant="dark"
+  >
+    <div
+      class="accordion-item"
+    >
+      <h2
+        class="accordion-header"
+      >
+        <button
+          aria-expanded="false"
+          class="accordion-button collapsed"
+          type="button"
+        >
+          Total Strokes
+        </button>
+      </h2>
+      <div
+        class="accordion-collapse collapse"
+      >
+        <div
+          class="accordion-body"
+        >
+          <p
+            class="lead fw-bold"
+          >
+            Hole1 + Hole2 + ... + Hole18
+          </p>
+          <p>
+            Sum of the strokes for all 18 holes.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="accordion-item"
+    >
+      <h2
+        class="accordion-header"
+      >
+        <button
+          aria-expanded="false"
+          class="accordion-button collapsed"
+          type="button"
+        >
+          Score Differential
+        </button>
+      </h2>
+      <div
+        class="accordion-collapse collapse"
+      >
+        <div
+          class="accordion-body"
+        >
+          <p
+            class="lead fw-bold"
+          >
+            (113/Slope) * (Total Strokes - Rating)
+          </p>
+          <p>
+            Measures the performance of a round in relation to the relative difficulty of the course that was played.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="accordion-item"
+    >
+      <h2
+        class="accordion-header"
+      >
+        <button
+          aria-expanded="false"
+          class="accordion-button collapsed"
+          type="button"
+        >
+          Handicap Index
+        </button>
+      </h2>
+      <div
+        class="accordion-collapse collapse"
+      >
+        <div
+          class="accordion-body"
+        >
+          <p
+            class="lead fw-bold"
+          >
+            Average of Score Differentials
+          </p>
+          <p>
+            Out of the last four rounds played with the Contra Costa Golf Club, the lowest two score differentials are averaged to compute a player's Handicap Index.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="accordion-item"
+    >
+      <h2
+        class="accordion-header"
+      >
+        <button
+          aria-expanded="false"
+          class="accordion-button collapsed"
+          type="button"
+        >
+          Course Handicap
+        </button>
+      </h2>
+      <div
+        class="accordion-collapse collapse"
+      >
+        <div
+          class="accordion-body"
+        >
+          <p
+            class="lead fw-bold"
+          >
+            (Handicap Index * Slope) / 113
+          </p>
+          <p>
+            The number of strokes needed to play to par of the tees being played.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="accordion-item"
+    >
+      <h2
+        class="accordion-header"
+      >
+        <button
+          aria-expanded="false"
+          class="accordion-button collapsed"
+          type="button"
+        >
+          Net Strokes
+        </button>
+      </h2>
+      <div
+        class="accordion-collapse collapse"
+      >
+        <div
+          class="accordion-body"
+        >
+          <p
+            class="lead fw-bold"
+          >
+            Total Strokes - Course Handicap
+          </p>
+          <p>
+            Net strokes is used to determine the finishing order for players in each tournament.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

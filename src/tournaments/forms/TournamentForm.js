@@ -110,6 +110,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
+                        timeZone: "UTC",
                       }
                     )}
                     readOnly

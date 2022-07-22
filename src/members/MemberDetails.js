@@ -43,17 +43,14 @@ const MemberDetails = () => {
 
   return (
     <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-1">
+      <h1 className="display-3 mb-3">
         {member.firstName} {member.lastName}
       </h1>
-      <p className="fs-6 text-muted fst-italic">{member.email}</p>
 
-      <hr
-        className="mb-4"
-        style={{ border: "2px solid grey", width: "20%" }}
-      ></hr>
+      <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
+      <p className="fs-6 text-muted">{member.email}</p>
 
-      <p className="lead mb-5 mt-4">Scorecards and greenies for each round.</p>
+      <p className="lead mb-5 mt-4">Scorecards and greenies for every round.</p>
       <div className="col-md-10 mb-3">
         {member.rounds ? (
           member.rounds.map((r) => (

@@ -1,5 +1,4 @@
 import React from "react";
-import DataRow from "../common/DataRow";
 import HolesRow from "../common/HolesRow";
 import { Link } from "react-router-dom";
 
@@ -29,15 +28,45 @@ const RoundTable = ({
   totalPutts,
   pars,
 }) => {
+  const parsRow = (
+    <tr className="table-secondary">
+      <th>PAR</th>
+      {Object.values(pars).map((p) => (
+        <th key={uuidv4()}>{p}</th>
+      ))}
+    </tr>
+  );
+
+  const strokesRow = (
+    <tr>
+      <th>STROKES</th>
+      {Object.values(strokes).map((s) => (
+        <td key={uuidv4()}>{s}</td>
+      ))}
+      <td>{totalStrokes}</td>
+    </tr>
+  );
+
+  const puttsRow = (
+    <tr>
+      <th>PUTTS</th>
+      {Object.values(putts).map((p) => (
+        <td key={uuidv4()}>{p}</td>
+      ))}
+      <td>{totalPutts}</td>
+    </tr>
+  );
+
   return (
     <div className="mb-4">
       <h5 className="display-6 mb-0">{courseName}</h5>
-      <Link to={`/tournaments/${tournamentDate}`} className="">
+      <Link to={`/tournaments/${tournamentDate}`}>
         <p className="fs-5 mb-3">
           {new Date(tournamentDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric",
+            timeZone: "UTC",
           })}
         </p>
       </Link>
@@ -46,33 +75,11 @@ const RoundTable = ({
           <HolesRow />
         </thead>
         <tbody>
-          {pars ? (
-            <tr className="table-secondary">
-              <th>PAR</th>
-              {Object.values(pars).map((p) => (
-                <th key={uuidv4()}>{p}</th>
-              ))}
-            </tr>
-          ) : null}
-          <DataRow
-            key={uuidv4()}
-            rowColor="bg-white"
-            rowHeader="STROKES"
-            holeValues={strokes}
-            calculations={{
-              total: totalStrokes,
-            }}
-          />
+          {parsRow}
 
-          <DataRow
-            key={uuidv4()}
-            rowHeader="PUTTS"
-            rowColor="bg-white"
-            holeValues={putts}
-            calculations={{
-              total: totalPutts,
-            }}
-          />
+          {strokesRow}
+
+          {puttsRow}
         </tbody>
       </Table>
     </div>

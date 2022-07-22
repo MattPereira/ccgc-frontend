@@ -53,8 +53,6 @@ const CourseDetails = () => {
 
   return (
     <div className="text-center mb-5 row justify-content-center">
-      <h1 className="display-3 mb-3">{course.name}</h1>
-      <HorizontalRule width={"30%"} />
       <div className="mt-3">
         {currentUser ? (
           currentUser.isAdmin ? (
@@ -65,17 +63,19 @@ const CourseDetails = () => {
           ) : null
         ) : null}
       </div>
+      <h1 className="display-3 mb-3">{course.name}</h1>
+      <HorizontalRule width={"30%"} />
+      <p className="lead">
+        Rating : {course.rating} / {course.slope}
+      </p>
 
-      <div className="col-lg-10">
+      <div className="col-lg-9">
         <img
           src={course.imgUrl}
           alt={`${course.name}`}
-          className="img-fluid mb-5 mt-3"
+          className="img-fluid mb-0 mt-3"
         />
-        <div className="row justify-content-end mb-1">
-          <div className="col-auto">Rating : {course.rating}</div>
-          <div className="col-auto">Slope : {course.slope}</div>
-        </div>
+
         <div className="mb-5">
           <CourseTable
             key={course.handle}

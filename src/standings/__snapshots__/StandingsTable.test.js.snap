@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="table-responsive"
+  >
+    <table
+      class="text-center table table-striped table-bordered"
+    >
+      <thead>
+        <tr
+          class="table-dark"
+        >
+          <th>
+            POS
+          </th>
+          <th>
+            PLAYER
+          </th>
+          <th
+            class="d-none d-md-table-cell"
+          >
+            PLY
+          </th>
+          <th>
+            STR
+          </th>
+          <th>
+            PUT
+          </th>
+          <th>
+            GRN
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            PAR
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            BRD
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            EGL
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            ACE
+          </th>
+          <th>
+            TOT
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            1
+          </th>
+          <th>
+            <a
+              class="text-decoration-none"
+              href="/members/happy-gilmore"
+            >
+              Happy G
+            </a>
+          </th>
+          <td
+            class="d-none d-md-table-cell"
+          >
+            3
+          </td>
+          <td>
+            25
+          </td>
+          <td>
+            6
+          </td>
+          <td>
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            9
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            8
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td>
+            55
+          </td>
+        </tr>
+        <tr>
+          <th>
+            2
+          </th>
+          <th>
+            <a
+              class="text-decoration-none"
+              href="/members/shooter-mcgavin"
+            >
+              Shooter M
+            </a>
+          </th>
+          <td
+            class="d-none d-md-table-cell"
+          >
+            3
+          </td>
+          <td>
+            20
+          </td>
+          <td>
+            4
+          </td>
+          <td>
+            3
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td>
+            34
+          </td>
+        </tr>
+        <tr>
+          <th>
+            3
+          </th>
+          <th>
+            <a
+              class="text-decoration-none"
+              href="/members/chubbs-peterson"
+            >
+              Chubbs P
+            </a>
+          </th>
+          <td
+            class="d-none d-md-table-cell"
+          >
+            3
+          </td>
+          <td>
+            15
+          </td>
+          <td>
+            2
+          </td>
+          <td>
+            3
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            0
+          </td>
+          <td>
+            23
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

@@ -91,6 +91,7 @@ const GreenieDetails = () => {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                timeZone: "UTC",
               })}
             </div>
           </Link>

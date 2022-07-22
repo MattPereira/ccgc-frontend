@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Router from "./navigation-router/Router";
 import Navigation from "./navigation-router/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -111,17 +112,19 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider
-        value={{
-          currentUser,
-          setCurrentUser,
-        }}
-      >
-        <Navigation logout={logout} />
-        <Container className="my-5">
-          <Router login={login} register={register} />
-        </Container>
-      </UserContext.Provider>
+      <BrowserRouter>
+        <UserContext.Provider
+          value={{
+            currentUser,
+            setCurrentUser,
+          }}
+        >
+          <Navigation logout={logout} />
+          <Container className="my-5">
+            <Router login={login} register={register} />
+          </Container>
+        </UserContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

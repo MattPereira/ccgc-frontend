@@ -17,8 +17,8 @@ const MemberCard = ({
   username,
   firstName,
   lastName,
-  avgPutts,
   avgStrokes,
+  avgPutts,
   avgGreenies,
 }) => {
   return (

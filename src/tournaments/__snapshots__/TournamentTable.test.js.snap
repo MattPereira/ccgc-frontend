@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="table-responsive"
+  >
+    <table
+      class="table table-striped table-bordered"
+    >
+      <thead>
+        <tr
+          class="table-dark"
+        >
+          <th>
+            POS
+          </th>
+          <th>
+            PLAYER
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            1
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            2
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            3
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            6
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            7
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            8
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            9
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            10
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            11
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            12
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            13
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            14
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            15
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            16
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            17
+          </th>
+          <th
+            class="d-none d-sm-table-cell"
+          >
+            18
+          </th>
+          <th>
+            TOT
+          </th>
+          <th>
+            PTS
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            1
+          </th>
+          <th>
+            <a
+              class="text-decoration-none"
+              href="/rounds/1"
+            >
+              Happy G
+            </a>
+          </th>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            4
+          </td>
+          <td />
+          <td>
+            25
+          </td>
+        </tr>
+        <tr>
+          <th>
+            2
+          </th>
+          <th>
+            <a
+              class="text-decoration-none"
+              href="/rounds/1"
+            >
+              Happy G
+            </a>
+          </th>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td
+            class="d-none d-sm-table-cell"
+          >
+            5
+          </td>
+          <td />
+          <td>
+            20
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
  *
  */
 
-const TournamentPointsTable = ({ data }) => {
+const StandingsTable = ({ data }) => {
   return (
     <Table responsive striped bordered className="text-center">
       <thead>
@@ -32,12 +32,21 @@ const TournamentPointsTable = ({ data }) => {
           <tr key={row.username}>
             <th>{idx + 1}</th>
             <th>
-              <Link
-                to={`/rounds/${row.roundId}`}
-                className="text-decoration-none"
-              >
-                {row.firstName} {row.lastName[0]}
-              </Link>
+              {row.roundId ? (
+                <Link
+                  to={`/rounds/${row.roundId}`}
+                  className="text-decoration-none"
+                >
+                  {row.firstName} {row.lastName[0]}
+                </Link>
+              ) : (
+                <Link
+                  to={`/members/${row.username}`}
+                  className="text-decoration-none"
+                >
+                  {row.firstName} {row.lastName[0]}
+                </Link>
+              )}
             </th>
             <td className="d-none d-md-table-cell">{row.participation}</td>
             <td>{row.strokes}</td>
@@ -55,4 +64,4 @@ const TournamentPointsTable = ({ data }) => {
   );
 };
 
-export default TournamentPointsTable;
+export default StandingsTable;

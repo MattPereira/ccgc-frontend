@@ -65,8 +65,6 @@ const CourseList = () => {
             rating={c.rating}
             slope={c.slope}
             imgUrl={c.imgUrl}
-            pars={c.pars}
-            handicaps={c.handicaps}
           />
         ))}
       </div>

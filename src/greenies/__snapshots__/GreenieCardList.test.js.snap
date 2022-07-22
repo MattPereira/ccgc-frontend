@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="row justify-content-center"
+  >
+    <div
+      class="col-9 col-sm-6 col-md-4 col-lg-3"
+    >
+      <div
+        class="mb-4"
+      >
+        <a
+          class="TournamentCard-link"
+          href="/greenies/1"
+        >
+          <div
+            class="GreenieCard-card card"
+          >
+            <div
+              class="bg-dark mb-0 py-2 text-white card-title h5"
+              tag="h5"
+            >
+              Lone Tree
+            </div>
+            <div
+              class="GreenieCard-crop"
+            >
+              <img
+                alt="Lone Tree Golf Course"
+              />
+            </div>
+            <div
+              class="bg-success text-white h6 py-1"
+            >
+              <p
+                class="lead card-text"
+              >
+                Happy Gilmore
+              </p>
+            </div>
+            <div
+              class="card-body"
+            >
+              <div
+                class="table-responsive"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        Hole
+                      </th>
+                      <th>
+                        Distance
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        #1
+                      </td>
+                      <td>
+                        1' 1"
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      class="col-9 col-sm-6 col-md-4 col-lg-3"
+    >
+      <div
+        class="mb-4"
+      >
+        <a
+          class="TournamentCard-link"
+          href="/greenies/2"
+        >
+          <div
+            class="GreenieCard-card card"
+          >
+            <div
+              class="bg-dark mb-0 py-2 text-white card-title h5"
+              tag="h5"
+            >
+              Lone Tree
+            </div>
+            <div
+              class="GreenieCard-crop"
+            >
+              <img
+                alt="Lone Tree Golf Course"
+              />
+            </div>
+            <div
+              class="bg-success text-white h6 py-1"
+            >
+              <p
+                class="lead card-text"
+              >
+                Shooter McGavin
+              </p>
+            </div>
+            <div
+              class="card-body"
+            >
+              <div
+                class="table-responsive"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        Hole
+                      </th>
+                      <th>
+                        Distance
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        #1
+                      </td>
+                      <td>
+                        2' 2"
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

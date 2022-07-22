@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import HorizontalRule from "../common/HorizontalRule";
 
-import TournamentPointsTable from "./TournamentPointsTable";
-import TournamentPuttsTable from "./TournamentPuttsTable";
-import TournamentStrokesTable from "./TournamentStrokesTable";
+import StandingsTable from "../standings/StandingsTable";
+import TournamentTable from "./TournamentTable";
 import GreenieTable from "../greenies/GreenieTable";
 import GreenieCardList from "../greenies/GreenieCardList";
 import AdminButtons from "../common/AdminButtons";
@@ -28,7 +27,7 @@ import { Button, Alert } from "react-bootstrap";
  *
  * This is routed to path  "/tournaments/:date"
  *
- * Routes -> TournamentDetails -> {TournamentTable, AdminButtons}
+ * Routes -> TournamentDetails -> {StandingsTable, TournamentTable, AdminButtons}
  */
 
 const TournamentDetails = () => {
@@ -107,6 +106,7 @@ const TournamentDetails = () => {
           year: "numeric",
           month: "long",
           day: "numeric",
+          timeZone: "UTC",
         })}
       </h5>
 
@@ -120,23 +120,23 @@ const TournamentDetails = () => {
           <h3 className="display-6 mb-3">
             <b>Points</b>
           </h3>
-          <TournamentPointsTable data={pointsLeaderboard} />
+          <StandingsTable data={pointsLeaderboard} />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Strokes</b>
           </h3>
-          <TournamentStrokesTable data={strokesLeaderboard} />
+          <TournamentTable data={strokesLeaderboard} type="strokes" />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
             <b>Putts</b>
           </h3>
-          <TournamentPuttsTable data={puttsLeaderboard} />
+          <TournamentTable data={puttsLeaderboard} type="putts" />
         </div>
         <div className="mb-5">
           <h3 className="display-6 mb-3">
-            {tournament.greenies.length ? <b>Greenies</b> : null}
+            <b>Greenies</b>
           </h3>
           {/* <div className="row justify-content-center"> */}
           <div className="d-lg-none">

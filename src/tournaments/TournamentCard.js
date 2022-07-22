@@ -14,7 +14,7 @@ import "./TournamentCard.css";
  *
  */
 
-const TournamentCard = ({ date, courseName, imgUrl, tourYears }) => {
+const TournamentCard = ({ date, courseName, imgUrl }) => {
   return (
     <div className="mb-5">
       <Link to={`/tournaments/${date}`} className="TournamentCard-link">
@@ -29,14 +29,14 @@ const TournamentCard = ({ date, courseName, imgUrl, tourYears }) => {
           <div className="TournamentCard-crop">
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
-
-          <Card.Body className="bg-primary text-white py-2">
+          <Card.Body className="py-3">
             <p className="mb-0 lead">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                timeZone: "UTC",
               })}
             </p>
           </Card.Body>

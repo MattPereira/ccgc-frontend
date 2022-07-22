@@ -13,15 +13,7 @@ import "./CourseCard.css";
  * CourseList -> CourseCard
  */
 
-const CourseCard = ({
-  handle,
-  name,
-  rating,
-  slope,
-  pars,
-  handicaps,
-  imgUrl,
-}) => {
+const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
   return (
     <div className="mb-5">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
@@ -35,6 +27,11 @@ const CourseCard = ({
           <div className="CourseCard-crop">
             <img alt={`${name}`} src={imgUrl} />
           </div>
+          <Card.Body>
+            <Card.Text className="lead">
+              Rating {rating}/{slope}
+            </Card.Text>
+          </Card.Body>
         </Card>
       </Link>
     </div>
