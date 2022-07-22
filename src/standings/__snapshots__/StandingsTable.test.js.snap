@@ -6,7 +6,7 @@ exports[`matches snapshot 1`] = `
     class="table-responsive"
   >
     <table
-      class="text-center table table-striped table-bordered"
+      class="text-center bg-white table table-striped table-bordered"
     >
       <thead>
         <tr

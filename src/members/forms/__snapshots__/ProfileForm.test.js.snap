@@ -29,7 +29,7 @@ exports[`matches snapshot 1`] = `
                 class="form-label"
                 for="firstName"
               >
-                First Name
+                First Name :
               </label>
               <input
                 class="form-control"
@@ -47,7 +47,7 @@ exports[`matches snapshot 1`] = `
                 class="form-label"
                 for="lastName"
               >
-                Last Name
+                Last Name :
               </label>
               <input
                 class="form-control form-control"
@@ -65,7 +65,7 @@ exports[`matches snapshot 1`] = `
                 class="form-label"
                 for="email"
               >
-                Email
+                Email :
               </label>
               <input
                 autocomplete="email"
@@ -84,7 +84,7 @@ exports[`matches snapshot 1`] = `
                 class="form-label"
                 for="password"
               >
-                Password
+                Password :
               </label>
               <input
                 autocomplete="current-password"

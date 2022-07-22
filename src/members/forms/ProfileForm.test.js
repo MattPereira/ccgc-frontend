@@ -26,7 +26,7 @@ it("matches snapshot", function () {
   expect(asFragment()).toMatchSnapshot();
 });
 
-it("displays form inputs and login button", function () {
+it("displays form inputs and submit button", function () {
   render(
     <MemoryRouter initialEntries={["/profile"]}>
       <UserProvider>
@@ -35,16 +35,16 @@ it("displays form inputs and login button", function () {
     </MemoryRouter>
   );
 
-  const firstNameInput = screen.getByLabelText("First Name");
+  const firstNameInput = screen.getByLabelText("First Name :");
   expect(firstNameInput).toBeInTheDocument();
 
-  const lastNameInput = screen.getByLabelText("Last Name");
+  const lastNameInput = screen.getByLabelText("Last Name :");
   expect(lastNameInput).toBeInTheDocument();
 
-  const emailInput = screen.getByLabelText("Email");
+  const emailInput = screen.getByLabelText("Email :");
   expect(emailInput).toBeInTheDocument();
 
-  const passwordInput = screen.getByLabelText("Password");
+  const passwordInput = screen.getByLabelText("Password :");
   expect(passwordInput).toBeInTheDocument();
 
   //only one button in the component
