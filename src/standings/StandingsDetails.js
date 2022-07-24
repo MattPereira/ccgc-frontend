@@ -51,7 +51,7 @@ const Standings = () => {
           <PointsAccordion />
         </div>
 
-        <div>
+        <div className="mb-5">
           <h3 className="text-center mb-3">CALCULATIONS</h3>
           <CalculationsAccordion />
         </div>

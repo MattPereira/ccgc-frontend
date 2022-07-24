@@ -7,3 +7,8 @@ th {
     white-space: nowrap;
     overflow: hidden;
 }
+
+.App {
+    min-height: 100vh;
+    position: relative;
+}
