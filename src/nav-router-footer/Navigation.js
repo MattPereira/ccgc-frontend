@@ -55,7 +55,7 @@ const Navigation = ({ logout }) => {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container fluid>
+        <Container>
           <Navbar.Brand as={RRNavLink} to="/" className="navbar-brand">
             CCGC
           </Navbar.Brand>

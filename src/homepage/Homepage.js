@@ -2,6 +2,8 @@
 // import UserContext from "../auth/UserContext";
 // import { Link } from "react-router-dom";
 
+import logo from "../assets/ccgc_logo.png";
+
 /** Homepage component
  *
  * welcome message and club logo
@@ -16,7 +18,7 @@ const Homepage = () => {
   console.debug("Homepage");
 
   return (
-    <div className="text-center">
+    <div className="text-center mb-5">
       {/* <h1 className="display-3">Contra Costa Golf Club</h1>
       {currentUser ? (
         <p>
@@ -31,11 +33,7 @@ const Homepage = () => {
         </>
       )} */}
       <div>
-        <img
-          src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png"
-          alt="ccgc-logo"
-          className="img-fluid"
-        />
+        <img src={logo} alt="ccgc-logo" className="img-fluid" />
       </div>
     </div>
   );
