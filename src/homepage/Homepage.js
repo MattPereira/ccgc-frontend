@@ -4,6 +4,8 @@
 
 import logo from "../assets/ccgc_logo.png";
 
+import "./Homepage.css";
+
 /** Homepage component
  *
  * welcome message and club logo
@@ -18,7 +20,7 @@ const Homepage = () => {
   console.debug("Homepage");
 
   return (
-    <div className="text-center mb-5">
+    <div className="Landing">
       {/* <h1 className="display-3">Contra Costa Golf Club</h1>
       {currentUser ? (
         <p>
