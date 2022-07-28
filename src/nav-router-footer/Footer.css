@@ -38,13 +38,14 @@
     padding: 0 !important;
   }
   
-  .blockquote-footer {
-    color: #a588c0 !important;
-  }
 
 
   .social-icons {
     display: inline-block !important;
     padding-right: 15px;
     padding-left: 15px;
+  }
+
+  .mp-logo {
+    height: 25px;
   }

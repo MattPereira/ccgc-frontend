@@ -29,8 +29,8 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
           <div className="TournamentCard-crop">
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
-          <Card.Body className="py-3">
-            <p className="mb-0 lead">
+          <Card.Body className="py-2 bg-primary text-white">
+            <p className="mb-0 lead fw-bold">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",

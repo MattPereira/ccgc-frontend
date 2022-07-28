@@ -11,8 +11,14 @@
   }
 
   .TournamentCard-crop {
-    height: 250px;
+    height: 350px;
     overflow: hidden;
+  }
+
+  @media (max-width: 1000px) {
+    .TournamentCard-crop {
+      height: 250px;
+    }
   }
 
   .TournamentCard-crop img {
