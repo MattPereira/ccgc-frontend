@@ -6,7 +6,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 
 /** Navigation bar for site that shows on every page
  *
- * Logged in users see companies, jobs, profile, and logout
+ *
  *
  * Logged out users see login and signup
  *

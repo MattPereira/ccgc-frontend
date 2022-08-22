@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import mpLogo from "../assets/MP_logo_light.svg";
+import mpLogo from "../assets/MP_LOGO_LIGHT.svg";
 import { Container, Row, Col } from "react-bootstrap";
 import { AiFillGithub } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -9,7 +9,7 @@ function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <Container fluid className="footer bg-secondary">
+    <Container fluid className="footer bg-success">
       <Row className="justify-content-center">
         <Col md="4" className="footer-copywright d-none d-lg-inline">
           <h3 className="pt-2">Copyright © {year} MP</h3>
@@ -18,7 +18,7 @@ function Footer() {
           <Row className="justify-content-center pt-2">
             <Col className="col-2">
               <a
-                href="https://mattpereira.github.io/personal-portfolio/"
+                href="https://matt-pereira.surge.sh/"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
