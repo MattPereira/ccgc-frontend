@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MemberCard from "./MemberCard";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 /** Show page with all members listed
  *
@@ -33,12 +33,12 @@ const MemberList = () => {
   console.log(members);
 
   return (
-    <>
+    <Container className="mt-5">
       <Row className="text-center justify-content-center">
         <h1 className="display-3 mb-3">Members</h1>
         <hr
           className="mb-4"
-          style={{ border: "2px solid grey", width: "20%" }}
+          style={{ border: "2px solid grey", width: "15%" }}
         ></hr>
         <p className="lead mb-5">
           Select a member to view all of their rounds played with the Contra
@@ -65,7 +65,7 @@ const MemberList = () => {
       ) : (
         <p>Sorry, no results were found!</p>
       )}
-    </>
+    </Container>
   );
 };
 

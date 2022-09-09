@@ -8,6 +8,8 @@ import PointsAccordion from "./PointsAccordion";
 import CalculationsAccordion from "./CalculationsAccordion";
 import StandingsTable from "./StandingsTable";
 
+import { Container, Row } from "react-bootstrap";
+
 /** Show club standings page
  *
  * Display club standings table
@@ -37,26 +39,28 @@ const Standings = () => {
   console.log(standings);
 
   return (
-    <div className="row justify-content-center">
-      <h1 className="display-3 text-center">Standings</h1>
-      <HorizontalRule width="20%" />
+    <Container className="mt-5">
+      <Row className="row justify-content-center">
+        <h1 className="display-3 text-center">Standings</h1>
+        <HorizontalRule width="20%" />
 
-      <p className="lead text-center mb-5 mt-4">
-        Aggregate points for each player's top 10 rounds for the season.
-      </p>
-      <div className="col-lg-8">
-        <StandingsTable data={standings} />
-        <div className="my-5">
-          <h3 className="text-center mb-3">Points</h3>
-          <PointsAccordion />
-        </div>
+        <p className="lead text-center mb-5 mt-4">
+          Aggregate points for each player's top 10 rounds for the season.
+        </p>
+        <div className="col-lg-8">
+          <StandingsTable data={standings} />
+          <div className="my-5">
+            <h3 className="text-center mb-3">Points</h3>
+            <PointsAccordion />
+          </div>
 
-        <div className="mb-5">
-          <h3 className="text-center mb-3">Calculations</h3>
-          <CalculationsAccordion />
+          <div className="mb-5">
+            <h3 className="text-center mb-3">Calculations</h3>
+            <CalculationsAccordion />
+          </div>
         </div>
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

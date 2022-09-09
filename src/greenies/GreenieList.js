@@ -4,6 +4,8 @@ import CcgcApi from "../api/api";
 
 import GreenieCardList from "./GreenieCardList";
 
+import { Container, Row } from "react-bootstrap";
+
 /** Show page with all greenies listed
  *
  *
@@ -38,17 +40,23 @@ const GreenieList = () => {
   console.log(greenies);
 
   return (
-    <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-3">Greenies</h1>
-      <hr
-        style={{ border: "2px solid grey", width: "30%", marginBottom: "1rem" }}
-      ></hr>
-      <p className="lead mb-5 mt-4">
-        All greenies sorted by distance from the cup.
-      </p>
+    <Container className="mt-5">
+      <Row className="text-center justify-content-center">
+        <h1 className="display-3 mb-3">Greenies</h1>
+        <hr
+          style={{
+            border: "2px solid grey",
+            width: "30%",
+            marginBottom: "1rem",
+          }}
+        ></hr>
+        <p className="lead mb-5 mt-4">
+          All greenies sorted by distance from the cup.
+        </p>
 
-      <GreenieCardList greenies={greenies} />
-    </div>
+        <GreenieCardList greenies={greenies} />
+      </Row>
+    </Container>
   );
 };
 

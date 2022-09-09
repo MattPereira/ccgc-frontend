@@ -6,7 +6,8 @@ import UserContext from "./auth/UserContext";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
-import { Container } from "react-bootstrap";
+// import { Container } from "react-bootstrap";
+import ScrollToTop from "./common/ScrollToTop";
 
 import Navigation from "./common/NavBar/Navigation";
 import Footer from "./nav-router-footer/Footer";
@@ -122,10 +123,12 @@ function App() {
           }}
         >
           <div style={{ paddingBottom: "3rem" }}>
-            <Navigation logout={logout} />
-            <Container className="mt-5">
+            <ScrollToTop>
+              <Navigation logout={logout} />
+              {/* <Container className="mt-5"> */}
               <Router login={login} register={register} />
-            </Container>
+              {/* </Container> */}
+            </ScrollToTop>
           </div>
           <Footer />
         </UserContext.Provider>

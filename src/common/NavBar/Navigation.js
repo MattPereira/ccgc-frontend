@@ -56,13 +56,7 @@ const Navigation = ({ logout }) => {
 
   return (
     <div>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="black"
-        variant="dark"
-        className="py-3"
-      >
+      <Navbar collapseOnSelect expand="lg" bg="black" variant="dark">
         <Container fluid className="mx-2">
           <Navbar.Brand as={RRNavLink} to="/" className="navbar-brand">
             <img

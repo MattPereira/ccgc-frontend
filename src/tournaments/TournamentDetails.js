@@ -4,13 +4,15 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import CcgcApi from "../api/api";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import HorizontalRule from "../common/HorizontalRule";
+// import HorizontalRule from "../common/HorizontalRule";
 
 import StandingsTable from "../standings/StandingsTable";
 import TournamentTable from "./TournamentTable";
 import GreenieTable from "../greenies/GreenieTable";
 import GreenieCardList from "../greenies/GreenieCardList";
 import AdminButtons from "../common/AdminButtons";
+
+import Showcase from "../common/Showcase/Showcase";
 
 import { Link } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
@@ -53,7 +55,7 @@ const TournamentDetails = () => {
   );
 
   if (!tournament) return <LoadingSpinner />;
-  console.log(tournament);
+  console.log("TOURNAMENT", tournament);
 
   const { strokesLeaderboard, puttsLeaderboard, pointsLeaderboard } =
     tournament;
@@ -81,6 +83,25 @@ const TournamentDetails = () => {
 
   return (
     <div className="row justify-content-center text-center">
+      <Showcase
+        date={date}
+        course={tournament.courseName}
+        imgSrc={tournament.courseImg}
+      />
+      {/* <h2>
+        {new Date(date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "UTC",
+        })}
+      </h2>
+      <HorizontalRule width="10%" />
+
+      <h3>{tournament.courseName}</h3> */}
+
+      {currentUser ? AddBtns : null}
+
       {currentUser ? (
         currentUser.isAdmin ? (
           <AdminButtons
@@ -98,19 +119,6 @@ const TournamentDetails = () => {
           ))
         : null}
 
-      <h1 className="display-1 mb-3">Tournament</h1>
-      <h3 className="text-muted">{tournament.courseName}</h3>
-      <HorizontalRule width="30%" />
-      <h5 className="text-muted">
-        {new Date(date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          timeZone: "UTC",
-        })}
-      </h5>
-
-      {currentUser ? AddBtns : null}
       <p className="lead mb-5">
         Select player name to view round details and add greenies.
       </p>

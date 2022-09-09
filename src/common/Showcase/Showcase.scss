@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+
+.showcase {
+    min-height: 275px;
+    position: relative;
+    .showcase-header {
+      z-index: 2;
+      h1 {
+        font-family: 'Lilita One', sans-serif;
+      }
+    }
+    .showcase-overlay {
+      background: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+
+
+ .showcase-header {
+  h2, h3 {
+    font-family: 'Roboto', sans-serif;
+  }
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+ }
+

@@ -69,6 +69,7 @@ function Router({ login, register }) {
 
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/new" element={<NewTournament />} />
+
       <Route exact path="/tournaments/:date" element={<TournamentDetails />} />
       <Route
         exact

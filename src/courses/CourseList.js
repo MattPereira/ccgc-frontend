@@ -3,6 +3,7 @@ import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import CourseCard from "./CourseCard";
 import UserContext from "../auth/UserContext";
+import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -37,38 +38,40 @@ const CourseList = () => {
   if (!courses) return <LoadingSpinner />;
 
   return (
-    <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-3">Courses</h1>
-      <hr
-        className="mb-4"
-        style={{ border: "2px solid grey", width: "20%" }}
-      ></hr>
-      <p className="lead mb-5">
-        List of all golf courses played by the Contra Costa Golf Club.
-      </p>
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <Link to="/courses/new">
-            <Button color="primary" className="mb-5 rounded-pill">
-              Create Course
-            </Button>
-          </Link>
-        ) : null
-      ) : null}
+    <Container className="mt-5">
+      <div className="text-center row justify-content-center">
+        <h1 className="display-3 mb-3">Courses</h1>
+        <hr
+          className="mb-4"
+          style={{ border: "2px solid grey", width: "20%" }}
+        ></hr>
+        <p className="lead mb-5">
+          List of all golf courses played by the Contra Costa Golf Club.
+        </p>
+        {currentUser ? (
+          currentUser.isAdmin ? (
+            <Link to="/courses/new">
+              <Button color="primary" className="mb-5 rounded-pill">
+                Create Course
+              </Button>
+            </Link>
+          ) : null
+        ) : null}
 
-      <div className="CourseList col-sm-10 col-md-8 col-lg-7">
-        {courses.map((c) => (
-          <CourseCard
-            key={c.handle}
-            handle={c.handle}
-            name={c.name}
-            rating={c.rating}
-            slope={c.slope}
-            imgUrl={c.imgUrl}
-          />
-        ))}
+        <div className="CourseList col-sm-11 col-md-9 col-lg-8">
+          {courses.map((c) => (
+            <CourseCard
+              key={c.handle}
+              handle={c.handle}
+              name={c.name}
+              rating={c.rating}
+              slope={c.slope}
+              imgUrl={c.imgUrl}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
