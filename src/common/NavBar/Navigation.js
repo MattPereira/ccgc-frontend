@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import UserContext from "../auth/UserContext";
+import UserContext from "../../auth/UserContext";
 import "./Navigation.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
+
+import ccgcLogo from "../../assets/ccgc_logo.png";
 
 /** Navigation bar for site that shows on every page
  *
@@ -54,10 +56,21 @@ const Navigation = ({ logout }) => {
 
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="black"
+        variant="dark"
+        className="py-3"
+      >
+        <Container fluid className="mx-2">
           <Navbar.Brand as={RRNavLink} to="/" className="navbar-brand">
-            CCGC
+            <img
+              src={ccgcLogo}
+              alt="CCGC Logo"
+              className="img-fluid"
+              style={{ height: "30px" }}
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

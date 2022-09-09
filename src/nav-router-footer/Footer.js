@@ -9,10 +9,20 @@ function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <Container fluid className="footer bg-success">
+    <Container fluid className="footer bg-black">
       <Row className="justify-content-center">
         <Col md="4" className="footer-copywright d-none d-lg-inline">
-          <h3 className="pt-2">Copyright © {year} MP</h3>
+          <h3 className="pt-2">
+            Designed & Developed by &nbsp;
+            <a
+              href="https://matt-pereira.surge.sh/"
+              style={{ color: "white" }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Matt Pereira
+            </a>
+          </h3>
         </Col>
         <Col md="4" className="footer-body">
           <Row className="justify-content-center pt-2">
@@ -33,12 +43,12 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <AiFillGithub size={25} />
+                <AiFillGithub size={28} />
               </a>
             </Col>
             <Col className="col-2">
               <a
-                href="https://www.linkedin.com/in/matt-pereira-32428a63/"
+                href="https://www.linkedin.com/in/-matt-pereira-/"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -49,17 +59,7 @@ function Footer() {
           </Row>
         </Col>
         <Col md="4" className="footer-copywright d-none d-lg-inline">
-          <h3 className="pt-2">
-            Designed & Developed by &nbsp;
-            <a
-              href="https://mattpereira.github.io/personal-portfolio/"
-              style={{ color: "white" }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Matthew Pereira
-            </a>
-          </h3>
+          <h3 className="pt-2">Copyright © {year}</h3>
         </Col>
       </Row>
     </Container>

@@ -1,0 +1,10 @@
+.nav-link.active {
+    border-bottom: 2px solid white;
+}
+
+
+.nav-link {
+    font-family: 'Lato';
+    font-size: 1.1rem;
+}
+

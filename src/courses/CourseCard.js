@@ -27,7 +27,7 @@ const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
           <div className="CourseCard-crop">
             <img alt={`${name}`} src={imgUrl} />
           </div>
-          <Card.Body className="bg-secondary text-white py-2">
+          <Card.Body className="bg-primary text-white py-2">
             <Card.Text className="lead fw-bold">
               Rating {rating}/{slope}
             </Card.Text>

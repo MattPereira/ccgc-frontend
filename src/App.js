@@ -8,7 +8,7 @@ import { decodeToken } from "react-jwt";
 
 import { Container } from "react-bootstrap";
 
-import Navigation from "./nav-router-footer/Navigation";
+import Navigation from "./common/NavBar/Navigation";
 import Footer from "./nav-router-footer/Footer";
 import LoadingSpinner from "./common/LoadingSpinner";
 

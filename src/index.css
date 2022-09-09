@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato&family=Raleway:wght@600&display=swap');
+
+
 body {
-    background-color: #f6f5f5;
+    background-color: #FFFFFF;
 }
 
 
@@ -12,3 +15,15 @@ th {
     min-height: 100vh;
     position: relative;
 }
+
+
+
+/* FONTS */
+h1 {
+    font-family: 'Fredoka one';
+}
+
+.display-6 {
+    font-family: 'Raleway';
+}
+

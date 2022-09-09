@@ -22,12 +22,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "step1": "REACT_APP_BASE_URL=https://contra-costa-golf-club.herokuapp.com npm run build",
-    "step2": "cp build/index.html build/200.html",
-    "deploy": "surge build"
+    "build": "REACT_APP_BASE_URL=https://contra-costa-golf-club.herokuapp.com react-scripts build",
+    "pre-deploy": "cp build/index.html build/200.html",
+    "deploy": "surge build --domain ccgc.surge.sh"
   },
   "eslintConfig": {
     "extends": [

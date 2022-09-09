@@ -42,17 +42,17 @@ const Standings = () => {
       <HorizontalRule width="20%" />
 
       <p className="lead text-center mb-5 mt-4">
-        Aggregate points per player for the 2021-22 season.
+        Aggregate points for each player's top 10 rounds for the season.
       </p>
       <div className="col-lg-8">
         <StandingsTable data={standings} />
         <div className="my-5">
-          <h3 className="text-center mb-3">TOURNAMENT POINTS</h3>
+          <h3 className="text-center mb-3">Points</h3>
           <PointsAccordion />
         </div>
 
         <div className="mb-5">
-          <h3 className="text-center mb-3">CALCULATIONS</h3>
+          <h3 className="text-center mb-3">Calculations</h3>
           <CalculationsAccordion />
         </div>
       </div>

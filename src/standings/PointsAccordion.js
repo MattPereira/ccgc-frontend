@@ -13,7 +13,7 @@ const PointsAccordion = () => {
         <Accordion.Body>
           <div className="row justify-content-center">
             <div className="col-md-6">
-              <Table bordered striped variant="dark">
+              <Table striped bordered variant="light">
                 <thead>
                   <tr>
                     <th>Position</th>
@@ -52,7 +52,7 @@ const PointsAccordion = () => {
         <Accordion.Body>
           <div className="row justify-content-center">
             <div className="col-md-6">
-              <Table bordered variant="dark" striped>
+              <Table bordered variant="light" striped>
                 <thead>
                   <tr>
                     <th>Position</th>
@@ -83,7 +83,7 @@ const PointsAccordion = () => {
         <Accordion.Body>
           <div className="row justify-content-center">
             <div className="col-md-6">
-              <Table bordered variant="dark" striped>
+              <Table bordered variant="light" striped>
                 <thead>
                   <tr>
                     <th>Event</th>
@@ -118,7 +118,7 @@ const PointsAccordion = () => {
         <Accordion.Body>
           <div className="row justify-content-center">
             <div className="col-md-6">
-              <Table bordered variant="dark" striped>
+              <Table bordered variant="light" striped>
                 <thead>
                   <tr>
                     <th>Event</th>

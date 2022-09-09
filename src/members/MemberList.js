@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MemberCard from "./MemberCard";
 import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { Row, Col } from "react-bootstrap";
 
 /** Show page with all members listed
  *
@@ -32,20 +33,23 @@ const MemberList = () => {
   console.log(members);
 
   return (
-    <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-3">Members</h1>
-      <hr
-        className="mb-4"
-        style={{ border: "2px solid grey", width: "20%" }}
-      ></hr>
-      <p className="lead mb-5">
-        Select a member to view all of their rounds played with the Contra Costa
-        Golf Club
-      </p>
-      <div className="col-sm-10 col-md-7 col-lg-5">
-        {members.length ? (
-          <div className="MemberCard-list">
-            {members.map((m) => (
+    <>
+      <Row className="text-center justify-content-center">
+        <h1 className="display-3 mb-3">Members</h1>
+        <hr
+          className="mb-4"
+          style={{ border: "2px solid grey", width: "20%" }}
+        ></hr>
+        <p className="lead mb-5">
+          Select a member to view all of their rounds played with the Contra
+          Costa Golf Club
+        </p>
+      </Row>
+
+      {members.length ? (
+        <Row className="justify-content-center">
+          {members.map((m) => (
+            <Col key={m.username} sm={10} md={6} lg={4} className="mb-4">
               <MemberCard
                 key={m.username}
                 username={m.username}
@@ -55,13 +59,13 @@ const MemberList = () => {
                 avgStrokes={m.avgStrokes}
                 avgGreenies={m.avgGreenies}
               />
-            ))}
-          </div>
-        ) : (
-          <p>Sorry, no results were found!</p>
-        )}
-      </div>
-    </div>
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <p>Sorry, no results were found!</p>
+      )}
+    </>
   );
 };
 
