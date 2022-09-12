@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import UserContext from "../../auth/UserContext";
 import CcgcApi from "../../api/api";
-import { Card, Form, Alert } from "react-bootstrap";
+import { Card, Form, Alert, Container } from "react-bootstrap";
 
 /** Form to edit user profile
  *
@@ -91,91 +91,91 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-8 col-lg-6">
-        <Card>
-          <Card.Title className="display-4 text-center bg-dark py-3 text-white">
-            Update Profile
-          </Card.Title>
-          <Card.Body className="px-5 py-5">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="firstName">First Name :</Form.Label>
-                <Form.Control
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.firstName}
-                  required
-                ></Form.Control>
-              </Form.Group>
+    <Container className="mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6">
+          <h1 className="display-3 text-center mb-5">User Profile</h1>
+          <Card>
+            <Card.Body className="px-5 py-5">
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="firstName">First Name :</Form.Label>
+                  <Form.Control
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    onChange={handleChange}
+                    value={formData.firstName}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="lastName">Last Name :</Form.Label>
-                <Form.Control
-                  className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.lastName}
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="lastName">Last Name :</Form.Label>
+                  <Form.Control
+                    className="form-control"
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    onChange={handleChange}
+                    value={formData.lastName}
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="email">Email :</Form.Label>
-                <Form.Control
-                  className="form-control"
-                  id="email"
-                  name="email"
-                  type="text"
-                  onChange={handleChange}
-                  value={formData.email}
-                  autoComplete="email"
-                  required
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="email">Email :</Form.Label>
+                  <Form.Control
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    type="text"
+                    onChange={handleChange}
+                    value={formData.email}
+                    autoComplete="email"
+                    required
+                  ></Form.Control>
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="password">Password :</Form.Label>
-                <Form.Control
-                  className="form-control"
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={handleChange}
-                  value={formData.password}
-                  required
-                  autoComplete="current-password"
-                ></Form.Control>
-              </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="password">Password :</Form.Label>
+                  <Form.Control
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={handleChange}
+                    value={formData.password}
+                    required
+                    autoComplete="current-password"
+                  ></Form.Control>
+                </Form.Group>
 
-              {formErrors.length
-                ? formErrors.map((err) => (
-                    <Alert key={err} variant="danger">
-                      {err}
-                    </Alert>
-                  ))
-                : null}
+                {formErrors.length
+                  ? formErrors.map((err) => (
+                      <Alert key={err} variant="danger">
+                        {err}
+                      </Alert>
+                    ))
+                  : null}
 
-              {updateConfirmed ? (
-                <Alert variant="success">Profile information updated!</Alert>
-              ) : null}
+                {updateConfirmed ? (
+                  <Alert variant="success">Profile information updated!</Alert>
+                ) : null}
 
-              <div className="row justify-content-end">
-                <div className="col-auto">
-                  <button className="btn btn-primary btn-block px-4">
-                    Submit
-                  </button>
+                <div className="row justify-content-end">
+                  <div className="col-auto">
+                    <button className="btn btn-primary btn-block px-4">
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </Form>
-          </Card.Body>
-        </Card>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

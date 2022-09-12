@@ -4,6 +4,9 @@ import CcgcApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import RoundTable from "../rounds/RoundTable";
 import GreenieCardList from "../greenies/GreenieCardList";
+import { Container, Row } from "react-bootstrap";
+
+// import GreenieCardTable from "../greenies/GreenieTable";
 
 /** Member details page.
  *
@@ -42,39 +45,44 @@ const MemberDetails = () => {
   console.log("MEMBER:", member);
 
   return (
-    <div className="text-center row justify-content-center">
-      <h1 className="display-3 mb-3">
-        {member.firstName} {member.lastName}
-      </h1>
+    <Container className="mt-5">
+      <Row className="text-center row justify-content-center">
+        <h1 className="display-3 mb-3">
+          {member.firstName} {member.lastName}
+        </h1>
 
-      <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
-      <p className="fs-6 text-muted">{member.email}</p>
+        <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
+        <p className="fs-6 text-muted">{member.email}</p>
 
-      <p className="lead mb-5 mt-4">Scorecards and greenies for every round.</p>
-      <div className="col-md-10 mb-3">
-        {member.rounds ? (
-          member.rounds.map((r) => (
-            <div key={r.id} className="mb-5">
-              <RoundTable
-                roundId={r.id}
-                courseName={r.courseName}
-                tournamentDate={r.tournamentDate}
-                strokes={r.strokes}
-                putts={r.putts}
-                totalStrokes={r.totalStrokes}
-                playerIndex={r.playerIndex}
-                netStrokes={r.netStrokes}
-                totalPutts={r.totalPutts}
-                pars={r.pars}
-              />
-              <GreenieCardList greenies={r.greenies} />
-            </div>
-          ))
-        ) : (
-          <p>{member.firstName} has not submitted any rounds yet!</p>
-        )}
-      </div>
-    </div>
+        <p className="lead mb-5 mt-4">
+          Scorecards and greenies for every round.
+        </p>
+        <div className="col-md-10 mb-3">
+          {member.rounds ? (
+            member.rounds.map((r) => (
+              <div key={r.id} className="mb-5">
+                <RoundTable
+                  roundId={r.id}
+                  courseName={r.courseName}
+                  tournamentDate={r.tournamentDate}
+                  strokes={r.strokes}
+                  putts={r.putts}
+                  totalStrokes={r.totalStrokes}
+                  playerIndex={r.playerIndex}
+                  netStrokes={r.netStrokes}
+                  totalPutts={r.totalPutts}
+                  pars={r.pars}
+                />
+
+                <GreenieCardList greenies={r.greenies} />
+              </div>
+            ))
+          ) : (
+            <p>{member.firstName} has not submitted any rounds yet!</p>
+          )}
+        </div>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, Form, Alert } from "react-bootstrap";
+import { Card, Form, Alert, Container } from "react-bootstrap";
 
 /** Form to create a new greenie
  *
@@ -92,153 +92,155 @@ const GreenieForm = ({ par3HoleNums, playerName, greenie }) => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-sm-10 col-md-8 col-lg-6">
-        <Card>
-          <Card.Title className="display-4 text-center bg-success py-2 text-white">
-            {greenie ? "Edit" : "New"} Greenie
-          </Card.Title>
-          <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="row align-items-center justify-content-center mb-3">
-                <div className="col-3 col-lg-auto">
-                  <Form.Label htmlFor="roundId" className="mb-0">
-                    Name
-                  </Form.Label>
-                </div>
-                <div className="col-9">
-                  {greenie ? (
-                    <Form.Control
-                      value={greenie.firstName + " " + greenie.lastName}
-                      className="text-center"
-                      readOnly
-                    ></Form.Control>
-                  ) : (
-                    <Form.Control value={playerName} readOnly></Form.Control>
-                  )}
-                </div>
-              </Form.Group>
-
-              {greenie ? (
+    <Container className="my-5">
+      <div className="row justify-content-center">
+        <div className="col-sm-10 col-md-8 col-lg-6">
+          <h1 className="display-3 text-center mb-5">
+            {greenie ? "Edit" : "New"} Greenie{" "}
+          </h1>
+          <Card>
+            <Card.Body>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group className="row align-items-center justify-content-center mb-3">
                   <div className="col-3 col-lg-auto">
                     <Form.Label htmlFor="roundId" className="mb-0">
-                      Date
-                    </Form.Label>
-                  </div>
-                  <div className="col-9">
-                    <Form.Control
-                      className="text-center"
-                      value={new Date(
-                        greenie.tournamentDate
-                      ).toLocaleDateString()}
-                      readOnly
-                    ></Form.Control>
-                  </div>
-                </Form.Group>
-              ) : null}
-
-              <div className="">
-                <Form.Group className="row justify-content-center align-items-center mb-3">
-                  <div className="col-3 col-lg-auto">
-                    <Form.Label htmlFor="holeNumber" className="mb-0">
-                      Hole #
+                      Name
                     </Form.Label>
                   </div>
                   <div className="col-9">
                     {greenie ? (
                       <Form.Control
-                        id="holeNumber"
-                        name="holeNumber"
-                        type="number"
-                        value={greenie.holeNumber}
-                        required
+                        value={greenie.firstName + " " + greenie.lastName}
+                        className="text-center"
                         readOnly
-                      />
+                      ></Form.Control>
                     ) : (
-                      <Form.Select
-                        className="form-control"
-                        id="holeNumber"
-                        name="holeNumber"
-                        type="select"
-                        onChange={handleChange}
-                        value={formData.holeNumber}
-                        required
-                      >
-                        {par3HoleNums.map((num) => (
-                          <option key={num} value={num}>
-                            {num}
-                          </option>
-                        ))}
-                      </Form.Select>
+                      <Form.Control value={playerName} readOnly></Form.Control>
                     )}
                   </div>
                 </Form.Group>
-              </div>
-              <div className="">
-                <Form.Group className="row justify-content-center align-items-center mb-3">
-                  <div className="col-3 col-lg-auto">
-                    <Form.Label htmlFor="feet" className="mb-0">
-                      Feet
-                    </Form.Label>
-                  </div>
-                  <div className="col-9">
-                    <input
-                      className="form-control"
-                      id="feet"
-                      name="feet"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.feet}
-                      required
-                    ></input>
-                  </div>
-                </Form.Group>
-              </div>
-              <div className="">
-                <Form.Group className="row justify-content-center align-items-center mb-3">
-                  <div className="col-3 col-lg-auto">
-                    <Form.Label htmlFor="inches" className="mb-0">
-                      Inches
-                    </Form.Label>
-                  </div>
-                  <div className="col-9">
-                    <input
-                      className="form-control"
-                      id="inches"
-                      name="inches"
-                      type="number"
-                      min="0"
-                      max="11"
-                      onChange={handleChange}
-                      value={formData.inches}
-                      required
-                    ></input>
-                  </div>
-                </Form.Group>
-              </div>
 
-              {formErrors.length
-                ? formErrors.map((err) => (
-                    <Alert key={err} variant="danger">
-                      {err}
-                    </Alert>
-                  ))
-                : null}
+                {greenie ? (
+                  <Form.Group className="row align-items-center justify-content-center mb-3">
+                    <div className="col-3 col-lg-auto">
+                      <Form.Label htmlFor="roundId" className="mb-0">
+                        Date
+                      </Form.Label>
+                    </div>
+                    <div className="col-9">
+                      <Form.Control
+                        className="text-center"
+                        value={new Date(
+                          greenie.tournamentDate
+                        ).toLocaleDateString()}
+                        readOnly
+                      ></Form.Control>
+                    </div>
+                  </Form.Group>
+                ) : null}
 
-              <div className="row justify-content-end">
-                <div className="col-auto">
-                  <button className="btn btn-primary btn-block px-4">
-                    Submit
-                  </button>
+                <div className="">
+                  <Form.Group className="row justify-content-center align-items-center mb-3">
+                    <div className="col-3 col-lg-auto">
+                      <Form.Label htmlFor="holeNumber" className="mb-0">
+                        Hole #
+                      </Form.Label>
+                    </div>
+                    <div className="col-9">
+                      {greenie ? (
+                        <Form.Control
+                          id="holeNumber"
+                          name="holeNumber"
+                          type="number"
+                          value={greenie.holeNumber}
+                          required
+                          readOnly
+                        />
+                      ) : (
+                        <Form.Select
+                          className="form-control"
+                          id="holeNumber"
+                          name="holeNumber"
+                          type="select"
+                          onChange={handleChange}
+                          value={formData.holeNumber}
+                          required
+                        >
+                          {par3HoleNums.map((num) => (
+                            <option key={num} value={num}>
+                              {num}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      )}
+                    </div>
+                  </Form.Group>
                 </div>
-              </div>
-            </Form>
-          </Card.Body>
-        </Card>
+                <div className="">
+                  <Form.Group className="row justify-content-center align-items-center mb-3">
+                    <div className="col-3 col-lg-auto">
+                      <Form.Label htmlFor="feet" className="mb-0">
+                        Feet
+                      </Form.Label>
+                    </div>
+                    <div className="col-9">
+                      <input
+                        className="form-control"
+                        id="feet"
+                        name="feet"
+                        type="number"
+                        min="0"
+                        onChange={handleChange}
+                        value={formData.feet}
+                        required
+                      ></input>
+                    </div>
+                  </Form.Group>
+                </div>
+                <div className="">
+                  <Form.Group className="row justify-content-center align-items-center mb-3">
+                    <div className="col-3 col-lg-auto">
+                      <Form.Label htmlFor="inches" className="mb-0">
+                        Inches
+                      </Form.Label>
+                    </div>
+                    <div className="col-9">
+                      <input
+                        className="form-control"
+                        id="inches"
+                        name="inches"
+                        type="number"
+                        min="0"
+                        max="11"
+                        onChange={handleChange}
+                        value={formData.inches}
+                        required
+                      ></input>
+                    </div>
+                  </Form.Group>
+                </div>
+
+                {formErrors.length
+                  ? formErrors.map((err) => (
+                      <Alert key={err} variant="danger">
+                        {err}
+                      </Alert>
+                    ))
+                  : null}
+
+                <div className="row justify-content-end">
+                  <div className="col-auto">
+                    <button className="btn btn-primary btn-block px-4">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -9,7 +9,7 @@ import AdminButtons from "../common/AdminButtons";
 import UserContext from "../auth/UserContext";
 import GreenieCardList from "../greenies/GreenieCardList";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 /** Round details page.
  *
@@ -65,49 +65,53 @@ const RoundDetails = () => {
   };
 
   return (
-    <div className="text-center row justify-content-center">
-      {currentUser ? (
-        currentUser.isAdmin ? (
-          <AdminButtons
-            updatePath={`/rounds/${id}/edit`}
-            handleDelete={handleDelete}
+    <Container className="mt-5">
+      <div className="text-center row justify-content-center">
+        <h1 className="display-3">
+          {transformUsername(round.username)}'s Round
+        </h1>
+
+        <HorizontalRule width="30%" />
+        {currentUser ? (
+          currentUser.isAdmin ? (
+            <AdminButtons
+              updatePath={`/rounds/${id}/edit`}
+              handleDelete={handleDelete}
+            />
+          ) : null
+        ) : null}
+
+        <div className="mt-5">
+          <RoundTable
+            roundId={round.id}
+            courseName={round.courseName}
+            tournamentDate={round.tournamentDate}
+            strokes={round.strokes}
+            putts={round.putts}
+            totalStrokes={round.totalStrokes}
+            playerIndex={round.playerIndex}
+            netStrokes={round.netStrokes}
+            totalPutts={round.totalPutts}
+            pars={round.pars}
           />
-        ) : null
-      ) : null}
-      <h1 className="display-3">{transformUsername(round.username)}'s Round</h1>
+        </div>
 
-      <HorizontalRule width="30%" />
-
-      {currentUser ? (
-        currentUser.isAdmin || currentUser.username === round.username ? (
-          <div className="my-4">
-            <Link to={`/greenies/new/${round.id}`}>
-              <Button variant="success" className="rounded-pill">
-                Add Greenie
-              </Button>
-            </Link>
-          </div>
-        ) : null
-      ) : null}
-      <div className="my-4">
-        <RoundTable
-          roundId={round.id}
-          courseName={round.courseName}
-          tournamentDate={round.tournamentDate}
-          strokes={round.strokes}
-          putts={round.putts}
-          totalStrokes={round.totalStrokes}
-          playerIndex={round.playerIndex}
-          netStrokes={round.netStrokes}
-          totalPutts={round.totalPutts}
-          pars={round.pars}
-        />
+        <div className="mb-5">
+          {currentUser ? (
+            currentUser.isAdmin || currentUser.username === round.username ? (
+              <div className="my-4">
+                <Link to={`/greenies/new/${round.id}`}>
+                  <Button variant="success" className="rounded-pill">
+                    Add Greenie
+                  </Button>
+                </Link>
+              </div>
+            ) : null
+          ) : null}
+          <GreenieCardList greenies={round.greenies} />
+        </div>
       </div>
-
-      <div className="mb-5">
-        <GreenieCardList greenies={round.greenies} />
-      </div>
-    </div>
+    </Container>
   );
 };
 

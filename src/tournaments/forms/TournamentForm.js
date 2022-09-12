@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import { Card, Form, Alert } from "react-bootstrap";
+import { Card, Form, Alert, Row, Container } from "react-bootstrap";
 
 /** Form to create a new tournament
  *
@@ -91,98 +91,100 @@ const TournamentForm = ({ courseHandles, tournament }) => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-sm-10 col-md-8 col-lg-6">
-        <Card>
-          <Card.Title className="display-6 text-center bg-primary py-3 text-white">
-            {tournament ? "Update" : "New"} Tournament
-          </Card.Title>
-          <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="date">Date</Form.Label>
+    <Container className="mt-5">
+      <Row className="justify-content-center">
+        <h1 className="text-center display-3 mb-5">
+          {tournament ? "Update" : "New"} Tournament
+        </h1>
+        <div className="col-sm-10 col-md-8 col-lg-6">
+          <Card>
+            <Card.Body>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="date">Date</Form.Label>
 
-                {tournament ? (
-                  <Form.Control
-                    value={new Date(tournament.date).toLocaleDateString(
-                      "en-US",
-                      {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        timeZone: "UTC",
-                      }
-                    )}
-                    readOnly
-                  ></Form.Control>
-                ) : (
-                  <Form.Control
-                    id="date"
-                    name="date"
-                    type="date"
+                  {tournament ? (
+                    <Form.Control
+                      value={new Date(tournament.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                          timeZone: "UTC",
+                        }
+                      )}
+                      readOnly
+                    ></Form.Control>
+                  ) : (
+                    <Form.Control
+                      id="date"
+                      name="date"
+                      type="date"
+                      onChange={handleChange}
+                      value={formData.date}
+                      required
+                    ></Form.Control>
+                  )}
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="courseHandle">Golf Course</Form.Label>
+                  <Form.Select
+                    id="courseHandle"
+                    name="courseHandle"
+                    type="select"
                     onChange={handleChange}
-                    value={formData.date}
+                    value={formData.courseHandle}
                     required
-                  ></Form.Control>
-                )}
-              </Form.Group>
+                  >
+                    {courseHandles.map((handle) => (
+                      <option key={handle} value={handle}>
+                        {handle}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="courseHandle">Golf Course</Form.Label>
-                <Form.Select
-                  id="courseHandle"
-                  name="courseHandle"
-                  type="select"
-                  onChange={handleChange}
-                  value={formData.courseHandle}
-                  required
-                >
-                  {courseHandles.map((handle) => (
-                    <option key={handle} value={handle}>
-                      {handle}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label htmlFor="tourYears">Tour Year</Form.Label>
+                  <Form.Select
+                    id="tourYears"
+                    name="tourYears"
+                    type="select"
+                    onChange={handleChange}
+                    value={formData.tourYears}
+                    required
+                  >
+                    <option>2021-22</option>
+                    <option>2022-23</option>
+                    <option>2023-24</option>
+                    <option>2024-25</option>
+                    <option>2025-26</option>
+                  </Form.Select>
+                </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label htmlFor="tourYears">Tour Year</Form.Label>
-                <Form.Select
-                  id="tourYears"
-                  name="tourYears"
-                  type="select"
-                  onChange={handleChange}
-                  value={formData.tourYears}
-                  required
-                >
-                  <option>2021-22</option>
-                  <option>2022-23</option>
-                  <option>2023-24</option>
-                  <option>2024-25</option>
-                  <option>2025-26</option>
-                </Form.Select>
-              </Form.Group>
+                {formErrors.length
+                  ? formErrors.map((err) => (
+                      <Alert key={err} variant="danger">
+                        {err}
+                      </Alert>
+                    ))
+                  : null}
 
-              {formErrors.length
-                ? formErrors.map((err) => (
-                    <Alert key={err} variant="danger">
-                      {err}
-                    </Alert>
-                  ))
-                : null}
-
-              <div className="row justify-content-end">
-                <div className="col-auto">
-                  <button className="btn btn-primary btn-block px-4">
-                    Submit
-                  </button>
+                <div className="row justify-content-end">
+                  <div className="col-auto">
+                    <button className="btn btn-primary btn-block px-4">
+                      Submit
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </Form>
-          </Card.Body>
-        </Card>
-      </div>
-    </div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
+      </Row>
+    </Container>
   );
 };
 

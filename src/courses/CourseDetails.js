@@ -9,6 +9,10 @@ import HorizontalRule from "../common/HorizontalRule";
 import LoadingSpinner from "../common/LoadingSpinner";
 import AdminButtons from "../common/AdminButtons";
 
+// import Showcase from "../common/Showcase/Showcase";
+
+import { Container, Row } from "react-bootstrap";
+
 /** Course details page.
  *
  * On component mount, load the course data from API
@@ -51,44 +55,49 @@ const CourseDetails = () => {
     navigate("/courses");
   };
 
+  console.log(course);
+
   return (
-    <div className="text-center mb-5 row justify-content-center">
-      <div className="mt-3">
-        {currentUser ? (
-          currentUser.isAdmin ? (
-            <AdminButtons
-              updatePath={`/courses/${course.handle}/edit`}
-              handleDelete={handleDelete}
+    <Container className="mt-5">
+      <Row className="justify-content-center text-center">
+        <h1 className="display-3 mb-3">{course.name}</h1>
+        <HorizontalRule width={"30%"} />
+        <Row className="justify-content-center">
+          {/* <p className="lead my-3 text-center">
+            Rating : {course.rating} / {course.slope}
+          </p> */}
+          <div className="my-3">
+            {currentUser ? (
+              currentUser.isAdmin ? (
+                <AdminButtons
+                  updatePath={`/courses/${course.handle}/edit`}
+                  handleDelete={handleDelete}
+                />
+              ) : null
+            ) : null}
+          </div>
+          <div className="col-lg-9">
+            <img
+              src={course.imgUrl}
+              alt={`${course.name}`}
+              className="img-fluid mb-0 mt-3"
             />
-          ) : null
-        ) : null}
-      </div>
-      <h1 className="display-3 mb-3">{course.name}</h1>
-      <HorizontalRule width={"30%"} />
-      <p className="lead">
-        Rating : {course.rating} / {course.slope}
-      </p>
 
-      <div className="col-lg-9">
-        <img
-          src={course.imgUrl}
-          alt={`${course.name}`}
-          className="img-fluid mb-0 mt-3"
-        />
-
-        <div className="mb-5">
-          <CourseTable
-            key={course.handle}
-            handle={course.handle}
-            name={course.name}
-            rating={course.rating}
-            slope={course.slope}
-            pars={course.pars}
-            handicaps={course.handicaps}
-          />
-        </div>
-      </div>
-    </div>
+            <div className="mb-5">
+              <CourseTable
+                key={course.handle}
+                handle={course.handle}
+                name={course.name}
+                rating={course.rating}
+                slope={course.slope}
+                pars={course.pars}
+                handicaps={course.handicaps}
+              />
+            </div>
+          </div>
+        </Row>
+      </Row>
+    </Container>
   );
 };
 

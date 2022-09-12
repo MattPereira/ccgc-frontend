@@ -4,7 +4,7 @@ import UserContext from "../../auth/UserContext";
 import "./Navigation.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-import ccgcLogo from "../../assets/ccgc_logo.png";
+import ccgcLogo from "../../assets/ccgc_logo_nav.png";
 
 /** Navigation bar for site that shows on every page
  *

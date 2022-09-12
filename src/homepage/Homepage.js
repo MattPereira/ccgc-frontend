@@ -2,7 +2,7 @@
 // import UserContext from "../auth/UserContext";
 // import { Link } from "react-router-dom";
 
-import logo from "../assets/ccgc_logo.png";
+import logo from "../assets/ccgc_logo_simple.png";
 
 import "./Homepage.css";
 
@@ -34,8 +34,8 @@ const Homepage = () => {
           <span> to input your round scores!</span>
         </>
       )} */}
-      <div>
-        <img src={logo} alt="ccgc-logo" className="img-fluid" />
+      <div className="text-center">
+        <img src={logo} alt="ccgc-logo" className="img-fluid w-75" />
       </div>
     </div>
   );

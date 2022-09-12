@@ -1,5 +1,6 @@
 import React from "react";
 import GreenieCard from "./GreenieCard";
+import { Row } from "react-bootstrap";
 
 /** Show list of greenie cards.
  *
@@ -14,7 +15,7 @@ const GreenieCardList = ({ greenies }) => {
   console.debug("GreenieCardList", "greenies=", greenies);
 
   return (
-    <div className="row justify-content-center">
+    <Row className="justify-content-center">
       {greenies.map((g) => (
         <div className="col-9 col-sm-6 col-md-4 col-lg-3" key={g.id}>
           <GreenieCard
@@ -30,7 +31,7 @@ const GreenieCardList = ({ greenies }) => {
           />
         </div>
       ))}
-    </div>
+    </Row>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import { Card, Form, Alert } from "react-bootstrap";
+import { Card, Form, Alert, Container } from "react-bootstrap";
 import "./CourseForms.css";
 
 /** Form to create a new course
@@ -165,611 +165,614 @@ const CourseForm = ({ course }) => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-9 col-lg-7">
-        <Card>
-          <Card.Title className="display-4 text-center mb-4 py-2 bg-dark text-white">
-            {course ? "Update" : "Create"} Course
-          </Card.Title>
-          <Card.Body>
-            <Form onSubmit={handleSubmit}>
-              <div className="row">
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="name">Course Name</Form.Label>
-                  <input
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.name}
-                    required
-                  ></input>
-                </Form.Group>
-              </div>
-              <div className="row">
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="name">Image Url</Form.Label>
-                  <input
-                    className="form-control"
-                    id="imgUrl"
-                    name="imgUrl"
-                    type="text"
-                    onChange={handleChange}
-                    value={formData.imgUrl}
-                    required
-                  ></input>
-                </Form.Group>
-              </div>
-
-              <div className="row justify-content-center">
-                <div className="col-6">
+    <Container className="my-5">
+      <div className="row justify-content-center">
+        <div className="col-md-9 col-lg-7">
+          <h1 className="text-center display-3 mb-5">
+            {" "}
+            {course ? "Edit" : "Create"} Course
+          </h1>
+          <Card>
+            <Card.Body>
+              <Form onSubmit={handleSubmit}>
+                <div className="row">
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="rating">Rating</Form.Label>
+                    <Form.Label htmlFor="name">Course Name</Form.Label>
                     <input
                       className="form-control"
-                      id="rating"
-                      name="rating"
-                      type="number"
-                      step="0.1"
+                      id="name"
+                      name="name"
+                      type="text"
                       onChange={handleChange}
-                      value={formData.rating}
+                      value={formData.name}
                       required
                     ></input>
                   </Form.Group>
                 </div>
-                <div className="col-6">
+                <div className="row">
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="slope">Slope</Form.Label>
+                    <Form.Label htmlFor="name">Image Url</Form.Label>
                     <input
                       className="form-control"
-                      id="slope"
-                      name="slope"
-                      type="number"
+                      id="imgUrl"
+                      name="imgUrl"
+                      type="text"
                       onChange={handleChange}
-                      value={formData.slope}
+                      value={formData.imgUrl}
                       required
                     ></input>
                   </Form.Group>
                 </div>
-              </div>
 
-              <div className="row text-center">
-                <div className="col-2">
-                  <Form.Label>Hole</Form.Label>
+                <div className="row justify-content-center">
+                  <div className="col-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label htmlFor="rating">Rating</Form.Label>
+                      <input
+                        className="form-control"
+                        id="rating"
+                        name="rating"
+                        type="number"
+                        step="0.1"
+                        onChange={handleChange}
+                        value={formData.rating}
+                        required
+                      ></input>
+                    </Form.Group>
+                  </div>
+                  <div className="col-6">
+                    <Form.Group className="mb-3">
+                      <Form.Label htmlFor="slope">Slope</Form.Label>
+                      <input
+                        className="form-control"
+                        id="slope"
+                        name="slope"
+                        type="number"
+                        onChange={handleChange}
+                        value={formData.slope}
+                        required
+                      ></input>
+                    </Form.Group>
+                  </div>
                 </div>
-                <div className="col-5">
-                  <Form.Label>Par</Form.Label>
-                </div>
-                <div className="col-5">
-                  <Form.Label>Handicap</Form.Label>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#1</Form.Label>
+                <div className="row text-center">
+                  <div className="col-2">
+                    <Form.Label>Hole</Form.Label>
+                  </div>
+                  <div className="col-5">
+                    <Form.Label>Par</Form.Label>
+                  </div>
+                  <div className="col-5">
+                    <Form.Label>Handicap</Form.Label>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par1"
-                    name="par1"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par1}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap1"
-                    name="handicap1"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap1}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#2</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#1</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par1"
+                      name="par1"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par1}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap1"
+                      name="handicap1"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap1}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par2"
-                    name="par2"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par2}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap2"
-                    name="handicap2"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap2}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#3</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#2</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par2"
+                      name="par2"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par2}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap2"
+                      name="handicap2"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap2}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par3"
-                    name="par3"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par3}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap3"
-                    name="handicap3"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap3}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#4</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#3</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par3"
+                      name="par3"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par3}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap3"
+                      name="handicap3"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap3}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par4"
-                    name="par4"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par4}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap4"
-                    name="handicap4"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap4}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#5</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#4</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par4"
+                      name="par4"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par4}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap4"
+                      name="handicap4"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap4}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par5"
-                    name="par5"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par5}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap5"
-                    name="handicap5"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap5}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#6</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#5</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par5"
+                      name="par5"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par5}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap5"
+                      name="handicap5"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap5}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par6"
-                    name="par6"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par6}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap6"
-                    name="handicap6"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap6}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#7</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#6</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par6"
+                      name="par6"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par6}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap6"
+                      name="handicap6"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap6}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par7"
-                    name="par7"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par7}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap7"
-                    name="handicap7"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap7}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#8</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#7</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par7"
+                      name="par7"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par7}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap7"
+                      name="handicap7"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap7}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par8"
-                    name="par8"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par8}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap8"
-                    name="handicap8"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap8}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#9</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#8</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par8"
+                      name="par8"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par8}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap8"
+                      name="handicap8"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap8}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par9"
-                    name="par9"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par9}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap9"
-                    name="handicap9"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap9}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#10</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#9</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par9"
+                      name="par9"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par9}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap9"
+                      name="handicap9"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap9}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par10"
-                    name="par10"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par10}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap10"
-                    name="handicap10"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap10}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#11</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#10</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par10"
+                      name="par10"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par10}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap10"
+                      name="handicap10"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap10}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par11"
-                    name="par11"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par11}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap11"
-                    name="handicap11"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap11}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#12</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#11</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par11"
+                      name="par11"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par11}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap11"
+                      name="handicap11"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap11}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par12"
-                    name="par12"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par12}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap12"
-                    name="handicap12"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap12}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#13</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#12</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par12"
+                      name="par12"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par12}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap12"
+                      name="handicap12"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap12}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par13"
-                    name="par13"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par13}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap13"
-                    name="handicap13"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap13}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#14</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#13</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par13"
+                      name="par13"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par13}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap13"
+                      name="handicap13"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap13}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par14"
-                    name="par14"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par14}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap14"
-                    name="handicap14"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap14}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#15</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#14</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par14"
+                      name="par14"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par14}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap14"
+                      name="handicap14"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap14}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par15"
-                    name="par15"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par15}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap15"
-                    name="handicap15"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap15}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#16</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#15</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par15"
+                      name="par15"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par15}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap15"
+                      name="handicap15"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap15}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par16"
-                    name="par16"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par16}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap16"
-                    name="handicap16"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap16}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#17</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#16</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par16"
+                      name="par16"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par16}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap16"
+                      name="handicap16"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap16}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par17"
-                    name="par17"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par17}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap17"
-                    name="handicap17"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap17}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              <div className="row align-items-center mb-3">
-                <div className="col-2 text-center">
-                  <Form.Label>#18</Form.Label>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#17</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par17"
+                      name="par17"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par17}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap17"
+                      name="handicap17"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap17}
+                      required
+                    ></input>
+                  </div>
                 </div>
-                <div className="col-5 align-self-center">
-                  <input
-                    className="form-control"
-                    id="par18"
-                    name="par18"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.par18}
-                    required
-                  ></input>
-                </div>
-                <div className="col-5">
-                  <input
-                    className="form-control"
-                    id="handicap18"
-                    name="handicap18"
-                    type="number"
-                    onChange={handleChange}
-                    value={formData.handicap18}
-                    required
-                  ></input>
-                </div>
-              </div>
 
-              {formErrors.length
-                ? formErrors.map((err) => (
-                    <Alert key={err} color="danger">
-                      {err}
-                    </Alert>
-                  ))
-                : null}
-
-              <div className="row justify-content-end">
-                <div className="col-auto">
-                  <button className="btn btn-primary btn-block px-4">
-                    Submit
-                  </button>
+                <div className="row align-items-center mb-3">
+                  <div className="col-2 text-center">
+                    <Form.Label>#18</Form.Label>
+                  </div>
+                  <div className="col-5 align-self-center">
+                    <input
+                      className="form-control"
+                      id="par18"
+                      name="par18"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.par18}
+                      required
+                    ></input>
+                  </div>
+                  <div className="col-5">
+                    <input
+                      className="form-control"
+                      id="handicap18"
+                      name="handicap18"
+                      type="number"
+                      onChange={handleChange}
+                      value={formData.handicap18}
+                      required
+                    ></input>
+                  </div>
                 </div>
-              </div>
-            </Form>
-          </Card.Body>
-        </Card>
+
+                {formErrors.length
+                  ? formErrors.map((err) => (
+                      <Alert key={err} color="danger">
+                        {err}
+                      </Alert>
+                    ))
+                  : null}
+
+                <div className="row justify-content-end">
+                  <div className="col-auto">
+                    <button className="btn btn-primary btn-block px-4">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

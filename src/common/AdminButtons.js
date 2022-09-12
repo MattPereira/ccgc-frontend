@@ -17,7 +17,7 @@ import { Button, Popover, OverlayTrigger } from "react-bootstrap";
  *  Note: delete button is nested inside popover for extra caution
  */
 
-const AdminButtons = ({ updatePath, handleDelete }) => {
+const AdminButtons = ({ updatePath, handleDelete, light }) => {
   console.debug(
     "EditDeleteBtns",
     "updatePath=",
@@ -51,12 +51,12 @@ const AdminButtons = ({ updatePath, handleDelete }) => {
   );
 
   return (
-    <div className="row justify-content-center mb-3">
+    <div className="row justify-content-center">
       <div className="col-auto">
         <div>
           <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
             <Button
-              variant="outline-danger"
+              variant={light ? "outline-light" : "outline-danger"}
               id="Popover1"
               type="button"
               className="btn-sm"
@@ -68,7 +68,10 @@ const AdminButtons = ({ updatePath, handleDelete }) => {
       </div>
       <div className="col-auto">
         <Link to={updatePath}>
-          <Button variant="outline-primary" className="px-3 btn-sm">
+          <Button
+            variant={light ? "outline-light" : "outline-primary"}
+            className="px-3 btn-sm"
+          >
             Edit
           </Button>
         </Link>
