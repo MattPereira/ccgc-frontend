@@ -4,6 +4,7 @@
 
 import logo from "../assets/ccgc_logo_simple.png";
 
+import { Row, Col } from "react-bootstrap";
 import "./Homepage.css";
 
 /** Homepage component
@@ -34,9 +35,11 @@ const Homepage = () => {
           <span> to input your round scores!</span>
         </>
       )} */}
-      <div className="text-center">
-        <img src={logo} alt="ccgc-logo" className="img-fluid w-75" />
-      </div>
+      <Row className="justify-content-center">
+        <Col xs={10} md={8} lg={6} xl={5}>
+          <img src={logo} alt="ccgc-logo" className="img-fluid" />
+        </Col>
+      </Row>
     </div>
   );
 };
