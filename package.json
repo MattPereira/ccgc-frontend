@@ -25,7 +25,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "REACT_APP_BASE_URL=https://contra-costa-golf-club.herokuapp.com react-scripts build",
+    "build": "REACT_APP_BASE_URL=https://ccgc.up.railway.app react-scripts build",
     "pre-deploy": "cp build/index.html build/200.html",
     "deploy": "surge build --domain ccgc.surge.sh"
   },

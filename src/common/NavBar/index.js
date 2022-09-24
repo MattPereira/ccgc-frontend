@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../../auth/UserContext";
-import "./Navigation.css";
+import "./index.scss";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 import ccgcLogo from "../../assets/ccgc_logo_nav.png";

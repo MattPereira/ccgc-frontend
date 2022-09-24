@@ -1,6 +1,6 @@
 import React from "react";
-import "./Footer.css";
-import mpLogo from "../assets/MP_LOGO_LIGHT.svg";
+import "./index.scss";
+import mpLogo from "../../assets/MP_LOGO_LIGHT.svg";
 import { Container, Row, Col } from "react-bootstrap";
 import { AiFillGithub } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import Router from "./nav-router-footer/Router";
 import useLocalStorage from "./hooks/useLocalStorage";
 import UserContext from "./auth/UserContext";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
-// import { Container } from "react-bootstrap";
 import ScrollToTop from "./common/ScrollToTop";
-
-import Navigation from "./common/NavBar/Navigation";
-import Footer from "./nav-router-footer/Footer";
+import Router from "./router/Router";
+import NavBar from "./common/NavBar";
+import Footer from "./common/Footer";
 import LoadingSpinner from "./common/LoadingSpinner";
 
 /** Contra Costa Golf Club App
@@ -122,14 +120,12 @@ function App() {
             setCurrentUser,
           }}
         >
-          <div style={{ paddingBottom: "3rem" }}>
-            <ScrollToTop>
-              <Navigation logout={logout} />
-              {/* <Container className="mt-5"> */}
-              <Router login={login} register={register} />
-              {/* </Container> */}
-            </ScrollToTop>
-          </div>
+          {/* <div style={{ paddingBottom: "5rem" }}> */}
+          <ScrollToTop>
+            <NavBar logout={logout} />
+            <Router login={login} register={register} />
+          </ScrollToTop>
+          {/* </div> */}
           <Footer />
         </UserContext.Provider>
       </BrowserRouter>
