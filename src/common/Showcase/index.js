@@ -1,4 +1,4 @@
-import "./Showcase.scss";
+import "./index.scss";
 import React, { useContext } from "react";
 
 import { Row, Col } from "react-bootstrap";

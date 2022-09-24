@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import CcgcApi from "../../../api/api";
+import LoadingSpinner from "../../../common/Loading";
 import GreenieForm from "./GreenieForm";
 
 /** This component is used to fetch tournament data to pass to <NewGreenieForm/>

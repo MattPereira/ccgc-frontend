@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../common/LoadingSpinner";
-import CcgcApi from "../api/api";
+import LoadingSpinner from "../../common/Loading";
+import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../auth/UserContext";
+import UserContext from "../../auth/UserContext";
 // import HorizontalRule from "../common/HorizontalRule";
 
-import StandingsTable from "../standings/StandingsTable";
-import TournamentTable from "./TournamentTable";
-import GreenieTable from "../greenies/GreenieTable";
-import GreenieCardList from "../greenies/GreenieCardList";
+import StandingsTable from "../../standings/StandingsTable";
+import TournamentTable from "../../tournaments/TournamentTable";
+import GreenieTable from "../../greenies/GreenieTable";
+import GreenieCardList from "../../greenies/GreenieCardList";
 // import AdminButtons from "../common/AdminButtons";
 
-import Showcase from "../common/Showcase/Showcase";
+import Showcase from "../../common/Showcase";
 
 import { Link } from "react-router-dom";
 import { Button, Alert, Container, Row } from "react-bootstrap";
@@ -119,7 +119,7 @@ const TournamentDetails = () => {
           ))
         : null}
 
-      <Container className="mt-5">
+      <Container className="py-5">
         <Row className="justify-content-center">
           {currentUser ? AddBtns : null}
 

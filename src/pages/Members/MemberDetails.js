@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
-import RoundTable from "../rounds/RoundTable";
-import GreenieCardList from "../greenies/GreenieCardList";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../common/Loading";
+import RoundTable from "../../rounds/RoundTable";
+import GreenieCardList from "../../greenies/GreenieCardList";
 import { Container, Row } from "react-bootstrap";
 
 // import GreenieCardTable from "../greenies/GreenieTable";
@@ -45,7 +45,7 @@ const MemberDetails = () => {
   console.log("MEMBER:", member);
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <Row className="text-center row justify-content-center">
         <h1 className="display-3 mb-3">
           {member.firstName} {member.lastName}

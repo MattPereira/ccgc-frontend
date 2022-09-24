@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../auth/UserContext";
+import UserContext from "../../auth/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../api/api";
+import CcgcApi from "../../api/api";
 import { Link } from "react-router-dom";
 
 import { Card, Table, Container } from "react-bootstrap";
 
-import HorizontalRule from "../common/HorizontalRule";
-import LoadingSpinner from "../common/LoadingSpinner";
-import AdminButtons from "../common/AdminButtons";
+import HorizontalRule from "../../common/HorizontalRule";
+import LoadingSpinner from "../../common/Loading";
+import AdminButtons from "../../common/AdminButtons";
 
 /** Greenie details page.
  *

@@ -2,33 +2,33 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 
-import MemberList from "../members/MemberList";
-import MemberDetails from "../members/MemberDetails";
+import MemberList from "../pages/Members/MemberList";
+import MemberDetails from "../pages/Members/MemberDetails";
+import ProfileForm from "../pages/Members/forms/ProfileForm";
 
-import CourseList from "../courses/CourseList";
-import CourseDetails from "../courses/CourseDetails";
-import CourseForm from "../courses/forms/CourseForm";
-import EditCourse from "../courses/forms/EditCourse";
+import CourseList from "../pages/Courses/CourseList";
+import CourseDetails from "../pages/Courses/CourseDetails";
+import CourseForm from "../pages/Courses/forms/CourseForm";
+import EditCourse from "../pages/Courses/forms/EditCourse";
 
-import GreenieList from "../greenies/GreenieList";
-import GreenieDetails from "../greenies/GreenieDetails";
-import NewGreenie from "../greenies/forms/NewGreenie";
-import UpdateGreenie from "../greenies/forms/UpdateGreenie";
+import GreenieList from "../pages/Greenies/GreenieList";
+import GreenieDetails from "../pages/Greenies/GreenieDetails";
+import NewGreenie from "../pages/Greenies/forms/NewGreenie";
+import UpdateGreenie from "../pages/Greenies/forms/UpdateGreenie";
 
-import TournamentList from "../tournaments/TournamentList";
-import TournamentDetails from "../tournaments/TournamentDetails";
+import TournamentList from "../pages/Tournaments/TournamentList";
+import TournamentDetails from "../pages/Tournaments/TournamentDetails";
 import NewTournament from "../tournaments/forms/NewTournament";
 import EditTournament from "../tournaments/forms/EditTournament";
 
-import RoundDetails from "../rounds/RoundDetails";
+import RoundDetails from "../pages/Rounds/RoundDetails";
 import NewRound from "../rounds/forms/NewRound";
 import EditRound from "../rounds/forms/EditRound";
 
 import LoginForm from "../auth/LoginForm";
 import RegisterForm from "../auth/RegisterForm";
-import ProfileForm from "../members/forms/ProfileForm";
 
-import StandingsDetails from "../standings/StandingsDetails";
+import Standings from "../pages/Standings";
 
 /** Site-wide routes.
  *
@@ -49,7 +49,7 @@ function Router({ login, register }) {
   return (
     <Routes>
       <Route exact path="/" element={<Homepage />} />
-      <Route exact path="/standings" element={<StandingsDetails />} />
+      <Route exact path="/standings" element={<Standings />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route

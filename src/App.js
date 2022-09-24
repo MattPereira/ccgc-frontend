@@ -9,7 +9,7 @@ import ScrollToTop from "./common/ScrollToTop";
 import Router from "./router/Router";
 import NavBar from "./common/NavBar";
 import Footer from "./common/Footer";
-import LoadingSpinner from "./common/LoadingSpinner";
+import LoadingSpinner from "./common/Loading";
 
 /** Contra Costa Golf Club App
  *
@@ -120,12 +120,10 @@ function App() {
             setCurrentUser,
           }}
         >
-          {/* <div style={{ paddingBottom: "5rem" }}> */}
           <ScrollToTop>
             <NavBar logout={logout} />
             <Router login={login} register={register} />
           </ScrollToTop>
-          {/* </div> */}
           <Footer />
         </UserContext.Provider>
       </BrowserRouter>

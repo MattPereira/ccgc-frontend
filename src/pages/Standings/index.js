@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import HorizontalRule from "../common/HorizontalRule";
-import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
-import "./Standings.css";
+import HorizontalRule from "../../common/HorizontalRule";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../common/Loading";
+import "./index.scss";
 
-import PointsAccordion from "./PointsAccordion";
-import CalculationsAccordion from "./CalculationsAccordion";
-import StandingsTable from "./StandingsTable";
+import PointsAccordion from "../../standings/PointsAccordion";
+import CalculationsAccordion from "../../standings/CalculationsAccordion";
+import StandingsTable from "../../standings/StandingsTable";
 
 import { Container, Row } from "react-bootstrap";
 
@@ -39,7 +39,7 @@ const Standings = () => {
   console.log(standings);
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <Row className="row justify-content-center">
         <h1 className="display-3 text-center">Standings</h1>
         <HorizontalRule width="20%" />

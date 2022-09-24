@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../../api/api";
+import CcgcApi from "../../../api/api";
 import { useParams } from "react-router-dom";
 import CourseForm from "./CourseForm";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import LoadingSpinner from "../../../common/Loading";
 
 /** This component is used to fetch course data to pass to <CourseForm/>
  *  in order to populate the form with the course's current data.

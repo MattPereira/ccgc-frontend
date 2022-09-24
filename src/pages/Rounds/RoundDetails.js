@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../common/LoadingSpinner";
-import CcgcApi from "../api/api";
-import RoundTable from "./RoundTable";
+import LoadingSpinner from "../../common/Loading";
+import CcgcApi from "../../api/api";
+import RoundTable from "../../rounds/RoundTable";
 import { useNavigate } from "react-router-dom";
-import HorizontalRule from "../common/HorizontalRule";
-import AdminButtons from "../common/AdminButtons";
-import UserContext from "../auth/UserContext";
-import GreenieCardList from "../greenies/GreenieCardList";
+import HorizontalRule from "../../common/HorizontalRule";
+import AdminButtons from "../../common/AdminButtons";
+import UserContext from "../../auth/UserContext";
+import GreenieCardList from "../../greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import LoadingSpinner from "../common/LoadingSpinner";
-import CcgcApi from "../api/api";
-import UserContext from "../auth/UserContext";
-import TournamentCard from "./TournamentCard";
+import LoadingSpinner from "../../common/Loading";
+import CcgcApi from "../../api/api";
+import UserContext from "../../auth/UserContext";
+import TournamentCard from "../../tournaments/TournamentCard";
 import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 
@@ -41,7 +41,7 @@ const TournamentList = () => {
   if (!tournaments) return <LoadingSpinner />;
 
   return (
-    <Container className={"mt-5"}>
+    <Container className="py-5">
       <div className="text-center row justify-content-center">
         <h1 className="display-3 mb-3">Tournaments</h1>
         <hr

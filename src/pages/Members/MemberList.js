@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import MemberCard from "./MemberCard";
-import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
+import MemberCard from "../../members/MemberCard";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../common/Loading";
 import { Row, Col, Container } from "react-bootstrap";
 
 /** Show page with all members listed
@@ -33,7 +33,7 @@ const MemberList = () => {
   console.log(members);
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <Row className="text-center justify-content-center">
         <h1 className="display-3 mb-3">Members</h1>
         <hr

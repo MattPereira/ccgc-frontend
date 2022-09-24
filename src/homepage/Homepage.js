@@ -36,8 +36,8 @@ const Homepage = () => {
         </>
       )} */}
       <Row className="justify-content-center" style={{ width: "100%" }}>
-        <Col xs={10} md={8} lg={6} xl={5}>
-          <img src={logo} alt="ccgc-logo" className="img-fluid" />
+        <Col xs={9} md={8} lg={6} xl={5}>
+          <img src={logo} alt="ccgc-logo" className="img-fluid rotate" />
         </Col>
       </Row>
     </div>

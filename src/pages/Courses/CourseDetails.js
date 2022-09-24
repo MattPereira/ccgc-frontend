@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../auth/UserContext";
+import UserContext from "../../auth/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../api/api";
+import CcgcApi from "../../api/api";
 
-import CourseTable from "./CourseTable";
-import HorizontalRule from "../common/HorizontalRule";
-import LoadingSpinner from "../common/LoadingSpinner";
-import AdminButtons from "../common/AdminButtons";
+import CourseTable from "../../courses/CourseTable";
+import HorizontalRule from "../../common/HorizontalRule";
+import LoadingSpinner from "../../common/Loading";
+import AdminButtons from "../../common/AdminButtons";
 
 // import Showcase from "../common/Showcase/Showcase";
 
@@ -58,7 +58,7 @@ const CourseDetails = () => {
   console.log(course);
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <Row className="justify-content-center text-center">
         <h1 className="display-3 mb-3">{course.name}</h1>
         <HorizontalRule width={"30%"} />

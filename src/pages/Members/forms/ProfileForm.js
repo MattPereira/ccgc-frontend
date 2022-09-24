@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../../auth/UserContext";
-import CcgcApi from "../../api/api";
+import UserContext from "../../../auth/UserContext";
+import CcgcApi from "../../../api/api";
 import { Card, Form, Alert, Container } from "react-bootstrap";
 
 /** Form to edit user profile

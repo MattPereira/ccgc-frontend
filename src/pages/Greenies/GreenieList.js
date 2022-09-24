@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import LoadingSpinner from "../common/LoadingSpinner";
-import CcgcApi from "../api/api";
+import LoadingSpinner from "../../common/Loading";
+import CcgcApi from "../../api/api";
 
-import GreenieCardList from "./GreenieCardList";
+import GreenieCardList from "../../greenies/GreenieCardList";
 
 import { Container, Row } from "react-bootstrap";
 
@@ -40,7 +40,7 @@ const GreenieList = () => {
   console.log(greenies);
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <Row className="text-center justify-content-center">
         <h1 className="display-3 mb-3">Greenies</h1>
         <hr

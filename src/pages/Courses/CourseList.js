@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import CcgcApi from "../api/api";
-import LoadingSpinner from "../common/LoadingSpinner";
-import CourseCard from "./CourseCard";
-import UserContext from "../auth/UserContext";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../common/Loading";
+import CourseCard from "../../courses/CourseCard";
+import UserContext from "../../auth/UserContext";
 import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
@@ -38,7 +38,7 @@ const CourseList = () => {
   if (!courses) return <LoadingSpinner />;
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <div className="text-center row justify-content-center">
         <h1 className="display-3 mb-3">Courses</h1>
         <hr
