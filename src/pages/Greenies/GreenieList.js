@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 
 import GreenieCardList from "../../components/Greenies/GreenieCardList";

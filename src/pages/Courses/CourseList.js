@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
 import UserContext from "../../components/Auth/UserContext";
 import { Container } from "react-bootstrap";

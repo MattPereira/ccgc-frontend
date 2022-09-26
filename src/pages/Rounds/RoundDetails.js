@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-import RoundTable from "../../rounds/RoundTable";
+import RoundTable from "../../components/Rounds/RoundTable";
 import { useNavigate } from "react-router-dom";
-import HorizontalRule from "../../common/HorizontalRule";
-import AdminButtons from "../../common/AdminButtons";
+import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
+import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";

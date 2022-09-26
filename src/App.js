@@ -5,11 +5,11 @@ import UserContext from "./components/Auth/UserContext";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
-import ScrollToTop from "./common/ScrollToTop";
+import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
-import NavBar from "./common/NavBar";
-import Footer from "./common/Footer";
-import LoadingSpinner from "./common/Loading";
+import NavBar from "./components/Common/NavBar";
+import Footer from "./components/Common/Footer";
+import LoadingSpinner from "./components/Common/Loading";
 
 /** Contra Costa Golf Club App
  *

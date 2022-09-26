@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 
 import { Card, Table, Container } from "react-bootstrap";
 
-import HorizontalRule from "../../common/HorizontalRule";
-import LoadingSpinner from "../../common/Loading";
-import AdminButtons from "../../common/AdminButtons";
+import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
+import LoadingSpinner from "../../components/Common/Loading";
+import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 
 /** Greenie details page.
  *

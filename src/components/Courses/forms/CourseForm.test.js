@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import CourseForm from "./CourseForm";
+import CourseForm from "./NewCourseForm";
 
 it("renders without crashing", function () {
   render(

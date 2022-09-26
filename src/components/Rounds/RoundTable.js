@@ -1,5 +1,5 @@
 import React from "react";
-import HolesRow from "../common/HolesRow";
+import HolesRow from "../Common/HolesRow/HolesRow";
 import { Link } from "react-router-dom";
 
 import { Table } from "react-bootstrap";

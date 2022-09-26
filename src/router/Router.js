@@ -4,26 +4,26 @@ import Home from "../pages/Home";
 
 import MemberList from "../pages/Members/MemberList";
 import MemberDetails from "../pages/Members/MemberDetails";
-import ProfileForm from "../pages/Members/forms/ProfileForm";
+import ProfileForm from "../components/Members/forms/ProfileForm";
 
 import CourseList from "../pages/Courses/CourseList";
 import CourseDetails from "../pages/Courses/CourseDetails";
-import CourseForm from "../pages/Courses/forms/CourseForm";
-import EditCourse from "../pages/Courses/forms/EditCourse";
+import NewCourseForm from "../components/Courses/forms/NewCourseForm";
+import EditCourse from "../components/Courses/forms/EditCourse";
 
 import GreenieList from "../pages/Greenies/GreenieList";
 import GreenieDetails from "../pages/Greenies/GreenieDetails";
-import NewGreenie from "../pages/Greenies/forms/NewGreenie";
-import UpdateGreenie from "../pages/Greenies/forms/UpdateGreenie";
+import NewGreenie from "../components/Greenies/forms/NewGreenie";
+import UpdateGreenie from "../components/Greenies/forms/UpdateGreenie";
 
 import TournamentList from "../pages/Tournaments/TournamentList";
 import TournamentDetails from "../pages/Tournaments/TournamentDetails";
-import NewTournament from "../tournaments/forms/NewTournament";
-import EditTournament from "../tournaments/forms/EditTournament";
+import NewTournament from "../components/Tournaments/forms/NewTournament";
+import EditTournament from "../components/Tournaments/forms/EditTournament";
 
 import RoundDetails from "../pages/Rounds/RoundDetails";
-import NewRound from "../rounds/forms/NewRound";
-import EditRound from "../rounds/forms/EditRound";
+import NewRound from "../components/Rounds/forms/NewRound";
+import EditRound from "../components/Rounds/forms/EditRound";
 
 import LoginForm from "../components/Auth/LoginForm";
 import RegisterForm from "../components/Auth/RegisterForm";
@@ -63,7 +63,7 @@ function Router({ login, register }) {
       <Route exact path="/members/:username" element={<MemberDetails />} />
 
       <Route exact path="/courses" element={<CourseList />} />
-      <Route exact path="/courses/new" element={<CourseForm />} />
+      <Route exact path="/courses/new" element={<NewCourseForm />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
 

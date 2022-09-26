@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 
 import CourseTable from "../../components/Courses/CourseTable";
-import HorizontalRule from "../../common/HorizontalRule";
-import LoadingSpinner from "../../common/Loading";
-import AdminButtons from "../../common/AdminButtons";
+import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
+import LoadingSpinner from "../../components/Common/Loading";
+import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 
-// import Showcase from "../common/Showcase/Showcase";
+// import Showcase from "../components/Common/Showcase/Showcase";
 
 import { Container, Row } from "react-bootstrap";
 

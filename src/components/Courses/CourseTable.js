@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import HolesRow from "../../common/HolesRow";
+import HolesRow from "../Common/HolesRow/HolesRow";
 
 import { v4 as uuidv4 } from "uuid";
 

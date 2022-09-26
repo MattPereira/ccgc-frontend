@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/ccgc_logo_simple.png";
+import logo from "../../../assets/ccgc_logo_simple.png";
 import "./index.scss";
 
 import { Row, Col, ProgressBar } from "react-bootstrap";

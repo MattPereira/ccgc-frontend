@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/Loading";
+import CcgcApi from "../../../api/api";
+import LoadingSpinner from "../../Common/Loading";
 import TournamentForm from "./TournamentForm";
 
 /** This component is used to fetch courseHandle data to pass to <NewTournamentForm/>

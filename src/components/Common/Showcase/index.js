@@ -2,8 +2,8 @@ import "./index.scss";
 import React, { useContext } from "react";
 
 import { Row, Col } from "react-bootstrap";
-import AdminButtons from "../AdminButtons";
-import UserContext from "../../components/Auth/UserContext";
+import AdminButtons from "../AdminButtons/AdminButtons";
+import UserContext from "../../../components/Auth/UserContext";
 
 /**
  *

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MemberCard from "../../components/Members/MemberCard";
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import { Row, Col, Container } from "react-bootstrap";
 
 /** Show page with all members listed

@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../components/Auth/UserContext";
-// import HorizontalRule from "../common/HorizontalRule";
+// import HorizontalRule from "../components/Common/HorizontalRule";
 
 import StandingsTable from "../../components/Standings/StandingsTable";
-import TournamentTable from "../../tournaments/TournamentTable";
+import TournamentTable from "../../components/Tournaments/TournamentTable";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
-// import AdminButtons from "../common/AdminButtons";
+// import AdminButtons from "../components/Common/AdminButtons";
 
-import Showcase from "../../common/Showcase";
+import Showcase from "../../components/Common/Showcase";
 
 import { Link } from "react-router-dom";
 import { Button, Alert, Container, Row } from "react-bootstrap";

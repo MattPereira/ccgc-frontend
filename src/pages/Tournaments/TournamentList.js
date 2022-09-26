@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
-import TournamentCard from "../../tournaments/TournamentCard";
+import TournamentCard from "../../components/Tournaments/TournamentCard";
 import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 

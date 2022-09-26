@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import HorizontalRule from "../../common/HorizontalRule";
+import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 import "./index.scss";
 
 import { Button, ButtonGroup, Box } from "@mui/material";

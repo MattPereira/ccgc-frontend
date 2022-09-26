@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../common/Loading";
-import RoundTable from "../../rounds/RoundTable";
+import LoadingSpinner from "../../components/Common/Loading";
+import RoundTable from "../../components/Rounds/RoundTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Container, Row } from "react-bootstrap";
 
