@@ -1,11 +1,11 @@
 // import React, { useContext } from "react";
-// import UserContext from "../auth/UserContext";
+// import UserContext from "../components/Auth/UserContext";
 // import { Link } from "react-router-dom";
 
-import logo from "../assets/ccgc_logo_simple.png";
+import logo from "../../assets/ccgc_logo_simple.png";
 
 import { Row, Col } from "react-bootstrap";
-import "./Homepage.css";
+import "./index.css";
 
 /** Homepage component
  *

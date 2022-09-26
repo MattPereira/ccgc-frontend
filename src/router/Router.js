@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Homepage from "../homepage/Homepage";
+import Home from "../pages/Home";
 
 import MemberList from "../pages/Members/MemberList";
 import MemberDetails from "../pages/Members/MemberDetails";
@@ -25,8 +25,8 @@ import RoundDetails from "../pages/Rounds/RoundDetails";
 import NewRound from "../rounds/forms/NewRound";
 import EditRound from "../rounds/forms/EditRound";
 
-import LoginForm from "../auth/LoginForm";
-import RegisterForm from "../auth/RegisterForm";
+import LoginForm from "../components/Auth/LoginForm";
+import RegisterForm from "../components/Auth/RegisterForm";
 
 import Standings from "../pages/Standings";
 
@@ -48,7 +48,7 @@ function Router({ login, register }) {
 
   return (
     <Routes>
-      <Route exact path="/" element={<Homepage />} />
+      <Route exact path="/" element={<Home />} />
       <Route exact path="/standings" element={<Standings />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />

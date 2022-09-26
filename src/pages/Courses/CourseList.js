@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../common/Loading";
-import CourseCard from "../../courses/CourseCard";
-import UserContext from "../../auth/UserContext";
+import CourseCard from "../../components/Courses/CourseCard";
+import UserContext from "../../components/Auth/UserContext";
 import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";

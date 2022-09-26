@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../common/Loading";
 import RoundTable from "../../rounds/RoundTable";
-import GreenieCardList from "../../greenies/GreenieCardList";
+import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Container, Row } from "react-bootstrap";
 
-// import GreenieCardTable from "../greenies/GreenieTable";
+// import GreenieCardTable from "../components/Greenies/GreenieTable";
 
 /** Member details page.
  *

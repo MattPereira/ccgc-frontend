@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 
-import CourseTable from "../../courses/CourseTable";
+import CourseTable from "../../components/Courses/CourseTable";
 import HorizontalRule from "../../common/HorizontalRule";
 import LoadingSpinner from "../../common/Loading";
 import AdminButtons from "../../common/AdminButtons";

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 
 import { Row, Col } from "react-bootstrap";
 import AdminButtons from "../AdminButtons";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 
 /**
  *

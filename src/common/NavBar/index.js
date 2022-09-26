@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 import "./index.scss";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
@@ -68,7 +68,7 @@ const Navigation = ({ logout }) => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
+            <Nav className="text-center mx-auto">
               <Nav.Item>
                 <Nav.Link eventKey={1} as={RRNavLink} to="/standings">
                   Standings
@@ -94,7 +94,6 @@ const Navigation = ({ logout }) => {
                   Courses
                 </Nav.Link>
               </Nav.Item>
-
               {currentUser ? loggedInNav() : loggedOutNav()}
             </Nav>
           </Navbar.Collapse>

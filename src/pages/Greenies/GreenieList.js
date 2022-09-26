@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../../common/Loading";
 import CcgcApi from "../../api/api";
 
-import GreenieCardList from "../../greenies/GreenieCardList";
+import GreenieCardList from "../../components/Greenies/GreenieCardList";
 
 import { Container, Row } from "react-bootstrap";
 

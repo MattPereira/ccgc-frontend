@@ -4,9 +4,11 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../common/Loading";
 import "./index.scss";
 
-import PointsAccordion from "../../standings/PointsAccordion";
-import CalculationsAccordion from "../../standings/CalculationsAccordion";
-import StandingsTable from "../../standings/StandingsTable";
+import { Button, ButtonGroup, Box } from "@mui/material";
+
+import PointsAccordion from "../../components/Standings/PointsAccordion";
+import CalculationsAccordion from "../../components/Standings/CalculationsAccordion";
+import StandingsTable from "../../components/Standings/StandingsTable";
 
 import { Container, Row } from "react-bootstrap";
 
@@ -44,6 +46,22 @@ const Standings = () => {
         <h1 className="display-3 text-center">Standings</h1>
         <HorizontalRule width="20%" />
 
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <ButtonGroup
+            variant="contained"
+            size="large"
+            aria-label="outlined primary button group"
+          >
+            <Button>2022</Button>
+            <Button>2023</Button>
+          </ButtonGroup>
+        </Box>
         <p className="lead text-center mb-5 mt-4">
           Aggregate points for each player's top 10 rounds for the season.
         </p>

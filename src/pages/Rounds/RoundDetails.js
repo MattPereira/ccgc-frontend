@@ -6,8 +6,8 @@ import RoundTable from "../../rounds/RoundTable";
 import { useNavigate } from "react-router-dom";
 import HorizontalRule from "../../common/HorizontalRule";
 import AdminButtons from "../../common/AdminButtons";
-import UserContext from "../../auth/UserContext";
-import GreenieCardList from "../../greenies/GreenieCardList";
+import UserContext from "../../components/Auth/UserContext";
+import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
 

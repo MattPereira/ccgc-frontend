@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 
 import { Card, Form, Alert, Container } from "react-bootstrap";
 

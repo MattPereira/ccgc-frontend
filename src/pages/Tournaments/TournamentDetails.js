@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../common/Loading";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 // import HorizontalRule from "../common/HorizontalRule";
 
-import StandingsTable from "../../standings/StandingsTable";
+import StandingsTable from "../../components/Standings/StandingsTable";
 import TournamentTable from "../../tournaments/TournamentTable";
-import GreenieTable from "../../greenies/GreenieTable";
-import GreenieCardList from "../../greenies/GreenieCardList";
+import GreenieTable from "../../components/Greenies/GreenieTable";
+import GreenieCardList from "../../components/Greenies/GreenieCardList";
 // import AdminButtons from "../common/AdminButtons";
 
 import Showcase from "../../common/Showcase";
