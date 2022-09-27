@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./TournamentCard.css";
+import "./TournamentCard.scss";
 
 /** Tournament card component.
  *
@@ -18,19 +18,19 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
   return (
     <div className="mb-5">
       <Link to={`/tournaments/${date}`} className="TournamentCard-link">
-        <Card className="TournamentCard-card">
-          <Card.Title
+        <Card className="TournamentCard">
+          {/* <Card.Title
             tag="h3"
             className=" display-6 bg-dark text-white mb-0 py-3"
           >
             {courseName}
-          </Card.Title>
+          </Card.Title> */}
 
-          <div className="TournamentCard-crop">
+          <div className="TournamentCard-crop border-rounded">
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
-          <Card.Body className="py-2 bg-primary text-white">
-            <p className="mb-0 lead fw-bold">
+          <Card.Body className="py-3 bg-dark text-white">
+            <h3 className="mb-0">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -38,7 +38,7 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
                 day: "numeric",
                 timeZone: "UTC",
               })}
-            </p>
+            </h3>
           </Card.Body>
         </Card>
       </Link>

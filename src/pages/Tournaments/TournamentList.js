@@ -4,7 +4,8 @@ import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
 import TournamentCard from "../../components/Tournaments/TournamentCard";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Show page with all tournaments listed
  *
@@ -43,7 +44,7 @@ const TournamentList = () => {
   return (
     <Container className="py-5">
       <div className="text-center row justify-content-center">
-        <h1 className="display-3 mb-3">Tournaments</h1>
+        <h1 className="display-1 mb-3">Tournaments</h1>
         <hr
           style={{
             border: "2px solid grey",
@@ -51,18 +52,25 @@ const TournamentList = () => {
             marginBottom: "1rem",
           }}
         ></hr>
-        <p className="lead mb-5">
-          Select a tournament to view the strokes and putts leaderboards.
-        </p>
         {currentUser ? (
           currentUser.isAdmin ? (
-            <Link to="/tournaments/new">
-              <Button variant="primary" className="mb-5 rounded-pill">
-                New Tournament
+            <div className="py-5">
+              <Button
+                variant="contained"
+                component={Link}
+                to="/tournaments/new"
+                size="large"
+                sx={[{ "&:hover": { color: "white" } }]}
+              >
+                Add Tournament
               </Button>
-            </Link>
+            </div>
           ) : null
         ) : null}
+        <p className="lead py-5">
+          Select a tournament date to view leaderboards and greenies.
+        </p>
+
         <div className="col-md-9 col-lg-8">
           {tournaments.map((t) => (
             <TournamentCard

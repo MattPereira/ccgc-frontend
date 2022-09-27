@@ -12,10 +12,11 @@ import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 // import AdminButtons from "../components/Common/AdminButtons";
 
-import Showcase from "../../components/Common/Showcase";
+import Showcase from "../../components/Tournaments/Showcase";
 
 import { Link } from "react-router-dom";
-import { Button, Alert, Container, Row } from "react-bootstrap";
+import { Alert, Container, Row } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Tournament details page.
  *
@@ -71,13 +72,17 @@ const TournamentDetails = () => {
   };
 
   //buttons for adding rounds and greenies to a tournament
-  const AddBtns = (
-    <div className="text-center mb-5">
-      <Link to={`/rounds/new/${date}`}>
-        <Button variant="primary" className="rounded-pill">
-          Add Round
-        </Button>
-      </Link>
+  const AddBtn = (
+    <div className="py-5 text-center">
+      <Button
+        variant="contained"
+        component={Link}
+        to={`/rounds/new/${date}`}
+        size="large"
+        sx={[{ "&:hover": { color: "white" } }]}
+      >
+        Add Tournament
+      </Button>
     </div>
   );
 
@@ -90,26 +95,6 @@ const TournamentDetails = () => {
         handleDelete={handleDelete}
         updatePath={`/tournaments/${date}/update`}
       />
-      {/* <h2>
-        {new Date(date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          timeZone: "UTC",
-        })}
-      </h2>
-      <HorizontalRule width="10%" />
-
-      <h3>{tournament.courseName}</h3> */}
-
-      {/* {currentUser ? (
-        currentUser.isAdmin ? (
-          <AdminButtons
-            updatePath={`/tournaments/${date}/update`}
-            handleDelete={handleDelete}
-          />
-        ) : null
-      ) : null} */}
 
       {deletionErrors.length
         ? deletionErrors.map((err) => (
@@ -119,11 +104,11 @@ const TournamentDetails = () => {
           ))
         : null}
 
-      <Container className="py-5">
+      <Container className="py-3">
         <Row className="justify-content-center">
-          {currentUser ? AddBtns : null}
+          {currentUser ? AddBtn : null}
 
-          <p className="lead mb-5 text-center">
+          <p className="lead py-5 text-center">
             Select player name to view round details and add greenies.
           </p>
 

@@ -68,9 +68,9 @@ const GreenieDetails = () => {
   } = greenie;
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <div className="text-center row justify-content-center">
-        <h1 className="display-3 mb-3">Greenie Details</h1>
+        <h1 className="display-1 mb-3">Greenie Details</h1>
         <div className="row justify-content-center">
           <HorizontalRule width={"25%"} />
         </div>

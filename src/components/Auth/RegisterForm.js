@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Container } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Register form.
  *
@@ -58,8 +59,8 @@ const RegisterForm = ({ register }) => {
   return (
     <Container className="mt-5">
       <div className="row justify-content-center">
-        <div className="col-sm-8">
-          <h1 className="text-center display-3 mb-5">Register</h1>
+        <div className="col-md-8 col-lg-6">
+          <h1 className="text-center display-1 mb-5">Register</h1>
           <Card className="shadow mb-5">
             <Card.Img
               src="https://images.unsplash.com/photo-1605144156683-5ebde77feed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
@@ -126,12 +127,10 @@ const RegisterForm = ({ register }) => {
                     ))
                   : null}
 
-                <div className="row justify-content-end">
-                  <div className="col-auto">
-                    <button className="btn btn-primary btn-block px-4">
-                      Register
-                    </button>
-                  </div>
+                <div className="text-end">
+                  <Button variant="contained" type="submit">
+                    Register
+                  </Button>
                 </div>
               </Form>
             </Card.Body>

@@ -63,19 +63,21 @@ const CourseDetails = () => {
         <h1 className="display-3 mb-3">{course.name}</h1>
         <HorizontalRule width={"30%"} />
         <Row className="justify-content-center">
-          {/* <p className="lead my-3 text-center">
-            Rating : {course.rating} / {course.slope}
-          </p> */}
-          <div className="my-3">
-            {currentUser ? (
-              currentUser.isAdmin ? (
+          <p className="lead py-3 text-center">
+            Rating: {course.rating} / {course.slope}
+          </p>
+
+          {currentUser ? (
+            currentUser.isAdmin ? (
+              <div className="my-3">
                 <AdminButtons
                   updatePath={`/courses/${course.handle}/edit`}
                   handleDelete={handleDelete}
                 />
-              ) : null
-            ) : null}
-          </div>
+              </div>
+            ) : null
+          ) : null}
+
           <div className="col-lg-9">
             <img
               src={course.imgUrl}

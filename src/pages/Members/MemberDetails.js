@@ -47,7 +47,7 @@ const MemberDetails = () => {
   return (
     <Container className="py-5">
       <Row className="text-center row justify-content-center">
-        <h1 className="display-3 mb-3">
+        <h1 className="display-1 mb-3">
           {member.firstName} {member.lastName}
         </h1>
 

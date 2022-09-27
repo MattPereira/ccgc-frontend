@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "./CourseCard.css";
+import "./CourseCard.scss";
 
 /** Course card component.
  *
@@ -18,20 +18,20 @@ const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
     <div className="mb-5">
       <Link to={`/courses/${handle}`} className="CourseCard-link">
         <Card className="CourseCard-card text-center">
+          <div className="CourseCard-crop">
+            <img alt={`${name}`} src={imgUrl} />
+          </div>
           <Card.Title
             tag="h3"
             className="display-6 bg-dark mb-0 py-3 text-white"
           >
             {name}
           </Card.Title>
-          <div className="CourseCard-crop">
-            <img alt={`${name}`} src={imgUrl} />
-          </div>
-          <Card.Body className="bg-primary text-white py-2">
+          {/* <Card.Body className="bg-primary text-white py-2">
             <Card.Text className="lead fw-bold">
               Rating {rating}/{slope}
             </Card.Text>
-          </Card.Body>
+          </Card.Body> */}
         </Card>
       </Link>
     </div>

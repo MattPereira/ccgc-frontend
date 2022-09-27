@@ -2,8 +2,8 @@ import "./index.scss";
 import React, { useContext } from "react";
 
 import { Row, Col } from "react-bootstrap";
-import AdminButtons from "../AdminButtons/AdminButtons";
-import UserContext from "../../../components/Auth/UserContext";
+import AdminButtons from "../../Common/AdminButtons/AdminButtons";
+import UserContext from "../../Auth/UserContext";
 
 /**
  *
@@ -28,24 +28,12 @@ const Showcase = ({ date, course, imgSrc, handleDelete, updatePath }) => {
     >
       <div className="showcase-overlay"></div>
       <div className="showcase-header text-center">
-        <h1 className="text-white mb-0">
+        <h1 className="text-white mb-0 display-1">
           {course.split(" ").slice(0, 2).join(" ")}
         </h1>
 
-        <Row className="justify-content-center">
-          <Col className="col-5">
-            <hr
-              style={{
-                color: "white",
-                border: "1.75px solid white",
-                margin: "7px",
-              }}
-            ></hr>
-          </Col>
-        </Row>
-
         {date ? (
-          <h3 className="text-white mt-1">
+          <h3 className="text-white">
             {new Date(date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",

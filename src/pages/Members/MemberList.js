@@ -35,12 +35,12 @@ const MemberList = () => {
   return (
     <Container className="py-5">
       <Row className="text-center justify-content-center">
-        <h1 className="display-3 mb-3">Members</h1>
+        <h1 className="display-1 mb-3">Members</h1>
         <hr
-          className="mb-4"
-          style={{ border: "2px solid grey", width: "15%" }}
+          className=""
+          style={{ border: "2px solid grey", width: "20%" }}
         ></hr>
-        <p className="lead mb-5">
+        <p className="lead py-5">
           Select a member to view all of their rounds played with the Contra
           Costa Golf Club
         </p>

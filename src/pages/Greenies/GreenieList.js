@@ -42,15 +42,14 @@ const GreenieList = () => {
   return (
     <Container className="py-5">
       <Row className="text-center justify-content-center">
-        <h1 className="display-3 mb-3">Greenies</h1>
+        <h1 className="display-1 mb-3">Greenies</h1>
         <hr
           style={{
             border: "2px solid grey",
-            width: "30%",
-            marginBottom: "1rem",
+            width: "15%",
           }}
         ></hr>
-        <p className="lead mb-5 mt-4">
+        <p className="lead py-5">
           All greenies sorted by distance from the cup.
         </p>
 

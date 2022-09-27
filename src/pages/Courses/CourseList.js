@@ -6,7 +6,7 @@ import UserContext from "../../components/Auth/UserContext";
 import { Container } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Show page with all courses listed
  *
@@ -40,23 +40,26 @@ const CourseList = () => {
   return (
     <Container className="py-5">
       <div className="text-center row justify-content-center">
-        <h1 className="display-3 mb-3">Courses</h1>
-        <hr
-          className="mb-4"
-          style={{ border: "2px solid grey", width: "20%" }}
-        ></hr>
-        <p className="lead mb-5">
-          List of all golf courses played by the Contra Costa Golf Club.
-        </p>
+        <h1 className="display-1 mb-3">Courses</h1>
+        <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
         {currentUser ? (
           currentUser.isAdmin ? (
-            <Link to="/courses/new">
-              <Button color="primary" className="mb-5 rounded-pill">
-                Create Course
+            <div className="py-5">
+              <Button
+                variant="contained"
+                component={Link}
+                to="/courses/new"
+                size="large"
+                sx={[{ "&:hover": { color: "white" } }]}
+              >
+                Add Course
               </Button>
-            </Link>
+            </div>
           ) : null
         ) : null}
+        <p className="lead py-5">
+          List of all golf courses. Select a course to see details.
+        </p>
 
         <div className="CourseList col-sm-11 col-md-9 col-lg-8">
           {courses.map((c) => (
