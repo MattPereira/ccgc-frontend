@@ -57,7 +57,7 @@ const RegisterForm = ({ register }) => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <h1 className="text-center display-1 mb-5">Register</h1>

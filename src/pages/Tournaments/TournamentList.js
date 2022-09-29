@@ -54,7 +54,7 @@ const TournamentList = () => {
         ></hr>
         {currentUser ? (
           currentUser.isAdmin ? (
-            <div className="py-5">
+            <div className="py-3">
               <Button
                 variant="contained"
                 component={Link}
@@ -71,7 +71,7 @@ const TournamentList = () => {
           Select a tournament date to view leaderboards and greenies.
         </p>
 
-        <div className="col-md-9 col-lg-8">
+        <div className="col-md-10 col-lg-8 col-xl-7">
           {tournaments.map((t) => (
             <TournamentCard
               key={t.date}

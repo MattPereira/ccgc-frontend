@@ -165,14 +165,14 @@ const CourseForm = ({ course }) => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="py-5">
       <div className="row justify-content-center">
         <div className="col-md-9 col-lg-7">
           <h1 className="text-center display-3 mb-5">
             {" "}
             {course ? "Edit" : "Create"} Course
           </h1>
-          <Card>
+          <Card className="mb-5">
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <div className="row">
