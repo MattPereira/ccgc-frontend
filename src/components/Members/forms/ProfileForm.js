@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import UserContext from "../../../components/Auth/UserContext";
 import CcgcApi from "../../../api/api";
 import { Card, Form, Alert, Container } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Form to edit user profile
  *
@@ -91,10 +92,11 @@ const ProfileForm = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
           <h1 className="display-3 text-center mb-5">User Profile</h1>
+
           <Card>
             <Card.Body className="px-5 py-5">
               <Form onSubmit={handleSubmit}>
@@ -159,20 +161,19 @@ const ProfileForm = () => {
                     ))
                   : null}
 
-                {updateConfirmed ? (
-                  <Alert variant="success">Profile information updated!</Alert>
-                ) : null}
-
-                <div className="row justify-content-end">
-                  <div className="col-auto">
-                    <button className="btn btn-primary btn-block px-4">
-                      Submit
-                    </button>
-                  </div>
+                <div className="text-end">
+                  <Button variant="contained" type="submit">
+                    Submit
+                  </Button>
                 </div>
               </Form>
             </Card.Body>
           </Card>
+          {updateConfirmed ? (
+            <Alert className="mt-3" variant="success">
+              Profile information updated!
+            </Alert>
+          ) : null}
         </div>
       </div>
     </Container>

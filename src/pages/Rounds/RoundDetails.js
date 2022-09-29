@@ -9,7 +9,8 @@ import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Button } from "@mui/material";
 
 /** Round details page.
  *
@@ -100,11 +101,17 @@ const RoundDetails = () => {
           {currentUser ? (
             currentUser.isAdmin || currentUser.username === round.username ? (
               <div className="my-4">
-                <Link to={`/greenies/new/${round.id}`}>
-                  <Button variant="success" className="rounded-pill">
-                    Add Greenie
-                  </Button>
-                </Link>
+                <Button
+                  variant="contained"
+                  component={Link}
+                  to={`/greenies/new/${round.id}`}
+                  sx={{
+                    backgroundColor: "#198754",
+                    "&:hover": { backgroundColor: "#157347", color: "white" },
+                  }}
+                >
+                  Add Greenie
+                </Button>
               </div>
             ) : null
           ) : null}

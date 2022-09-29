@@ -29,7 +29,17 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
   );
 
   // for when buttons are rendered on dark background
-  const lightSX = {
+  const lightDeleteSX = {
+    color: "white",
+    border: "1px solid white",
+    "&:hover": {
+      color: "black",
+      backgroundColor: "white",
+      border: "1px solid white",
+    },
+  };
+
+  const lightEditSX = {
     color: "white",
     border: "1px solid white",
     padding: "5px 25px",
@@ -84,7 +94,7 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
               variant={light ? "outlined" : "contained"}
               id="Popover1"
               type="button"
-              sx={light ? lightSX : deleteSX}
+              sx={light ? lightDeleteSX : deleteSX}
             >
               Delete
             </Button>
@@ -96,7 +106,7 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
           component={Link}
           variant={light ? "outlined" : "contained"}
           to={updatePath}
-          sx={light ? lightSX : editSX}
+          sx={light ? lightEditSX : editSX}
         >
           Edit
         </Button>
