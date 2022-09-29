@@ -81,7 +81,7 @@ const TournamentDetails = () => {
         size="large"
         sx={[{ "&:hover": { color: "white" } }]}
       >
-        Add Round
+        Add A Round
       </Button>
     </div>
   );

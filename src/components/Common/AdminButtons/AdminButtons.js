@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Popover, OverlayTrigger } from "react-bootstrap";
+import { Popover, OverlayTrigger } from "react-bootstrap";
+
+import { Button } from "@mui/material";
 
 /** Admin only buttons component
  *
@@ -26,9 +28,32 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
     handleDelete
   );
 
-  //popover stuff
-  // const [popoverOpen, setPopoverOpen] = useState(false);
-  // const toggle = () => setPopoverOpen(!popoverOpen);
+  // for when buttons are rendered on dark background
+  const lightSX = {
+    color: "white",
+    border: "1px solid white",
+    padding: "5px 25px",
+    "&:hover": {
+      color: "black",
+      backgroundColor: "white",
+      border: "1px solid white",
+    },
+  };
+
+  //regular butotns on white background
+  const editSX = {
+    padding: "5px 25px",
+    "&:hover": {
+      color: "white",
+    },
+  };
+
+  const deleteSX = {
+    backgroundColor: "#dc3545",
+    "&:hover": {
+      backgroundColor: "#c82333",
+    },
+  };
 
   //grab item for deletion warning message
   const item = updatePath.split("/")[1].slice(0, -1);
@@ -43,7 +68,7 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
           Are you sure you want to delete this {item}? This action cannot be
           undone!
         </p>
-        <Button variant="danger" className="mb-5 btn-sm" onClick={handleDelete}>
+        <Button variant="contained" sx={deleteSX} onClick={handleDelete}>
           Confirm
         </Button>
       </Popover.Body>
@@ -56,10 +81,10 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
         <div>
           <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
             <Button
-              variant={light ? "outline-light" : "outline-danger"}
+              variant={light ? "outlined" : "contained"}
               id="Popover1"
               type="button"
-              className="btn-sm"
+              sx={light ? lightSX : deleteSX}
             >
               Delete
             </Button>
@@ -67,14 +92,14 @@ const AdminButtons = ({ updatePath, handleDelete, light }) => {
         </div>
       </div>
       <div className="col-auto">
-        <Link to={updatePath}>
-          <Button
-            variant={light ? "outline-light" : "outline-primary"}
-            className="px-3 btn-sm"
-          >
-            Edit
-          </Button>
-        </Link>
+        <Button
+          component={Link}
+          variant={light ? "outlined" : "contained"}
+          to={updatePath}
+          sx={light ? lightSX : editSX}
+        >
+          Edit
+        </Button>
       </div>
     </div>
   );
