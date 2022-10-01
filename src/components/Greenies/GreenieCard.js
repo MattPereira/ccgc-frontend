@@ -32,7 +32,7 @@ const GreenieCard = ({
     <div className="mb-4">
       <Link to={`/greenies/${id}`} className="TournamentCard-link">
         <Card className="GreenieCard-card">
-          <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white">
+          <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white fw-bold">
             {courseName.split(" ").slice(0, 2).join(" ")}
           </Card.Title>
 
@@ -40,7 +40,7 @@ const GreenieCard = ({
             <img alt={`${courseName}`} src={courseImg} />
           </div>
           <div className="bg-success text-white h6 py-1">
-            <Card.Text className="lead">{owner}</Card.Text>
+            <Card.Text className="lead fw-bold">{owner}</Card.Text>
           </div>
           <Card.Body>
             <Table responsive>

@@ -104,13 +104,13 @@ const TournamentDetails = () => {
           ))
         : null}
 
-      <Container className="py-3">
+      <Container className="py-5">
         <Row className="justify-content-center">
           {currentUser ? AddBtn : null}
 
-          <p className="lead py-5 text-center">
+          {/* <p className="lead py-5 text-center">
             Select player name to view round details and add greenies.
-          </p>
+          </p> */}
 
           <div className="col-lg-10 text-center">
             <div className="mb-5">

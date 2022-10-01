@@ -58,7 +58,8 @@ function App() {
             let { username } = decodeToken(token);
             //put token on the API class and use it to call the API
             CcgcApi.token = token;
-            let currentUser = await CcgcApi.getCurrentUser(username);
+            let currentUser = await CcgcApi.getUser(username);
+            console.log("CURRENT USER", currentUser);
             setCurrentUser(currentUser);
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);

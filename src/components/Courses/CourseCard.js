@@ -27,11 +27,6 @@ const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
           >
             {name}
           </Card.Title>
-          {/* <Card.Body className="bg-primary text-white py-2">
-            <Card.Text className="lead fw-bold">
-              Rating {rating}/{slope}
-            </Card.Text>
-          </Card.Body> */}
         </Card>
       </Link>
     </div>

@@ -26,23 +26,31 @@ const MemberDetails = () => {
 
   console.debug("MemberDetails", "username=", username);
   const [member, setMember] = useState(null);
+  const [rounds, setRounds] = useState(null);
 
-  /* On component mount, load member data from API */
+  /* On component mount, load user and rounds data from API */
   useEffect(
     function getMemberOnMount() {
       console.debug("MemberDetails useEffect getMemberOnMount");
 
-      async function getMember() {
-        setMember(await CcgcApi.getMember(username));
+      async function getUser() {
+        setMember(await CcgcApi.getUser(username));
       }
-      getMember();
+      getUser();
+
+      //get all rounds played by a particular member
+      async function getRounds() {
+        setRounds(await CcgcApi.getRounds(username));
+      }
+      getRounds();
     },
     [username]
   );
 
   if (!member) return <LoadingSpinner />;
 
-  console.log("MEMBER:", member);
+  console.log("Member:", member);
+  console.log("Rounds:", rounds);
 
   return (
     <Container className="py-5">
@@ -58,8 +66,8 @@ const MemberDetails = () => {
           Scorecards and greenies for every round.
         </p>
         <div className="col-md-10 mb-3">
-          {member.rounds ? (
-            member.rounds.map((r) => (
+          {rounds ? (
+            rounds.map((r) => (
               <div key={r.id} className="mb-5">
                 <RoundTable
                   roundId={r.id}

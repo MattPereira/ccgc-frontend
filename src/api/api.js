@@ -48,7 +48,7 @@ class CcgcApi {
   }
 
   /**Get the current user. */
-  static async getCurrentUser(username) {
+  static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
@@ -61,10 +61,10 @@ class CcgcApi {
   }
 
   /**Get details (all rounds played) by a particular club member. */
-  static async getMember(username) {
-    let res = await this.request(`users/${username}`);
-    return res.user;
-  }
+  // static async getMember(username) {
+  //   let res = await this.request(`users/${username}`);
+  //   return res.user;
+  // }
 
   /** Update a user profile  */
   static async updateProfile(username, data) {
@@ -134,7 +134,13 @@ class CcgcApi {
     return res.deleted;
   }
 
-  /*******************  ROUND ROUTES ********************/
+  ///////////////////////////  ROUND ROUTES /////////////////////////////
+  /** Get all rounds (filtered by username) */
+  static async getRounds(username) {
+    let res = await this.request(`rounds`, { username: username });
+    return res.rounds;
+  }
+
   /** Get a round by id*/
   static async getRound(id) {
     let res = await this.request(`rounds/${id}`);

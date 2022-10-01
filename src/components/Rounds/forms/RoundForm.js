@@ -6,6 +6,8 @@ import UserContext from "../../Auth/UserContext";
 
 import { Card, Form, Alert, Container } from "react-bootstrap";
 
+import { Button } from "@mui/material";
+
 /** Form to create a new round
  *
  *
@@ -159,6 +161,8 @@ const RoundForm = ({ usernames, round }) => {
     }
   };
 
+  const HOLES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+
   return (
     <Container className="py-5">
       <div className="row justify-content-center">
@@ -235,7 +239,39 @@ const RoundForm = ({ usernames, round }) => {
                   </div>
                 </div>
 
-                <div className="row align-items-center mb-3">
+                {HOLES.map((num) => (
+                  <div key={num} className="row align-items-center mb-3">
+                    <div className="col-2 text-center">
+                      <Form.Label className="fw-bold">#{num}</Form.Label>
+                    </div>
+                    <div className="col-5 align-self-center">
+                      <Form.Control
+                        className="form-control"
+                        id={`strokes${num}`}
+                        name={`strokes${num}`}
+                        type="number"
+                        min="1"
+                        onChange={handleChange}
+                        value={eval(`formData.strokes${num}`)}
+                        required
+                      ></Form.Control>
+                    </div>
+                    <div className="col-5">
+                      <Form.Control
+                        className="form-control"
+                        id={`putts${num}`}
+                        name={`putts${num}`}
+                        type="number"
+                        min="0"
+                        onChange={handleChange}
+                        value={eval(`formData.putts${num}`)}
+                        required
+                      ></Form.Control>
+                    </div>
+                  </div>
+                ))}
+
+                {/* <div className="row align-items-center mb-3">
                   <div className="col-2 text-center">
                     <Form.Label className="fw-bold">#1</Form.Label>
                   </div>
@@ -263,9 +299,8 @@ const RoundForm = ({ usernames, round }) => {
                       required
                     ></Form.Control>
                   </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
+                </div> */}
+                {/* <div className="row align-items-center mb-3">
                   <div className="col-2 text-center">
                     <Form.Label className="fw-bold">#2</Form.Label>
                   </div>
@@ -773,26 +808,23 @@ const RoundForm = ({ usernames, round }) => {
                       required
                     ></Form.Control>
                   </div>
-                </div>
+                </div> */}
 
-                {formErrors.length
-                  ? formErrors.map((err) => (
-                      <Alert key={err} variant="danger">
-                        {err}
-                      </Alert>
-                    ))
-                  : null}
-
-                <div className="row justify-content-end">
-                  <div className="col-auto">
-                    <button className="btn btn-primary btn-block px-4">
-                      Submit
-                    </button>
-                  </div>
+                <div className="text-end">
+                  <Button variant="contained" type="submit">
+                    Submit
+                  </Button>
                 </div>
               </Form>
             </Card.Body>
           </Card>
+          {formErrors.length
+            ? formErrors.map((err) => (
+                <Alert key={err} variant="danger">
+                  {err}
+                </Alert>
+              ))
+            : null}
         </div>
       </div>
     </Container>

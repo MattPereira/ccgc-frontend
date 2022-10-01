@@ -66,7 +66,7 @@ const RoundDetails = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="py-5">
       <div className="text-center row justify-content-center">
         <h1 className="display-3">
           {transformUsername(round.username)}'s Round
