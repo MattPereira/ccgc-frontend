@@ -49,7 +49,7 @@ function Router({ login, register }) {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/standings" element={<Standings />} />
+      <Route exact path="/standings/:tourYears" element={<Standings />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route

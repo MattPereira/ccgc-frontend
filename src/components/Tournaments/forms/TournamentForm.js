@@ -23,7 +23,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
   const [formData, setFormData] = useState({
     date: tournament ? tournament.date : "",
     courseHandle: tournament ? tournament.courseHandle : courseHandles[0],
-    tourYears: tournament ? tournament.tourYears : "2021-22",
+    tourYears: tournament ? tournament.tourYears : "2022-23",
   });
 
   const [formErrors, setFormErrors] = useState([]);
@@ -89,6 +89,8 @@ const TournamentForm = ({ courseHandles, tournament }) => {
     //navigate to the course detail page for the newly created course
     navigate(`/tournaments/${formData.date}`);
   };
+
+  console.log(formData);
 
   return (
     <Container className="mt-5">
@@ -156,7 +158,8 @@ const TournamentForm = ({ courseHandles, tournament }) => {
                     value={formData.tourYears}
                     required
                   >
-                    <option>2022-23</option>
+                    <option>2021-22</option>
+                    <option selected="selected">2022-23</option>
                     <option>2023-24</option>
                     <option>2024-25</option>
                     <option>2025-26</option>

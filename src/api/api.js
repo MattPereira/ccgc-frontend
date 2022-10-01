@@ -134,7 +134,7 @@ class CcgcApi {
     return res.deleted;
   }
 
-  //////////////////// ROUND ROUTES ////////////////////
+  /*******************  ROUND ROUTES ********************/
   /** Get a round by id*/
   static async getRound(id) {
     let res = await this.request(`rounds/${id}`);
@@ -192,9 +192,8 @@ class CcgcApi {
 
   //////////////////// POINTS ROUTES ////////////////////
   /**Get season standings points */
-  //will eventually require a tourYears argument
-  static async getStandings() {
-    let res = await this.request("points/standings");
+  static async getStandings(tourYears) {
+    let res = await this.request(`points/standings/${tourYears}`);
     return res.standings;
   }
 

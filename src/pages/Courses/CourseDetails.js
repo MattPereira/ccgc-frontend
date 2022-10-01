@@ -11,7 +11,7 @@ import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 
 // import Showcase from "../components/Common/Showcase/Showcase";
 
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Table } from "react-bootstrap";
 
 /** Course details page.
  *
@@ -63,13 +63,9 @@ const CourseDetails = () => {
         <h1 className="display-3 mb-3">{course.name}</h1>
         <HorizontalRule width={"30%"} />
         <Row className="justify-content-center">
-          <p className="lead py-3 text-center">
-            Rating: {course.rating} / {course.slope}
-          </p>
-
           {currentUser ? (
             currentUser.isAdmin ? (
-              <div className="my-3">
+              <div className="mb-5">
                 <AdminButtons
                   updatePath={`/courses/${course.handle}/edit`}
                   handleDelete={handleDelete}
@@ -79,10 +75,20 @@ const CourseDetails = () => {
           ) : null}
 
           <div className="col-lg-9">
+            <Table responsive bordered hover className="mb-0">
+              <tbody>
+                <tr className="table-dark">
+                  <th>Rating</th>
+                  <th>{course.rating}</th>
+                  <th>Slope</th>
+                  <th>{course.slope}</th>
+                </tr>
+              </tbody>
+            </Table>
             <img
               src={course.imgUrl}
               alt={`${course.name}`}
-              className="img-fluid mb-0 mt-3"
+              className="img-fluid mb-0"
             />
 
             <div className="mb-5">

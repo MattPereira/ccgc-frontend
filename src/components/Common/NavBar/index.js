@@ -70,7 +70,7 @@ const Navigation = ({ logout }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="text-center mx-auto">
               <Nav.Item>
-                <Nav.Link eventKey={1} as={RRNavLink} to="/standings">
+                <Nav.Link eventKey={1} as={RRNavLink} to="/standings/2022-23">
                   Standings
                 </Nav.Link>
               </Nav.Item>
