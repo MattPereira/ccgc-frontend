@@ -89,6 +89,7 @@ const CourseForm = ({ course }) => {
     //create course handle from formData.name
     const courseHandle = formData.name
       .toLowerCase()
+      .replaceAll("'", "")
       .split(" ")
       .slice(0, 2)
       .join("-");
@@ -163,6 +164,8 @@ const CourseForm = ({ course }) => {
       navigate(`/courses/${courseHandle}`);
     }
   };
+
+  const HOLES = Array.from({ length: 18 }, (v, i) => i + 1);
 
   return (
     <Container className="py-5">
@@ -247,8 +250,37 @@ const CourseForm = ({ course }) => {
                     <Form.Label>Handicap</Form.Label>
                   </div>
                 </div>
+                {HOLES.map((num) => (
+                  <div key={num} className="row align-items-center mb-3">
+                    <div className="col-2 text-center">
+                      <Form.Label>#{num}</Form.Label>
+                    </div>
+                    <div className="col-5 align-self-center">
+                      <input
+                        className="form-control"
+                        id={`par${num}`}
+                        name={`par${num}`}
+                        type="number"
+                        onChange={handleChange}
+                        value={eval(`formData.par${num}`)}
+                        required
+                      ></input>
+                    </div>
+                    <div className="col-5">
+                      <input
+                        className="form-control"
+                        id={`handicap${num}`}
+                        name={`handicap${num}`}
+                        type="number"
+                        onChange={handleChange}
+                        value={eval(`formData.handicap${num}`)}
+                        required
+                      ></input>
+                    </div>
+                  </div>
+                ))}
 
-                <div className="row align-items-center mb-3">
+                {/* <div className="row align-items-center mb-3">
                   <div className="col-2 text-center">
                     <Form.Label>#1</Form.Label>
                   </div>
@@ -750,7 +782,7 @@ const CourseForm = ({ course }) => {
                       required
                     ></input>
                   </div>
-                </div>
+                </div> */}
 
                 {formErrors.length
                   ? formErrors.map((err) => (
