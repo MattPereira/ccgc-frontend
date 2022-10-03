@@ -50,7 +50,7 @@ const RoundDetails = () => {
   console.log(round);
 
   const handleDelete = async () => {
-    await CcgcApi.deleteRound(id);
+    await CcgcApi.deleteRound(id, { username: currentUser.username });
     navigate(`/tournaments/${round.tournamentDate}`);
   };
 
@@ -74,7 +74,7 @@ const RoundDetails = () => {
 
         <HorizontalRule width="30%" />
         {currentUser ? (
-          currentUser.isAdmin ? (
+          currentUser.isAdmin || currentUser.username === round.username ? (
             <AdminButtons
               updatePath={`/rounds/${id}/edit`}
               handleDelete={handleDelete}

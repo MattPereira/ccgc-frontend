@@ -26,51 +26,57 @@ const RoundForm = ({ usernames, round }) => {
   const { currentUser } = useContext(UserContext);
   const { date } = useParams();
 
+  const { strokes, putts } = round || {};
+
+  console.log("STROKES", strokes);
+  console.log("PUTTS", putts);
+
+  //Gracefully handling react requirement that form input value not be null lol
   const [formData, setFormData] = useState({
     username: round ? round.username : currentUser.username,
-    strokes1: round ? round.strokes.hole1 : "",
-    strokes2: round ? round.strokes.hole2 : "",
-    strokes3: round ? round.strokes.hole3 : "",
-    strokes4: round ? round.strokes.hole4 : "",
-    strokes5: round ? round.strokes.hole5 : "",
-    strokes6: round ? round.strokes.hole6 : "",
-    strokes7: round ? round.strokes.hole7 : "",
-    strokes8: round ? round.strokes.hole8 : "",
-    strokes9: round ? round.strokes.hole9 : "",
-    strokes10: round ? round.strokes.hole10 : "",
-    strokes11: round ? round.strokes.hole11 : "",
-    strokes12: round ? round.strokes.hole12 : "",
-    strokes13: round ? round.strokes.hole13 : "",
-    strokes14: round ? round.strokes.hole14 : "",
-    strokes15: round ? round.strokes.hole15 : "",
-    strokes16: round ? round.strokes.hole16 : "",
-    strokes17: round ? round.strokes.hole17 : "",
-    strokes18: round ? round.strokes.hole18 : "",
-    putts1: round ? round.putts.hole1 : "",
-    putts2: round ? round.putts.hole2 : "",
-    putts3: round ? round.putts.hole3 : "",
-    putts4: round ? round.putts.hole4 : "",
-    putts5: round ? round.putts.hole5 : "",
-    putts6: round ? round.putts.hole6 : "",
-    putts7: round ? round.putts.hole7 : "",
-    putts8: round ? round.putts.hole8 : "",
-    putts9: round ? round.putts.hole9 : "",
-    putts10: round ? round.putts.hole10 : "",
-    putts11: round ? round.putts.hole11 : "",
-    putts12: round ? round.putts.hole12 : "",
-    putts13: round ? round.putts.hole13 : "",
-    putts14: round ? round.putts.hole14 : "",
-    putts15: round ? round.putts.hole15 : "",
-    putts16: round ? round.putts.hole16 : "",
-    putts17: round ? round.putts.hole17 : "",
-    putts18: round ? round.putts.hole18 : "",
+    strokes1: strokes ? (strokes.hole1 === null ? "" : strokes.hole1) : "",
+    strokes2: strokes ? (strokes.hole2 === null ? "" : strokes.hole2) : "",
+    strokes3: strokes ? (strokes.hole3 === null ? "" : strokes.hole3) : "",
+    strokes4: strokes ? (strokes.hole4 === null ? "" : strokes.hole4) : "",
+    strokes5: strokes ? (strokes.hole5 === null ? "" : strokes.hole5) : "",
+    strokes6: strokes ? (strokes.hole6 === null ? "" : strokes.hole6) : "",
+    strokes7: strokes ? (strokes.hole7 === null ? "" : strokes.hole7) : "",
+    strokes8: strokes ? (strokes.hole8 === null ? "" : strokes.hole8) : "",
+    strokes9: strokes ? (strokes.hole9 === null ? "" : strokes.hole9) : "",
+    strokes10: strokes ? (strokes.hole10 === null ? "" : strokes.hole10) : "",
+    strokes11: strokes ? (strokes.hole11 === null ? "" : strokes.hole11) : "",
+    strokes12: strokes ? (strokes.hole12 === null ? "" : strokes.hole12) : "",
+    strokes13: strokes ? (strokes.hole13 === null ? "" : strokes.hole13) : "",
+    strokes14: strokes ? (strokes.hole14 === null ? "" : strokes.hole14) : "",
+    strokes15: strokes ? (strokes.hole15 === null ? "" : strokes.hole15) : "",
+    strokes16: strokes ? (strokes.hole16 === null ? "" : strokes.hole16) : "",
+    strokes17: strokes ? (strokes.hole17 === null ? "" : strokes.hole17) : "",
+    strokes18: strokes ? (strokes.hole18 === null ? "" : strokes.hole18) : "",
+    putts1: putts ? (putts.hole1 === null ? "" : putts.hole1) : "",
+    putts2: putts ? (putts.hole2 === null ? "" : putts.hole2) : "",
+    putts3: putts ? (putts.hole3 === null ? "" : putts.hole3) : "",
+    putts4: putts ? (putts.hole4 === null ? "" : putts.hole4) : "",
+    putts5: putts ? (putts.hole5 === null ? "" : putts.hole5) : "",
+    putts6: putts ? (putts.hole6 === null ? "" : putts.hole6) : "",
+    putts7: putts ? (putts.hole7 === null ? "" : putts.hole7) : "",
+    putts8: putts ? (putts.hole8 === null ? "" : putts.hole8) : "",
+    putts9: putts ? (putts.hole9 === null ? "" : putts.hole9) : "",
+    putts10: putts ? (putts.hole10 === null ? "" : putts.hole10) : "",
+    putts11: putts ? (putts.hole11 === null ? "" : putts.hole11) : "",
+    putts12: putts ? (putts.hole12 === null ? "" : putts.hole12) : "",
+    putts13: putts ? (putts.hole13 === null ? "" : putts.hole13) : "",
+    putts14: putts ? (putts.hole14 === null ? "" : putts.hole14) : "",
+    putts15: putts ? (putts.hole15 === null ? "" : putts.hole15) : "",
+    putts16: putts ? (putts.hole16 === null ? "" : putts.hole16) : "",
+    putts17: putts ? (putts.hole17 === null ? "" : putts.hole17) : "",
+    putts18: putts ? (putts.hole18 === null ? "" : putts.hole18) : "",
   });
 
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug("RoundForm", "formData=", formData, "formErrors=", formErrors);
 
-  //update state of formData onChange of any form input field
+  /***** Update state of formData onChange of any form input field *****/
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -81,13 +87,25 @@ const RoundForm = ({ usernames, round }) => {
     setFormErrors([]);
   };
 
-  /**on form submission:
+  /** On form submission:
    * -attempt save to backend & report any errors
    * -if successful
    *  -clear previous error messages and password
    *  - show update-confirmed alert
    *  - set current user info throughout the site
    */
+
+  const {
+    strokes1,
+    strokes2,
+    strokes3,
+    strokes4,
+    strokes5,
+    strokes6,
+    strokes7,
+    strokes8,
+    strokes9,
+  } = formData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,44 +115,44 @@ const RoundForm = ({ usernames, round }) => {
       tournamentDate: round ? round.tournamentDate : date,
       username: formData.username,
       strokes: {
-        hole1: +formData.strokes1,
-        hole2: +formData.strokes2,
-        hole3: +formData.strokes3,
-        hole4: +formData.strokes4,
-        hole5: +formData.strokes5,
-        hole6: +formData.strokes6,
-        hole7: +formData.strokes7,
-        hole8: +formData.strokes8,
-        hole9: +formData.strokes9,
-        hole10: +formData.strokes10,
-        hole11: +formData.strokes11,
-        hole12: +formData.strokes12,
-        hole13: +formData.strokes13,
-        hole14: +formData.strokes14,
-        hole15: +formData.strokes15,
-        hole16: +formData.strokes16,
-        hole17: +formData.strokes17,
-        hole18: +formData.strokes18,
+        hole1: strokes1 === "" ? null : +strokes1,
+        hole2: strokes2 === "" ? null : +strokes2,
+        hole3: strokes3 === "" ? null : +strokes3,
+        hole4: strokes4 === "" ? null : +strokes4,
+        hole5: strokes5 === "" ? null : +strokes5,
+        hole6: strokes6 === "" ? null : +strokes6,
+        hole7: strokes7 === "" ? null : +strokes7,
+        hole8: strokes8 === "" ? null : +strokes8,
+        hole9: strokes9 === "" ? null : +strokes9,
+        hole10: formData.strokes10 === "" ? null : +formData.strokes10,
+        hole11: formData.strokes11 === "" ? null : +formData.strokes11,
+        hole12: formData.strokes12 === "" ? null : +formData.strokes12,
+        hole13: formData.strokes13 === "" ? null : +formData.strokes13,
+        hole14: formData.strokes14 === "" ? null : +formData.strokes14,
+        hole15: formData.strokes15 === "" ? null : +formData.strokes15,
+        hole16: formData.strokes16 === "" ? null : +formData.strokes16,
+        hole17: formData.strokes17 === "" ? null : +formData.strokes17,
+        hole18: formData.strokes18 === "" ? null : +formData.strokes18,
       },
       putts: {
-        hole1: +formData.putts1,
-        hole2: +formData.putts2,
-        hole3: +formData.putts3,
-        hole4: +formData.putts4,
-        hole5: +formData.putts5,
-        hole6: +formData.putts6,
-        hole7: +formData.putts7,
-        hole8: +formData.putts8,
-        hole9: +formData.putts9,
-        hole10: +formData.putts10,
-        hole11: +formData.putts11,
-        hole12: +formData.putts12,
-        hole13: +formData.putts13,
-        hole14: +formData.putts14,
-        hole15: +formData.putts15,
-        hole16: +formData.putts16,
-        hole17: +formData.putts17,
-        hole18: +formData.putts18,
+        hole1: formData.putts1 === "" ? null : +formData.putts1,
+        hole2: formData.putts2 === "" ? null : +formData.putts2,
+        hole3: formData.putts3 === "" ? null : +formData.putts3,
+        hole4: formData.putts4 === "" ? null : +formData.putts4,
+        hole5: formData.putts5 === "" ? null : +formData.putts5,
+        hole6: formData.putts6 === "" ? null : +formData.putts6,
+        hole7: formData.putts7 === "" ? null : +formData.putts7,
+        hole8: formData.putts8 === "" ? null : +formData.putts8,
+        hole9: formData.putts9 === "" ? null : +formData.putts9,
+        hole10: formData.putts10 === "" ? null : +formData.putts10,
+        hole11: formData.putts11 === "" ? null : +formData.putts11,
+        hole12: formData.putts12 === "" ? null : +formData.putts12,
+        hole13: formData.putts13 === "" ? null : +formData.putts13,
+        hole14: formData.putts14 === "" ? null : +formData.putts14,
+        hole15: formData.putts15 === "" ? null : +formData.putts15,
+        hole16: formData.putts16 === "" ? null : +formData.putts16,
+        hole17: formData.putts17 === "" ? null : +formData.putts17,
+        hole18: formData.putts18 === "" ? null : +formData.putts18,
       },
     };
 
@@ -253,7 +271,6 @@ const RoundForm = ({ usernames, round }) => {
                         min="1"
                         onChange={handleChange}
                         value={eval(`formData.strokes${num}`)}
-                        required
                       ></Form.Control>
                     </div>
                     <div className="col-5">
@@ -265,7 +282,6 @@ const RoundForm = ({ usernames, round }) => {
                         min="0"
                         onChange={handleChange}
                         value={eval(`formData.putts${num}`)}
-                        required
                       ></Form.Control>
                     </div>
                   </div>

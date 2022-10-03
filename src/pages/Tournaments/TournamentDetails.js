@@ -73,7 +73,7 @@ const TournamentDetails = () => {
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtn = (
-    <div className="py-5 text-center">
+    <div className="pb-5 text-center">
       <Button
         variant="contained"
         component={Link}
