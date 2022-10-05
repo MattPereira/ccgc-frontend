@@ -21,16 +21,22 @@ import { Button } from "@mui/material";
  *
  */
 
-const RoundForm = ({ usernames, round }) => {
+const RoundForm = ({ availableUsernames, round }) => {
   let navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const { date } = useParams();
 
   const { strokes, putts } = round || {};
 
+  console.log("AVAILABLE: ", availableUsernames);
+
   //Gracefully handling react requirement that form input value not be null lol
   const [formData, setFormData] = useState({
-    username: round ? round.username : currentUser.username,
+    username: round
+      ? round.username
+      : availableUsernames.includes(currentUser.username)
+      ? currentUser.username
+      : availableUsernames[0],
     strokes1: strokes ? (strokes.hole1 === null ? "" : strokes.hole1) : "",
     strokes2: strokes ? (strokes.hole2 === null ? "" : strokes.hole2) : "",
     strokes3: strokes ? (strokes.hole3 === null ? "" : strokes.hole3) : "",
@@ -234,7 +240,7 @@ const RoundForm = ({ usernames, round }) => {
                         value={formData.username}
                         required
                       >
-                        {usernames.map((username) => (
+                        {availableUsernames.map((username) => (
                           <option key={username} value={username}>
                             {username
                               .split("-")

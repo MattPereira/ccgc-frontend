@@ -46,7 +46,7 @@ const NewRound = () => {
 
   return (
     <div>
-      <RoundForm usernames={availableUsernames} />
+      <RoundForm availableUsernames={availableUsernames} />
     </div>
   );
 };
