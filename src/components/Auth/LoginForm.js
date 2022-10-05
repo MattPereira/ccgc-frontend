@@ -45,6 +45,9 @@ const LoginForm = ({ login }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    formData.email = formData.email.toLowerCase();
+    console.log(formData.email);
     let result = await login(formData);
     if (result.success) {
       navigate("/");

@@ -28,9 +28,6 @@ const RoundForm = ({ usernames, round }) => {
 
   const { strokes, putts } = round || {};
 
-  console.log("STROKES", strokes);
-  console.log("PUTTS", putts);
-
   //Gracefully handling react requirement that form input value not be null lol
   const [formData, setFormData] = useState({
     username: round ? round.username : currentUser.username,
@@ -158,8 +155,6 @@ const RoundForm = ({ usernames, round }) => {
 
     try {
       if (round) {
-        delete roundData.tournamentDate;
-        delete roundData.username;
         await CcgcApi.updateRound(round.id, roundData);
       } else {
         await CcgcApi.createRound(roundData);
@@ -202,14 +197,18 @@ const RoundForm = ({ usernames, round }) => {
                         type="text"
                         value={new Date(
                           round.tournamentDate
-                        ).toLocaleDateString()}
+                        ).toLocaleDateString("en-US")}
                         readOnly
                       ></Form.Control>
                     ) : (
                       <Form.Control
                         className="form-control"
                         type="text"
-                        value={new Date(date).toLocaleDateString()}
+                        value={new Date(date).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
                         readOnly
                       ></Form.Control>
                     )}
@@ -237,7 +236,14 @@ const RoundForm = ({ usernames, round }) => {
                       >
                         {usernames.map((username) => (
                           <option key={username} value={username}>
-                            {username}
+                            {username
+                              .split("-")
+                              .map((name) => {
+                                return (
+                                  name.charAt(0).toUpperCase() + name.slice(1)
+                                );
+                              })
+                              .join(" ")}
                           </option>
                         ))}
                       </Form.Select>

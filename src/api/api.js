@@ -32,48 +32,40 @@ class CcgcApi {
     }
   }
 
-  // Individual API routes
-
   //////////////////// AUTH ROUTES ////////////////////
-  /** Register for site.  */
+  /***** Register for site.  *****/
   static async register(data) {
     let res = await this.request(`auth/register`, data, "post");
     return res.token;
   }
 
-  /** login to site.  */
+  /***** Login to site.  *****/
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
     return res.token;
   }
 
-  /**Get the current user. */
+  /***** Get the current user. *****/
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
 
   //////////////////// USER ROUTES ////////////////////
-  /**Get all club members. */
+  /***** Get all club members. *****/
   static async getMembers() {
     let res = await this.request(`users`);
     return res.users;
   }
 
-  /**Get details (all rounds played) by a particular club member. */
-  // static async getMember(username) {
-  //   let res = await this.request(`users/${username}`);
-  //   return res.user;
-  // }
-
-  /** Update a user profile  */
+  /***** Update a user profile  *****/
   static async updateProfile(username, data) {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
 
   //////////////////// COURSE ROUTES ////////////////////
-  /** Get courses */
+  /** Get all courses */
   static async getCourses() {
     let res = await this.request("courses");
     return res.courses;
@@ -104,7 +96,7 @@ class CcgcApi {
   }
 
   //////////////////// TOURNAMENT ROUTES ////////////////////
-  /** Get tournaments */
+  /** Get all tournaments */
   static async getTournaments() {
     let res = await this.request("tournaments");
     return res.tournaments;
@@ -136,8 +128,14 @@ class CcgcApi {
 
   ///////////////////////////  ROUND ROUTES /////////////////////////////
   /** Get all rounds (filtered by username) */
-  static async getRounds(username) {
+  static async getRoundsByUsername(username) {
     let res = await this.request(`rounds`, { username: username });
+    return res.rounds;
+  }
+
+  /** Get all rounds (filtered by tournament_date) */
+  static async getRoundsByDate(date) {
+    let res = await this.request(`rounds`, { date: date });
     return res.rounds;
   }
 

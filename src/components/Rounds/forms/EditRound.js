@@ -16,11 +16,9 @@ import RoundForm from "./RoundForm";
 
 const EditRound = () => {
   const { id } = useParams();
-
-  /** Fetch the round data first to prepopulate formData  */
   const [round, setRound] = useState(null);
 
-  /* On component mount, load tournament and courses from API to populate form data */
+  /* On component mount, load tournament data from API to populate form inputs */
   useEffect(
     function getRoundDataOnMount() {
       console.debug("EditRound useEffect getRoundDataOnMount");

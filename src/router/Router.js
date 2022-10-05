@@ -28,7 +28,7 @@ import EditRound from "../components/Rounds/forms/EditRound";
 import LoginForm from "../components/Auth/LoginForm";
 import RegisterForm from "../components/Auth/RegisterForm";
 
-import Standings from "../pages/Standings";
+import Standings from "../pages/Standings/StandingsDetails";
 
 /** Site-wide routes.
  *

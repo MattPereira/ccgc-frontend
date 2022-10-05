@@ -18,7 +18,9 @@ const CalculationsAccordion = () => {
       <Accordion.Item eventKey="1">
         <Accordion.Header>Score Differential</Accordion.Header>
         <Accordion.Body>
-          <p className="lead fw-bold">(113/Slope) * (Total Strokes - Rating)</p>
+          <p className="lead fw-bold">
+            ( 113 / Slope ) × ( Total Strokes − Rating )
+          </p>
           <p>
             Measures the performance of a round in relation to the relative
             difficulty of the course that was played.
@@ -26,30 +28,25 @@ const CalculationsAccordion = () => {
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="2">
-        <Accordion.Header>Handicap Index</Accordion.Header>
+        <Accordion.Header>Player Index</Accordion.Header>
         <Accordion.Body>
-          <p className="lead fw-bold">Average of Score Differentials</p>
-          <p>
-            Out of the last four rounds played with the Contra Costa Golf Club,
-            the lowest two score differentials are averaged to compute a
-            player's Handicap Index.
-          </p>
+          <p className="lead fw-bold">( Two lowest score diffs ) / 2</p>
+          <p>Avg of lowest 2 score differentials out of last 4 rounds</p>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="3">
         <Accordion.Header>Course Handicap</Accordion.Header>
         <Accordion.Body>
-          <p className="lead fw-bold">(Handicap Index * Slope) / 113</p>
-          <p>
-            The number of strokes needed to play to par of the tees being
-            played.
+          <p className="lead fw-bold">
+            ( Handicap Index × Course Slope ) / 113
           </p>
+          <p>The number to subtract from total strokes to get net strokes.</p>
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="4">
         <Accordion.Header>Net Strokes</Accordion.Header>
         <Accordion.Body>
-          <p className="lead fw-bold">Total Strokes - Course Handicap</p>
+          <p className="lead fw-bold">Total Strokes − Course Handicap</p>
           <p>
             Net strokes is used to determine the finishing order for players in
             each tournament.
