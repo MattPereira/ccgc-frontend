@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 
-import { Card, Form, Alert, Container } from "react-bootstrap";
+import { Card, Form, Alert, Container, Row, Col } from "react-bootstrap";
 
 import { Button } from "@mui/material";
 
@@ -189,21 +189,27 @@ const RoundForm = ({ availableUsernames, round }) => {
           <h1 className="text-center display-3 mb-5">
             {round ? "Edit" : "New"} Round
           </h1>
-          <Card className="mb-5">
+          <Card className="mb-5 p-3">
             <Card.Body>
               <Form onSubmit={handleSubmit}>
-                <div className="row">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name" className="fw-bold">
+                <Row className="mb-3 text-end align-items-center">
+                  <Col xs={2}>
+                    <Form.Label htmlFor="name" className="fw-bold mb-0">
                       Date
                     </Form.Label>
+                  </Col>
+                  <Col xs={10}>
                     {round ? (
                       <Form.Control
                         className="form-control"
                         type="text"
                         value={new Date(
                           round.tournamentDate
-                        ).toLocaleDateString("en-US")}
+                        ).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
                         readOnly
                       ></Form.Control>
                     ) : (
@@ -218,13 +224,15 @@ const RoundForm = ({ availableUsernames, round }) => {
                         readOnly
                       ></Form.Control>
                     )}
-                  </Form.Group>
-                </div>
-                <div className="row">
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="username" className="fw-bold">
-                      Player
+                  </Col>
+                </Row>
+                <Row className="mb-3 align-items-center justify-content-center text-end">
+                  <Col xs={2}>
+                    <Form.Label htmlFor="username" className="fw-bold mb-0">
+                      Name
                     </Form.Label>
+                  </Col>
+                  <Col xs={10}>
                     {round ? (
                       <Form.Control
                         value={formData.username
@@ -259,27 +267,36 @@ const RoundForm = ({ availableUsernames, round }) => {
                         ))}
                       </Form.Select>
                     )}
-                  </Form.Group>
-                </div>
+                  </Col>
+                </Row>
 
-                <div className="row text-center">
-                  <div className="col-2">
-                    <Form.Label className="fw-bold">Hole</Form.Label>
-                  </div>
-                  <div className="col-5">
-                    <Form.Label className="fw-bold">Strokes</Form.Label>
-                  </div>
-                  <div className="col-5">
-                    <Form.Label className="fw-bold">Putts</Form.Label>
-                  </div>
-                </div>
+                <Row className="text-center justify-content-center mb-2">
+                  <Col xs={2}>
+                    <Form.Label className="fw-bold">
+                      <u>Hole</u>
+                    </Form.Label>
+                  </Col>
+                  <Col xs={5}>
+                    <Form.Label className="fw-bold">
+                      <u>Strokes</u>
+                    </Form.Label>
+                  </Col>
+                  <Col xs={5}>
+                    <Form.Label className="fw-bold">
+                      <u>Putts</u>
+                    </Form.Label>
+                  </Col>
+                </Row>
 
                 {HOLES.map((num) => (
-                  <div key={num} className="row align-items-center mb-3">
-                    <div className="col-2 text-center">
-                      <Form.Label className="fw-bold">#{num}</Form.Label>
-                    </div>
-                    <div className="col-5 align-self-center">
+                  <Row
+                    key={num}
+                    className="align-items-center justify-content-center text-center mb-3"
+                  >
+                    <Col xs={2}>
+                      <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
+                    </Col>
+                    <Col xs={5}>
                       <Form.Control
                         className="form-control"
                         id={`strokes${num}`}
@@ -289,8 +306,8 @@ const RoundForm = ({ availableUsernames, round }) => {
                         onChange={handleChange}
                         value={eval(`formData.strokes${num}`)}
                       ></Form.Control>
-                    </div>
-                    <div className="col-5">
+                    </Col>
+                    <Col xs={5}>
                       <Form.Control
                         className="form-control"
                         id={`putts${num}`}
@@ -300,8 +317,8 @@ const RoundForm = ({ availableUsernames, round }) => {
                         onChange={handleChange}
                         value={eval(`formData.putts${num}`)}
                       ></Form.Control>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                 ))}
 
                 {/* <div className="row align-items-center mb-3">
