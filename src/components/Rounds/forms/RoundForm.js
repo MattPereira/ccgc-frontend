@@ -192,7 +192,7 @@ const RoundForm = ({ availableUsernames, round }) => {
           <Card className="mb-5 p-3">
             <Card.Body>
               <Form onSubmit={handleSubmit}>
-                <Row className="mb-3 text-end align-items-center">
+                <Row className="mb-3 text-center align-items-center">
                   <Col xs={2}>
                     <Form.Label htmlFor="name" className="fw-bold mb-0">
                       Date
@@ -226,7 +226,7 @@ const RoundForm = ({ availableUsernames, round }) => {
                     )}
                   </Col>
                 </Row>
-                <Row className="mb-3 align-items-center justify-content-center text-end">
+                <Row className="mb-3 align-items-center justify-content-center text-center">
                   <Col xs={2}>
                     <Form.Label htmlFor="username" className="fw-bold mb-0">
                       Name

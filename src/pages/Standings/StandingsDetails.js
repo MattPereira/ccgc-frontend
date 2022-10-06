@@ -9,7 +9,6 @@ import "./StandingsDetails.scss";
 
 import { ToggleButtonGroup, ToggleButton, Box } from "@mui/material";
 
-import PointsAccordion from "../../components/Standings/PointsAccordion";
 import StandingsTable from "../../components/Standings/StandingsTable";
 
 import { Container, Row, Table, Col } from "react-bootstrap";
@@ -60,8 +59,9 @@ const Standings = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "3rem",
+            marginTop: "1rem",
           }}
         >
           <ToggleButtonGroup
@@ -75,39 +75,47 @@ const Standings = () => {
               value="2021-22"
               component={Link}
               to="/standings/2021-22"
+              sx={{ width: "100px" }}
             >
-              21/22
+              2022
             </ToggleButton>
             <ToggleButton
               value="2022-23"
               component={Link}
               to="/standings/2022-23"
+              sx={{ width: "100px" }}
             >
-              22/23
+              2023
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
-        <p className="lead text-center mb-5 mt-4">
+        {/* <p className="lead text-center mb-5 mt-4">
           Aggregate points for each player's top 10 rounds for the season.
-        </p>
+        </p> */}
         <div className="col-lg-8">
           <StandingsTable data={standings} />
           <div className="my-5">
-            <h3 className="text-center mb-3 display-6">Points</h3>
-            <Table responsive bordered className="text-center">
+            <h3
+              className="text-center mb-3 display-6"
+              style={{ fontFamily: "Fredoka one" }}
+            >
+              Points
+            </h3>
+            <Table
+              responsive
+              bordered
+              variant="light"
+              striped
+              className="text-center"
+            >
               <thead>
-                <tr>
-                  <th colSpan={6} className="table-dark">
-                    POSITION
-                  </th>
-                </tr>
-                <tr className="table-secondary">
-                  <th>CATEGORY</th>
-                  <th>1st</th>
-                  <th>2nd</th>
-                  <th>3rd</th>
-                  <th>4th</th>
-                  <th>5th</th>
+                <tr className="table-dark">
+                  <th>POSITION</th>
+                  <th>1ST</th>
+                  <th>2ND</th>
+                  <th>3RD</th>
+                  <th>4TH</th>
+                  <th>5TH</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,15 +139,10 @@ const Standings = () => {
             </Table>
             <Row className="text-center">
               <Col xs={6}>
-                <Table bordered>
+                <Table bordered variant="light" striped>
                   <thead>
-                    <tr>
-                      <th colSpan={2} className="table-dark">
-                        GREENIES
-                      </th>
-                    </tr>
-                    <tr className="table-secondary">
-                      <th>DISTANCE</th>
+                    <tr className="table-dark">
+                      <th>GREENIES</th>
                       <th>PTS</th>
                     </tr>
                   </thead>
@@ -164,15 +167,10 @@ const Standings = () => {
                 </Table>
               </Col>
               <Col xs={6}>
-                <Table bordered className="text-center">
+                <Table bordered variant="light" striped className="text-center">
                   <thead>
-                    <tr>
-                      <th colSpan={2} className="table-dark">
-                        SCORES
-                      </th>
-                    </tr>
-                    <tr className="table-secondary">
-                      <th>TYPE</th>
+                    <tr className="table-dark">
+                      <th>SCORE</th>
                       <th>PTS</th>
                     </tr>
                   </thead>

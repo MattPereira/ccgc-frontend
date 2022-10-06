@@ -3,7 +3,7 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
 import UserContext from "../../components/Auth/UserContext";
-import { Container } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -61,7 +61,7 @@ const CourseList = () => {
           List of all golf courses. Select a course to see details.
         </p>
 
-        <div className="CourseList col-sm-11 col-md-9 col-lg-8">
+        <Col md={10} lg={8} xl={7} className="CourseList">
           {courses.map((c) => (
             <CourseCard
               key={c.handle}
@@ -72,7 +72,7 @@ const CourseList = () => {
               imgUrl={c.imgUrl}
             />
           ))}
-        </div>
+        </Col>
       </div>
     </Container>
   );

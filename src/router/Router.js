@@ -29,6 +29,7 @@ import LoginForm from "../components/Auth/LoginForm";
 import RegisterForm from "../components/Auth/RegisterForm";
 
 import Standings from "../pages/Standings/StandingsDetails";
+import Dashboard from "../pages/Dashboard";
 
 /** Site-wide routes.
  *
@@ -39,7 +40,7 @@ import Standings from "../pages/Standings/StandingsDetails";
  * Visiting a non-existant route redirects to the homepage.
  */
 
-function Router({ login, register }) {
+function Router({ login, register, logout }) {
   console.debug(
     "Routes",
     `login=${typeof login}`,
@@ -49,7 +50,6 @@ function Router({ login, register }) {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/standings/:tourYears" element={<Standings />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route
@@ -57,7 +57,12 @@ function Router({ login, register }) {
         path="/register"
         element={<RegisterForm register={register} />}
       />
+
+      <Route exact path="/dashboard" element={<Dashboard />} />
+
       <Route exact path="/profile" element={<ProfileForm />} />
+
+      <Route exact path="/standings/:tourYears" element={<Standings />} />
 
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />

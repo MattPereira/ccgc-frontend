@@ -11,6 +11,10 @@ import NavBar from "./components/Common/NavBar";
 import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
 
+import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
+
+import "./App.scss";
+
 /** Contra Costa Golf Club App
  *
  *  * - infoLoaded: has user data been pulled from API?
@@ -112,21 +116,41 @@ function App() {
 
   if (!infoLoaded) return <LoadingSpinner />;
 
+  let theme = createTheme({
+    palette: {
+      secondary: {
+        main: "#000000",
+      },
+    },
+    typography: {
+      h1: {
+        fontFamily: "Fredoka one",
+      },
+      h3: {
+        fontFamily: "Raleway",
+      },
+    },
+  });
+
+  theme = responsiveFontSizes(theme);
+
   return (
-    <div className="App">
+    <div className="App content-wrap">
       <BrowserRouter>
-        <UserContext.Provider
-          value={{
-            currentUser,
-            setCurrentUser,
-          }}
-        >
-          <ScrollToTop>
-            <NavBar logout={logout} />
-            <Router login={login} register={register} />
-          </ScrollToTop>
-          <Footer />
-        </UserContext.Provider>
+        <ThemeProvider theme={theme}>
+          <UserContext.Provider
+            value={{
+              currentUser,
+              setCurrentUser,
+            }}
+          >
+            <ScrollToTop>
+              <NavBar logout={logout} />
+              <Router login={login} register={register} />
+            </ScrollToTop>
+            <Footer />
+          </UserContext.Provider>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   );

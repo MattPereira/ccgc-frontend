@@ -29,7 +29,7 @@ const Navigation = ({ logout }) => {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey={7} as={RRNavLink} to="/logout" onClick={logout}>
+          <Nav.Link eventKey={7} as={RRNavLink} to="/" onClick={logout}>
             Logout {currentUser.firstName}
           </Nav.Link>
         </Nav.Item>
@@ -70,20 +70,21 @@ const Navigation = ({ logout }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="text-center mx-auto">
               <Nav.Item>
-                <Nav.Link eventKey={1} as={RRNavLink} to="/tournaments">
+                <Nav.Link eventKey={1} as={RRNavLink} to="/standings/2022-23">
+                  Standings
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={2} as={RRNavLink} to="/tournaments">
                   Tournaments
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey={2} as={RRNavLink} to="/members">
+                <Nav.Link eventKey={3} as={RRNavLink} to="/members">
                   Members
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey={3} as={RRNavLink} to="/standings/2022-23">
-                  Standings
-                </Nav.Link>
-              </Nav.Item>
+
               <Nav.Item>
                 <Nav.Link eventKey={4} as={RRNavLink} to="/greenies">
                   Greenies

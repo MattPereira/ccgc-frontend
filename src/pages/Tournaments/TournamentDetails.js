@@ -79,7 +79,7 @@ const TournamentDetails = () => {
         component={Link}
         to={`/rounds/new/${date}`}
         size="large"
-        sx={[{ "&:hover": { color: "white" } }]}
+        sx={{ "&:hover": { color: "white" } }}
       >
         Add A Round
       </Button>

@@ -4,7 +4,7 @@ import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
 import TournamentCard from "../../components/Tournaments/TournamentCard";
 import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 import { Button } from "@mui/material";
 
 /** Show page with all tournaments listed
@@ -71,7 +71,7 @@ const TournamentList = () => {
           Select a tournament date to view leaderboards and greenies.
         </p>
 
-        <div className="col-md-10 col-lg-8 col-xl-7">
+        <Col md={10} lg={8} xl={7}>
           {tournaments.map((t) => (
             <TournamentCard
               key={t.date}
@@ -82,7 +82,7 @@ const TournamentList = () => {
               imgUrl={t.imgUrl}
             />
           ))}
-        </div>
+        </Col>
       </div>
     </Container>
   );

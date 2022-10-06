@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import { Link } from "react-router-dom";
-import { Container, Row, Table } from "react-bootstrap";
 import CalculationsAccordion from "../../components/Members/CalculationsAccordion";
+
+import { Container, Row, Table } from "react-bootstrap";
+import { Typography } from "@mui/material";
 
 // import GreenieCardTable from "../components/Greenies/GreenieTable";
 
@@ -104,7 +106,9 @@ const MemberDetails = () => {
                 </tbody>
               </Table>
               <div className="my-5">
-                <h3 className="text-center mb-3 display-6">Calculations</h3>
+                <Typography align="center" variant="h3" gutterBottom>
+                  Calculations
+                </Typography>
                 <CalculationsAccordion />
               </div>
             </div>

@@ -15,7 +15,7 @@ const StandingsTable = ({ data }) => {
       <thead>
         <tr className="table-dark">
           <th>POS</th>
-          <th>PLAYER</th>
+          <th>NAME</th>
           <th className="d-none d-md-table-cell">PLY</th>
           <th>STR</th>
           <th>PUT</th>
