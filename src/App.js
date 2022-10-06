@@ -118,7 +118,7 @@ function App() {
 
   let theme = createTheme({
     palette: {
-      secondary: {
+      dark: {
         main: "#000000",
       },
     },
@@ -128,6 +128,15 @@ function App() {
       },
       h3: {
         fontFamily: "Raleway",
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 28,
+          },
+        },
       },
     },
   });

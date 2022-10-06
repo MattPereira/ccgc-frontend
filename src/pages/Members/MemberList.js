@@ -41,8 +41,7 @@ const MemberList = () => {
         <Typography variant="h1">Members</Typography>
         <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
         <p className="lead py-5">
-          Select a member to view all of their rounds played with the Contra
-          Costa Golf Club
+          Select a member name to view all of their rounds data.
         </p>
       </Row>
 

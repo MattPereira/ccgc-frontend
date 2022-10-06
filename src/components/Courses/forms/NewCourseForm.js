@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CcgcApi from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Container } from "react-bootstrap";
+import { Button } from "@mui/material";
 import "./CourseForms.css";
 
 /** Form to create a new course
@@ -16,6 +17,8 @@ import "./CourseForms.css";
 
 const CourseForm = ({ course }) => {
   let navigate = useNavigate();
+
+  // const { pars, handicaps } = course || {};
 
   const [formData, setFormData] = useState({
     name: course ? course.name : "",
@@ -175,7 +178,7 @@ const CourseForm = ({ course }) => {
             {" "}
             {course ? "Edit" : "Create"} Course
           </h1>
-          <Card className="mb-5">
+          <Card className="mb-5 p-3">
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <div className="row">
@@ -241,19 +244,19 @@ const CourseForm = ({ course }) => {
 
                 <div className="row text-center">
                   <div className="col-2">
-                    <Form.Label>Hole</Form.Label>
+                    <Form.Label className="fw-bold">Hole</Form.Label>
                   </div>
                   <div className="col-5">
-                    <Form.Label>Par</Form.Label>
+                    <Form.Label className="fw-bold">Par</Form.Label>
                   </div>
                   <div className="col-5">
-                    <Form.Label>Handicap</Form.Label>
+                    <Form.Label className="fw-bold">Handicap</Form.Label>
                   </div>
                 </div>
                 {HOLES.map((num) => (
                   <div key={num} className="row align-items-center mb-3">
                     <div className="col-2 text-center">
-                      <Form.Label>#{num}</Form.Label>
+                      <Form.Label className="fw-bold">#{num}</Form.Label>
                     </div>
                     <div className="col-5 align-self-center">
                       <input
@@ -279,6 +282,10 @@ const CourseForm = ({ course }) => {
                     </div>
                   </div>
                 ))}
+
+                <div className="text-end">
+                  <Button variant="contained">Submit</Button>
+                </div>
 
                 {/* <div className="row align-items-center mb-3">
                   <div className="col-2 text-center">
@@ -783,25 +790,16 @@ const CourseForm = ({ course }) => {
                     ></input>
                   </div>
                 </div> */}
-
-                {formErrors.length
-                  ? formErrors.map((err) => (
-                      <Alert key={err} color="danger">
-                        {err}
-                      </Alert>
-                    ))
-                  : null}
-
-                <div className="row justify-content-end">
-                  <div className="col-auto">
-                    <button className="btn btn-primary btn-block px-4">
-                      Submit
-                    </button>
-                  </div>
-                </div>
               </Form>
             </Card.Body>
           </Card>
+          {formErrors.length
+            ? formErrors.map((err) => (
+                <Alert key={err} color="danger">
+                  {err}
+                </Alert>
+              ))
+            : null}
         </div>
       </div>
     </Container>

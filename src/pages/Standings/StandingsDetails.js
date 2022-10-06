@@ -61,7 +61,7 @@ const Standings = () => {
             display: "flex",
             justifyContent: "center",
             marginBottom: "3rem",
-            marginTop: "1rem",
+            marginTop: "2rem",
           }}
         >
           <ToggleButtonGroup

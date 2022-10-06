@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-import UserContext from "../../components/Auth/UserContext";
 import TournamentCard from "../../components/Tournaments/TournamentCard";
-import { Link } from "react-router-dom";
+
 import { Container, Col } from "react-bootstrap";
-import { Button } from "@mui/material";
 
 /** Show page with all tournaments listed
- *
  *
  * On component mount, load tournaments from API
  *
@@ -22,9 +19,7 @@ import { Button } from "@mui/material";
  */
 
 const TournamentList = () => {
-  const { currentUser } = useContext(UserContext);
-
-  console.debug("TournamentList", "currentUser=", currentUser);
+  console.debug("TournamentList");
 
   const [tournaments, setTournaments] = useState(null);
 
@@ -52,23 +47,9 @@ const TournamentList = () => {
             marginBottom: "1rem",
           }}
         ></hr>
-        {currentUser ? (
-          currentUser.isAdmin ? (
-            <div className="py-3">
-              <Button
-                variant="contained"
-                component={Link}
-                to="/tournaments/new"
-                size="large"
-                sx={[{ "&:hover": { color: "white" } }]}
-              >
-                Add Tournament
-              </Button>
-            </div>
-          ) : null
-        ) : null}
+
         <p className="lead py-5">
-          Select a tournament date to view leaderboards and greenies.
+          Select a tournament date to view the leaderboards.
         </p>
 
         <Col md={10} lg={8} xl={7}>

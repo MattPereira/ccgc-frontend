@@ -27,6 +27,7 @@ const Homepage = () => {
     width: "50%",
     fontFamily: "Fredoka one",
     fontSize: "1.25rem",
+    color: "white",
     "&:hover": { color: "white" },
   };
 
@@ -49,7 +50,7 @@ const Homepage = () => {
                 variant="contained"
                 size="large"
                 sx={buttonSX}
-                color="secondary"
+                color="dark"
               >
                 Dashboard
               </Button>

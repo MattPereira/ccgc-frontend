@@ -1,16 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
-import UserContext from "../../components/Auth/UserContext";
 import { Container, Col } from "react-bootstrap";
-
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
 
 /** Show page with all courses listed
  *
- * On component mount, load courses from API
+ * On component mount, load courses from API to pass to CourseCard
  *
  * This is routed to path "/courses"
  *
@@ -18,8 +14,6 @@ import { Button } from "@mui/material";
  */
 
 const CourseList = () => {
-  const { currentUser } = useContext(UserContext);
-
   console.debug("CourseList");
 
   const [courses, setCourses] = useState(null);
@@ -42,21 +36,6 @@ const CourseList = () => {
       <div className="text-center row justify-content-center">
         <h1 className="display-1 mb-3">Courses</h1>
         <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
-        {currentUser ? (
-          currentUser.isAdmin ? (
-            <div className="py-5">
-              <Button
-                variant="contained"
-                component={Link}
-                to="/courses/new"
-                size="large"
-                sx={[{ "&:hover": { color: "white" } }]}
-              >
-                Add Course
-              </Button>
-            </div>
-          ) : null
-        ) : null}
         <p className="lead py-5">
           List of all golf courses. Select a course to see details.
         </p>
