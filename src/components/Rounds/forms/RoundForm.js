@@ -227,7 +227,12 @@ const RoundForm = ({ availableUsernames, round }) => {
                     </Form.Label>
                     {round ? (
                       <Form.Control
-                        value={formData.username}
+                        value={formData.username
+                          .split("-")
+                          .map((name) => {
+                            return name.charAt(0).toUpperCase() + name.slice(1);
+                          })
+                          .join(" ")}
                         readOnly
                       ></Form.Control>
                     ) : (
