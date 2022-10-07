@@ -125,10 +125,15 @@ function App() {
     typography: {
       h1: {
         fontFamily: "Fredoka one",
+        fontWeight: 400,
       },
       h3: {
         fontFamily: "Itim",
         fontWeight: 400,
+      },
+      h4: {
+        fontFamily: "Lato",
+        fontWeight: 900,
       },
     },
     components: {

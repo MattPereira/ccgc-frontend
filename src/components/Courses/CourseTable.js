@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
  *
  */
 
-const CourseTable = ({ pars, handicaps }) => {
+const CourseTable = ({ pars, handicaps, slope, rating }) => {
   return (
     <Table responsive bordered hover className="text-center">
       <thead>
@@ -26,7 +26,7 @@ const CourseTable = ({ pars, handicaps }) => {
           ))}
         </tr>
 
-        <tr className="bg-white">
+        <tr className="table-light">
           <th>HCP</th>
           {Object.values(handicaps).map((h) => (
             <td key={uuidv4()}>{h}</td>

@@ -23,18 +23,19 @@ const Navigation = ({ logout }) => {
     currentUser.admin ? <h1>hello</h1> : <h1>goodbye</h1>;
     return (
       <>
+        {currentUser.isAdmin ? (
+          <Nav.Item>
+            <Nav.Link eventKey={10} as={RRNavLink} to="/dashboard">
+              Dashboard
+            </Nav.Link>
+          </Nav.Item>
+        ) : null}
         <Nav.Item>
           <Nav.Link eventKey={6} as={RRNavLink} to="/profile">
             Profile
           </Nav.Link>
         </Nav.Item>
-        {currentUser.isAdmin ? (
-          <Nav.Item>
-            <Nav.Link eventKey={11} as={RRNavLink} to="/dashboard">
-              Dashboard
-            </Nav.Link>
-          </Nav.Item>
-        ) : null}
+
         <Nav.Item>
           <Nav.Link eventKey={7} as={RRNavLink} to="/" onClick={logout}>
             Logout {currentUser.firstName}

@@ -1,12 +1,8 @@
+import { Typography } from "@mui/material";
+
 import "./index.scss";
-import React, { useContext } from "react";
 
-import AdminButtons from "../../Common/AdminButtons/AdminButtons";
-import UserContext from "../../Auth/UserContext";
-
-/**
- *
- * Showcase component for tournament details page
+/** Showcase component for top of tournament details page
  *
  * Handles header of tournament details with a
  * background image of the course, the name of course,
@@ -16,9 +12,7 @@ import UserContext from "../../Auth/UserContext";
  *
  */
 
-const Showcase = ({ date, course, imgSrc, handleDelete, updatePath }) => {
-  const { currentUser } = useContext(UserContext);
-
+const Showcase = ({ date, course, imgSrc }) => {
   console.log(course);
   return (
     <section
@@ -27,31 +21,22 @@ const Showcase = ({ date, course, imgSrc, handleDelete, updatePath }) => {
     >
       <div className="showcase-overlay"></div>
       <div className="showcase-header text-center">
-        <h1 className="text-white mb-0 display-1">
+        <Typography
+          variant="h1"
+          sx={{ color: "white", marginBottom: "0.5rem" }}
+        >
           {course.split(" ").slice(0, 2).join(" ")}
-        </h1>
+        </Typography>
 
         {date ? (
-          <h3 className="text-white">
+          <Typography variant="h4" sx={{ color: "white" }}>
             {new Date(date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
               timeZone: "UTC",
             })}
-          </h3>
-        ) : null}
-
-        {currentUser ? (
-          currentUser.isAdmin ? (
-            <div className="mt-3">
-              <AdminButtons
-                updatePath={updatePath}
-                handleDelete={handleDelete}
-                light={true}
-              />
-            </div>
-          ) : null
+          </Typography>
         ) : null}
       </div>
     </section>

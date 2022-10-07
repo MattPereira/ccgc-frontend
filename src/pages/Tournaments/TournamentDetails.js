@@ -2,21 +2,25 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../../components/Auth/UserContext";
-// import HorizontalRule from "../components/Common/HorizontalRule";
 
 import StandingsTable from "../../components/Standings/StandingsTable";
 import TournamentTable from "../../components/Tournaments/TournamentTable";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
-// import AdminButtons from "../components/Common/AdminButtons";
-
 import Showcase from "../../components/Tournaments/Showcase";
 
 import { Link } from "react-router-dom";
-import { Alert, Container, Row } from "react-bootstrap";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Container,
+  Box,
+  Snackbar,
+  Alert,
+} from "@mui/material";
+
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 /** Tournament details page.
  *
@@ -35,12 +39,24 @@ import { Button } from "@mui/material";
 
 const TournamentDetails = () => {
   const { date } = useParams();
-  let navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
 
-  console.debug("TournamentDetails");
   const [tournament, setTournament] = useState(null);
-  const [deletionErrors, setDeletionErrors] = useState([]);
+  const [showSnack, setShowSnack] = React.useState({
+    open: true,
+    vertical: "bottom",
+    horizontal: "center",
+  });
+
+  console.debug("TournamentDetails");
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSnack(false);
+  };
 
   /* On component mount, load tournament from API */
   useEffect(
@@ -58,22 +74,12 @@ const TournamentDetails = () => {
   if (!tournament) return <LoadingSpinner />;
   console.log("TOURNAMENT", tournament);
 
-  const { strokesLeaderboard, puttsLeaderboard, pointsLeaderboard } =
+  const { greenies, strokesLeaderboard, puttsLeaderboard, pointsLeaderboard } =
     tournament;
-
-  //function to handle deletion of tournament passed to EditAndDeleteBtns
-  const handleDelete = async () => {
-    try {
-      await CcgcApi.deleteTournament(date);
-      navigate("/tournaments");
-    } catch (errors) {
-      setDeletionErrors(errors);
-    }
-  };
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtn = (
-    <div className="pb-5 text-center">
+    <Box sx={{ paddingBottom: "3rem" }}>
       <Button
         variant="contained"
         component={Link}
@@ -81,9 +87,9 @@ const TournamentDetails = () => {
         size="large"
         sx={{ "&:hover": { color: "white" } }}
       >
-        Add A Round
+        <AddCircleOutlineIcon /> <span className="ms-2">Round</span>
       </Button>
-    </div>
+    </Box>
   );
 
   return (
@@ -92,59 +98,62 @@ const TournamentDetails = () => {
         date={date}
         course={tournament.courseName}
         imgSrc={tournament.courseImg}
-        handleDelete={handleDelete}
-        updatePath={`/tournaments/${date}/update`}
       />
 
-      {deletionErrors.length
-        ? deletionErrors.map((err) => (
-            <Alert key={err} variant="danger">
-              {err}
-            </Alert>
-          ))
-        : null}
+      <Snackbar
+        open={showSnack}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="info"
+          variant="filled"
+          elevation={3}
+          sx={{ width: "100%" }}
+        >
+          Select player's name to view round details
+        </Alert>
+      </Snackbar>
 
-      <Container className="py-5">
-        <Row className="justify-content-center">
-          {currentUser ? AddBtn : null}
+      <Container
+        sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
+      >
+        {currentUser ? AddBtn : null}
 
-          {/* <p className="lead py-5 text-center">
-            Select player name to view round details and add greenies.
-          </p> */}
+        <Box sx={{ pb: 3 }}>
+          <Typography variant="h3" gutterBottom>
+            Strokes
+          </Typography>
+          <TournamentTable data={strokesLeaderboard} type="strokes" />
+        </Box>
 
-          <div className="col-lg-10 text-center">
-            <div className="mb-5">
-              <h3 className="display-6 mb-3">
-                <b>Strokes</b>
-              </h3>
-              <TournamentTable data={strokesLeaderboard} type="strokes" />
+        <Box sx={{ pb: 3 }}>
+          <Typography variant="h3" gutterBottom>
+            Putts
+          </Typography>
+          <TournamentTable data={puttsLeaderboard} type="putts" />
+        </Box>
+        {greenies.length ? (
+          <Box sx={{ pb: 3 }}>
+            <Typography variant="h3" gutterBottom>
+              Greenies
+            </Typography>
+            <div className="d-lg-none">
+              <GreenieTable greenies={greenies} />
             </div>
-            <div className="mb-5">
-              <h3 className="display-6 mb-3">
-                <b>Putts</b>
-              </h3>
-              <TournamentTable data={puttsLeaderboard} type="putts" />
+            <div className="d-none d-lg-block">
+              <GreenieCardList greenies={greenies} />
             </div>
-            <div className="mb-5">
-              <h3 className="display-6 mb-3">
-                <b>Greenies</b>
-              </h3>
-              {/* <div className="row justify-content-center"> */}
-              <div className="d-lg-none">
-                <GreenieTable greenies={tournament.greenies} />
-              </div>
-              <div className="d-none d-lg-block">
-                <GreenieCardList greenies={tournament.greenies} />
-              </div>
-            </div>
-            <div className="mb-5">
-              <h3 className="display-6 mb-3">
-                <b>Points</b>
-              </h3>
-              <StandingsTable data={pointsLeaderboard} />
-            </div>
-          </div>
-        </Row>
+          </Box>
+        ) : null}
+        <Box sx={{ pb: 3 }}>
+          <Typography variant="h3" gutterBottom>
+            Points
+          </Typography>
+          <StandingsTable data={pointsLeaderboard} />
+        </Box>
       </Container>
     </>
   );

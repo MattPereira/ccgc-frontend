@@ -15,7 +15,8 @@ import { Link } from "react-router-dom";
  */
 
 const GreenieTable = ({ greenies }) => {
-  return (
+  console.log("GREENIES", greenies);
+  return greenies.length ? (
     <Table striped bordered>
       <thead className="table-dark">
         <tr>
@@ -43,7 +44,7 @@ const GreenieTable = ({ greenies }) => {
         ))}
       </tbody>
     </Table>
-  );
+  ) : null;
 };
 
 export default GreenieTable;

@@ -1,17 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../../components/Auth/UserContext";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
-
 import CourseTable from "../../components/Courses/CourseTable";
 import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import LoadingSpinner from "../../components/Common/Loading";
-import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 
-// import Showcase from "../components/Common/Showcase/Showcase";
+import { Container, Row } from "react-bootstrap";
 
-import { Container, Row, Table } from "react-bootstrap";
+import { Box, Typography } from "@mui/material";
 
 /** Course details page.
  *
@@ -28,8 +24,6 @@ import { Container, Row, Table } from "react-bootstrap";
 
 const CourseDetails = () => {
   const { handle } = useParams();
-  let navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
 
   console.debug("CourseDetails", "handle=", handle);
 
@@ -50,41 +44,23 @@ const CourseDetails = () => {
 
   if (!course) return <LoadingSpinner />;
 
-  const handleDelete = async () => {
-    await CcgcApi.deleteCourse(handle);
-    navigate("/courses");
-  };
-
   console.log(course);
 
   return (
     <Container className="py-5">
       <Row className="justify-content-center text-center">
-        <h1 className="display-3 mb-3">{course.name}</h1>
-        <HorizontalRule width={"30%"} />
+        <Typography variant="h1" gutterBottom>
+          {course.name}
+        </Typography>
+        <hr style={{ width: "40%", border: "2px solid grey" }} />
+        <Typography
+          variant="h3"
+          sx={{ fontSize: "1.35rem", marginTop: "1rem", marginBottom: "2rem" }}
+        >
+          Rating : {course.rating} | Slope : {course.slope}
+        </Typography>
         <Row className="justify-content-center">
-          {currentUser ? (
-            currentUser.isAdmin ? (
-              <div className="mb-5">
-                <AdminButtons
-                  updatePath={`/courses/${course.handle}/edit`}
-                  handleDelete={handleDelete}
-                />
-              </div>
-            ) : null
-          ) : null}
-
           <div className="col-lg-9">
-            <Table responsive bordered hover className="mb-0">
-              <tbody>
-                <tr className="table-dark">
-                  <th>Rating</th>
-                  <th>{course.rating}</th>
-                  <th>Slope</th>
-                  <th>{course.slope}</th>
-                </tr>
-              </tbody>
-            </Table>
             <img
               src={course.imgUrl}
               alt={`${course.name}`}

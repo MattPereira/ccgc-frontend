@@ -69,7 +69,13 @@ const MemberDetails = () => {
         <div className="col-md-10 mb-3">
           {rounds ? (
             <div>
-              <Table striped bordered responsive className="text-center">
+              <Table
+                striped
+                bordered
+                responsive
+                variant="light"
+                className="text-center"
+              >
                 <thead>
                   <tr className="table-dark">
                     <th>TOURNEY</th>

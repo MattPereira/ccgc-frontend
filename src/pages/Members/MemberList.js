@@ -48,7 +48,14 @@ const MemberList = () => {
       <Row className="justify-content-center">
         <Col md={10} lg={8}>
           {members.length ? (
-            <Table bordered striped hover responsive className="text-center">
+            <Table
+              bordered
+              striped
+              hover
+              responsive
+              variant="light"
+              className="text-center"
+            >
               <thead>
                 <tr className="table-dark">
                   <th>NAME</th>
