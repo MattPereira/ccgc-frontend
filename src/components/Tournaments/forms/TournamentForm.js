@@ -3,6 +3,8 @@ import CcgcApi from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Row, Container } from "react-bootstrap";
 
+import { Button } from "@mui/material";
+
 /** Form to create a new tournament
  *
  *
@@ -90,6 +92,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
     navigate(`/tournaments/${formData.date}`);
   };
 
+  console.log(tournament);
   console.log(formData);
 
   return (
@@ -99,7 +102,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
           {tournament ? "Update" : "New"} Tournament
         </h1>
         <div className="col-sm-10 col-md-8 col-lg-6">
-          <Card>
+          <Card className="p-3">
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
@@ -142,7 +145,10 @@ const TournamentForm = ({ courseHandles, tournament }) => {
                   >
                     {courseHandles.map((handle) => (
                       <option key={handle} value={handle}>
-                        {handle}
+                        {handle
+                          .split("-")
+                          .map((word) => word[0].toUpperCase() + word.slice(1))
+                          .join(" ")}
                       </option>
                     ))}
                   </Form.Select>
@@ -150,20 +156,38 @@ const TournamentForm = ({ courseHandles, tournament }) => {
 
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="tourYears">Tour Year</Form.Label>
-                  <Form.Select
-                    id="tourYears"
-                    name="tourYears"
-                    type="select"
-                    onChange={handleChange}
-                    value={formData.tourYears}
-                    required
-                  >
-                    <option>2021-22</option>
-                    <option selected="selected">2022-23</option>
-                    <option>2023-24</option>
-                    <option>2024-25</option>
-                    <option>2025-26</option>
-                  </Form.Select>
+
+                  {tournament ? (
+                    <Form.Select
+                      id="tourYears"
+                      name="tourYears"
+                      type="select"
+                      onChange={handleChange}
+                      value={formData.tourYears}
+                      required
+                    >
+                      <option>2021-22</option>
+                      <option>2022-23</option>
+                      <option>2023-24</option>
+                      <option>2024-25</option>
+                      <option>2025-26</option>
+                    </Form.Select>
+                  ) : (
+                    <Form.Select
+                      id="tourYears"
+                      name="tourYears"
+                      type="select"
+                      onChange={handleChange}
+                      value={"2022-23"}
+                      required
+                    >
+                      <option>2021-22</option>
+                      <option>2022-23</option>
+                      <option>2023-24</option>
+                      <option>2024-25</option>
+                      <option>2025-26</option>
+                    </Form.Select>
+                  )}
                 </Form.Group>
 
                 {formErrors.length
@@ -176,9 +200,9 @@ const TournamentForm = ({ courseHandles, tournament }) => {
 
                 <div className="row justify-content-end">
                   <div className="col-auto">
-                    <button className="btn btn-primary btn-block px-4">
+                    <Button variant="contained" type="submit">
                       Submit
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </Form>

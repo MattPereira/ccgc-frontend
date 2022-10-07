@@ -3,7 +3,6 @@ import { NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 import "./index.scss";
 import { Navbar, Nav, Container } from "react-bootstrap";
-
 import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 
 /** Navigation bar for site that shows on every page
@@ -21,6 +20,7 @@ const Navigation = ({ logout }) => {
   console.debug("Navigation");
 
   function loggedInNav() {
+    currentUser.admin ? <h1>hello</h1> : <h1>goodbye</h1>;
     return (
       <>
         <Nav.Item>
@@ -28,6 +28,13 @@ const Navigation = ({ logout }) => {
             Profile
           </Nav.Link>
         </Nav.Item>
+        {currentUser.isAdmin ? (
+          <Nav.Item>
+            <Nav.Link eventKey={11} as={RRNavLink} to="/dashboard">
+              Dashboard
+            </Nav.Link>
+          </Nav.Item>
+        ) : null}
         <Nav.Item>
           <Nav.Link eventKey={7} as={RRNavLink} to="/" onClick={logout}>
             Logout {currentUser.firstName}

@@ -8,7 +8,7 @@ import ProfileForm from "../components/Members/forms/ProfileForm";
 
 import CourseList from "../pages/Courses/CourseList";
 import CourseDetails from "../pages/Courses/CourseDetails";
-import NewCourseForm from "../components/Courses/forms/NewCourseForm";
+import NewCourseForm from "../components/Courses/forms/CourseForm";
 import EditCourse from "../components/Courses/forms/EditCourse";
 
 import GreenieList from "../pages/Greenies/GreenieList";

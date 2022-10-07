@@ -3,16 +3,30 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 
 import { Link } from "react-router-dom";
-import { Grid, Typography, Box, Button, Container } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Box,
+  Button,
+  Container,
+  IconButton,
+} from "@mui/material";
 
-import { DataGrid } from "@mui/x-data-grid";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-const buttonSX = {
-  "&:hover": { color: "white" },
-};
+import TournamentsDash from "./TournamentsDash";
+import CoursesDash from "./CoursesDash";
+
+/** DASHBOARD PAGE
+ *
+ *  Allows admin users to edit and delte any course or tournament
+ *
+ * Router -> Dashboard -> { CoursesDash, TournamentsDash }
+ */
 
 export default function Dashboard() {
   const [tournaments, setTournaments] = useState(null);
+  const [courses, setCourses] = useState(null);
 
   /* On component mount, load tournaments from API */
   useEffect(function getTournamentsOnMount() {
@@ -22,6 +36,11 @@ export default function Dashboard() {
       let tournaments = await CcgcApi.getTournaments();
       setTournaments(tournaments);
     }
+    async function fetchAllCourses() {
+      let courses = await CcgcApi.getCourses();
+      setCourses(courses);
+    }
+    fetchAllCourses();
     fetchAllTournaments();
   }, []);
 
@@ -29,62 +48,48 @@ export default function Dashboard() {
 
   console.log(tournaments);
 
-  const tourneyColumns = [
-    { field: "date", headerName: "Date", width: 100 },
-    { field: "courseName", headerName: tournaments.courseName },
-  ];
-
-  const tourneyRows = tournaments.map((t) => {
-    return {
-      id: t.date,
-      date: t.date,
-      courseName: t.courseName,
-    };
-  });
-
   return (
-    <Container>
-      <Box sx={{ paddingTop: "3rem", textAlign: "center" }}>
+    <Container
+      sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
+    >
+      <Box>
         <Typography variant="h1" gutterBottom>
           Dashboard
         </Typography>
-        <Grid container>
-          <Grid item xs={12} md={6}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={7} lg={6}>
+            <Box sx={{ mb: 2 }} />
             <Typography variant="h3" gutterBottom>
               Tournaments
+              <IconButton
+                component={Link}
+                to="/tournaments/new"
+                color="primary"
+              >
+                <AddCircleOutlineIcon fontSize="large" />
+              </IconButton>
             </Typography>
-            <Button
-              variant="contained"
-              component={Link}
-              to="/tournaments/new"
-              size="large"
-              sx={buttonSX}
-            >
-              Add Tourney
-            </Button>
-            <div style={{ height: 400, width: "100%" }}>
-              <DataGrid
-                rows={tourneyRows}
-                columns={tourneyColumns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-              />
+
+            <div style={{ height: "650px", width: "380px", margin: "auto" }}>
+              <TournamentsDash tournaments={tournaments} />
             </div>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={7} lg={6}>
+            <Box sx={{ mb: 2 }} />
+
             <Typography variant="h3" gutterBottom>
               Courses
+              <IconButton
+                variant="contained"
+                component={Link}
+                to="/courses/new"
+                color="primary"
+              >
+                <AddCircleOutlineIcon fontSize="large" />
+              </IconButton>
             </Typography>
-            <Button
-              variant="contained"
-              component={Link}
-              to="/courses/new"
-              size="large"
-              sx={buttonSX}
-            >
-              Add Course
-            </Button>
+
+            <CoursesDash courses={courses} />
           </Grid>
         </Grid>
       </Box>

@@ -127,7 +127,8 @@ function App() {
         fontFamily: "Fredoka one",
       },
       h3: {
-        fontFamily: "Raleway",
+        fontFamily: "Itim",
+        fontWeight: 400,
       },
     },
     components: {

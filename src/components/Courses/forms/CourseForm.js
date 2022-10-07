@@ -183,7 +183,9 @@ const CourseForm = ({ course }) => {
               <Form onSubmit={handleSubmit}>
                 <div className="row">
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name">Course Name</Form.Label>
+                    <Form.Label htmlFor="name" className="fw-bold">
+                      Name
+                    </Form.Label>
                     <input
                       className="form-control"
                       id="name"
@@ -197,7 +199,9 @@ const CourseForm = ({ course }) => {
                 </div>
                 <div className="row">
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name">Image Url</Form.Label>
+                    <Form.Label htmlFor="name" className="fw-bold">
+                      Image URL
+                    </Form.Label>
                     <input
                       className="form-control"
                       id="imgUrl"
@@ -213,7 +217,9 @@ const CourseForm = ({ course }) => {
                 <div className="row justify-content-center">
                   <div className="col-6">
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="rating">Rating</Form.Label>
+                      <Form.Label htmlFor="rating" className="fw-bold">
+                        Rating
+                      </Form.Label>
                       <input
                         className="form-control"
                         id="rating"
@@ -228,7 +234,9 @@ const CourseForm = ({ course }) => {
                   </div>
                   <div className="col-6">
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="slope">Slope</Form.Label>
+                      <Form.Label htmlFor="slope" className="fw-bold">
+                        Slope
+                      </Form.Label>
                       <input
                         className="form-control"
                         id="slope"
@@ -284,7 +292,9 @@ const CourseForm = ({ course }) => {
                 ))}
 
                 <div className="text-end">
-                  <Button variant="contained">Submit</Button>
+                  <Button variant="contained" type="submit">
+                    Submit
+                  </Button>
                 </div>
 
                 {/* <div className="row align-items-center mb-3">
