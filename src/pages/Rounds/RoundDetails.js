@@ -4,13 +4,12 @@ import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import RoundTable from "../../components/Rounds/RoundTable";
 import { useNavigate } from "react-router-dom";
-import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Button } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 
 /** Round details page.
  *
@@ -72,7 +71,7 @@ const RoundDetails = () => {
           {transformUsername(round.username)}'s Round
         </h1>
 
-        <HorizontalRule width="30%" />
+        <Divider role="presentation" sx={{ width: "20%" }} />
         {currentUser ? (
           currentUser.isAdmin || currentUser.username === round.username ? (
             <AdminButtons

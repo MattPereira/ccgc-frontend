@@ -42,20 +42,7 @@ const Homepage = () => {
             style={{ marginTop: "8rem" }}
           />
 
-          {currentUser && currentUser.isAdmin ? (
-            <div className="mt-5 mb-3">
-              <Button
-                component={Link}
-                to="/dashboard"
-                variant="contained"
-                size="large"
-                sx={buttonSX}
-                color="dark"
-              >
-                Dashboard
-              </Button>
-            </div>
-          ) : (
+          {currentUser ? null : (
             <>
               <div className="mt-5 mb-3">
                 <Button

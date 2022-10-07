@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import CourseTable from "../../components/Courses/CourseTable";
-import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import LoadingSpinner from "../../components/Common/Loading";
 
 import { Container, Row } from "react-bootstrap";
 
-import { Box, Typography } from "@mui/material";
+import { Typography, Divider } from "@mui/material";
 
 /** Course details page.
  *
@@ -52,7 +51,7 @@ const CourseDetails = () => {
         <Typography variant="h1" gutterBottom>
           {course.name}
         </Typography>
-        <hr style={{ width: "40%", border: "2px solid grey" }} />
+        <Divider role="presentation" sx={{ mb: 5, width: "17%" }} />
         <Typography
           variant="h3"
           sx={{ fontSize: "1.35rem", marginTop: "1rem", marginBottom: "2rem" }}

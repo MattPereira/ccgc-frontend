@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
   Box,
-  Button,
+  Divider,
   Container,
   IconButton,
 } from "@mui/material";
@@ -52,47 +52,52 @@ export default function Dashboard() {
     <Container
       sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
     >
-      <Box>
-        <Typography variant="h1" gutterBottom>
-          Dashboard
-        </Typography>
-        <Grid container justifyContent="center">
-          <Grid item xs={12} md={7} lg={6}>
-            <Box sx={{ mb: 2 }} />
-            <Typography variant="h3" gutterBottom>
-              Tournaments
-              <IconButton
-                component={Link}
-                to="/tournaments/new"
-                color="primary"
-              >
-                <AddCircleOutlineIcon fontSize="large" />
-              </IconButton>
-            </Typography>
+      <Box
+        justifyContent="center"
+        display="flex"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h1">Dashboard</Typography>
 
-            <div style={{ height: "650px", width: "380px", margin: "auto" }}>
-              <TournamentsDash tournaments={tournaments} />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={7} lg={6}>
-            <Box sx={{ mb: 2 }} />
-
-            <Typography variant="h3" gutterBottom>
-              Courses
-              <IconButton
-                variant="contained"
-                component={Link}
-                to="/courses/new"
-                color="primary"
-              >
-                <AddCircleOutlineIcon fontSize="large" />
-              </IconButton>
-            </Typography>
-
-            <CoursesDash courses={courses} />
-          </Grid>
-        </Grid>
+        <Divider role="presentation" sx={{ width: "17%" }} />
       </Box>
+
+      <Grid container justifyContent="center">
+        <Grid item xs={12} md={7} lg={6}>
+          <Box sx={{ mb: 2 }} />
+          <Typography variant="h3" gutterBottom>
+            Tournaments
+            <IconButton component={Link} to="/tournaments/new" color="primary">
+              <AddCircleOutlineIcon fontSize="large" />
+            </IconButton>
+          </Typography>
+
+          <div style={{ height: "650px", width: "380px", margin: "auto" }}>
+            <TournamentsDash tournaments={tournaments} />
+          </div>
+        </Grid>
+        <Grid item xs={12} md={7} lg={6}>
+          <Box sx={{ mb: 2 }} />
+
+          <Typography variant="h3" gutterBottom>
+            Courses
+            <IconButton
+              variant="contained"
+              component={Link}
+              to="/courses/new"
+              color="primary"
+            >
+              <AddCircleOutlineIcon fontSize="large" />
+            </IconButton>
+          </Typography>
+
+          <CoursesDash courses={courses} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }

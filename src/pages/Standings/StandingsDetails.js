@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import { Link } from "react-router-dom";
@@ -12,7 +11,7 @@ import { ToggleButtonGroup, ToggleButton, Box } from "@mui/material";
 import StandingsTable from "../../components/Standings/StandingsTable";
 
 import { Container, Row, Table, Col } from "react-bootstrap";
-import { Typography } from "@mui/material";
+import { Typography, Divider } from "@mui/material";
 
 /** Show club standings page
  *
@@ -53,16 +52,17 @@ const Standings = () => {
 
   return (
     <Container className="py-5">
-      <Row className="row justify-content-center">
-        <h1 className="display-3 text-center">Standings</h1>
-        <HorizontalRule width="20%" />
+      <Row className="justify-content-center">
+        <Typography variant="h1" textAlign="center">
+          Standings
+        </Typography>
+        <Divider role="presentation" sx={{ width: "17%" }} />
 
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             marginBottom: "3rem",
-            marginTop: "2rem",
           }}
         >
           <ToggleButtonGroup
@@ -94,7 +94,12 @@ const Standings = () => {
         <div className="col-lg-8">
           <StandingsTable data={standings} />
           <div className="my-5">
-            <Typography variant="h3" textAlign="center" gutterBottom>
+            <Typography
+              variant="h3"
+              textAlign="center"
+              gutterBottom
+              sx={{ fontWeight: "bold" }}
+            >
               Points
             </Typography>
             <Table

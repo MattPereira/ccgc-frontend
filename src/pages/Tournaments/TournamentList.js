@@ -4,6 +4,7 @@ import CcgcApi from "../../api/api";
 import TournamentCard from "../../components/Tournaments/TournamentCard";
 
 import { Container, Col } from "react-bootstrap";
+import { Divider, Typography } from "@mui/material";
 
 /** Show page with all tournaments listed
  *
@@ -38,20 +39,10 @@ const TournamentList = () => {
 
   return (
     <Container className="py-5">
+      <Typography variant="h1">Tournaments</Typography>
+      <Divider role="presentation" sx={{ width: "17%" }} />
+
       <div className="text-center row justify-content-center">
-        <h1 className="display-1 mb-3">Tournaments</h1>
-        <hr
-          style={{
-            border: "2px solid grey",
-            width: "20%",
-            marginBottom: "1rem",
-          }}
-        ></hr>
-
-        <p className="lead py-5">
-          Select a tournament date to view the leaderboards.
-        </p>
-
         <Col md={10} lg={8} xl={7}>
           {tournaments.map((t) => (
             <TournamentCard

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
-import { Container, Col } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
+
+import { Typography, Divider } from "@mui/material";
 
 /** Show page with all courses listed
  *
@@ -33,13 +35,9 @@ const CourseList = () => {
 
   return (
     <Container className="py-5">
-      <div className="text-center row justify-content-center">
-        <h1 className="display-1 mb-3">Courses</h1>
-        <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
-        <p className="lead py-5">
-          List of all golf courses. Select a course to see details.
-        </p>
-
+      <Typography variant="h1">Courses</Typography>
+      <Divider role="presentation" style={{ width: "17%" }} />
+      <Row className="justify-content-center">
         <Col md={10} lg={8} xl={7} className="CourseList">
           {courses.map((c) => (
             <CourseCard
@@ -52,7 +50,7 @@ const CourseList = () => {
             />
           ))}
         </Col>
-      </div>
+      </Row>
     </Container>
   );
 };

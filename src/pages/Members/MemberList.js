@@ -3,7 +3,7 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import { Link } from "react-router-dom";
 import { Row, Col, Container, Table } from "react-bootstrap";
-import { Typography } from "@mui/material";
+import { Typography, Divider, Box } from "@mui/material";
 
 // import MemberCard from "../../components/Members/MemberCard";
 
@@ -36,14 +36,11 @@ const MemberList = () => {
   console.log(members);
 
   return (
-    <Container className="py-5">
-      <Row className="text-center justify-content-center">
+    <Container className="py-5 text-center">
+      <Box sx={{ display: "inline-block" }}>
         <Typography variant="h1">Members</Typography>
-        <hr style={{ border: "2px solid grey", width: "20%" }}></hr>
-        <p className="lead py-5">
-          Select a member name to view all of their rounds data.
-        </p>
-      </Row>
+        <Divider role="presentation" sx={{ width: "60%" }} />
+      </Box>
 
       <Row className="justify-content-center">
         <Col md={10} lg={8}>

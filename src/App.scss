@@ -11,6 +11,19 @@
 
 
 
+//hr styles and margin auto to center it
 hr {
-    border: "2px solid grey"
+    border: 2px solid grey !important;
+    margin: 0rem auto 2.5rem !important;
+}
+
+
+th {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+h1 {
+    text-align: center;
 }

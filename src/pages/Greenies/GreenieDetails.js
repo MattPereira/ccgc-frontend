@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import { Link } from "react-router-dom";
-
-import { Card, Table, Container } from "react-bootstrap";
-
-import HorizontalRule from "../../components/Common/HorizontalRule/HorizontalRule";
 import LoadingSpinner from "../../components/Common/Loading";
 import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
+
+import { Card, Table, Container } from "react-bootstrap";
+import { Divider } from "@mui/material";
 
 /** Greenie details page.
  *
@@ -72,7 +71,7 @@ const GreenieDetails = () => {
       <div className="text-center row justify-content-center">
         <h1 className="display-1 mb-3">Greenie Details</h1>
         <div className="row justify-content-center">
-          <HorizontalRule width={"25%"} />
+          <Divider role="presentation" sx={{ mb: 5, width: "17%" }} />
         </div>
         <div className="col-9 col-sm-6 col-md-5 col-lg-3 my-5">
           <Card>

@@ -125,7 +125,8 @@ function App() {
     typography: {
       h1: {
         fontFamily: "Fredoka one",
-        fontWeight: 400,
+        marginBottom: "1rem",
+        fontSize: "5rem",
       },
       h3: {
         fontFamily: "Itim",
