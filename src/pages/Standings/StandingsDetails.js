@@ -12,6 +12,7 @@ import { ToggleButtonGroup, ToggleButton, Box } from "@mui/material";
 import StandingsTable from "../../components/Standings/StandingsTable";
 
 import { Container, Row, Table, Col } from "react-bootstrap";
+import { Typography } from "@mui/material";
 
 /** Show club standings page
  *
@@ -89,18 +90,13 @@ const Standings = () => {
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
-        {/* <p className="lead text-center mb-5 mt-4">
-          Aggregate points for each player's top 10 rounds for the season.
-        </p> */}
+
         <div className="col-lg-8">
           <StandingsTable data={standings} />
           <div className="my-5">
-            <h3
-              className="text-center mb-3 display-6"
-              style={{ fontFamily: "Fredoka one" }}
-            >
+            <Typography variant="h3" textAlign="center" gutterBottom>
               Points
-            </h3>
+            </Typography>
             <Table
               responsive
               bordered
