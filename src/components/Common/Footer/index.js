@@ -13,10 +13,10 @@ function Footer() {
       <Row className="justify-content-center">
         <Col md="4" className="footer-copywright d-none d-lg-inline">
           <h3 className="pt-2">
-            Designed & Developed by &nbsp;
+            Developed by &nbsp;
             <a
               href="https://matt-pereira.surge.sh/"
-              style={{ color: "white" }}
+              style={{ color: "white", textDecoration: "none" }}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -118,8 +118,12 @@ function App() {
 
   let theme = createTheme({
     palette: {
+      // mode: "dark",
+      primary: {
+        main: "#1976d2",
+      },
       dark: {
-        main: "#000000",
+        main: "#121212",
       },
     },
     typography: {
@@ -137,15 +141,15 @@ function App() {
         fontWeight: 900,
       },
     },
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            borderRadius: 28,
-          },
-        },
-      },
-    },
+    // components: {
+    //   MuiButton: {
+    //     styleOverrides: {
+    //       root: {
+    //         borderRadius: 28,
+    //       },
+    //     },
+    //   },
+    // },
   });
 
   theme = responsiveFontSizes(theme);

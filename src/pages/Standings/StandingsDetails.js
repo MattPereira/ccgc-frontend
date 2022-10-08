@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import "./StandingsDetails.scss";
 
@@ -27,12 +26,11 @@ import { Typography, Divider } from "@mui/material";
 const Standings = () => {
   console.debug("Standings");
   const [standings, setStandings] = useState(null);
-  const { tourYears } = useParams();
 
-  const [selected, setSelected] = useState("2022-23");
+  const [tourYear, setTourYear] = useState("2022-23");
 
   const handleChange = (event, newSelected) => {
-    setSelected(newSelected);
+    setTourYear(newSelected);
   };
 
   /* On component mount, load club standings from API */
@@ -41,11 +39,11 @@ const Standings = () => {
       console.debug("Standings useEffect getStandingsOnMount");
 
       async function getStandings() {
-        setStandings(await CcgcApi.getStandings(tourYears));
+        setStandings(await CcgcApi.getStandings(tourYear));
       }
       getStandings();
     },
-    [tourYears]
+    [tourYear]
   );
 
   if (!standings) return <LoadingSpinner />;
@@ -67,23 +65,21 @@ const Standings = () => {
         >
           <ToggleButtonGroup
             color="primary"
-            value={selected}
+            value={tourYear}
             exclusive
             onChange={handleChange}
             aria-label="Selected tour years"
           >
             <ToggleButton
               value="2021-22"
-              component={Link}
-              to="/standings/2021-22"
+              onClick={() => setTourYear("2021-22")}
               sx={{ width: "100px" }}
             >
               2022
             </ToggleButton>
             <ToggleButton
               value="2022-23"
-              component={Link}
-              to="/standings/2022-23"
+              onAbort={() => setTourYear("2022-23")}
               sx={{ width: "100px" }}
             >
               2023

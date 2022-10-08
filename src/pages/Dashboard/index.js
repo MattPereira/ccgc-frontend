@@ -44,7 +44,7 @@ export default function Dashboard() {
     fetchAllTournaments();
   }, []);
 
-  if (!tournaments) return <LoadingSpinner />;
+  if (!tournaments || !courses) return <LoadingSpinner />;
 
   console.log(tournaments);
 

@@ -62,7 +62,7 @@ function Router({ login, register, logout }) {
 
       <Route exact path="/profile" element={<ProfileForm />} />
 
-      <Route exact path="/standings/:tourYears" element={<Standings />} />
+      <Route exact path="/standings" element={<Standings />} />
 
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />

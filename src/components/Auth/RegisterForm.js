@@ -58,18 +58,18 @@ const RegisterForm = ({ register }) => {
 
   return (
     <Container className="py-5">
-      <Typography variant="h1" gutterBottom>
+      <Typography variant="h1" sx={{ mb: 5 }}>
         Register
       </Typography>
 
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-6">
-          <Card className="shadow mb-5">
+          <Card className="shadow">
             <Card.Img
               src="https://images.unsplash.com/photo-1605144156683-5ebde77feed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
               alt="Register card image"
             />
-            <Card.Body className="px-5 py-5">
+            <Card.Body className="p-4">
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="email">Email</Form.Label>
@@ -132,7 +132,7 @@ const RegisterForm = ({ register }) => {
 
                 <div className="text-end">
                   <Button variant="contained" type="submit">
-                    Register
+                    Submit
                   </Button>
                 </div>
               </Form>

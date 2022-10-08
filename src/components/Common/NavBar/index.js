@@ -1,12 +1,32 @@
 import React, { useContext } from "react";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 import "./index.scss";
-import { Navbar, Nav, Container } from "react-bootstrap";
 import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 
+import MenuIcon from "@mui/icons-material/Menu";
+
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Button,
+  Menu,
+  Container,
+  Avatar,
+  Tooltip,
+  MenuItem,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Drawer,
+} from "@mui/material";
+
 /** Navigation bar for site that shows on every page
- *
  *
  *
  * Logged out users see login and signup
@@ -14,102 +34,263 @@ import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
  * Rendered by App
  */
 
-const Navigation = ({ logout }) => {
+// const drawerWidth = 240;
+const pages = ["Tournaments", "Members", "Standings", "Greenies", "Courses"];
+
+const Navigation = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);
   console.debug("Navigation");
 
-  function loggedInNav() {
-    currentUser.admin ? <h1>hello</h1> : <h1>goodbye</h1>;
-    return (
-      <>
-        {currentUser.isAdmin ? (
-          <Nav.Item>
-            <Nav.Link eventKey={10} as={RRNavLink} to="/dashboard">
-              Dashboard
-            </Nav.Link>
-          </Nav.Item>
-        ) : null}
-        <Nav.Item>
-          <Nav.Link eventKey={6} as={RRNavLink} to="/profile">
-            Profile
-          </Nav.Link>
-        </Nav.Item>
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-        <Nav.Item>
-          <Nav.Link eventKey={7} as={RRNavLink} to="/" onClick={logout}>
-            Logout {currentUser.firstName}
-          </Nav.Link>
-        </Nav.Item>
-      </>
-    );
-  }
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-  function loggedOutNav() {
-    return (
-      <>
-        <Nav.Item>
-          <Nav.Link eventKey={8} as={RRNavLink} to="/login">
-            Login
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey={9} as={RRNavLink} to="/register">
-            Register
-          </Nav.Link>
-        </Nav.Item>
-      </>
-    );
-  }
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const navDrawer = (
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: "center", backgroundColor: "black" }}
+    >
+      <Box sx={{ display: "flex" }} justifyContent="space-between">
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleDrawerToggle}
+          color="inherit"
+        >
+          <MenuIcon fontSize="large" sx={{ color: "white" }} />
+        </IconButton>
+        <Typography
+          variant="h6"
+          sx={{
+            my: 2,
+            color: "white",
+            fontFamily: "Fredoka One",
+            fontSize: "1rem",
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%, 0%)",
+          }}
+        >
+          Contra Costa Golf Club
+        </Typography>
+      </Box>
+
+      <Divider sx={{ marginBottom: "0px !important" }} />
+      <List sx={{ py: 3 }}>
+        {pages.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton
+              component={NavLink}
+              to={`/${item}`}
+              sx={{ textAlign: "center" }}
+            >
+              <ListItemText
+                primary={item}
+                primaryTypographyProps={{
+                  fontSize: "1.5rem",
+                  fontFamily: "Itim",
+                  color: "white",
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  //destructuring "window" from props
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div>
-      <Navbar collapseOnSelect expand="lg" bg="black" variant="dark">
-        <Container fluid className="mx-2">
-          <Navbar.Brand as={RRNavLink} to="/" className="navbar-brand">
-            <img
-              src={ccgcLogo}
-              alt="CCGC Logo"
-              className="img-fluid"
-              style={{ height: "30px" }}
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="text-center mx-auto">
-              <Nav.Item>
-                <Nav.Link eventKey={1} as={RRNavLink} to="/standings/2022-23">
-                  Standings
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey={2} as={RRNavLink} to="/tournaments">
-                  Tournaments
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey={3} as={RRNavLink} to="/members">
-                  Members
-                </Nav.Link>
-              </Nav.Item>
+    <>
+      <AppBar
+        position="static"
+        // color="dark"
+        sx={{
+          // backgroundImage:
+          //   "linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))",
+          backgroundColor: "black",
+        }}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <NavLink to="/">
+              <Box
+                component="img"
+                alt="ccgc logo"
+                src={ccgcLogo}
+                sx={{
+                  height: "40px",
+                  display: { xs: "none", md: "flex" },
+                }}
+              />
+            </NavLink>
 
-              <Nav.Item>
-                <Nav.Link eventKey={4} as={RRNavLink} to="/greenies">
-                  Greenies
-                </Nav.Link>
-              </Nav.Item>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleDrawerToggle}
+                color="inherit"
+                sx={{ padding: "0px" }}
+              >
+                <MenuIcon fontSize="large" sx={{ color: "white" }} />
+              </IconButton>
+            </Box>
 
-              <Nav.Item>
-                <Nav.Link eventKey={5} as={RRNavLink} to="/courses">
-                  Courses
-                </Nav.Link>
-              </Nav.Item>
-              {currentUser ? loggedInNav() : loggedOutNav()}
-            </Nav>
-          </Navbar.Collapse>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <NavLink to="/">
+                <Box
+                  component="img"
+                  alt="ccgc logo"
+                  src={ccgcLogo}
+                  sx={{
+                    height: "40px",
+                    display: { xs: "flex", md: "none" },
+                  }}
+                />
+              </NavLink>
+            </Box>
+
+            <Box
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+              justifyContent="center"
+            >
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  component={NavLink}
+                  to={`/${page.toLowerCase()}`}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    fontFamily: "Lato",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                  }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+            {currentUser ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt="Member Initials"
+                      sx={{
+                        color: "black",
+                        bgcolor: "white",
+                        fontFamily: "Itim",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {currentUser.firstName[0] + currentUser.lastName[0]}
+                    </Avatar>
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem
+                    component={NavLink}
+                    to="/profile"
+                    onClick={handleCloseUserMenu}
+                  >
+                    <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  {currentUser.isAdmin ? (
+                    <MenuItem
+                      component={NavLink}
+                      to="/dashboard"
+                      onClick={handleCloseUserMenu}
+                    >
+                      <Typography textAlign="center">Dashboard</Typography>
+                    </MenuItem>
+                  ) : null}
+
+                  <MenuItem
+                    component={NavLink}
+                    to="/"
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      logout();
+                    }}
+                  >
+                    <Typography textAlign="center">Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Box sx={{ flexGrow: 0 }}>
+                <Button
+                  component={NavLink}
+                  to="/login"
+                  color="inherit"
+                  sx={{ fontFamily: "Lato", fontWeight: 600, fontSize: "1rem" }}
+                >
+                  Login
+                </Button>
+              </Box>
+            )}
+          </Toolbar>
         </Container>
-      </Navbar>
-    </div>
+      </AppBar>
+      <Box component="nav">
+        <Drawer
+          anchor={"top"}
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", md: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+            },
+          }}
+        >
+          {navDrawer}
+        </Drawer>
+      </Box>
+    </>
   );
 };
 

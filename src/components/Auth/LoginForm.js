@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Card, Form, Alert, Container } from "react-bootstrap";
 import { Button, Typography, Divider, Box } from "@mui/material";
 
@@ -58,19 +58,22 @@ const LoginForm = ({ login }) => {
 
   return (
     <Container className="py-5">
-      <Typography variant="h1" gutterBottom>
+      <Typography variant="h1" sx={{ mb: 5 }}>
         Login
       </Typography>
 
       <div className="row justify-content-center">
         <div className="col-sm-10 col-md-6">
-          <Card className="shadow mb-5">
+          <Card className="shadow">
             <Card.Img
               src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"
               alt="Login card image"
             />
-
-            <Card.Body className="px-5 py-5">
+            <p className="text-center mt-3">
+              Don't have an account yet? Register{" "}
+              <Link to="/register">here</Link>.{" "}
+            </p>
+            <Card.Body className="px-5 pb-5">
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label htmlFor="email">Email</Form.Label>
