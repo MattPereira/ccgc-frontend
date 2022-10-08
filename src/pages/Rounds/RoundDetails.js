@@ -9,7 +9,7 @@ import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Button, Divider } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 
 /** Round details page.
  *
@@ -53,25 +53,18 @@ const RoundDetails = () => {
     navigate(`/tournaments/${round.tournamentDate}`);
   };
 
-  //transform a username like "tom-moore" to "Tom Moore"
-  const transformUsername = (username) => {
-    const nameArr = username.split("-");
-    let result = "";
-    for (let name of nameArr) {
-      name = name.charAt(0).toUpperCase() + name.slice(1);
-      result += name + " ";
-    }
-    return result.trim();
-  };
-
   return (
     <Container className="py-5">
-      <div className="text-center row justify-content-center">
-        <h1 className="display-3">
-          {transformUsername(round.username)}'s Round
-        </h1>
+      <Typography variant="h1">
+        {round.username
+          .split("-")
+          .map((n) => n[0].toUpperCase() + n.slice(1))
+          .join(" ")}
+        's Round
+      </Typography>
 
-        <Divider role="presentation" sx={{ width: "20%" }} />
+      <Divider role="presentation" sx={{ width: "20%" }} />
+      <div className="text-center row justify-content-center">
         {currentUser ? (
           currentUser.isAdmin || currentUser.username === round.username ? (
             <AdminButtons

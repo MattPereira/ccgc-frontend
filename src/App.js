@@ -7,7 +7,7 @@ import { decodeToken } from "react-jwt";
 
 import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
-import NavBar from "./components/Common/NavBar";
+import Navbar from "./components/Common/Navbar";
 import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
 
@@ -165,7 +165,7 @@ function App() {
             }}
           >
             <ScrollToTop>
-              <NavBar logout={logout} />
+              <Navbar logout={logout} />
               <Router login={login} register={register} />
             </ScrollToTop>
             <Footer />

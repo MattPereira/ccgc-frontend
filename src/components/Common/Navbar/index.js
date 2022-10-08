@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
-import "./index.scss";
-import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
-
-import MenuIcon from "@mui/icons-material/Menu";
 
 import {
   AppBar,
@@ -26,7 +22,10 @@ import {
   Drawer,
 } from "@mui/material";
 
-/** Navigation bar for site that shows on every page
+import MenuIcon from "@mui/icons-material/Menu";
+import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
+
+/** Navbar bar for site that shows on every page
  *
  *
  * Logged out users see login and signup
@@ -34,13 +33,12 @@ import {
  * Rendered by App
  */
 
-// const drawerWidth = 240;
 const pages = ["Tournaments", "Members", "Standings", "Greenies", "Courses"];
 
-const Navigation = ({ window, logout }) => {
+const Navbar = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
-  console.debug("Navigation", "currentUser=", currentUser);
-  console.debug("Navigation");
+  console.debug("Navbar", "currentUser=", currentUser);
+  console.debug("Navbar");
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -294,4 +292,4 @@ const Navigation = ({ window, logout }) => {
   );
 };
 
-export default Navigation;
+export default Navbar;
