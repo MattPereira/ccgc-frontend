@@ -28,6 +28,22 @@ const RoundTable = ({
   totalPutts,
   pars,
 }) => {
+  const formattedData = [];
+
+  strokes = Object.values(strokes);
+  putts = Object.values(putts);
+  pars = Object.values(pars);
+  console.log(strokes);
+
+  for (let i = 0; i < 18; i++) {
+    formattedData.push({
+      holeNumber: i + 1,
+      strokes: strokes[i],
+      putts: putts[i],
+      par: pars[i],
+    });
+  }
+
   const parsRow = (
     <tr className="table-secondary">
       <th>PAR</th>
@@ -59,27 +75,26 @@ const RoundTable = ({
 
   return (
     <div className="mb-4">
-      <h5 className="display-6 mb-0">{courseName}</h5>
-      <Link to={`/tournaments/${tournamentDate}`}>
-        <p className="fs-5 mb-3">
-          {new Date(tournamentDate).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC",
-          })}
-        </p>
-      </Link>
       <Table responsive bordered key={roundId}>
         <thead>
-          <HolesRow />
+          <tr className="table-dark">
+            <th>HOL</th>
+            <th>PAR</th>
+
+            <th>STR</th>
+            <th>PUT</th>
+          </tr>
         </thead>
         <tbody>
-          {parsRow}
+          {formattedData.map((hole) => (
+            <tr key={uuidv4()}>
+              <td className="table-dark">{hole.holeNumber}</td>
+              <td className="table-secondary">{hole.par}</td>
 
-          {strokesRow}
-
-          {puttsRow}
+              <td>{hole.strokes}</td>
+              <td>{hole.putts}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
