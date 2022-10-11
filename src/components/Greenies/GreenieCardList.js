@@ -18,17 +18,7 @@ const GreenieCardList = ({ greenies }) => {
     <Row className="justify-content-center">
       {greenies.map((g) => (
         <div className="col-9 col-sm-6 col-md-4 col-lg-3" key={g.id}>
-          <GreenieCard
-            key={g.id}
-            id={g.id}
-            date={g.tournamentDate}
-            owner={`${g.firstName} ${g.lastName}`}
-            holeNumber={g.holeNumber}
-            feet={g.feet}
-            inches={g.inches}
-            courseName={g.courseName}
-            courseImg={g.courseImg}
-          />
+          <GreenieCard greenie={g} />
         </div>
       ))}
     </Row>

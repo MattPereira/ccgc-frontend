@@ -78,14 +78,28 @@ const TournamentDetails = () => {
     tournament;
 
   //buttons for adding rounds and greenies to a tournament
-  const AddBtn = (
+  const AddBtns = (
     <Box sx={{ paddingBottom: "3rem" }}>
+      <Button
+        variant="contained"
+        color="success"
+        component={Link}
+        to={`/greenies/new/${date}`}
+        size="large"
+        sx={{ "&:hover": { color: "white" }, marginRight: "0.5rem" }}
+      >
+        <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
+      </Button>
       <Button
         variant="contained"
         component={Link}
         to={`/rounds/new/${date}`}
         size="large"
-        sx={{ "&:hover": { color: "white" } }}
+        sx={{
+          "&:hover": { color: "white" },
+          width: "138.906px",
+          marginLeft: "0.5rem",
+        }}
       >
         <AddCircleOutlineIcon /> <span className="ms-2">Round</span>
       </Button>
@@ -120,7 +134,7 @@ const TournamentDetails = () => {
       <Container
         sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
       >
-        {currentUser ? AddBtn : null}
+        {currentUser ? AddBtns : null}
 
         <Box sx={{ pb: 3 }}>
           <Typography variant="h3" gutterBottom>
@@ -140,12 +154,8 @@ const TournamentDetails = () => {
             <Typography variant="h3" gutterBottom>
               Greenies
             </Typography>
-            <div className="d-lg-none">
-              <GreenieTable greenies={greenies} />
-            </div>
-            <div className="d-none d-lg-block">
-              <GreenieCardList greenies={greenies} />
-            </div>
+
+            <GreenieTable greenies={greenies} />
           </Box>
         ) : null}
         <Box sx={{ pb: 3 }}>

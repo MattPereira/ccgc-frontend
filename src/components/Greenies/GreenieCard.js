@@ -19,17 +19,19 @@ import "./GreenieCard.css";
  *
  */
 
-const GreenieCard = ({
-  id,
-  holeNumber,
-  feet,
-  inches,
-  owner,
-  courseName,
-  courseImg,
-}) => {
+const GreenieCard = ({ greenie }) => {
+  const {
+    id,
+    holeNumber,
+    feet,
+    inches,
+    firstName,
+    lastName,
+    courseName,
+    courseImg,
+  } = greenie;
   return (
-    <div className="mb-4">
+    <div className="mb-3">
       <Link to={`/greenies/${id}`} className="TournamentCard-link">
         <Card className="GreenieCard-card">
           <Card.Title tag="h5" className="bg-dark mb-0 py-2 text-white fw-bold">
@@ -40,7 +42,9 @@ const GreenieCard = ({
             <img alt={`${courseName}`} src={courseImg} />
           </div>
           <div className="bg-success text-white h6 py-1">
-            <Card.Text className="lead fw-bold">{owner}</Card.Text>
+            <Card.Text className="lead fw-bold">
+              {firstName} {lastName}
+            </Card.Text>
           </div>
           <Card.Body>
             <Table responsive>

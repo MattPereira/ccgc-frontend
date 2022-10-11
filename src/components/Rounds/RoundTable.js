@@ -2,8 +2,18 @@ import React from "react";
 import HolesRow from "../Common/HolesRow/HolesRow";
 import { Link } from "react-router-dom";
 
-import { Table } from "react-bootstrap";
+// import { Table } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
+
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+} from "@mui/material";
 
 /** Member round table component
  *
@@ -28,7 +38,9 @@ const RoundTable = ({
   totalPutts,
   pars,
 }) => {
-  const formattedData = [];
+  // FOR MOBILE SCREEN SIZE DISPLAY
+  //making an array like [{holeNumber: 1, strokes: 4, putts: 2, par: 3}, {holeNumber: 2, strokes: 4, putts: 2, par: 3}, ...]
+  const mobileRows = [];
 
   strokes = Object.values(strokes);
   putts = Object.values(putts);
@@ -36,7 +48,7 @@ const RoundTable = ({
   console.log(strokes);
 
   for (let i = 0; i < 18; i++) {
-    formattedData.push({
+    mobileRows.push({
       holeNumber: i + 1,
       strokes: strokes[i],
       putts: putts[i],
@@ -74,30 +86,111 @@ const RoundTable = ({
   );
 
   return (
-    <div className="mb-4">
-      <Table responsive bordered key={roundId}>
-        <thead>
-          <tr className="table-dark">
-            <th>HOL</th>
-            <th>PAR</th>
-
-            <th>STR</th>
-            <th>PUT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formattedData.map((hole) => (
-            <tr key={uuidv4()}>
-              <td className="table-dark">{hole.holeNumber}</td>
-              <td className="table-secondary">{hole.par}</td>
-
-              <td>{hole.strokes}</td>
-              <td>{hole.putts}</td>
-            </tr>
-          ))}
-        </tbody>
+    <TableContainer component={Paper}>
+      <Table sx={{ display: { xs: "none", lg: "table" } }}>
+        <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
+          <TableRow>
+            <TableCell sx={{ color: "white" }}>Hole</TableCell>
+            {[...Array(18)].map((_, i) => (
+              <TableCell sx={{ color: "white" }} key={uuidv4()}>
+                {i + 1}
+              </TableCell>
+            ))}
+            <TableCell sx={{ color: "white" }}>Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Par</TableCell>
+            {Object.values(pars).map((p) => (
+              <TableCell key={uuidv4()}>{p}</TableCell>
+            ))}
+          </TableRow>
+        </TableBody>
       </Table>
-    </div>
+      <Table size="small" sx={{ display: { xs: "table", lg: "none" } }}>
+        <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                py: 1,
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Hole
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Par
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Strokes
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Putts
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {mobileRows.map((hole) => (
+            <TableRow key={hole.holeNumber}>
+              <TableCell
+                variant="head"
+                align="center"
+                width="20%"
+                sx={{
+                  backgroundColor: "gray",
+                  color: "white",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                }}
+              >
+                {hole.holeNumber}
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{
+                  backgroundColor: "lightgray",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                }}
+                width="20%"
+              >
+                {hole.par}
+              </TableCell>
+
+              <TableCell
+                align="center"
+                width="30%"
+                sx={{ borderRight: "1px solid rgb(224, 224, 224)" }}
+              >
+                {hole.strokes}
+              </TableCell>
+              <TableCell align="center" width="30%">
+                {hole.putts}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/Common/Loading";
 import AdminButtons from "../../components/Common/AdminButtons/AdminButtons";
 
 import { Card, Table, Container } from "react-bootstrap";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 
 /** Greenie details page.
  *
@@ -69,7 +69,7 @@ const GreenieDetails = () => {
   return (
     <Container className="py-5">
       <div className="text-center row justify-content-center">
-        <h1 className="display-1 mb-3">Greenie Details</h1>
+        <Typography variant="h1">Greenie Details</Typography>
         <div className="row justify-content-center">
           <Divider role="presentation" sx={{ mb: 5, width: "17%" }} />
         </div>

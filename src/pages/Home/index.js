@@ -1,4 +1,6 @@
+// import logo from "../../assets/ccgc_logo_simple.png";
 import logo from "../../assets/ccgc_logo_simple.png";
+
 import { Row, Col } from "react-bootstrap";
 
 import { Box, Stack } from "@mui/material";
@@ -27,11 +29,15 @@ const Homepage = () => {
     >
       <Row className="justify-content-center align-items-center text-center m-0">
         <Col xs={9} md={8} lg={6} xl={5}>
-          <img
+          <Box
+            component="img"
             src={logo}
             alt="ccgc-logo"
             className="img-fluid rotate"
-            style={{ margin: "auto 0px" }}
+            sx={{
+              borderRadius: "100%",
+              boxShadow: "0 0 30px rgba(0,0,0,0.4)",
+            }}
           />
         </Col>
       </Row>

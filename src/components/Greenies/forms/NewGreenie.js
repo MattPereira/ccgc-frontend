@@ -15,39 +15,43 @@ import GreenieForm from "./GreenieForm";
  */
 
 const NewGreenie = () => {
-  const { roundId } = useParams();
+  const { date } = useParams();
+
+  console.log("DATE", date);
 
   /** Fetch the tournament data first to set formData state properly */
-  const [round, setRound] = useState(null);
+  const [rounds, setRounds] = useState(null);
+  const [tournament, setTournament] = useState(null);
 
   // Grab the round from API to make an array of roundIds for select input
-  /* On component mount, load round from API */
   useEffect(
     function getTournamentOnMount() {
       console.debug("NewGreenie useEffect getRoundOnMount");
 
       async function fetchRound() {
-        let round = await CcgcApi.getRound(roundId);
-        setRound(round);
+        const rounds = await CcgcApi.getRoundsByDate(date);
+        setRounds(rounds);
       }
+
+      async function fetchTournament() {
+        const tournament = await CcgcApi.getTournament(date);
+        setTournament(tournament);
+      }
+      fetchTournament();
       fetchRound();
     },
-    [roundId]
+    [date]
   );
 
-  if (!round) return <LoadingSpinner />;
-  console.log(round);
+  if (!rounds || !tournament) return <LoadingSpinner />;
+  console.log("ROUNDS", rounds);
+  console.log("TOURNAMENT", tournament);
 
-  ///// LEGACY : ADDING GREENIES ON THE TOURNAMENTS PAGE //////
-  // make nested array of names and corresponding roundIds for select input
-  //[[98, 'Tom Moore'], [105, 'Brian Moore'], ...]
-  // const roundIds = tournament.strokesLeaderboard.rounds.map((r) => {
-  //   const name = `${r.firstName} ${r.lastName}`;
-  //   return [r.id, name];
-  // });
+  const usernames = rounds.map((round) => [round.id, round.username]);
+  console.log(usernames);
 
   //array of par 3 hole numbers for select input
-  const par3HoleNums = Object.entries(round.pars)
+  const par3HoleNums = Object.entries(tournament.pars)
     .filter((p) => p[1] === 3)
     .map((h) => h[0])
     .map((h) => h.split("e")[1]);
@@ -55,7 +59,7 @@ const NewGreenie = () => {
 
   return (
     <div>
-      <GreenieForm par3HoleNums={par3HoleNums} playerName={round.username} />
+      <GreenieForm par3HoleNums={par3HoleNums} usernames={usernames} />
     </div>
   );
 };

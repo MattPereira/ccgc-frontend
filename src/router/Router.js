@@ -87,7 +87,7 @@ function Router({ login, register, logout }) {
       <Route exact path="/rounds/:id/edit" element={<EditRound />} />
 
       <Route exact path="/greenies" element={<GreenieList />} />
-      <Route exact path="/greenies/new/:roundId" element={<NewGreenie />} />
+      <Route exact path="/greenies/new/:date" element={<NewGreenie />} />
       <Route exact path="/greenies/:id" element={<GreenieDetails />} />
       <Route exact path="/greenies/:id/update" element={<UpdateGreenie />} />
 

@@ -156,17 +156,17 @@ const Navbar = ({ window, logout }) => {
             </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <NavLink to="/">
-                <Box
-                  component="img"
-                  alt="ccgc logo"
-                  src={ccgcLogo}
-                  sx={{
-                    height: "40px",
-                    display: { xs: "flex", md: "none" },
-                  }}
-                />
-              </NavLink>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  fontFamily: "Fredoka One",
+                  letterSpacing: ".2rem",
+                  fontSize: "1.4rem",
+                }}
+              >
+                CCGC
+              </Typography>
             </Box>
 
             <Box
