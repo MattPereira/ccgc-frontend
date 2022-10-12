@@ -8,6 +8,7 @@ import GreenieCard from "../../components/Greenies/GreenieCard";
 import { Link } from "react-router-dom";
 
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import {
   Button,
@@ -58,7 +59,7 @@ const RoundDetails = () => {
 
   return (
     <Container sx={{ py: 5, textAlign: "center" }}>
-      <Box sx={{ display: "inline-block" }}>
+      <Box sx={{ display: "inline-block", mb: 3 }}>
         <Typography variant="h1">
           {" "}
           {
@@ -72,42 +73,48 @@ const RoundDetails = () => {
           role="presentation"
           sx={{ width: "50%", marginBottom: "1rem !important" }}
         />
-
         <Typography
-          variant="h4"
+          variant="h3"
           component={Link}
           to={`/tournaments/${round.tournamentDate}`}
           sx={{ textDecoration: "none" }}
         >
           {new Date(round.tournamentDate)
             .toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "numeric",
+              month: "short",
               day: "numeric",
               timeZone: "UTC",
             })
-            .replaceAll("/", "-")}
+            .replaceAll("/", "-")}{" "}
+          @ {round.courseName.split(" ").slice(0, 2).join(" ")}
         </Typography>
       </Box>
 
-      {currentUser ? (
-        <Box sx={{ my: 5 }}>
-          <Button
-            component={Link}
-            to={`/rounds/${id}/edit`}
-            variant="contained"
-            sx={{ "&:hover": { color: "white" } }}
-          >
-            <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-          </Button>
-        </Box>
-      ) : null}
-
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} sm={6} lg={12}>
-          <Typography variant="h3" gutterBottom>
-            Scores
-          </Typography>
+        <Grid item xs={12} sm={6} lg={12} sx={{ mb: 3 }}>
+          {currentUser ? (
+            <Box sx={{ my: 3 }}>
+              <Button
+                variant="contained"
+                color="success"
+                component={Link}
+                to={`/greenies/new/${round.tournamentDate}`}
+                size="large"
+                sx={{ "&:hover": { color: "white" }, mr: 0.5 }}
+              >
+                <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
+              </Button>
+              <Button
+                component={Link}
+                to={`/rounds/${id}/edit`}
+                variant="contained"
+                size="large"
+                sx={{ "&:hover": { color: "white" }, ml: 0.5 }}
+              >
+                <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+              </Button>
+            </Box>
+          ) : null}
           <RoundTable
             roundId={round.id}
             courseName={round.courseName}
@@ -122,10 +129,6 @@ const RoundDetails = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6} lg={12}>
-          <Typography variant="h3" gutterBottom>
-            Greenies
-          </Typography>
-
           {greenies.length ? (
             <Grid container spacing={4} justifyContent="center">
               {greenies.map((g) => (

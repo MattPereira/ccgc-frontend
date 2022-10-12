@@ -149,21 +149,25 @@ const TournamentDetails = () => {
           </Typography>
           <TournamentTable data={puttsLeaderboard} type="putts" />
         </Box>
-        {greenies.length ? (
-          <Box sx={{ pb: 3 }}>
-            <Typography variant="h3" gutterBottom>
-              Greenies
-            </Typography>
-
-            <GreenieTable greenies={greenies} />
-          </Box>
-        ) : null}
         <Box sx={{ pb: 3 }}>
           <Typography variant="h3" gutterBottom>
             Points
           </Typography>
           <StandingsTable data={pointsLeaderboard} />
         </Box>
+        {greenies.length ? (
+          <Box sx={{ pb: 3 }}>
+            <Typography variant="h3" gutterBottom>
+              Greenies
+            </Typography>
+            <div className="d-lg-none">
+              <GreenieTable greenies={greenies} />
+            </div>
+            <div className="d-none d-lg-block">
+              <GreenieCardList greenies={greenies} />
+            </div>
+          </Box>
+        ) : null}
       </Container>
     </>
   );

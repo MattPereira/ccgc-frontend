@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import CcgcApi from "../../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, Form, Alert, Container, Row, Col } from "react-bootstrap";
+import { Card, Form, Container, Row, Col } from "react-bootstrap";
 
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Snackbar, Alert } from "@mui/material";
 
 /** Form to create a new greenie
  *
@@ -20,6 +20,18 @@ import { Button, Typography } from "@mui/material";
 const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
   let navigate = useNavigate();
   const { date } = useParams();
+
+  const [showSnack, setShowSnack] = React.useState({
+    open: true,
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSnack(false);
+  };
 
   /// HOW TO SEND AND SET THE ROUND ID AS SELECT INPUT OPTIONS CHANGE?
   /// NEED TO USE NAMES FOR THE SELECT INPUT OPTIONS USER SEES BUT KEEP ROUND ID IN STATE
@@ -100,6 +112,22 @@ const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
 
   return (
     <Container className="my-5">
+      <Snackbar
+        open={showSnack}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="warning"
+          variant="filled"
+          elevation={3}
+          sx={{ width: "100%" }}
+        >
+          Please select name from the dropdown!
+        </Alert>
+      </Snackbar>
       <div className="row justify-content-center">
         <div className="col-sm-10 col-md-8 col-lg-6">
           <Typography variant="h1" gutterBottom>

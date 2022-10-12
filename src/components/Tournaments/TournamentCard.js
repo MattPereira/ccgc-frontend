@@ -1,6 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Paper, Typography, Box } from "@mui/material";
 import "./TournamentCard.scss";
 
 /** Tournament card component.
@@ -16,21 +16,23 @@ import "./TournamentCard.scss";
 
 const TournamentCard = ({ date, courseName, imgUrl }) => {
   return (
-    <div className="mb-5">
-      <Link to={`/tournaments/${date}`} className="TournamentCard-link">
-        <Card className="TournamentCard">
-          {/* <Card.Title
-            tag="h3"
-            className=" display-6 bg-dark text-white mb-0 py-3"
-          >
-            {courseName}
-          </Card.Title> */}
-
-          <div className="TournamentCard-crop border-rounded">
+    <Box sx={{ mb: 5 }}>
+      <Link to={`/tournaments/${date}`} style={{ textDecoration: "none" }}>
+        <Paper elevation={8}>
+          <div className="TournamentCard-crop">
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
-          <Card.Body className="py-3 bg-dark text-white">
-            <h3 className="mb-0">
+          <Box
+            sx={{
+              py: 1.5,
+              borderRadius: "0 0 4px 4px",
+              backgroundColor: "rgb(33,37,41)",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{ fontFamily: "Itim", color: "white" }}
+            >
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -38,11 +40,11 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
                 day: "numeric",
                 timeZone: "UTC",
               })}
-            </h3>
-          </Card.Body>
-        </Card>
+            </Typography>
+          </Box>
+        </Paper>
       </Link>
-    </div>
+    </Box>
   );
 };
 

@@ -38,14 +38,13 @@ const RoundTable = ({
   totalPutts,
   pars,
 }) => {
-  // FOR MOBILE SCREEN SIZE DISPLAY
-  //making an array like [{holeNumber: 1, strokes: 4, putts: 2, par: 3}, {holeNumber: 2, strokes: 4, putts: 2, par: 3}, ...]
-  const mobileRows = [];
-
   strokes = Object.values(strokes);
   putts = Object.values(putts);
   pars = Object.values(pars);
-  console.log(strokes);
+
+  // FOR MOBILE SCREEN SIZE DISPLAY
+  //making an array like [{holeNumber: 1, strokes: 4, putts: 2, par: 3}, {holeNumber: 2, strokes: 4, putts: 2, par: 3}, ...]
+  const mobileRows = [];
 
   for (let i = 0; i < 18; i++) {
     mobileRows.push({
@@ -56,55 +55,90 @@ const RoundTable = ({
     });
   }
 
-  const parsRow = (
-    <tr className="table-secondary">
-      <th>PAR</th>
-      {Object.values(pars).map((p) => (
-        <th key={uuidv4()}>{p}</th>
-      ))}
-    </tr>
-  );
-
-  const strokesRow = (
-    <tr className="bg-white">
-      <th>STROKES</th>
-      {Object.values(strokes).map((s) => (
-        <td key={uuidv4()}>{s}</td>
-      ))}
-      <td>{totalStrokes}</td>
-    </tr>
-  );
-
-  const puttsRow = (
-    <tr className="bg-white">
-      <th>PUTTS</th>
-      {Object.values(putts).map((p) => (
-        <td key={uuidv4()}>{p}</td>
-      ))}
-      <td>{totalPutts}</td>
-    </tr>
-  );
-
   return (
     <TableContainer component={Paper}>
       <Table sx={{ display: { xs: "none", lg: "table" } }}>
         <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
           <TableRow>
-            <TableCell sx={{ color: "white" }}>Hole</TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Hole
+            </TableCell>
             {[...Array(18)].map((_, i) => (
-              <TableCell sx={{ color: "white" }} key={uuidv4()}>
+              <TableCell
+                align="center"
+                sx={{
+                  color: "white",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                }}
+                key={uuidv4()}
+              >
                 {i + 1}
               </TableCell>
             ))}
-            <TableCell sx={{ color: "white" }}>Total</TableCell>
+            <TableCell align="center" sx={{ color: "white" }}>
+              Total
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Par</TableCell>
+          <TableRow sx={{ backgroundColor: "lightgray" }}>
+            <TableCell
+              align="center"
+              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+            >
+              Par
+            </TableCell>
             {Object.values(pars).map((p) => (
-              <TableCell key={uuidv4()}>{p}</TableCell>
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              >
+                {p}
+              </TableCell>
             ))}
+          </TableRow>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+            >
+              Strokes
+            </TableCell>
+            {Object.values(strokes).map((s) => (
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              >
+                {s}
+              </TableCell>
+            ))}
+            <TableCell align="center">{totalStrokes}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+            >
+              Putts
+            </TableCell>
+            {Object.values(putts).map((p) => (
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              >
+                {p}
+              </TableCell>
+            ))}
+            <TableCell align="center">{totalPutts}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -158,7 +192,7 @@ const RoundTable = ({
                 align="center"
                 width="20%"
                 sx={{
-                  backgroundColor: "gray",
+                  backgroundColor: "rgb(33,37,41)",
                   color: "white",
                   borderRight: "1px solid rgb(224, 224, 224)",
                 }}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Paper, Typography, Box } from "@mui/material";
 
 import "./CourseCard.scss";
 
@@ -15,21 +16,30 @@ import "./CourseCard.scss";
 
 const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
   return (
-    <div className="mb-5">
-      <Link to={`/courses/${handle}`} className="CourseCard-link">
-        <Card className="CourseCard-card text-center">
+    <Box sx={{ mb: 5 }}>
+      <Link to={`/courses/${handle}`} style={{ textDecoration: "none" }}>
+        <Paper elevation={8}>
           <div className="CourseCard-crop">
             <img alt={`${name}`} src={imgUrl} />
           </div>
-          <Card.Title
-            tag="h3"
-            className="display-6 bg-dark mb-0 py-3 text-white"
+          <Box
+            sx={{
+              py: 1.5,
+              borderRadius: "0 0 4px 4px",
+              backgroundColor: "rgb(33,37,41)",
+            }}
           >
-            {name}
-          </Card.Title>
-        </Card>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{ fontFamily: "Itim", color: "white" }}
+            >
+              {name}
+            </Typography>
+          </Box>
+        </Paper>
       </Link>
-    </div>
+    </Box>
   );
 };
 

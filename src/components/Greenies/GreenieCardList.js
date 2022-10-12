@@ -17,7 +17,7 @@ const GreenieCardList = ({ greenies }) => {
   return (
     <Row className="justify-content-center">
       {greenies.map((g) => (
-        <div className="col-9 col-sm-6 col-md-4 col-lg-3" key={g.id}>
+        <div className="col-sm-12 col-lg-6" key={g.id}>
           <GreenieCard greenie={g} />
         </div>
       ))}

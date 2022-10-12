@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import CcgcApi from "../../../api/api";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 
-import { Card, Form, Alert, Container, Row, Col } from "react-bootstrap";
+import { Form, Alert, Container, Row, Col } from "react-bootstrap";
 
-import { Button } from "@mui/material";
+import { Button, Paper, Typography, Box } from "@mui/material";
 
 /** Form to create a new round
  *
@@ -186,12 +186,35 @@ const RoundForm = ({ availableUsernames, round }) => {
     <Container className="py-5">
       <div className="row justify-content-center">
         <div className="col-sm-10 col-md-7 col-lg-5">
-          <h1 className="text-center display-3 mb-5">
+          <Typography gutterBottom variant="h1">
             {round ? "Edit" : "New"} Round
-          </h1>
-          <Card className="mb-5 p-3">
-            <Card.Body>
-              <Form onSubmit={handleSubmit}>
+          </Typography>
+
+          <Box sx={{ mb: 3, textAlign: "center" }}>
+            <Typography
+              variant="h3"
+              component={Link}
+              to={`/rounds/${round.id}`}
+              sx={{ textDecoration: "none" }}
+            >
+              {/* (
+              {new Date(round.tournamentDate).toLocaleDateString("en-US", {
+                month: "numeric",
+                day: "numeric",
+              })}
+              ){" "} */}
+              {round.username
+                .split("-")
+                .map((name) => {
+                  return name.charAt(0).toUpperCase() + name.slice(1);
+                })
+                .join(" ")}
+            </Typography>
+          </Box>
+
+          <Paper variant="outlined" sx={{ p: 3 }}>
+            <Form onSubmit={handleSubmit}>
+              {round ? null : (
                 <Row className="mb-3 text-center align-items-center">
                   <Col xs={2}>
                     <Form.Label htmlFor="name" className="fw-bold mb-0">
@@ -199,33 +222,21 @@ const RoundForm = ({ availableUsernames, round }) => {
                     </Form.Label>
                   </Col>
                   <Col xs={10}>
-                    {round ? (
-                      <Form.Control
-                        className="form-control"
-                        type="text"
-                        value={new Date(
-                          round.tournamentDate
-                        ).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                        readOnly
-                      ></Form.Control>
-                    ) : (
-                      <Form.Control
-                        className="form-control"
-                        type="text"
-                        value={new Date(date).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                        readOnly
-                      ></Form.Control>
-                    )}
+                    <Form.Control
+                      className="form-control"
+                      type="text"
+                      value={new Date(date).toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                      readOnly
+                    ></Form.Control>
                   </Col>
                 </Row>
+              )}
+
+              {round ? null : (
                 <Row className="mb-3 align-items-center justify-content-center text-center">
                   <Col xs={2}>
                     <Form.Label htmlFor="username" className="fw-bold mb-0">
@@ -233,641 +244,94 @@ const RoundForm = ({ availableUsernames, round }) => {
                     </Form.Label>
                   </Col>
                   <Col xs={10}>
-                    {round ? (
-                      <Form.Control
-                        value={formData.username
-                          .split("-")
-                          .map((name) => {
-                            return name.charAt(0).toUpperCase() + name.slice(1);
-                          })
-                          .join(" ")}
-                        readOnly
-                      ></Form.Control>
-                    ) : (
-                      <Form.Select
-                        className="form-control"
-                        id="username"
-                        name="username"
-                        type="select"
-                        onChange={handleChange}
-                        value={formData.username}
-                        required
-                      >
-                        {availableUsernames.map((username) => (
-                          <option key={username} value={username}>
-                            {username
-                              .split("-")
-                              .map((name) => {
-                                return (
-                                  name.charAt(0).toUpperCase() + name.slice(1)
-                                );
-                              })
-                              .join(" ")}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    )}
+                    <Form.Select
+                      className="form-control"
+                      id="username"
+                      name="username"
+                      type="select"
+                      onChange={handleChange}
+                      value={formData.username}
+                      required
+                    >
+                      {availableUsernames.map((username) => (
+                        <option key={username} value={username}>
+                          {username
+                            .split("-")
+                            .map((name) => {
+                              return (
+                                name.charAt(0).toUpperCase() + name.slice(1)
+                              );
+                            })
+                            .join(" ")}
+                        </option>
+                      ))}
+                    </Form.Select>
                   </Col>
                 </Row>
+              )}
 
-                <Row className="text-center justify-content-center mb-2">
+              <Row className="text-center justify-content-center mb-2">
+                <Col xs={2}>
+                  <Form.Label className="fw-bold">
+                    <u>Hole</u>
+                  </Form.Label>
+                </Col>
+                <Col xs={5}>
+                  <Form.Label className="fw-bold">
+                    <u>Strokes</u>
+                  </Form.Label>
+                </Col>
+                <Col xs={5}>
+                  <Form.Label className="fw-bold">
+                    <u>Putts</u>
+                  </Form.Label>
+                </Col>
+              </Row>
+
+              {HOLES.map((num) => (
+                <Row
+                  key={num}
+                  className="align-items-center justify-content-center text-center mb-3"
+                >
                   <Col xs={2}>
-                    <Form.Label className="fw-bold">
-                      <u>Hole</u>
-                    </Form.Label>
+                    <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
                   </Col>
                   <Col xs={5}>
-                    <Form.Label className="fw-bold">
-                      <u>Strokes</u>
-                    </Form.Label>
+                    <Form.Control
+                      className="form-control"
+                      id={`strokes${num}`}
+                      name={`strokes${num}`}
+                      type="number"
+                      min="1"
+                      onChange={handleChange}
+                      value={eval(`formData.strokes${num}`)}
+                    ></Form.Control>
                   </Col>
                   <Col xs={5}>
-                    <Form.Label className="fw-bold">
-                      <u>Putts</u>
-                    </Form.Label>
+                    <Form.Control
+                      className="form-control"
+                      id={`putts${num}`}
+                      name={`putts${num}`}
+                      type="number"
+                      min="0"
+                      onChange={handleChange}
+                      value={eval(`formData.putts${num}`)}
+                    ></Form.Control>
                   </Col>
                 </Row>
+              ))}
 
-                {HOLES.map((num) => (
-                  <Row
-                    key={num}
-                    className="align-items-center justify-content-center text-center mb-3"
-                  >
-                    <Col xs={2}>
-                      <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
-                    </Col>
-                    <Col xs={5}>
-                      <Form.Control
-                        className="form-control"
-                        id={`strokes${num}`}
-                        name={`strokes${num}`}
-                        type="number"
-                        min="1"
-                        onChange={handleChange}
-                        value={eval(`formData.strokes${num}`)}
-                      ></Form.Control>
-                    </Col>
-                    <Col xs={5}>
-                      <Form.Control
-                        className="form-control"
-                        id={`putts${num}`}
-                        name={`putts${num}`}
-                        type="number"
-                        min="0"
-                        onChange={handleChange}
-                        value={eval(`formData.putts${num}`)}
-                      ></Form.Control>
-                    </Col>
+              <Row className="justify-content-end">
+                <Col xs={10}>
+                  <Row style={{ padding: "12px 12px 0px" }}>
+                    <Button variant="contained" type="submit" size="large">
+                      Submit
+                    </Button>
                   </Row>
-                ))}
-
-                {/* <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#1</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes1"
-                      name="strokes1"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes1}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts1"
-                      name="putts1"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts1}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div> */}
-                {/* <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#2</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes2"
-                      name="strokes2"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes2}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts2"
-                      name="putts2"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts2}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#3</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes3"
-                      name="strokes3"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes3}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts3"
-                      name="putts3"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts3}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#4</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes4"
-                      name="strokes4"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes4}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts4"
-                      name="putts4"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts4}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#5</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes5"
-                      name="strokes5"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes5}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts5"
-                      name="putts5"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts5}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#6</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes6"
-                      name="strokes6"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes6}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts6"
-                      name="putts6"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts6}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#7</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes7"
-                      name="strokes7"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes7}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts7"
-                      name="putts7"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts7}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#8</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes8"
-                      name="strokes8"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes8}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts8"
-                      name="putts8"
-                      min="0"
-                      type="number"
-                      onChange={handleChange}
-                      value={formData.putts8}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#9</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes9"
-                      name="strokes9"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes9}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts9"
-                      name="putts9"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts9}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#10</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes10"
-                      name="strokes10"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes10}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts10"
-                      name="putts10"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts10}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#11</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes11"
-                      name="strokes11"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes11}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts11"
-                      name="putts11"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts11}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#12</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes12"
-                      name="strokes12"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes12}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts12"
-                      name="putts12"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts12}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#13</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes13"
-                      name="strokes13"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes13}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts13"
-                      name="putts13"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts13}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#14</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes14"
-                      name="strokes14"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes14}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts14"
-                      name="putts14"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts14}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#15</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes15"
-                      name="strokes15"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes15}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts15"
-                      name="putts15"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts15}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#16</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes16"
-                      name="strokes16"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes16}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts16"
-                      name="putts16"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts16}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#17</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes17"
-                      name="strokes17"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes17}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts17"
-                      name="putts17"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts17}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div>
-
-                <div className="row align-items-center mb-3">
-                  <div className="col-2 text-center">
-                    <Form.Label className="fw-bold">#18</Form.Label>
-                  </div>
-                  <div className="col-5 align-self-center">
-                    <Form.Control
-                      className="form-control"
-                      id="strokes18"
-                      name="strokes18"
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={formData.strokes18}
-                      required
-                    ></Form.Control>
-                  </div>
-                  <div className="col-5">
-                    <Form.Control
-                      className="form-control"
-                      id="putts18"
-                      name="putts18"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.putts18}
-                      required
-                    ></Form.Control>
-                  </div>
-                </div> */}
-
-                <div className="text-end">
-                  <Button variant="contained" type="submit">
-                    Submit
-                  </Button>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
+                </Col>
+              </Row>
+            </Form>
+          </Paper>
           {formErrors.length
             ? formErrors.map((err) => (
                 <Alert key={err} variant="danger">
