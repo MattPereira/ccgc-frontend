@@ -11,8 +11,9 @@
   }
 
   .GreenieCard-crop {
-    height: 150px;
+    height: 170px;
     overflow: hidden;
+    border-radius: 4px 0 0 4px;
   }
 
   .GreenieCard-crop img {

@@ -47,6 +47,7 @@ const GreenieList = () => {
         <Typography variant="h1">Greenies</Typography>
         <Divider role="presentation" sx={{ width: "50%" }} />
       </Box>
+
       <Row className="text-center justify-content-center">
         <GreenieCardList greenies={greenies} />
       </Row>

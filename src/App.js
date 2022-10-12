@@ -123,7 +123,7 @@ function App() {
         main: "#1976d2",
       },
       dark: {
-        main: "#121212",
+        main: "#212529",
       },
     },
     typography: {
@@ -140,16 +140,11 @@ function App() {
         fontFamily: "Lato",
         fontWeight: 900,
       },
+      h6: {
+        fontFamily: "Itim",
+        fontSize: "1.3rem",
+      },
     },
-    // components: {
-    //   MuiButton: {
-    //     styleOverrides: {
-    //       root: {
-    //         borderRadius: 28,
-    //       },
-    //     },
-    //   },
-    // },
   });
 
   theme = responsiveFontSizes(theme);

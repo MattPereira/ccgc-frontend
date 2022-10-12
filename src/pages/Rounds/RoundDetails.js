@@ -4,7 +4,7 @@ import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import RoundTable from "../../components/Rounds/RoundTable";
 import UserContext from "../../components/Auth/UserContext";
-import GreenieCard from "../../components/Greenies/GreenieCard";
+import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
@@ -130,13 +130,7 @@ const RoundDetails = () => {
         </Grid>
         <Grid item xs={12} sm={6} lg={12}>
           {greenies.length ? (
-            <Grid container spacing={4} justifyContent="center">
-              {greenies.map((g) => (
-                <Grid item xs={9} sm={10} md={8} lg={3} key={g.id}>
-                  <GreenieCard id={g.id} key={g.id} greenie={g} />
-                </Grid>
-              ))}{" "}
-            </Grid>
+            <GreenieCardList greenies={greenies} />
           ) : (
             "No Greenies Yet!"
           )}
