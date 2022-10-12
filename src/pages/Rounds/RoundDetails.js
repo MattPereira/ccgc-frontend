@@ -91,7 +91,7 @@ const RoundDetails = () => {
       </Box>
 
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} sm={6} lg={12} sx={{ mb: 3 }}>
+        <Grid item xs={12} sm={8} md={6} lg={12} sx={{ mb: 3 }}>
           {currentUser ? (
             <Box sx={{ my: 3 }}>
               <Button
@@ -128,7 +128,7 @@ const RoundDetails = () => {
             pars={round.pars}
           />
         </Grid>
-        <Grid item xs={12} sm={6} lg={12}>
+        <Grid item xs={12} sm={8} md={8} lg={12}>
           {greenies.length ? (
             <GreenieCardList greenies={greenies} />
           ) : (
