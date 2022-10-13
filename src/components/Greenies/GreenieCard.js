@@ -34,18 +34,18 @@ const GreenieCard = ({ greenie }) => {
   } = greenie;
 
   const theme = useTheme();
-  console.log("THEME", theme);
+
   return (
-    <Box sx={{ mb: 3 }}>
+    <Box sx={{ mb: 3, textAlign: "center" }}>
       <Link to={`/greenies/${id}`} style={{ textDecoration: "none" }}>
         <Paper elevation={8}>
           <Grid container>
-            <Grid item xs={6} sx={{ display: { xs: "none", sm: "block" } }}>
+            <Grid item xs={6}>
               <div className="GreenieCard-crop">
                 <img alt={`${courseName}`} src={courseImg} />
               </div>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6}>
               <Box
                 sx={{
                   bgcolor: theme.palette.dark.main,
@@ -53,7 +53,7 @@ const GreenieCard = ({ greenie }) => {
                 }}
               >
                 <Typography variant="h6" sx={{ color: "white" }}>
-                  {firstName} {lastName}
+                  {courseName.split(" ").slice(0, 2).join(" ")}
                 </Typography>
               </Box>
               <Box
@@ -62,7 +62,7 @@ const GreenieCard = ({ greenie }) => {
                 }}
               >
                 <Typography variant="h6" sx={{ color: "white" }}>
-                  {courseName.split(" ").slice(0, 2).join(" ")}
+                  {firstName} {lastName}
                 </Typography>
               </Box>
               <Box sx={{ px: 2, pt: 0.75 }}>

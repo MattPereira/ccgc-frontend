@@ -190,30 +190,37 @@ const RoundForm = ({ availableUsernames, round }) => {
             {round ? "Edit" : "New"} Round
           </Typography>
 
-          <Box sx={{ mb: 3, textAlign: "center" }}>
-            <Typography
-              variant="h3"
-              component={Link}
-              to={`/rounds/${round.id}`}
-              sx={{ textDecoration: "none" }}
-            >
-              {/* (
-              {new Date(round.tournamentDate).toLocaleDateString("en-US", {
-                month: "numeric",
-                day: "numeric",
-              })}
-              ){" "} */}
-              {round.username
-                .split("-")
-                .map((name) => {
-                  return name.charAt(0).toUpperCase() + name.slice(1);
-                })
-                .join(" ")}
-            </Typography>
-          </Box>
-
-          <Paper variant="outlined" sx={{ p: 3 }}>
-            <Form onSubmit={handleSubmit}>
+          <Paper variant="outlined">
+            {round ? (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  bgcolor: "rgb(33, 37, 41)",
+                  borderRadius: "4px 4px 0 0",
+                  py: 1,
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  component={Link}
+                  to={`/rounds/${round.id}`}
+                  sx={{ textDecoration: "none", color: "white" }}
+                >
+                  {" "}
+                  {round.username
+                    .split("-")
+                    .map((name) => {
+                      return name.charAt(0).toUpperCase() + name.slice(1);
+                    })
+                    .join(" ")}{" "}
+                  {/* {new Date(round.tournamentDate).toLocaleDateString("en-US", {
+                    month: "numeric",
+                    day: "numeric",
+                  })} */}
+                </Typography>
+              </Box>
+            ) : null}
+            <Form className="p-3" onSubmit={handleSubmit}>
               {round ? null : (
                 <Row className="mb-3 text-center align-items-center">
                   <Col xs={2}>
