@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import CcgcApi from "../../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Form, Container, Row, Col } from "react-bootstrap";
+import { useTheme } from "@mui/material/styles";
 
-import { Button, Typography, Alert } from "@mui/material";
+import { Button, Typography, Alert, Box } from "@mui/material";
 
 /** Form to create a new greenie
  *
@@ -98,6 +99,8 @@ const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
     }
   };
 
+  const theme = useTheme();
+
   return (
     <Container className="my-5">
       <div className="row justify-content-center">
@@ -105,9 +108,30 @@ const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
           <Typography variant="h1" gutterBottom>
             {greenie ? "Edit" : "Add"} Greenie{" "}
           </Typography>
-          <Card className="p-4">
+          <Card>
+            <Box
+              sx={{
+                bgcolor: theme.palette.dark.main,
+                borderRadius: "4px 4px 0 0",
+              }}
+            >
+              <Typography
+                variant="h3"
+                align="center"
+                sx={{ color: "white", py: 1 }}
+              >
+                {new Date(date || greenie.tournamentDate).toLocaleDateString(
+                  "en-US",
+                  {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  }
+                )}
+              </Typography>
+            </Box>
             <Card.Body>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} className="p-3">
                 <Row className="mb-3 align-items-center">
                   <Col xs={2}>
                     <Form.Label htmlFor="roundId" className="mb-0">
@@ -140,29 +164,6 @@ const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
                     )}
                   </Col>
                 </Row>
-
-                {greenie ? (
-                  <Row className="mb-3 align-items-center">
-                    <Col xs={2}>
-                      <Form.Label htmlFor="roundId" className="mb-0">
-                        <b>Date</b>
-                      </Form.Label>
-                    </Col>
-                    <Col xs={10}>
-                      <Form.Control
-                        className="text-center"
-                        value={new Date(
-                          greenie.tournamentDate
-                        ).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                        readOnly
-                      ></Form.Control>
-                    </Col>
-                  </Row>
-                ) : null}
 
                 <Row className="mb-3 align-items-center">
                   <Col xs={2}>
