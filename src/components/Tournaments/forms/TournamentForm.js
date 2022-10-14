@@ -3,7 +3,7 @@ import CcgcApi from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Row, Container } from "react-bootstrap";
 
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 /** Form to create a new tournament
  *
@@ -98,9 +98,9 @@ const TournamentForm = ({ courseHandles, tournament }) => {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <h1 className="text-center display-3 mb-5">
-          {tournament ? "Update" : "New"} Tournament
-        </h1>
+        <Typography variant="h1">
+          {tournament ? "Edit" : "Add"} Tournament
+        </Typography>
         <div className="col-sm-10 col-md-8 col-lg-6">
           <Card className="p-3">
             <Card.Body>
