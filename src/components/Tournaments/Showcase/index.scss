@@ -3,6 +3,11 @@
 
 .showcase {
     min-height: 275px;
+
+  @media  (max-width: 1000px) {
+    min-height: 200px;
+  }
+
     position: relative;
     .showcase-header {
       z-index: 2;
@@ -11,7 +16,7 @@
       }
     }
     .showcase-overlay {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       position: absolute;
       top: 0;
       left: 0;
