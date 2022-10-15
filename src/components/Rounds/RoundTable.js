@@ -90,7 +90,10 @@ const RoundTable = ({
           <TableRow sx={{ backgroundColor: "lightgray" }}>
             <TableCell
               align="center"
-              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              sx={{
+                borderRight: "1px solid rgb(224,224,224)",
+                fontWeight: "bold",
+              }}
             >
               Par
             </TableCell>
@@ -98,7 +101,10 @@ const RoundTable = ({
               <TableCell
                 key={uuidv4()}
                 align="center"
-                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+                sx={{
+                  borderRight: "1px solid rgb(224,224,224)",
+                  fontWeight: "bold",
+                }}
               >
                 {p}
               </TableCell>
@@ -204,6 +210,7 @@ const RoundTable = ({
                 sx={{
                   backgroundColor: "lightgray",
                   borderRight: "1px solid rgb(224, 224, 224)",
+                  fontWeight: "bold",
                 }}
                 width="20%"
               >

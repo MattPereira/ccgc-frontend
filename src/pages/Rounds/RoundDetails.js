@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import RoundTable from "../../components/Rounds/RoundTable";
@@ -8,8 +8,8 @@ import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useTheme } from "@mui/material/styles";
 import {
   Button,
   Divider,
@@ -17,6 +17,7 @@ import {
   Container,
   Box,
   Grid,
+  Modal,
 } from "@mui/material";
 
 /** Round details page.
@@ -32,12 +33,25 @@ import {
  */
 
 const RoundDetails = () => {
+  const theme = useTheme();
+  console.log(theme);
+
   const { id } = useParams();
   const { currentUser } = useContext(UserContext);
+  let navigate = useNavigate();
 
   console.debug("RoundDetails", "id=", id);
 
   const [round, setRound] = useState(null);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleDelete = async (id) => {
+    await CcgcApi.deleteRound(id);
+    navigate(`/tournaments/${round.tournamentDate}`);
+  };
 
   /* On component mount, load round data from API */
   useEffect(
@@ -55,7 +69,17 @@ const RoundDetails = () => {
   if (!round) return <LoadingSpinner />;
   console.log(round);
 
-  const { greenies } = round;
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "rgb(211, 47, 47)",
+    borderRadius: "20px",
+    boxShadow: 24,
+    p: 4,
+  };
 
   return (
     <Container sx={{ py: 5, textAlign: "center" }}>
@@ -96,20 +120,19 @@ const RoundDetails = () => {
             <Box sx={{ my: 3 }}>
               <Button
                 variant="contained"
-                color="success"
-                component={Link}
-                to={`/greenies/new/${round.tournamentDate}`}
+                color="error"
                 size="large"
-                sx={{ "&:hover": { color: "white" }, mr: 0.5 }}
+                onClick={handleOpen}
+                sx={{ "&:hover": { color: "white" }, mr: 1 }}
               >
-                <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
+                <HighlightOffIcon /> <span className="ms-2">Delete</span>
               </Button>
               <Button
                 component={Link}
                 to={`/rounds/${id}/edit`}
                 variant="contained"
                 size="large"
-                sx={{ "&:hover": { color: "white" }, ml: 0.5 }}
+                sx={{ "&:hover": { color: "white" }, ml: 1 }}
               >
                 <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
               </Button>
@@ -129,14 +152,47 @@ const RoundDetails = () => {
           />
         </Grid>
         <Grid item xs={12} sm={8} md={8} lg={12}>
-          {greenies.length ? (
-            <GreenieCardList greenies={greenies} />
+          {round.greenies.length ? (
+            <GreenieCardList greenies={round.greenies} />
           ) : (
             "No Greenies Yet!"
           )}
           {/* <GreenieTable greenies={round.greenies} /> */}
         </Grid>
       </Grid>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h4" color="white">
+            Are you Sure?
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }} color="white">
+            This action will permanently erase all data associated with this
+            round including greenies. Please confirm to proceed.
+          </Typography>
+          <Box sx={{ mt: 3, textAlign: "right" }}>
+            <Button
+              variant="contained"
+              onClick={handleClose}
+              sx={{ mr: 2, bgcolor: "gray" }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="dark"
+              sx={{ color: "white" }}
+              onClick={() => handleDelete(round.id)}
+            >
+              Delete
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </Container>
   );
 };
