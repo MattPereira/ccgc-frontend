@@ -42,11 +42,7 @@ const TournamentDetails = () => {
   const { currentUser } = useContext(UserContext);
 
   const [tournament, setTournament] = useState(null);
-  const [showSnack, setShowSnack] = React.useState({
-    open: true,
-    vertical: "bottom",
-    horizontal: "center",
-  });
+  const [showSnack, setShowSnack] = useState(true);
 
   console.debug("TournamentDetails");
 

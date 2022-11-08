@@ -128,7 +128,7 @@ const Navbar = ({ window, logout }) => {
         }}
       >
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar disableGutters sx={{ justifyConent: "center" }}>
             <NavLink to="/">
               <Box
                 component="img"
