@@ -172,8 +172,8 @@ const RoundForm = ({ availableUsernames, round }) => {
     }
 
     if (round) {
-      //navigate to the round details page for an updated round
-      navigate(`/rounds/${round.id}`);
+      //navigate to the tournament details page after editing a round
+      navigate(`/tournaments/${round.tournamentDate}`);
     } else {
       //navigate to the tournament details page for a newly created round
       navigate(`/tournaments/${date}`);

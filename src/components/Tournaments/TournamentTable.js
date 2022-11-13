@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
 
 /** Tournament Strokes Table Component
  *
@@ -35,7 +36,7 @@ const TournamentTable = ({ data, type }) => {
             </>
           ) : null}
 
-          <th>PTS</th>
+          <th>EDIT</th>
         </tr>
       </thead>
       <tbody>
@@ -62,7 +63,11 @@ const TournamentTable = ({ data, type }) => {
               <td>{r.totalPutts}</td>
             )}
 
-            <td>{r.points}</td>
+            <td>
+              <Link to={`/rounds/${r.id}/edit`}>
+                <EditIcon />
+              </Link>
+            </td>
           </tr>
         ))}
       </tbody>
