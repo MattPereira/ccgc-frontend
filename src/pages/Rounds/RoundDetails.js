@@ -83,7 +83,7 @@ const RoundDetails = () => {
 
   return (
     <Container sx={{ py: 5, textAlign: "center" }}>
-      <Box sx={{ display: "inline-block", mb: 3 }}>
+      <Box sx={{ display: "inline-block" }}>
         <Typography variant="h1">
           {" "}
           {
@@ -97,47 +97,48 @@ const RoundDetails = () => {
           role="presentation"
           sx={{ width: "50%", marginBottom: "1rem !important" }}
         />
-        <Typography
-          variant="h3"
-          component={Link}
-          to={`/tournaments/${round.tournamentDate}`}
-          sx={{ textDecoration: "none" }}
-        >
-          {new Date(round.tournamentDate)
-            .toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              timeZone: "UTC",
-            })
-            .replaceAll("/", "-")}{" "}
-          @ {round.courseName.split(" ").slice(0, 2).join(" ")}
-        </Typography>
+        {currentUser ? (
+          <Box sx={{ my: 3 }}>
+            <Button
+              variant="contained"
+              color="error"
+              size="large"
+              onClick={handleOpen}
+              sx={{ "&:hover": { color: "white" }, mr: 1 }}
+            >
+              <HighlightOffIcon /> <span className="ms-2">Delete</span>
+            </Button>
+            <Button
+              component={Link}
+              to={`/rounds/${id}/edit`}
+              variant="contained"
+              size="large"
+              sx={{ "&:hover": { color: "white" }, ml: 1 }}
+            >
+              <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+            </Button>
+          </Box>
+        ) : null}
       </Box>
 
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container justifyContent="center">
         <Grid item xs={12} sm={8} md={6} lg={12} sx={{ mb: 3 }}>
-          {currentUser ? (
-            <Box sx={{ my: 3 }}>
-              <Button
-                variant="contained"
-                color="error"
-                size="large"
-                onClick={handleOpen}
-                sx={{ "&:hover": { color: "white" }, mr: 1 }}
-              >
-                <HighlightOffIcon /> <span className="ms-2">Delete</span>
-              </Button>
-              <Button
-                component={Link}
-                to={`/rounds/${id}/edit`}
-                variant="contained"
-                size="large"
-                sx={{ "&:hover": { color: "white" }, ml: 1 }}
-              >
-                <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-              </Button>
-            </Box>
-          ) : null}
+          <Box sx={{ mb: 3 }}>
+            <Typography
+              variant="h3"
+              component={Link}
+              to={`/tournaments/${round.tournamentDate}`}
+              sx={{ textDecoration: "none" }}
+            >
+              {new Date(round.tournamentDate).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </Typography>
+          </Box>
+
           <RoundTable
             roundId={round.id}
             courseName={round.courseName}

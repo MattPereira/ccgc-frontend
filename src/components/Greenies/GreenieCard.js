@@ -91,7 +91,7 @@ const GreenieCard = ({ greenie }) => {
                     <thead>
                       <tr>
                         <th>Hole</th>
-                        <th>Distance</th>
+                        <th>Length</th>
                         <th>Points</th>
                       </tr>
                     </thead>

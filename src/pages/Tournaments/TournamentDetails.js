@@ -11,7 +11,7 @@ import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import Showcase from "../../components/Tournaments/Showcase";
 
 import { Link } from "react-router-dom";
-import { Button, Typography, Container, Box, Tab, Tabs } from "@mui/material";
+import { Button, Container, Box, Tab } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
