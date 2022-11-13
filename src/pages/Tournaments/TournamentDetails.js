@@ -11,14 +11,10 @@ import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import Showcase from "../../components/Tournaments/Showcase";
 
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Typography,
-  Container,
-  Box,
-  Snackbar,
-  Alert,
-} from "@mui/material";
+import { Button, Typography, Container, Box, Tab, Tabs } from "@mui/material";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
@@ -41,18 +37,13 @@ const TournamentDetails = () => {
   const { date } = useParams();
   const { currentUser } = useContext(UserContext);
 
-  const [tournament, setTournament] = useState(null);
-  const [showSnack, setShowSnack] = useState(true);
-
-  console.debug("TournamentDetails");
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setShowSnack(false);
+  const [value, setValue] = useState("1");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
+
+  const [tournament, setTournament] = useState(null);
+  console.debug("TournamentDetails");
 
   /* On component mount, load tournament from API */
   useEffect(
@@ -110,29 +101,48 @@ const TournamentDetails = () => {
         imgSrc={tournament.courseImg}
       />
 
-      {/* <Snackbar
-        open={showSnack}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="info"
-          variant="filled"
-          elevation={3}
-          sx={{ width: "100%" }}
-        >
-          Select player's name to view round details
-        </Alert>
-      </Snackbar> */}
+      <Container sx={{ pt: 1.5, textAlign: "center" }}>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList
+              centered
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+            >
+              <Tab label="Strokes" value="1" />
+              <Tab label="Putts" value="2" />
+              <Tab label="Greenies" value="3" />
+              <Tab label="Points" value="4" />
+            </TabList>
+          </Box>
+          <TabPanel sx={{ px: 0 }} value="1">
+            <TournamentTable data={strokesLeaderboard} type="strokes" />
+          </TabPanel>
+          <TabPanel sx={{ px: 0 }} value="2">
+            <TournamentTable data={puttsLeaderboard} type="putts" />
+          </TabPanel>
+          <TabPanel sx={{ px: 0 }} value="3">
+            {greenies.length ? (
+              <>
+                <div className="d-lg-none">
+                  <GreenieTable greenies={greenies} />
+                </div>
+                <div className="d-none d-lg-block">
+                  <GreenieCardList greenies={greenies} />
+                </div>
+              </>
+            ) : (
+              <div>No greenies yet!</div>
+            )}
+          </TabPanel>
+          <TabPanel sx={{ px: 0 }} value="4">
+            <StandingsTable data={pointsLeaderboard} />
+          </TabPanel>
+        </TabContext>
 
-      <Container
-        sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
-      >
         {currentUser ? AddBtns : null}
 
-        <Box sx={{ pb: 3 }}>
+        {/* <Box sx={{ pb: 3 }}>
           <Typography variant="h3" gutterBottom>
             Strokes
           </Typography>
@@ -163,7 +173,7 @@ const TournamentDetails = () => {
               <GreenieCardList greenies={greenies} />
             </div>
           </Box>
-        ) : null}
+        ) : null} */}
       </Container>
     </>
   );
