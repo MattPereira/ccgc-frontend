@@ -32,21 +32,34 @@ const GreenieCard = ({ greenie }) => {
     courseName,
     courseImg,
   } = greenie;
+  console.log(greenie);
 
   const theme = useTheme();
+
+  let points = 1;
+
+  if (feet < 20) {
+    points += 1;
+  }
+  if (feet < 10) {
+    points += 1;
+  }
+  if (feet < 2) {
+    points += 1;
+  }
 
   return (
     <Box sx={{ mb: 3, textAlign: "center" }}>
       <Link to={`/greenies/${id}`} style={{ textDecoration: "none" }}>
         <Paper elevation={8}>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <div className="GreenieCard-crop">
                 <img alt={`${courseName}`} src={courseImg} />
               </div>
             </Grid>
-            <Grid item xs={6}>
-              <Box
+            <Grid item xs={7}>
+              {/* <Box
                 sx={{
                   bgcolor: theme.palette.dark.main,
                   borderRadius: "0 4px 0 0",
@@ -55,34 +68,45 @@ const GreenieCard = ({ greenie }) => {
                 <Typography variant="h6" sx={{ color: "white" }}>
                   {courseName.split(" ").slice(0, 2).join(" ")}
                 </Typography>
-              </Box>
+              </Box> */}
               <Box
                 sx={{
-                  backgroundColor: theme.palette.success.main,
+                  backgroundColor: theme.palette.dark.main,
+                  py: 1,
                 }}
               >
-                <Typography variant="h6" sx={{ color: "white" }}>
+                <Typography
+                  sx={{
+                    color: "white",
+                    fontSize: "1.35rem",
+                    fontFamily: "Itim",
+                  }}
+                >
                   {firstName} {lastName}
                 </Typography>
               </Box>
-              <Box sx={{ px: 2, pt: 0.75 }}>
-                <Table responsive>
-                  <thead>
-                    <tr>
-                      <th>Hole</th>
-                      <th>Distance</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>#{holeNumber}</td>
-                      <td>
-                        {feet}' {inches}"
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </Box>
+              <Grid sx={{ mt: 1.5, px: 2 }}>
+                <Grid item>
+                  <Table className="mb-0">
+                    <thead>
+                      <tr>
+                        <th>Hole</th>
+                        <th>Distance</th>
+                        <th>Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#{holeNumber}</td>
+                        <td>
+                          {feet}' {inches}"
+                        </td>
+                        <td>+{points}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Paper>

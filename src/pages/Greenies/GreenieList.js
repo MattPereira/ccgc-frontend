@@ -23,7 +23,6 @@ import { Typography, Divider, Box } from "@mui/material";
 
 const GreenieList = () => {
   console.debug("GreenieList");
-
   const [greenies, setGreenies] = useState(null);
 
   /* On component mount, load greenies from API */

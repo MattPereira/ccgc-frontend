@@ -110,7 +110,7 @@ const TournamentDetails = () => {
         imgSrc={tournament.courseImg}
       />
 
-      <Snackbar
+      {/* <Snackbar
         open={showSnack}
         autoHideDuration={6000}
         onClose={handleClose}
@@ -125,7 +125,7 @@ const TournamentDetails = () => {
         >
           Select player's name to view round details
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
 
       <Container
         sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
