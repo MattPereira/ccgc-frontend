@@ -78,13 +78,12 @@ const MemberDetails = () => {
               >
                 <thead>
                   <tr className="table-dark">
-                    <th>TOURNEY</th>
+                    <th>DATE</th>
                     <th>TOT</th>
                     <th>DIF</th>
                     <th>IDX</th>
                     <th>HCP</th>
                     <th>NET</th>
-                    <th>PUT</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,7 +96,11 @@ const MemberDetails = () => {
                         >
                           {new Date(r.tournamentDate).toLocaleDateString(
                             "en-US",
-                            { month: "short", year: "numeric" }
+                            {
+                              month: "numeric",
+                              day: "numeric",
+                              year: "numeric",
+                            }
                           )}
                         </Link>
                       </th>
@@ -106,7 +109,6 @@ const MemberDetails = () => {
                       <td>{r.playerIndex}</td>
                       <td>{r.courseHandicap}</td>
                       <td>{r.netStrokes}</td>
-                      <td>{r.totalPutts}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -36,7 +36,9 @@ const TournamentTable = ({ data, type }) => {
             </>
           ) : null}
 
-          <th>EDIT</th>
+          <th>
+            <EditIcon />
+          </th>
         </tr>
       </thead>
       <tbody>
