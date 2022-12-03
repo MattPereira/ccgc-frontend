@@ -21,15 +21,8 @@ const Showcase = ({ date, course, imgSrc }) => {
     >
       <div className="showcase-overlay"></div>
       <div className="showcase-header text-center">
-        <Typography
-          variant="h1"
-          sx={{ color: "white", marginBottom: "0.5rem" }}
-        >
-          {course.split(" ").slice(0, 2).join(" ")}
-        </Typography>
-
         {date ? (
-          <Typography variant="h4" sx={{ color: "white" }}>
+          <Typography variant="h2" sx={{ color: "white", fontFamily: "Itim" }}>
             {new Date(date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",

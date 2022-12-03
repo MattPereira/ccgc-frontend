@@ -1,68 +1,97 @@
 import React from "react";
-import "./index.scss";
-import mpLogo from "../../../assets/MP_LOGO_LIGHT.svg";
-import { Container, Row, Col } from "react-bootstrap";
-import { AiFillGithub } from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { ReactComponent as MPLogo } from "../../../assets/MP_CIRCLE.svg";
+import { Box, Grid, Typography } from "@mui/material";
+
+import { SvgIcon } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <Container fluid className="footer bg-black">
-      <Row className="justify-content-center">
-        <Col md="4" className="footer-copywright d-none d-lg-inline">
-          <h3 className="pt-2">
+    <Box
+      sx={{
+        bgcolor: "black",
+        bottom: 0,
+        position: "absolute",
+        width: "100%",
+        py: 1,
+      }}
+    >
+      <Grid
+        container
+        justifyContent="center"
+        sx={{ textAlign: "center", color: "white" }}
+      >
+        <Grid
+          item
+          md={4}
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography>
             Developed by &nbsp;
             <a
               href="https://matt-pereira.surge.sh/"
-              style={{ color: "white", textDecoration: "none" }}
+              style={{
+                color: "white",
+                textDecoration: "none",
+              }}
               target="_blank"
               rel="noopener noreferrer"
             >
               Matt Pereira
             </a>
-          </h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <Row className="justify-content-center pt-2">
-            <Col className="col-2">
-              <a
-                href="https://matt-pereira.surge.sh/"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={mpLogo} alt="MP Logo" className="mp-logo" />
+          </Typography>
+        </Grid>
+        <Grid item md="4" className="footer-body">
+          <Grid container justifyContent="center" spacing={3}>
+            <Grid item>
+              <a href="https://matt-pereira.surge.sh">
+                <SvgIcon sx={{ fontSize: "32px" }}>
+                  <MPLogo />
+                </SvgIcon>
               </a>
-            </Col>
-            <Col className="col-2">
-              <a
-                href="https://github.com/MattPereira"
-                style={{ color: "white" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillGithub size={28} />
-              </a>
-            </Col>
-            <Col className="col-2">
+            </Grid>
+            <Grid item>
               <a
                 href="https://www.linkedin.com/in/-matt-pereira-/"
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLinkedinIn size={25} />
+                <LinkedInIcon fontSize="large" />
               </a>
-            </Col>
-          </Row>
-        </Col>
-        <Col md="4" className="footer-copywright d-none d-lg-inline">
-          <h3 className="pt-2">Copyright © {year}</h3>
-        </Col>
-      </Row>
-    </Container>
+            </Grid>
+            <Grid item>
+              <a
+                href="https://github.com/MattPereira"
+                style={{ color: "white" }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon sx={{ fontSize: "33px" }} />
+              </a>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          md={4}
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography>Copyright © {year}</Typography>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

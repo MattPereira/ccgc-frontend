@@ -66,7 +66,7 @@ const TournamentDetails = () => {
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
-    <Box sx={{ paddingBottom: "3rem" }}>
+    <Box sx={{ pt: "2rem", pb: "2rem" }}>
       <Button
         variant="contained"
         color="success"
@@ -102,6 +102,8 @@ const TournamentDetails = () => {
       />
 
       <Container sx={{ pt: 1.5, textAlign: "center" }}>
+        {currentUser ? AddBtns : null}
+
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
@@ -139,8 +141,6 @@ const TournamentDetails = () => {
             <StandingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
-
-        {currentUser ? AddBtns : null}
 
         {/* <Box sx={{ pb: 3 }}>
           <Typography variant="h3" gutterBottom>
