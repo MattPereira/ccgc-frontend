@@ -23,11 +23,11 @@ const Showcase = ({ date, course, imgSrc }) => {
       <div className="showcase-header text-center">
         {date ? (
           <Typography
-            variant="h2"
+            variant="h1"
             sx={{
               color: "white",
-              fontFamily: "Cubano",
               letterSpacing: "0.4rem",
+              fontFamily: "Cubano",
             }}
           >
             {new Date(date).toLocaleDateString("en-US", {

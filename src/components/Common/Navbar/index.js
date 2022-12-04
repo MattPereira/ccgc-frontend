@@ -25,6 +25,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 import LoginIcon from "@mui/icons-material/Login";
+import CloseIcon from "@mui/icons-material/Close";
 
 /** Navbar bar for site that shows on every page
  *
@@ -62,7 +63,7 @@ const Navbar = ({ window, logout }) => {
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", backgroundColor: "black" }}
     >
-      <Box sx={{ display: "flex" }} justifyContent="space-between">
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -75,18 +76,28 @@ const Navbar = ({ window, logout }) => {
         </IconButton>
         <Typography
           variant="h6"
+          component={Link}
+          to="/"
           sx={{
             my: 2,
             color: "white",
-            fontFamily: "Fredoka One",
-            fontSize: "1rem",
-            position: "absolute",
-            left: "50%",
-            transform: "translate(-50%, 0%)",
+            fontFamily: "Cubano",
+            fontSize: "1.25rem",
+            textDecoration: "none",
           }}
         >
           Contra Costa Golf Club
         </Typography>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleDrawerToggle}
+          color="inherit"
+        >
+          <CloseIcon fontSize="large" sx={{ color: "white" }} />
+        </IconButton>
       </Box>
 
       <Divider sx={{ marginBottom: "0px !important" }} />
