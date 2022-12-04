@@ -24,6 +24,7 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
+import LoginIcon from "@mui/icons-material/Login";
 
 /** Navbar bar for site that shows on every page
  *
@@ -129,17 +130,25 @@ const Navbar = ({ window, logout }) => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ justifyConent: "center" }}>
-            <NavLink to="/">
-              <Box
-                component="img"
-                alt="ccgc logo"
-                src={ccgcLogo}
-                sx={{
-                  height: "40px",
-                  display: { xs: "none", md: "flex" },
-                }}
-              />
-            </NavLink>
+            <Box
+              sx={{
+                width: "83.406px",
+                textAlign: "center",
+                display: { xs: "none", md: "flex" },
+                justifyContent: "center",
+              }}
+            >
+              <NavLink to="/">
+                <Box
+                  component="img"
+                  alt="ccgc logo"
+                  src={ccgcLogo}
+                  sx={{
+                    height: "40px",
+                  }}
+                />
+              </NavLink>
+            </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -257,16 +266,40 @@ const Navbar = ({ window, logout }) => {
                 </Menu>
               </Box>
             ) : (
-              <Box sx={{ flexGrow: 0 }}>
-                <Button
-                  component={NavLink}
-                  to="/login"
-                  color="inherit"
-                  sx={{ fontFamily: "Lato", fontWeight: 600, fontSize: "1rem" }}
+              <>
+                <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+                  <Button
+                    component={NavLink}
+                    to="/login"
+                    variant="contained"
+                    sx={{
+                      fontFamily: "Lato",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      backgroundColor: "white",
+                      color: "black",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Box>
+                <Box
+                  sx={{
+                    flexGrow: 0,
+                    width: "35px",
+                    display: { xs: "flex", md: "none" },
+                  }}
                 >
-                  Login
-                </Button>
-              </Box>
+                  <NavLink
+                    to="/login"
+                    sx={{
+                      color: "white !important",
+                    }}
+                  >
+                    <LoginIcon sx={{ fontSize: "30px", color: "white" }} />
+                  </NavLink>
+                </Box>
+              </>
             )}
           </Toolbar>
         </Container>
