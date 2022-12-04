@@ -132,6 +132,10 @@ function App() {
         marginBottom: "1rem",
         fontSize: "5rem",
       },
+      h2: {
+        fontFamily: "Poppins",
+        fontSize: "3rem",
+      },
       h3: {
         fontFamily: "Itim",
         fontWeight: 400,
@@ -140,9 +144,15 @@ function App() {
         fontFamily: "Lato",
         fontWeight: 900,
       },
+      h5: {
+        fontFamily: "Cubano",
+      },
       h6: {
         fontFamily: "Itim",
         fontSize: "1.3rem",
+      },
+      p: {
+        fontFamily: "Poppins",
       },
     },
   });

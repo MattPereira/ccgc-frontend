@@ -121,7 +121,7 @@ const Navbar = ({ window, logout }) => {
     <>
       <AppBar
         position="static"
-        // color="dark"
+        color="dark"
         sx={{
           // backgroundImage:
           //   "linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))",
