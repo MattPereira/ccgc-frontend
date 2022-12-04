@@ -29,11 +29,7 @@ const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
               backgroundColor: "rgb(33,37,41)",
             }}
           >
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{ fontFamily: "Itim", color: "white" }}
-            >
+            <Typography variant="h4" align="center" sx={{ color: "white" }}>
               {name}
             </Typography>
           </Box>

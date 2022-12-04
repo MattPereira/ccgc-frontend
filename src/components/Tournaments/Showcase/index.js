@@ -22,7 +22,14 @@ const Showcase = ({ date, course, imgSrc }) => {
       <div className="showcase-overlay"></div>
       <div className="showcase-header text-center">
         {date ? (
-          <Typography variant="h2" sx={{ color: "white", fontFamily: "Itim" }}>
+          <Typography
+            variant="h2"
+            sx={{
+              color: "white",
+              fontFamily: "Cubano",
+              letterSpacing: "0.4rem",
+            }}
+          >
             {new Date(date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",

@@ -29,10 +29,7 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
               backgroundColor: "rgb(33,37,41)",
             }}
           >
-            <Typography
-              variant="h4"
-              sx={{ fontFamily: "Itim", color: "white" }}
-            >
+            <Typography variant="h4" sx={{ color: "white" }}>
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",

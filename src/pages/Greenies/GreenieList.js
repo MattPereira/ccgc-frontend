@@ -4,9 +4,9 @@ import CcgcApi from "../../api/api";
 
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 
-import { Container, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
-import { Typography, Divider, Box } from "@mui/material";
+import { Typography, Divider, Box, Container } from "@mui/material";
 
 /** Show page with all greenies listed
  *
@@ -41,15 +41,17 @@ const GreenieList = () => {
   console.log(greenies);
 
   return (
-    <Container className="py-5 text-center">
-      <Box sx={{ display: "inline-block" }}>
-        <Typography variant="h1">Greenies</Typography>
-        <Divider role="presentation" sx={{ width: "50%" }} />
+    <Container sx={{ py: 5 }}>
+      <Box sx={{ textAlign: "center" }}>
+        <Box sx={{ display: "inline-block" }}>
+          <Typography variant="h1">Top Greenies</Typography>
+          <Divider role="presentation" sx={{ width: "50%" }} />
+        </Box>
       </Box>
 
-      <Row className="text-center justify-content-center">
+      <Box>
         <GreenieCardList greenies={greenies} />
-      </Row>
+      </Box>
     </Container>
   );
 };

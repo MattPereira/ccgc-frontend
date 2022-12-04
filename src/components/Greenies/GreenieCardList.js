@@ -1,6 +1,6 @@
 import React from "react";
 import GreenieCard from "./GreenieCard";
-import { Row, Col } from "react-bootstrap";
+import { Grid } from "@mui/material";
 
 /** Show list of greenie cards.
  *
@@ -15,13 +15,13 @@ const GreenieCardList = ({ greenies }) => {
   console.debug("GreenieCardList", "greenies=", greenies);
 
   return (
-    <Row className="justify-content-center">
+    <Grid container spacing={3}>
       {greenies.map((g) => (
-        <Col xs={12} md={10} lg={6} key={g.id}>
+        <Grid item xs={12} md={6} lg={4} key={g.id}>
           <GreenieCard greenie={g} />
-        </Col>
+        </Grid>
       ))}
-    </Row>
+    </Grid>
   );
 };
 

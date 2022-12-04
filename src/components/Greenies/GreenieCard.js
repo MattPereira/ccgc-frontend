@@ -1,9 +1,17 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Paper, Typography, Box, Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import "./GreenieCard.css";
+import {
+  Paper,
+  Typography,
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+// import { useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 /** Greenie card component.
  *
@@ -22,19 +30,10 @@ import "./GreenieCard.css";
  */
 
 const GreenieCard = ({ greenie }) => {
-  const {
-    id,
-    holeNumber,
-    feet,
-    inches,
-    firstName,
-    lastName,
-    courseName,
-    courseImg,
-  } = greenie;
-  console.log(greenie);
+  const { id, holeNumber, feet, inches, firstName, lastName, courseImg } =
+    greenie;
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   let points = 1;
 
@@ -48,68 +47,101 @@ const GreenieCard = ({ greenie }) => {
     points += 1;
   }
 
+  const StyledPaper = styled(Paper)(({ theme }) => ({
+    borderRadius: "30px",
+    backgroundColor: "#eeeeee",
+    "&:hover": {
+      backgroundColor: "black",
+      color: "white",
+      ".MuiTable-root": {
+        ".MuiTableHead-root": {
+          ".MuiTableRow-root": {
+            ".MuiTableCell-root": {
+              color: "white",
+              borderBottom: "1px solid white",
+            },
+          },
+        },
+        ".MuiTableBody-root": {
+          ".MuiTableRow-root": {
+            ".MuiTableCell-root": {
+              color: "white",
+            },
+          },
+        },
+      },
+    },
+  }));
+
+  const StyledCardImage = styled(Box)(({ theme }) => ({
+    width: "100%",
+    height: "203.984px",
+    borderRadius: "30px",
+    objectFit: "cover",
+  }));
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    fontFamily: "Poppins",
+  }));
+
+  const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+  }));
+
+  const StyledTableHeadRow = styled(TableRow)(({ theme }) => ({
+    ".MuiTableCell-root": {
+      borderBottom: "1px solid black",
+    },
+  }));
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    ".MuiTableCell-root": {
+      borderBottom: "none",
+    },
+  }));
+
   return (
-    <Box sx={{ mb: 3, textAlign: "center" }}>
+    <Box sx={{ mb: 3 }}>
       <Link to={`/greenies/${id}`} style={{ textDecoration: "none" }}>
-        <Paper elevation={8}>
-          <Grid container>
-            <Grid item xs={5}>
-              <div className="GreenieCard-crop">
-                <img alt={`${courseName}`} src={courseImg} />
-              </div>
-            </Grid>
-            <Grid item xs={7}>
-              {/* <Box
-                sx={{
-                  bgcolor: theme.palette.dark.main,
-                  borderRadius: "0 4px 0 0",
-                }}
-              >
-                <Typography variant="h6" sx={{ color: "white" }}>
-                  {courseName.split(" ").slice(0, 2).join(" ")}
-                </Typography>
-              </Box> */}
-              <Box
-                sx={{
-                  backgroundColor: theme.palette.dark.main,
-                  py: 1,
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: "white",
-                    fontSize: "1.35rem",
-                    fontFamily: "Itim",
-                  }}
-                >
-                  {firstName} {lastName}
-                </Typography>
-              </Box>
-              <Grid sx={{ mt: 1.5, px: 2 }}>
-                <Grid item>
-                  <Table className="mb-0">
-                    <thead>
-                      <tr>
-                        <th>Hole</th>
-                        <th>Length</th>
-                        <th>Points</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#{holeNumber}</td>
-                        <td>
-                          {feet}' {inches}"
-                        </td>
-                        <td>+{points}</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Paper>
+        <StyledPaper elevation={8}>
+          <StyledCardImage component="img" src={courseImg} />
+          <Box sx={{ p: 3, textAlign: "center" }}>
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="h5">
+                {firstName} {lastName}
+              </Typography>
+            </Box>
+
+            <Box sx={{ px: 3 }}>
+              <Table size="small">
+                <TableHead>
+                  <StyledTableHeadRow sx={{ border: "none" }}>
+                    <StyledTableHeadCell align="center">
+                      Hole
+                    </StyledTableHeadCell>
+                    <StyledTableHeadCell align="center">
+                      Length
+                    </StyledTableHeadCell>
+                    <StyledTableHeadCell align="center">
+                      Points
+                    </StyledTableHeadCell>
+                  </StyledTableHeadRow>
+                </TableHead>
+                <TableBody>
+                  <StyledTableRow>
+                    <StyledTableCell align="center">
+                      #{holeNumber}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {feet}' {inches}"
+                    </StyledTableCell>
+                    <StyledTableCell align="center">+{points}</StyledTableCell>
+                  </StyledTableRow>
+                </TableBody>
+              </Table>
+            </Box>
+          </Box>
+        </StyledPaper>
       </Link>
     </Box>
   );

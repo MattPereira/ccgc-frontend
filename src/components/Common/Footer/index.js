@@ -33,7 +33,7 @@ function Footer() {
             justifyContent: "center",
           }}
         >
-          <Typography>
+          <Typography variant="p">
             Developed by &nbsp;
             <a
               href="https://matt-pereira.surge.sh/"
@@ -88,7 +88,7 @@ function Footer() {
             justifyContent: "center",
           }}
         >
-          <Typography>Copyright © {year}</Typography>
+          <Typography variant="p">Copyright © {year}</Typography>
         </Grid>
       </Grid>
     </Box>

@@ -141,8 +141,7 @@ function App() {
         fontWeight: 400,
       },
       h4: {
-        fontFamily: "Lato",
-        fontWeight: 900,
+        fontFamily: "Cubano",
       },
       h5: {
         fontFamily: "Cubano",
