@@ -128,7 +128,7 @@ function App() {
     },
     typography: {
       h1: {
-        fontFamily: "Fredoka one",
+        fontFamily: "Cubano",
         marginBottom: "1rem",
         fontSize: "5rem",
       },

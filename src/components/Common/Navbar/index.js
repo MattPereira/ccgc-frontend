@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 
 import {
@@ -158,11 +158,14 @@ const Navbar = ({ window, logout }) => {
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <Typography
                 variant="h6"
+                component={Link}
+                to="/"
                 sx={{
-                  color: "white",
-                  fontFamily: "Fredoka One",
-                  letterSpacing: ".2rem",
+                  color: "white !important",
+                  fontFamily: "Cubano",
+                  letterSpacing: ".25rem",
                   fontSize: "1.4rem",
+                  textDecoration: "none",
                 }}
               >
                 CCGC

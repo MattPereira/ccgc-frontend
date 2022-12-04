@@ -48,7 +48,7 @@ function Footer() {
             </a>
           </Typography>
         </Grid>
-        <Grid item md="4" className="footer-body">
+        <Grid item md={4} className="footer-body">
           <Grid container justifyContent="center" spacing={3}>
             <Grid item>
               <a href="https://matt-pereira.surge.sh">

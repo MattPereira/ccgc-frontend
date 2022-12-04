@@ -108,6 +108,12 @@ class CcgcApi {
     return res.tournament;
   }
 
+  /** Get the upcoming tournament (for the home page) */
+  static async getUpcomingTournament() {
+    let res = await this.request(`tournaments/upcoming`);
+    return res.tournament;
+  }
+
   /** Create a new tournament */
   static async createTournament(data) {
     let res = await this.request("tournaments", data, "post");

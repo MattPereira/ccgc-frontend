@@ -18,7 +18,7 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
   return (
     <Box sx={{ mb: 5 }}>
       <Link to={`/tournaments/${date}`} style={{ textDecoration: "none" }}>
-        <Paper elevation={8}>
+        <Paper elevation={8} sx={{ borderRadius: "50px" }}>
           <div className="TournamentCard-crop">
             <img alt={`${courseName}`} src={imgUrl} />
           </div>
