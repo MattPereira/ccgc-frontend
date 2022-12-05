@@ -120,7 +120,7 @@ const GreenieCard = ({ greenie }) => {
               </Typography>
             </Box>
 
-            <Box sx={{ px: 3 }}>
+            <Box>
               <Table size="small">
                 <TableHead>
                   <StyledTableHeadRow sx={{ border: "none" }}>
