@@ -16,7 +16,7 @@ import "./CourseCard.scss";
 
 const CourseCard = ({ handle, rating, slope, name, imgUrl }) => {
   return (
-    <Box sx={{ mb: 5 }}>
+    <Box>
       <Link to={`/courses/${handle}`} style={{ textDecoration: "none" }}>
         <Paper elevation={8}>
           <div className="CourseCard-crop">

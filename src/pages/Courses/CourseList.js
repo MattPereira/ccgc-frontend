@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
-import { Container, Col, Row } from "react-bootstrap";
 
-import { Typography, Divider } from "@mui/material";
+import { Typography, Divider, Container, Grid } from "@mui/material";
 
 /** Show page with all courses listed
  *
@@ -35,11 +34,11 @@ const CourseList = () => {
 
   return (
     <Container className="py-5">
-      <Typography variant="h1">Courses</Typography>
+      <Typography variant="h1">Golf Courses</Typography>
       <Divider role="presentation" style={{ width: "17%" }} />
-      <Row className="justify-content-center">
-        <Col md={10} lg={8} xl={7} className="CourseList">
-          {courses.map((c) => (
+      <Grid container spacing={3} justifyContent="center">
+        {courses.map((c) => (
+          <Grid item xs={12} sm={10} md={8} lg={6}>
             <CourseCard
               key={c.handle}
               handle={c.handle}
@@ -48,9 +47,9 @@ const CourseList = () => {
               slope={c.slope}
               imgUrl={c.imgUrl}
             />
-          ))}
-        </Col>
-      </Row>
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };

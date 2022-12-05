@@ -23,10 +23,10 @@ const Showcase = ({ date, course, imgSrc }) => {
       <div className="showcase-header text-center">
         {date ? (
           <Typography
-            variant="h1"
+            variant="h3"
             sx={{
               color: "white",
-              letterSpacing: "0.4rem",
+              letterSpacing: "0.2rem",
               fontFamily: "Cubano",
             }}
           >
