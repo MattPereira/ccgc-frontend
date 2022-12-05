@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Paper, Typography, Box } from "@mui/material";
-import "./TournamentCard.scss";
+import { styled } from "@mui/material/styles";
 
 /** Tournament card component.
  *
@@ -14,22 +14,35 @@ import "./TournamentCard.scss";
  *
  */
 
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: "30px",
+  backgroundColor: "black",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "#eeeeee",
+    color: "black",
+  },
+}));
+
+const StyledCardImage = styled(Box)(({ theme }) => ({
+  width: "100%",
+  height: "203.984px",
+  borderRadius: "30px",
+  objectFit: "cover",
+}));
+
 const TournamentCard = ({ date, courseName, imgUrl }) => {
   return (
     <Box sx={{ mb: 5 }}>
       <Link to={`/tournaments/${date}`} style={{ textDecoration: "none" }}>
-        <Paper elevation={8} sx={{ borderRadius: "50px" }}>
-          <div className="TournamentCard-crop">
-            <img alt={`${courseName}`} src={imgUrl} />
-          </div>
+        <StyledPaper elevation={8}>
+          <StyledCardImage component="img" src={imgUrl} />
           <Box
             sx={{
-              py: 1.5,
-              borderRadius: "0 0 4px 4px",
-              backgroundColor: "rgb(33,37,41)",
+              py: 2,
             }}
           >
-            <Typography variant="h4" sx={{ color: "white" }}>
+            <Typography variant="h4">
               {" "}
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -39,7 +52,7 @@ const TournamentCard = ({ date, courseName, imgUrl }) => {
               })}
             </Typography>
           </Box>
-        </Paper>
+        </StyledPaper>
       </Link>
     </Box>
   );

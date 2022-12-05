@@ -52,7 +52,7 @@ const Standings = () => {
     <Container className="py-5">
       <Row className="justify-content-center">
         <Typography variant="h1" textAlign="center">
-          Standings
+          Tour Standings
         </Typography>
         <Divider role="presentation" sx={{ width: "17%" }} />
 

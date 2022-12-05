@@ -75,7 +75,7 @@ const Homepage = () => {
         {
           path: "standings",
           image: standingsImage,
-          title: "Current Standings",
+          title: "Tour Standings",
           description:
             "All club members ranked by tournament points earned for the year",
         },
@@ -94,7 +94,7 @@ const Homepage = () => {
         {
           path: "members",
           image: membersImage,
-          title: "Club Members",
+          title: "Our  Members",
           description: "Detailed statistics for each club members performance",
         },
         {

@@ -38,7 +38,7 @@ const MemberList = () => {
   return (
     <Container className="py-5 text-center">
       <Box sx={{ display: "inline-block" }}>
-        <Typography variant="h1">Members</Typography>
+        <Typography variant="h1">Club Members</Typography>
         <Divider role="presentation" sx={{ width: "60%" }} />
       </Box>
 

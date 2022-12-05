@@ -43,8 +43,8 @@ const TournamentList = () => {
       <Divider role="presentation" sx={{ width: "17%" }} />
 
       <div className="text-center row justify-content-center">
-        <Col md={10} lg={8} xl={7}>
-          {tournaments.map((t) => (
+        {tournaments.map((t) => (
+          <Col md={12} lg={6} xl={6}>
             <TournamentCard
               key={t.date}
               date={t.date}
@@ -53,8 +53,8 @@ const TournamentList = () => {
               tourYears={t.tourYears}
               imgUrl={t.imgUrl}
             />
-          ))}
-        </Col>
+          </Col>
+        ))}
       </div>
     </Container>
   );
