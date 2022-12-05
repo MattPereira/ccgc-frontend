@@ -133,7 +133,7 @@ function App() {
         fontSize: "5rem",
       },
       h2: {
-        fontFamily: "Poppins",
+        fontFamily: "Varela Round",
         fontSize: "3rem",
       },
       h3: {
@@ -144,7 +144,8 @@ function App() {
         fontFamily: "Cubano",
       },
       h5: {
-        fontFamily: "Cubano",
+        fontFamily: "Varela Round",
+        fontWeight: "bold",
       },
       h6: {
         fontFamily: "Itim",

@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Form, Alert, Container } from "react-bootstrap";
-import { Button, Typography } from "@mui/material";
+import { Form, Alert } from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Typography,
+  Paper,
+  Box,
+  TextField,
+  Grid,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import ccgclogo from "../../assets/ccgc_logo.png";
 
 /** Register form.
  *
@@ -14,7 +24,17 @@ import { Button, Typography } from "@mui/material";
  * Routed to "/register"
  */
 
-const RegisterForm = ({ register }) => {
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: "30px",
+  backgroundColor: "#eeeeee",
+}));
+
+const StyledCardImage = styled(Box)(({ theme }) => ({
+  width: "50%",
+  borderRadius: "30px",
+}));
+
+export default function RegisterForm({ register }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -58,69 +78,74 @@ const RegisterForm = ({ register }) => {
 
   return (
     <Container className="py-5">
-      <Typography variant="h1" sx={{ mb: 5 }}>
-        Register
-      </Typography>
-
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6">
-          <Card className="shadow">
-            <Card.Img
-              src="https://images.unsplash.com/photo-1605144156683-5ebde77feed5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
-              alt="Register card image"
-            />
-            <Card.Body className="p-4">
+      <Grid container justifyContent="center">
+        <Grid item xs={12} md={6}>
+          <StyledPaper elevation={5}>
+            <Box
+              sx={{
+                backgroundColor: "black",
+                borderRadius: "30px",
+                textAlign: "center",
+                py: 3,
+              }}
+            >
+              <StyledCardImage component="img" src={ccgclogo} />
+            </Box>
+            <Box sx={{ p: 3 }}>
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="email">Email</Form.Label>
-                  <input
-                    className="form-control"
+                <Typography variant="h1" sx={{ mb: 5 }}>
+                  Register
+                </Typography>
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="email"
                     name="email"
-                    type="email"
-                    value={formData.email}
+                    label="Email"
+                    type="text"
+                    variant="outlined"
                     onChange={handleChange}
-                    autoComplete="email"
                     required
-                  ></input>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="password">Password</Form.Label>
-                  <input
-                    className="form-control"
+                    autoComplete="email"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="password"
                     name="password"
                     type="password"
-                    value={formData.password}
+                    label="Password"
+                    variant="outlined"
                     onChange={handleChange}
-                    autoComplete="current-password"
                     required
-                  ></input>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="firstName">First Name</Form.Label>
-                  <input
-                    className="form-control"
+                    autoComplete="email"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="firstName"
                     name="firstName"
                     type="text"
-                    value={formData.firstName}
+                    label="First Name"
+                    variant="outlined"
                     onChange={handleChange}
                     required
-                  ></input>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="lastName">Last Name</Form.Label>
-                  <input
-                    className="form-control"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="lastName"
                     name="lastName"
                     type="text"
-                    value={formData.lastName}
+                    label="Last Name"
+                    variant="outlined"
                     onChange={handleChange}
                     required
-                  ></input>
-                </Form.Group>
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
 
                 {formErrors.length
                   ? formErrors.map((err) => (
@@ -130,18 +155,20 @@ const RegisterForm = ({ register }) => {
                     ))
                   : null}
 
-                <div className="text-end">
-                  <Button variant="contained" type="submit">
+                <Box sx={{ textAlign: "end" }}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{ borderRadius: "30px", px: 3, py: 1 }}
+                  >
                     Submit
                   </Button>
-                </div>
+                </Box>
               </Form>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
+            </Box>
+          </StyledPaper>
+        </Grid>
+      </Grid>
     </Container>
   );
-};
-
-export default RegisterForm;
+}

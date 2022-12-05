@@ -33,6 +33,7 @@ const TournamentTable = ({ data, type }) => {
             <>
               <th>HCP</th>
               <th>NET</th>
+              <th>PUT</th>
             </>
           ) : null}
 

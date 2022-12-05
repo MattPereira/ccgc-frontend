@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Card, Form, Alert, Container } from "react-bootstrap";
-import { Button, Typography, Divider, Box } from "@mui/material";
+import { Form, Alert } from "react-bootstrap";
+import {
+  Button,
+  Typography,
+  Paper,
+  Container,
+  Box,
+  TextField,
+  Grid,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+import ccgclogo from "../../assets/ccgc_logo.png";
 
 /** Login form.
  *
@@ -13,6 +24,15 @@ import { Button, Typography, Divider, Box } from "@mui/material";
  * Router -> RegisterForm
  * Routed to "/login"
  */
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: "30px",
+  backgroundColor: "#eeeeee",
+}));
+
+const StyledCardImage = styled(Box)(({ theme }) => ({
+  width: "50%",
+  borderRadius: "30px",
+}));
 
 const LoginForm = ({ login }) => {
   const navigate = useNavigate();
@@ -57,49 +77,52 @@ const LoginForm = ({ login }) => {
   };
 
   return (
-    <Container className="py-5">
-      <Typography variant="h1" sx={{ mb: 5 }}>
-        Login
-      </Typography>
+    <Container sx={{ pt: 10, pb: 5 }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} md={6}>
+          <StyledPaper elevation={5}>
+            <Box
+              sx={{
+                backgroundColor: "black",
+                borderRadius: "30px",
+                textAlign: "center",
+                py: 3,
+              }}
+            >
+              <StyledCardImage component="img" src={ccgclogo} />
+            </Box>
 
-      <div className="row justify-content-center">
-        <div className="col-sm-10 col-md-6">
-          <Card className="shadow">
-            <Card.Img
-              src="https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80"
-              alt="Login card image"
-            />
-            <p className="text-center mt-3">
-              Don't have an account yet? Register{" "}
-              <Link to="/register">here</Link>.{" "}
-            </p>
-            <Card.Body className="px-5 pb-5">
+            <Box sx={{ p: 3 }}>
+              <Typography variant="h1" sx={{ mb: 3 }}>
+                Login
+              </Typography>
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="email">Email</Form.Label>
-                  <input
-                    className="form-control"
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="email"
                     name="email"
+                    label="Email"
                     type="text"
+                    variant="outlined"
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                  ></input>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label htmlFor="password">Password</Form.Label>
-                  <input
-                    className="form-control"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <TextField
                     id="password"
                     name="password"
                     type="password"
+                    label="Password"
+                    variant="outlined"
                     onChange={handleChange}
                     required
-                    autoComplete="current-password"
-                  ></input>
-                </Form.Group>
-
+                    autoComplete="email"
+                    sx={{ width: "100%" }}
+                  />
+                </Box>
                 {formErrors.length
                   ? formErrors.map((err) => (
                       <Alert variant="danger" key={err}>
@@ -108,16 +131,25 @@ const LoginForm = ({ login }) => {
                     ))
                   : null}
 
-                <div className="text-end">
-                  <Button variant="contained" type="submit">
-                    Login
+                <Box sx={{ textAlign: "end" }}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{ borderRadius: "30px", px: 3, py: 1 }}
+                  >
+                    Submit
                   </Button>
-                </div>
+                </Box>
               </Form>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
+            </Box>
+          </StyledPaper>
+        </Grid>
+      </Grid>
+      <Box sx={{ textAlign: "center", mt: 5 }}>
+        <Typography variant="p">
+          Don't have an account yet? <Link to="/register">Register here</Link>
+        </Typography>
+      </Box>
     </Container>
   );
 };

@@ -105,16 +105,32 @@ const TournamentDetails = () => {
         {currentUser ? AddBtns : null}
 
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Box>
             <TabList
               centered
               onChange={handleChange}
               aria-label="lab API tabs example"
             >
-              <Tab label="Strokes" value="1" />
-              <Tab label="Putts" value="2" />
-              <Tab label="Greenies" value="3" />
-              <Tab label="Points" value="4" />
+              <Tab
+                label="Strokes"
+                value="1"
+                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+              />
+              <Tab
+                label="Putts"
+                value="2"
+                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+              />
+              <Tab
+                label="Greenies"
+                value="3"
+                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+              />
+              <Tab
+                label="Points"
+                value="4"
+                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+              />
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
@@ -141,39 +157,6 @@ const TournamentDetails = () => {
             <StandingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
-
-        {/* <Box sx={{ pb: 3 }}>
-          <Typography variant="h3" gutterBottom>
-            Strokes
-          </Typography>
-          <TournamentTable data={strokesLeaderboard} type="strokes" />
-        </Box>
-
-        <Box sx={{ pb: 3 }}>
-          <Typography variant="h3" gutterBottom>
-            Putts
-          </Typography>
-          <TournamentTable data={puttsLeaderboard} type="putts" />
-        </Box>
-        <Box sx={{ pb: 3 }}>
-          <Typography variant="h3" gutterBottom>
-            Points
-          </Typography>
-          <StandingsTable data={pointsLeaderboard} />
-        </Box>
-        {greenies.length ? (
-          <Box sx={{ pb: 3 }}>
-            <Typography variant="h3" gutterBottom>
-              Greenies
-            </Typography>
-            <div className="d-lg-none">
-              <GreenieTable greenies={greenies} />
-            </div>
-            <div className="d-none d-lg-block">
-              <GreenieCardList greenies={greenies} />
-            </div>
-          </Box>
-        ) : null} */}
       </Container>
     </>
   );

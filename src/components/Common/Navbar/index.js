@@ -35,7 +35,7 @@ import CloseIcon from "@mui/icons-material/Close";
  * Rendered by App
  */
 
-const pages = ["Tournaments", "Members", "Standings", "Greenies", "Courses"];
+const pages = ["Tournaments", "Standings", "Members", "Greenies", "Courses"];
 
 const Navbar = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
@@ -113,7 +113,8 @@ const Navbar = ({ window, logout }) => {
                 primary={item}
                 primaryTypographyProps={{
                   fontSize: "1.5rem",
-                  fontFamily: "Itim",
+                  letterSpacing: "0.1rem",
+                  fontFamily: "Varela Round",
                   color: "white",
                 }}
               />
@@ -182,9 +183,9 @@ const Navbar = ({ window, logout }) => {
                 to="/"
                 sx={{
                   color: "white !important",
-                  fontFamily: "Cubano",
+                  fontFamily: "Fredoka One",
                   letterSpacing: ".25rem",
-                  fontSize: "1.4rem",
+                  fontSize: "1.5rem",
                   textDecoration: "none",
                 }}
               >
@@ -205,9 +206,10 @@ const Navbar = ({ window, logout }) => {
                     my: 2,
                     color: "white",
                     display: "block",
-                    fontFamily: "Lato",
-                    fontWeight: 600,
-                    fontSize: "1rem",
+                    fontFamily: "Varela Round",
+                    fontWeight: "bold",
+                    letterSpacing: ".1rem",
+                    fontSize: "1.1rem",
                   }}
                 >
                   {page}
@@ -284,11 +286,16 @@ const Navbar = ({ window, logout }) => {
                     to="/login"
                     variant="contained"
                     sx={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
+                      fontFamily: "Varela Round",
+                      fontWeight: "bold",
                       fontSize: "1rem",
                       backgroundColor: "white",
                       color: "black",
+                      borderRadius: "30px",
+                      "&:hover": {
+                        backgroundColor: "black",
+                        color: "white",
+                      },
                     }}
                   >
                     Login
