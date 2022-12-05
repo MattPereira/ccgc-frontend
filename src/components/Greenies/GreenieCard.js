@@ -30,8 +30,16 @@ import { styled } from "@mui/material/styles";
  */
 
 const GreenieCard = ({ greenie }) => {
-  const { id, holeNumber, feet, inches, firstName, lastName, courseImg } =
-    greenie;
+  const {
+    id,
+    holeNumber,
+    feet,
+    inches,
+    firstName,
+    lastName,
+    courseImg,
+    courseName,
+  } = greenie;
 
   // const theme = useTheme();
 
@@ -117,25 +125,27 @@ const GreenieCard = ({ greenie }) => {
                 <TableHead>
                   <StyledTableHeadRow sx={{ border: "none" }}>
                     <StyledTableHeadCell align="center">
+                      Course
+                    </StyledTableHeadCell>
+                    <StyledTableHeadCell align="center">
                       Hole
                     </StyledTableHeadCell>
                     <StyledTableHeadCell align="center">
-                      Length
-                    </StyledTableHeadCell>
-                    <StyledTableHeadCell align="center">
-                      Points
+                      Distance
                     </StyledTableHeadCell>
                   </StyledTableHeadRow>
                 </TableHead>
                 <TableBody>
                   <StyledTableRow>
                     <StyledTableCell align="center">
+                      {courseName.split(" ").slice(0, 2).join(" ")}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
                       #{holeNumber}
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       {feet}' {inches}"
                     </StyledTableCell>
-                    <StyledTableCell align="center">+{points}</StyledTableCell>
                   </StyledTableRow>
                 </TableBody>
               </Table>
