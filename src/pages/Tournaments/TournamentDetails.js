@@ -65,14 +65,18 @@ const TournamentDetails = () => {
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
-    <Box sx={{ pt: "2rem", pb: "2rem" }}>
+    <Box sx={{ pb: 5 }}>
       <Button
         variant="contained"
         color="success"
         component={Link}
         to={`/greenies/new/${date}`}
         size="large"
-        sx={{ "&:hover": { color: "white" }, marginRight: "0.5rem" }}
+        sx={{
+          "&:hover": { color: "white" },
+          marginRight: "0.5rem",
+          borderRadius: "30px",
+        }}
       >
         <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
       </Button>
@@ -85,6 +89,7 @@ const TournamentDetails = () => {
           "&:hover": { color: "white" },
           width: "138.906px",
           marginLeft: "0.5rem",
+          borderRadius: "30px",
         }}
       >
         <AddCircleOutlineIcon /> <span className="ms-2">Round</span>
@@ -101,8 +106,6 @@ const TournamentDetails = () => {
       />
 
       <Container sx={{ pt: 1.5, textAlign: "center" }}>
-        {currentUser ? AddBtns : null}
-
         <TabContext value={value}>
           <Box>
             <TabList
@@ -140,14 +143,14 @@ const TournamentDetails = () => {
                   <GreenieCardList greenies={greenies} />
                 </div>
               </>
-            ) : (
-              <div>No greenies yet!</div>
-            )}
+            ) : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="3">
             <StandingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
+
+        {currentUser ? AddBtns : null}
       </Container>
     </>
   );

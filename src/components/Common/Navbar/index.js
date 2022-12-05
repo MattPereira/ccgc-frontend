@@ -82,11 +82,12 @@ const Navbar = ({ window, logout }) => {
             my: 2,
             color: "white",
             fontFamily: "Cubano",
-            fontSize: "1.25rem",
+            fontSize: "1.75rem",
+            letterSpacing: "0.2rem",
             textDecoration: "none",
           }}
         >
-          Contra Costa Golf Club
+          CCGC
         </Typography>
         <IconButton
           size="large"
@@ -114,7 +115,7 @@ const Navbar = ({ window, logout }) => {
                 primaryTypographyProps={{
                   fontSize: "1.5rem",
                   letterSpacing: "0.1rem",
-                  fontFamily: "Varela Round",
+                  fontFamily: "Cubano",
                   color: "white",
                 }}
               />

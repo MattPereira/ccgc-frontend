@@ -201,22 +201,21 @@ const RoundForm = ({ availableUsernames, round }) => {
                 }}
               >
                 <Typography
-                  variant="h3"
+                  variant="h4"
                   component={Link}
                   to={`/rounds/${round.id}`}
                   sx={{ textDecoration: "none", color: "white" }}
                 >
-                  {" "}
+                  {new Date(round.tournamentDate).toLocaleDateString("en-US", {
+                    month: "numeric",
+                    day: "numeric",
+                  })}{" "}
                   {round.username
                     .split("-")
                     .map((name) => {
                       return name.charAt(0).toUpperCase() + name.slice(1);
                     })
                     .join(" ")}{" "}
-                  {/* {new Date(round.tournamentDate).toLocaleDateString("en-US", {
-                    month: "numeric",
-                    day: "numeric",
-                  })} */}
                 </Typography>
               </Box>
             ) : null}

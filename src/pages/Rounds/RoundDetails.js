@@ -18,7 +18,12 @@ import {
   Box,
   Grid,
   Modal,
+  Tab,
 } from "@mui/material";
+
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
 /** Round details page.
  *
@@ -43,6 +48,11 @@ const RoundDetails = () => {
   console.debug("RoundDetails", "id=", id);
 
   const [round, setRound] = useState(null);
+
+  const [value, setValue] = useState("1");
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -97,48 +107,43 @@ const RoundDetails = () => {
           role="presentation"
           sx={{ width: "50%", marginBottom: "1rem !important" }}
         />
-        {currentUser ? (
-          <Box sx={{ my: 3 }}>
-            <Button
-              variant="contained"
-              color="error"
-              size="large"
-              onClick={handleOpen}
-              sx={{ "&:hover": { color: "white" }, mr: 1 }}
-            >
-              <HighlightOffIcon /> <span className="ms-2">Delete</span>
-            </Button>
-            <Button
-              component={Link}
-              to={`/rounds/${id}/edit`}
-              variant="contained"
-              size="large"
-              sx={{ "&:hover": { color: "white" }, ml: 1 }}
-            >
-              <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-            </Button>
-          </Box>
-        ) : null}
+      </Box>
+      <Box sx={{ mb: 2 }}>
+        <Typography
+          variant="h4"
+          component={Link}
+          to={`/tournaments/${round.tournamentDate}`}
+          sx={{ textDecoration: "none", fontSize: "2.5rem" }}
+        >
+          {new Date(round.tournamentDate).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            timeZone: "UTC",
+          })}
+        </Typography>
       </Box>
 
-      <Grid container justifyContent="center">
-        <Grid item xs={12} sm={8} md={6} lg={12} sx={{ mb: 3 }}>
-          <Box sx={{ mb: 3 }}>
-            <Typography
-              variant="h3"
-              component={Link}
-              to={`/tournaments/${round.tournamentDate}`}
-              sx={{ textDecoration: "none" }}
-            >
-              {new Date(round.tournamentDate).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-                timeZone: "UTC",
-              })}
-            </Typography>
-          </Box>
-
+      <TabContext value={value}>
+        <Box>
+          <TabList
+            centered
+            onChange={handleChange}
+            aria-label="lab API tabs example"
+          >
+            <Tab
+              label="Scores"
+              value="1"
+              sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
+            />
+            <Tab
+              label="Greenies"
+              value="2"
+              sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
+            />
+          </TabList>
+        </Box>
+        <TabPanel sx={{ px: 0 }} value="1">
           <RoundTable
             roundId={round.id}
             courseName={round.courseName}
@@ -151,16 +156,45 @@ const RoundDetails = () => {
             totalPutts={round.totalPutts}
             pars={round.pars}
           />
-        </Grid>
-        <Grid item xs={12} sm={8} md={8} lg={12}>
+
+          {currentUser ? (
+            <Box sx={{ mt: 5 }}>
+              <Button
+                variant="contained"
+                color="error"
+                size="large"
+                onClick={handleOpen}
+                sx={{
+                  "&:hover": { color: "white" },
+                  mr: 1,
+                  borderRadius: "30px",
+                }}
+              >
+                <HighlightOffIcon /> <span className="ms-2">Delete</span>
+              </Button>
+              <Button
+                component={Link}
+                to={`/rounds/${id}/edit`}
+                variant="contained"
+                size="large"
+                sx={{
+                  "&:hover": { color: "white" },
+                  ml: 1,
+                  borderRadius: "30px",
+                }}
+              >
+                <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+              </Button>
+            </Box>
+          ) : null}
+        </TabPanel>
+        <TabPanel sx={{ px: 0 }} value="2">
           {round.greenies.length ? (
             <GreenieCardList greenies={round.greenies} />
-          ) : (
-            "No Greenies Yet!"
-          )}
-          {/* <GreenieTable greenies={round.greenies} /> */}
-        </Grid>
-      </Grid>
+          ) : null}
+        </TabPanel>
+      </TabContext>
+
       <Modal
         open={open}
         onClose={handleClose}

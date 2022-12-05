@@ -77,7 +77,10 @@ const LoginForm = ({ login }) => {
   };
 
   return (
-    <Container sx={{ pt: 10, pb: 5 }}>
+    <Container sx={{ py: 5 }}>
+      <Typography variant="h1" sx={{ mb: 3 }}>
+        Login
+      </Typography>
       <Grid container justifyContent="center">
         <Grid item xs={12} md={6}>
           <StyledPaper elevation={5}>
@@ -92,10 +95,7 @@ const LoginForm = ({ login }) => {
               <StyledCardImage component="img" src={ccgclogo} />
             </Box>
 
-            <Box sx={{ p: 3 }}>
-              <Typography variant="h1" sx={{ mb: 3 }}>
-                Login
-              </Typography>
+            <Box sx={{ pt: 4, pb: 3, px: 3 }}>
               <Form onSubmit={handleSubmit}>
                 <Box sx={{ mb: 3 }}>
                   <TextField

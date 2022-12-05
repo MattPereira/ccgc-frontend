@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
-
+import { Button } from "@mui/material";
 /** Tournament Strokes Table Component
  *
  * handles display of the strokes leaderboard
@@ -21,7 +21,7 @@ const TournamentTable = ({ data, type }) => {
     <Table responsive bordered striped variant="light">
       <thead>
         <tr className="table-dark">
-          <th>POS</th>
+          <th>NO</th>
           <th>PLAYER</th>
           {Array.from({ length: 18 }, (_, i) => (
             <th key={i + 1} className="d-none d-sm-table-cell">
@@ -68,9 +68,14 @@ const TournamentTable = ({ data, type }) => {
             )}
 
             <td>
-              <Link to={`/rounds/${r.id}/edit`}>
+              <Button
+                to={`/rounds/${r.id}/edit`}
+                component={Link}
+                variant="contained"
+                sx={{ p: 0, minWidth: "auto" }}
+              >
                 <EditIcon />
-              </Link>
+              </Button>
             </td>
           </tr>
         ))}
