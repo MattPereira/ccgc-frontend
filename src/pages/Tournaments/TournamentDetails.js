@@ -61,8 +61,7 @@ const TournamentDetails = () => {
   if (!tournament) return <LoadingSpinner />;
   console.log("TOURNAMENT", tournament);
 
-  const { greenies, strokesLeaderboard, puttsLeaderboard, pointsLeaderboard } =
-    tournament;
+  const { greenies, scoresLeaderboard, pointsLeaderboard } = tournament;
 
   //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
@@ -112,34 +111,26 @@ const TournamentDetails = () => {
               aria-label="lab API tabs example"
             >
               <Tab
-                label="Strokes"
+                label="Scores"
                 value="1"
-                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
-              />
-              <Tab
-                label="Putts"
-                value="2"
-                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
               />
               <Tab
                 label="Greenies"
-                value="3"
-                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+                value="2"
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
               />
               <Tab
                 label="Points"
-                value="4"
-                sx={{ fontFamily: "Cubano", fontSize: "1.1rem" }}
+                value="3"
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
               />
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
-            <TournamentTable data={strokesLeaderboard} type="strokes" />
+            <TournamentTable data={scoresLeaderboard} type="strokes" />
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="2">
-            <TournamentTable data={puttsLeaderboard} type="putts" />
-          </TabPanel>
-          <TabPanel sx={{ px: 0 }} value="3">
             {greenies.length ? (
               <>
                 <div className="d-lg-none">
@@ -153,7 +144,7 @@ const TournamentDetails = () => {
               <div>No greenies yet!</div>
             )}
           </TabPanel>
-          <TabPanel sx={{ px: 0 }} value="4">
+          <TabPanel sx={{ px: 0 }} value="3">
             <StandingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>

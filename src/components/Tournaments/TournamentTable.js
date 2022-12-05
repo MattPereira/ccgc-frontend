@@ -61,6 +61,7 @@ const TournamentTable = ({ data, type }) => {
                 <td>{r.totalStrokes}</td>
                 <td>{r.courseHandicap}</td>
                 <td>{r.netStrokes}</td>
+                <td>{r.totalPutts}</td>
               </>
             ) : (
               <td>{r.totalPutts}</td>

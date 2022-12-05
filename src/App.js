@@ -144,8 +144,7 @@ function App() {
         fontFamily: "Cubano",
       },
       h5: {
-        fontFamily: "Varela Round",
-        fontWeight: "bold",
+        fontFamily: "Cubano",
       },
       h6: {
         fontFamily: "Itim",
