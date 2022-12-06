@@ -170,7 +170,7 @@ function App() {
           <ScrollToTop>
             <Box
               sx={{
-                display: { xs: "block", md: "flex" },
+                display: { xs: "block", sm: "flex" },
                 height: "100%",
               }}
             >
