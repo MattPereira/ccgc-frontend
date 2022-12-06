@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 
-import { Form, Alert, Container, Row, Col } from "react-bootstrap";
+import { Form, Alert, Row, Col } from "react-bootstrap";
 
-import { Button, Paper, Typography, Box } from "@mui/material";
+import { Button, Paper, Typography, Box, Container, Grid } from "@mui/material";
+
+import TournamentHero from "../../Tournaments/TournamentHero";
 
 /** Form to create a new round
  *
@@ -181,173 +183,157 @@ const RoundForm = ({ availableUsernames, round }) => {
   };
 
   const HOLES = Array.from({ length: 18 }, (v, i) => i + 1);
+  const tournamentDate = new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 
   return (
-    <Container className="py-5">
-      <div className="row justify-content-center">
-        <div className="col-sm-10 col-md-7 col-lg-5">
-          <Typography gutterBottom variant="h1">
-            {round ? "Edit" : "New"} Round
-          </Typography>
+    <Box>
+      <TournamentHero
+        date={tournamentDate}
+        courseImg={round ? round.courseImg : "default_black"}
+      />
 
-          <Paper variant="outlined">
-            {round ? (
-              <Box
-                sx={{
-                  textAlign: "center",
-                  bgcolor: "rgb(33, 37, 41)",
-                  borderRadius: "4px 4px 0 0",
-                  py: 1,
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  component={Link}
-                  to={`/rounds/${round.id}`}
-                  sx={{ textDecoration: "none", color: "white" }}
+      <Container sx={{ pb: 5, pt: 1 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <Paper variant="outlined" sx={{ borderRadius: "30px" }}>
+              {round ? (
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    bgcolor: "rgb(33, 37, 41)",
+                    borderRadius: "30px",
+                    py: 3,
+                  }}
                 >
-                  {new Date(round.tournamentDate).toLocaleDateString("en-US", {
-                    month: "numeric",
-                    day: "numeric",
-                  })}{" "}
-                  {round.username
-                    .split("-")
-                    .map((name) => {
-                      return name.charAt(0).toUpperCase() + name.slice(1);
-                    })
-                    .join(" ")}{" "}
-                </Typography>
-              </Box>
-            ) : null}
-            <Form className="p-3" onSubmit={handleSubmit}>
-              {round ? null : (
-                <Row className="mb-3 text-center align-items-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="name" className="fw-bold mb-0">
-                      Date
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    <Form.Control
-                      className="form-control"
-                      type="text"
-                      value={new Date(date).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                      readOnly
-                    ></Form.Control>
-                  </Col>
-                </Row>
-              )}
-
-              {round ? null : (
-                <Row className="mb-3 align-items-center justify-content-center text-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="username" className="fw-bold mb-0">
-                      Name
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    <Form.Select
-                      className="form-control"
-                      id="username"
-                      name="username"
-                      type="select"
-                      onChange={handleChange}
-                      value={formData.username}
-                      required
-                    >
-                      {availableUsernames.map((username) => (
-                        <option key={username} value={username}>
-                          {username
-                            .split("-")
-                            .map((name) => {
-                              return (
-                                name.charAt(0).toUpperCase() + name.slice(1)
-                              );
-                            })
-                            .join(" ")}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Col>
-                </Row>
-              )}
-
-              <Row className="text-center justify-content-center mb-2">
-                <Col xs={2}>
-                  <Form.Label className="fw-bold">
-                    <u>Hole</u>
-                  </Form.Label>
-                </Col>
-                <Col xs={5}>
-                  <Form.Label className="fw-bold">
-                    <u>Strokes</u>
-                  </Form.Label>
-                </Col>
-                <Col xs={5}>
-                  <Form.Label className="fw-bold">
-                    <u>Putts</u>
-                  </Form.Label>
-                </Col>
-              </Row>
-
-              {HOLES.map((num) => (
-                <Row
-                  key={num}
-                  className="align-items-center justify-content-center text-center mb-3"
-                >
-                  <Col xs={2}>
-                    <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
-                  </Col>
-                  <Col xs={5}>
-                    <Form.Control
-                      className="form-control"
-                      id={`strokes${num}`}
-                      name={`strokes${num}`}
-                      type="number"
-                      min="1"
-                      onChange={handleChange}
-                      value={eval(`formData.strokes${num}`)}
-                    ></Form.Control>
-                  </Col>
-                  <Col xs={5}>
-                    <Form.Control
-                      className="form-control"
-                      id={`putts${num}`}
-                      name={`putts${num}`}
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={eval(`formData.putts${num}`)}
-                    ></Form.Control>
-                  </Col>
-                </Row>
-              ))}
-
-              <Row className="justify-content-end">
-                <Col xs={10}>
-                  <Row style={{ padding: "12px 12px 0px" }}>
-                    <Button variant="contained" type="submit" size="large">
-                      Submit
-                    </Button>
+                  <Typography
+                    variant="h3"
+                    component={Link}
+                    to={`/rounds/${round.id}`}
+                    sx={{ textDecoration: "none", color: "white" }}
+                  >
+                    {round.username
+                      .split("-")
+                      .map((name) => {
+                        return name.charAt(0).toUpperCase() + name.slice(1);
+                      })
+                      .join(" ")}{" "}
+                  </Typography>
+                </Box>
+              ) : null}
+              <Form className="p-3" onSubmit={handleSubmit}>
+                {round ? null : (
+                  <Row className="mb-3 align-items-center justify-content-center text-center">
+                    <Col xs={2}>
+                      <Form.Label htmlFor="username" className="fw-bold mb-0">
+                        Name
+                      </Form.Label>
+                    </Col>
+                    <Col xs={10}>
+                      <Form.Select
+                        className="form-control"
+                        id="username"
+                        name="username"
+                        type="select"
+                        onChange={handleChange}
+                        value={formData.username}
+                        required
+                      >
+                        {availableUsernames.map((username) => (
+                          <option key={username} value={username}>
+                            {username
+                              .split("-")
+                              .map((name) => {
+                                return (
+                                  name.charAt(0).toUpperCase() + name.slice(1)
+                                );
+                              })
+                              .join(" ")}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Col>
                   </Row>
-                </Col>
-              </Row>
-            </Form>
-          </Paper>
-          {formErrors.length
-            ? formErrors.map((err) => (
-                <Alert key={err} variant="danger">
-                  {err}
-                </Alert>
-              ))
-            : null}
-        </div>
-      </div>
-    </Container>
+                )}
+
+                <Row className="text-center justify-content-center mb-2">
+                  <Col xs={2}>
+                    <Form.Label className="fw-bold">
+                      <u>Hole</u>
+                    </Form.Label>
+                  </Col>
+                  <Col xs={5}>
+                    <Form.Label className="fw-bold">
+                      <u>Strokes</u>
+                    </Form.Label>
+                  </Col>
+                  <Col xs={5}>
+                    <Form.Label className="fw-bold">
+                      <u>Putts</u>
+                    </Form.Label>
+                  </Col>
+                </Row>
+
+                {HOLES.map((num) => (
+                  <Row
+                    key={num}
+                    className="align-items-center justify-content-center text-center mb-3"
+                  >
+                    <Col xs={2}>
+                      <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Control
+                        className="form-control"
+                        id={`strokes${num}`}
+                        name={`strokes${num}`}
+                        type="number"
+                        min="1"
+                        onChange={handleChange}
+                        value={eval(`formData.strokes${num}`)}
+                      ></Form.Control>
+                    </Col>
+                    <Col xs={5}>
+                      <Form.Control
+                        className="form-control"
+                        id={`putts${num}`}
+                        name={`putts${num}`}
+                        type="number"
+                        min="0"
+                        onChange={handleChange}
+                        value={eval(`formData.putts${num}`)}
+                      ></Form.Control>
+                    </Col>
+                  </Row>
+                ))}
+
+                <Row className="justify-content-end">
+                  <Col xs={10}>
+                    <Row style={{ padding: "12px 12px 0px" }}>
+                      <Button variant="contained" type="submit" size="large">
+                        Submit
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
+              </Form>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        {formErrors.length
+          ? formErrors.map((err) => (
+              <Alert key={err} variant="danger">
+                {err}
+              </Alert>
+            ))
+          : null}
+      </Container>
+    </Box>
   );
 };
 

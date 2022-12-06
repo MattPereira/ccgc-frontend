@@ -7,6 +7,8 @@ import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
 
+import TournamentHero from "../../components/Tournaments/TournamentHero";
+
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useTheme } from "@mui/material/styles";
@@ -16,7 +18,6 @@ import {
   Typography,
   Container,
   Box,
-  Grid,
   Modal,
   Tab,
 } from "@mui/material";
@@ -91,144 +92,131 @@ const RoundDetails = () => {
     p: 4,
   };
 
+  const date = new Date(round.tournamentDate).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
   return (
-    <Container sx={{ py: 5, textAlign: "center" }}>
-      <Box sx={{ display: "inline-block" }}>
+    <Box>
+      <TournamentHero date={date} courseImg={round.courseImg} />
+      <Container sx={{ py: 3, textAlign: "center" }}>
         <Typography variant="h1">
-          {" "}
-          {
-            round.username
-              .split("-")
-              .map((n) => n[0].toUpperCase() + n.slice(1))[0]
-          }
-          's Round
+          {round.username.split("-").join(" ")}
         </Typography>
-        <Divider
-          role="presentation"
-          sx={{ width: "50%", marginBottom: "1rem !important" }}
-        />
-      </Box>
-      <Box sx={{ mb: 2 }}>
-        <Typography
-          variant="h4"
-          component={Link}
-          to={`/tournaments/${round.tournamentDate}`}
-          sx={{ textDecoration: "none", fontSize: "2.5rem" }}
+
+        <TabContext value={value}>
+          <Box>
+            <TabList
+              centered
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+            >
+              <Tab
+                label="Scores"
+                value="1"
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
+              />
+              <Tab
+                label="Greenies"
+                value="2"
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
+              />
+            </TabList>
+          </Box>
+          <TabPanel sx={{ px: 0 }} value="1">
+            <RoundTable
+              roundId={round.id}
+              courseName={round.courseName}
+              tournamentDate={round.tournamentDate}
+              strokes={round.strokes}
+              putts={round.putts}
+              totalStrokes={round.totalStrokes}
+              playerIndex={round.playerIndex}
+              netStrokes={round.netStrokes}
+              totalPutts={round.totalPutts}
+              pars={round.pars}
+            />
+
+            {currentUser ? (
+              <Box sx={{ mt: 5 }}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="large"
+                  onClick={handleOpen}
+                  sx={{
+                    "&:hover": { color: "white" },
+                    mr: 1,
+                    borderRadius: "30px",
+                  }}
+                >
+                  <HighlightOffIcon /> <span className="ms-2">Delete</span>
+                </Button>
+                <Button
+                  component={Link}
+                  to={`/rounds/${id}/edit`}
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    "&:hover": { color: "white" },
+                    ml: 1,
+                    borderRadius: "30px",
+                  }}
+                >
+                  <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+                </Button>
+              </Box>
+            ) : null}
+          </TabPanel>
+          <TabPanel sx={{ px: 0 }} value="2">
+            {round.greenies.length ? (
+              <GreenieCardList greenies={round.greenies} />
+            ) : null}
+          </TabPanel>
+        </TabContext>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-          {new Date(round.tournamentDate).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-            timeZone: "UTC",
-          })}
-        </Typography>
-      </Box>
-
-      <TabContext value={value}>
-        <Box>
-          <TabList
-            centered
-            onChange={handleChange}
-            aria-label="lab API tabs example"
-          >
-            <Tab
-              label="Scores"
-              value="1"
-              sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-            />
-            <Tab
-              label="Greenies"
-              value="2"
-              sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-            />
-          </TabList>
-        </Box>
-        <TabPanel sx={{ px: 0 }} value="1">
-          <RoundTable
-            roundId={round.id}
-            courseName={round.courseName}
-            tournamentDate={round.tournamentDate}
-            strokes={round.strokes}
-            putts={round.putts}
-            totalStrokes={round.totalStrokes}
-            playerIndex={round.playerIndex}
-            netStrokes={round.netStrokes}
-            totalPutts={round.totalPutts}
-            pars={round.pars}
-          />
-
-          {currentUser ? (
-            <Box sx={{ mt: 5 }}>
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h4" color="white">
+              Are you Sure?
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+              color="white"
+            >
+              This action will permanently erase all data associated with this
+              round including greenies. Please confirm to proceed.
+            </Typography>
+            <Box sx={{ mt: 3, textAlign: "right" }}>
               <Button
                 variant="contained"
-                color="error"
-                size="large"
-                onClick={handleOpen}
-                sx={{
-                  "&:hover": { color: "white" },
-                  mr: 1,
-                  borderRadius: "30px",
-                }}
+                onClick={handleClose}
+                sx={{ mr: 2, bgcolor: "gray" }}
               >
-                <HighlightOffIcon /> <span className="ms-2">Delete</span>
+                Cancel
               </Button>
               <Button
-                component={Link}
-                to={`/rounds/${id}/edit`}
                 variant="contained"
-                size="large"
-                sx={{
-                  "&:hover": { color: "white" },
-                  ml: 1,
-                  borderRadius: "30px",
-                }}
+                color="dark"
+                sx={{ color: "white" }}
+                onClick={() => handleDelete(round.id)}
               >
-                <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+                Delete
               </Button>
             </Box>
-          ) : null}
-        </TabPanel>
-        <TabPanel sx={{ px: 0 }} value="2">
-          {round.greenies.length ? (
-            <GreenieCardList greenies={round.greenies} />
-          ) : null}
-        </TabPanel>
-      </TabContext>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" color="white">
-            Are you Sure?
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }} color="white">
-            This action will permanently erase all data associated with this
-            round including greenies. Please confirm to proceed.
-          </Typography>
-          <Box sx={{ mt: 3, textAlign: "right" }}>
-            <Button
-              variant="contained"
-              onClick={handleClose}
-              sx={{ mr: 2, bgcolor: "gray" }}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="dark"
-              sx={{ color: "white" }}
-              onClick={() => handleDelete(round.id)}
-            >
-              Delete
-            </Button>
           </Box>
-        </Box>
-      </Modal>
-    </Container>
+        </Modal>
+      </Container>
+    </Box>
   );
 };
 

@@ -8,13 +8,13 @@ import StandingsTable from "../../components/Standings/StandingsTable";
 import TournamentTable from "../../components/Tournaments/TournamentTable";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
+import TournamentHero from "../../components/Tournaments/TournamentHero";
 
 import { Link } from "react-router-dom";
-import { Button, Container, Box, Tab, Paper, Typography } from "@mui/material";
+import { Button, Container, Box, Tab } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { styled } from "@mui/material/styles";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
@@ -65,20 +65,22 @@ const TournamentDetails = () => {
   //buttons for adding rounds and greenies to a tournament
   const AddBtns = (
     <Box sx={{ pb: 5 }}>
-      <Button
-        variant="contained"
-        color="success"
-        component={Link}
-        to={`/greenies/new/${date}`}
-        size="large"
-        sx={{
-          "&:hover": { color: "white" },
-          marginRight: "0.5rem",
-          borderRadius: "30px",
-        }}
-      >
-        <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
-      </Button>
+      {tournament.scoresLeaderboard.length ? (
+        <Button
+          variant="contained"
+          color="success"
+          component={Link}
+          to={`/greenies/new/${date}`}
+          size="large"
+          sx={{
+            "&:hover": { color: "white" },
+            marginRight: "0.5rem",
+            borderRadius: "30px",
+          }}
+        >
+          <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
+        </Button>
+      ) : null}
       <Button
         variant="contained"
         component={Link}
@@ -97,31 +99,15 @@ const TournamentDetails = () => {
   );
 
   const tournamentDate = new Date(date).toLocaleDateString("en-US", {
-    weekday: "long",
     month: "long",
     day: "numeric",
+    year: "numeric",
     timeZone: "UTC",
-  });
-
-  const StyledHeroPaper = styled(Paper)({
-    // height: "275px",
-    borderRadius: "30px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tournament.courseImg}) bottom / cover no-repeat`,
-    padding: "0.5rem",
   });
 
   return (
     <>
-      <Box sx={{ p: 1 }}>
-        <StyledHeroPaper sx={{ height: { xs: "200px", sm: "275px" } }}>
-          <Typography variant="h1" sx={{ color: "white", fontSize: "2.5rem" }}>
-            {tournamentDate}
-          </Typography>
-        </StyledHeroPaper>
-      </Box>
+      <TournamentHero date={tournamentDate} courseImg={tournament.courseImg} />
       <Container sx={{ mt: 1.5, textAlign: "center" }}>
         <TabContext value={value}>
           <Box>
