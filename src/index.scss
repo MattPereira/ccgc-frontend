@@ -2,14 +2,19 @@
 @import url('https://fonts.cdnfonts.com/css/cubano');
 
 html,body {
-    background-color: #FFFFFF;
     height: 100%;
     margin: 0;
     // padding-right: 0;
 }
 
+hr {
+    border: 2px solid grey !important;
+    margin: 0rem auto 2.5rem !important;
+}
 
-
-
+th {
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 

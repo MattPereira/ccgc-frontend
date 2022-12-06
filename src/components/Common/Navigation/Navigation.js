@@ -8,7 +8,7 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Button,
+  Grid,
   Menu,
   Container,
   Avatar,
@@ -20,22 +20,31 @@ import {
   ListItemButton,
   ListItemText,
   Drawer,
+  ListItemIcon,
+  // SvgIcon,
 } from "@mui/material";
+
+import { styled } from "@mui/material/styles";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 import LoginIcon from "@mui/icons-material/Login";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import CloseIcon from "@mui/icons-material/Close";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import GolfCourseIcon from "@mui/icons-material/GolfCourse";
+import SportsGolfIcon from "@mui/icons-material/SportsGolf";
+import GroupsIcon from "@mui/icons-material/Groups";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import ListIcon from "@mui/icons-material/List";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 /** Navbar bar for site that shows on every page
  *
- *
  * Logged out users see login and signup
  *
- * Rendered by App
+ * Rendered by App component
  */
-
-const pages = ["Tournaments", "Standings", "Members", "Greenies", "Courses"];
 
 const Navbar = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
@@ -58,7 +67,57 @@ const Navbar = ({ window, logout }) => {
     setMobileOpen(!mobileOpen);
   };
 
-  const navDrawer = (
+  let pages = [
+    {
+      text: "Home",
+      icon: (
+        // <SvgIcon color="inherit" fontSize="large">
+        //   <CcgcLogo />
+        // </SvgIcon>
+        <Box component="img" src={ccgcLogo} sx={{ width: "40px" }} />
+      ),
+      path: "/",
+    },
+    {
+      text: "Tournaments",
+      icon: <EmojiEventsIcon fontSize="large" />,
+      path: "/tournaments",
+    },
+    {
+      text: "Standings",
+      icon: <ListIcon fontSize="large" />,
+      path: "/standings",
+    },
+    {
+      text: "Members",
+      icon: <GroupsIcon fontSize="large" />,
+      path: "/members",
+    },
+    {
+      text: "Greenies",
+      icon: <GolfCourseIcon fontSize="large" />,
+      path: "/greenies",
+    },
+    {
+      text: "Courses",
+      icon: <SportsGolfIcon fontSize="large" />,
+      path: "/courses",
+    },
+    {
+      text: "Dashboard",
+      icon: <DashboardOutlinedIcon fontSize="large" />,
+      path: "/dashboard",
+    },
+  ];
+
+  // filter out the dashboard page if the logged in user is not an admin or if anonymous user
+  if (!currentUser || !currentUser.isAdmin) {
+    pages = pages.filter((page) => page.text !== "Dashboard");
+  }
+
+  /****** THE MOBILE DRAWER TRIGGERED BY HAMBURGER ICON ******/
+
+  const mobileDrawer = (
     <Box
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center", backgroundColor: "black" }}
@@ -103,15 +162,16 @@ const Navbar = ({ window, logout }) => {
 
       <Divider sx={{ marginBottom: "0px !important" }} />
       <List sx={{ py: 3 }}>
-        {pages.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton
-              component={NavLink}
-              to={`/${item}`}
-              sx={{ textAlign: "center" }}
-            >
+        {pages.map((page) => (
+          <ListItem
+            key={page.text}
+            disablePadding
+            component={NavLink}
+            to={page.path}
+          >
+            <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText
-                primary={item}
+                primary={page.text}
                 primaryTypographyProps={{
                   fontSize: "1.5rem",
                   letterSpacing: "0.1rem",
@@ -126,43 +186,182 @@ const Navbar = ({ window, logout }) => {
     </Box>
   );
 
+  /********** THE SIDEBAR **********/
+
+  const StyledDrawer = styled(Drawer)({
+    width: "150px",
+    ".MuiDrawer-paper": {
+      width: "150px",
+      backgroundColor: "#eeeeee",
+    },
+  });
+
+  const StyledOuterGrid = styled(Grid)({
+    height: "100vh",
+    justifyContent: "center",
+    flexWrap: "nowrap",
+  });
+
+  const StyledListItemText = styled(ListItemText)({
+    ".MuiTypography-root": {
+      fontFamily: "Montserrat",
+      fontSize: "16px",
+      fontWeight: 600,
+      color: "black",
+    },
+  });
+
+  const sidebar = (
+    <StyledOuterGrid
+      container
+      direction="column"
+      sx={{ justifyContent: "space-between", py: 3 }}
+    >
+      <Grid item>
+        <List>
+          {pages.map((page, index) => (
+            <ListItem
+              key={page.text}
+              disablePadding
+              component={Link}
+              to={page.path}
+            >
+              <ListItemButton
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
+                  {page.icon}
+                </ListItemIcon>
+                <StyledListItemText>{page.text}</StyledListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Grid>
+      <Grid item>
+        <Box>
+          {currentUser ? (
+            <>
+              <ListItem disablePadding component={Link} to={"/profile"}>
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{ color: "black", justifyContent: "center" }}
+                  >
+                    <Avatar
+                      alt="Member Initials"
+                      sx={{
+                        color: "white",
+                        bgcolor: "black",
+                        fontFamily: "Itim",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {currentUser.firstName[0] + currentUser.lastName[0]}
+                    </Avatar>
+                  </ListItemIcon>
+                  <StyledListItemText
+                    primary={currentUser.firstName + " " + currentUser.lastName}
+                  />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton
+                  onClick={() => logout()}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{ color: "black", justifyContent: "center" }}
+                  >
+                    <LogoutOutlinedIcon fontSize="large" />
+                  </ListItemIcon>
+                  <StyledListItemText primary="Logout" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          ) : (
+            <ListItem disablePadding component={Link} to={"/login"}>
+              <ListItemButton
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
+                  <LoginIcon fontSize="large" />
+                </ListItemIcon>
+                <StyledListItemText primary="Login" />
+              </ListItemButton>
+            </ListItem>
+          )}
+
+          {/* {userItems.map((page, index) => (
+            <ListItem
+              key={page.text}
+              disablePadding
+              component={Link}
+              to={page.path}
+            >
+              <ListItemButton
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
+                  {page.icon}
+                </ListItemIcon>
+                <StyledListItemText primary={page.text} />
+              </ListItemButton>
+            </ListItem>
+          ))} */}
+          {/* <ListItem disablePadding component={Link}>
+            {currentUser ? (
+              <ListItemButton onClick={() => logout()}>
+                <ListItemIcon sx={{ color: "black" }}>
+                  <LogoutOutlinedIcon fontSize="large" />
+                </ListItemIcon>
+                <StyledListItemText primary="Logout" />
+              </ListItemButton>
+            ) : null}
+          </ListItem> */}
+        </Box>
+      </Grid>
+    </StyledOuterGrid>
+  );
+
   //destructuring "window" from props
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
     <>
+      <StyledDrawer
+        variant="permanent"
+        sx={{ display: { xs: "none", md: "flex" } }}
+      >
+        {sidebar}
+      </StyledDrawer>
       <AppBar
         position="static"
         color="dark"
         sx={{
-          // backgroundImage:
-          //   "linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09))",
           backgroundColor: "black",
+          display: { xs: "flex", md: "none" },
         }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ justifyConent: "center" }}>
-            <Box
-              sx={{
-                width: "83.406px",
-                textAlign: "center",
-                display: { xs: "none", md: "flex" },
-                justifyContent: "center",
-              }}
-            >
-              <NavLink to="/">
-                <Box
-                  component="img"
-                  alt="ccgc logo"
-                  src={ccgcLogo}
-                  sx={{
-                    height: "40px",
-                  }}
-                />
-              </NavLink>
-            </Box>
-
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -192,30 +391,6 @@ const Navbar = ({ window, logout }) => {
               >
                 CCGC
               </Typography>
-            </Box>
-
-            <Box
-              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-              justifyContent="center"
-            >
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  component={NavLink}
-                  to={`/${page.toLowerCase()}`}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    fontFamily: "Varela Round",
-                    fontWeight: "bold",
-                    letterSpacing: ".1rem",
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  {page}
-                </Button>
-              ))}
             </Box>
             {currentUser ? (
               <Box sx={{ flexGrow: 0 }}>
@@ -281,27 +456,6 @@ const Navbar = ({ window, logout }) => {
               </Box>
             ) : (
               <>
-                <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-                  <Button
-                    component={NavLink}
-                    to="/login"
-                    variant="contained"
-                    sx={{
-                      fontFamily: "Varela Round",
-                      fontWeight: "bold",
-                      fontSize: "1rem",
-                      backgroundColor: "white",
-                      color: "black",
-                      borderRadius: "30px",
-                      "&:hover": {
-                        backgroundColor: "black",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Login
-                  </Button>
-                </Box>
                 <Box
                   sx={{
                     flexGrow: 0,
@@ -340,7 +494,7 @@ const Navbar = ({ window, logout }) => {
             },
           }}
         >
-          {navDrawer}
+          {mobileDrawer}
         </Drawer>
       </Box>
     </>

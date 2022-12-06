@@ -44,7 +44,7 @@ const TournamentList = () => {
 
       <div className="text-center row justify-content-center">
         {tournaments.map((t) => (
-          <Col md={12} lg={6} xl={6}>
+          <Col md={12} lg={6} xl={6} key={t.date}>
             <TournamentCard
               key={t.date}
               date={t.date}

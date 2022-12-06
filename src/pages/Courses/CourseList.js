@@ -38,7 +38,7 @@ const CourseList = () => {
       <Divider role="presentation" style={{ width: "17%" }} />
       <Grid container spacing={3} justifyContent="center">
         {courses.map((c) => (
-          <Grid item xs={12} sm={10} md={8} lg={6}>
+          <Grid item xs={12} sm={10} md={8} lg={6} key={c.handle}>
             <CourseCard
               key={c.handle}
               handle={c.handle}

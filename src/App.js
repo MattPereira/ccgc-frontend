@@ -7,13 +7,12 @@ import { decodeToken } from "react-jwt";
 
 import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
-import Navbar from "./components/Common/Navbar";
-import Footer from "./components/Common/Footer";
+import Navigation from "./components/Common/Navigation/Navigation";
+// import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
 
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
-
-import "./App.scss";
+import { Box } from "@mui/material";
 
 /** Contra Costa Golf Club App
  *
@@ -131,9 +130,11 @@ function App() {
         fontFamily: "Cubano",
         marginBottom: "1rem",
         fontSize: "5rem",
+        textAlign: "center",
       },
       h2: {
-        fontFamily: "Varela Round",
+        fontFamily: "Montserrat",
+        fontWeight: 500,
         fontSize: "3rem",
       },
       h3: {
@@ -159,24 +160,36 @@ function App() {
   theme = responsiveFontSizes(theme);
 
   return (
-    <div className="App content-wrap">
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <UserContext.Provider
-            value={{
-              currentUser,
-              setCurrentUser,
-            }}
-          >
-            <ScrollToTop>
-              <Navbar logout={logout} />
-              <Router login={login} register={register} />
-            </ScrollToTop>
-            <Footer />
-          </UserContext.Provider>
-        </ThemeProvider>
+        <UserContext.Provider
+          value={{
+            currentUser,
+            setCurrentUser,
+          }}
+        >
+          <ScrollToTop>
+            <Box
+              sx={{
+                display: { xs: "block", md: "flex" },
+                height: "100vh",
+              }}
+            >
+              <Box>
+                <Navigation logout={logout} />
+              </Box>
+              <Box
+                className="CLASS NAME"
+                sx={{ width: "100%", height: "100%" }}
+              >
+                <Router login={login} register={register} />
+                {/* <Footer /> */}
+              </Box>
+            </Box>
+          </ScrollToTop>
+        </UserContext.Provider>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 

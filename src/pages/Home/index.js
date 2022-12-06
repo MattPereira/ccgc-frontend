@@ -8,9 +8,13 @@ import coursesImage from "../../assets/courses.jpg";
 import tournamentsImage from "../../assets/tournaments.jpg";
 import { styled } from "@mui/material/styles";
 
+import Footer from "../../components/Common/Footer";
+
 import { useState, useEffect } from "react";
 import { Container, Box, Grid, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import homeHeroImage from "../../assets/home-hero.jpg";
 
 /** Homepage component
  *
@@ -43,18 +47,6 @@ const Homepage = () => {
 
   console.log(tournament);
 
-  const StyledFadeInBox = styled(Box)({
-    animation: "fadeIn 3s",
-    "@keyframes fadeIn": {
-      "100%": {
-        opacity: 1,
-      },
-      "0%": {
-        opacity: 0,
-      },
-    },
-  });
-
   const tournamentDate = new Date(tournament.date).toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
@@ -76,8 +68,7 @@ const Homepage = () => {
           path: "standings",
           image: standingsImage,
           title: "Tour Standings",
-          description:
-            "All club members ranked by tournament points earned for the year",
+          description: "All club members ranked by points earned for the year",
         },
         {
           path: "greenies",
@@ -115,7 +106,31 @@ const Homepage = () => {
     },
   ];
 
-  const StyledPaper = styled(Paper)(({ theme }) => ({
+  const StyledFadeInBox = styled(Box)({
+    animation: "fadeIn 3s",
+    padding: "0rem 0.75rem",
+    paddingTop: "0.75rem",
+    height: "100%",
+    "@keyframes fadeIn": {
+      "100%": {
+        opacity: 1,
+      },
+      "0%": {
+        opacity: 0,
+      },
+    },
+  });
+
+  const StyledHeroPaper = styled(Paper)({
+    height: "275px",
+    borderRadius: "30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${homeHeroImage}) bottom / cover no-repeat`,
+  });
+
+  const StyledCardPaper = styled(Paper)(({ theme }) => ({
     borderRadius: "30px",
     backgroundColor: "#eeeeee",
     "&:hover": {
@@ -136,40 +151,53 @@ const Homepage = () => {
   }));
 
   return (
-    <Container sx={{ py: 5 }}>
-      <StyledFadeInBox>
-        <Box sx={{ mb: 10 }}>
-          <Typography variant="h1" sx={{ mb: 10, mt: 5 }}>
-            Contra Costa Golf Club
-          </Typography>
-        </Box>
-
-        {content.map((section) => (
-          <Box sx={{ mb: 10 }}>
-            <Typography variant="h2" sx={{ mb: 2 }}>
-              {section.title}
+    <StyledFadeInBox>
+      <Grid
+        container
+        flexDirection="column"
+        justifyContent="space-between"
+        sx={{ height: "100%" }}
+      >
+        <Grid item>
+          <StyledHeroPaper>
+            <Typography variant="h1" sx={{ color: "white" }}>
+              Contra Costa Golf Club
             </Typography>
-            <Grid container spacing={3}>
-              {section.cards.map((card) => (
-                <Grid item xs={12} md={6} lg={4} key={card.title}>
-                  <Link to={card.path} style={{ textDecoration: "none" }}>
-                    <StyledPaper elevation={5}>
-                      <StyledCardImage component="img" src={card.image} />
-                      <Box sx={{ p: 3 }}>
-                        <StyledCardTitle variant="h5">
-                          {card.title}
-                        </StyledCardTitle>
-                        <Typography variant="p">{card.description}</Typography>
-                      </Box>
-                    </StyledPaper>
-                  </Link>
+          </StyledHeroPaper>
+          <Container>
+            {content.map((section) => (
+              <Box sx={{ my: 7 }} key={section.title}>
+                <Typography variant="h2" sx={{ mb: 2 }}>
+                  {section.title}
+                </Typography>
+                <Grid container spacing={3}>
+                  {section.cards.map((card) => (
+                    <Grid item xs={12} md={6} lg={4} key={card.title}>
+                      <Link to={card.path} style={{ textDecoration: "none" }}>
+                        <StyledCardPaper elevation={5}>
+                          <StyledCardImage component="img" src={card.image} />
+                          <Box sx={{ p: 3 }}>
+                            <StyledCardTitle variant="h5">
+                              {card.title}
+                            </StyledCardTitle>
+                            <Typography variant="p">
+                              {card.description}
+                            </Typography>
+                          </Box>
+                        </StyledCardPaper>
+                      </Link>
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          </Box>
-        ))}
-      </StyledFadeInBox>
-    </Container>
+              </Box>
+            ))}
+          </Container>
+        </Grid>
+        <Grid item>
+          <Footer />
+        </Grid>
+      </Grid>
+    </StyledFadeInBox>
   );
 };
 

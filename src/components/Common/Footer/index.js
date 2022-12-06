@@ -14,16 +14,12 @@ function Footer() {
       sx={{
         bgcolor: "black",
         bottom: 0,
-        position: "absolute",
         width: "100%",
-        py: 1,
+        borderRadius: "30px",
+        py: 2,
       }}
     >
-      <Grid
-        container
-        justifyContent="center"
-        sx={{ textAlign: "center", color: "white" }}
-      >
+      <Grid container justifyContent="center" sx={{ textAlign: "center" }}>
         <Grid
           item
           md={4}
@@ -33,7 +29,7 @@ function Footer() {
             justifyContent: "center",
           }}
         >
-          <Typography variant="p">
+          <Typography variant="p" sx={{ color: "white" }}>
             Developed by &nbsp;
             <a
               href="https://matt-pereira.surge.sh/"
@@ -88,7 +84,9 @@ function Footer() {
             justifyContent: "center",
           }}
         >
-          <Typography variant="p">Copyright © {year}</Typography>
+          <Typography variant="p" sx={{ color: "white" }}>
+            Copyright © {year}
+          </Typography>
         </Grid>
       </Grid>
     </Box>
