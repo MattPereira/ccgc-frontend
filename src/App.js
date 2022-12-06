@@ -8,7 +8,7 @@ import { decodeToken } from "react-jwt";
 import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
 import Navigation from "./components/Common/Navigation/Navigation";
-import Footer from "./components/Common/Footer";
+// import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
 
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
