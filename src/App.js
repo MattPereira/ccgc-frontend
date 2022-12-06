@@ -8,7 +8,7 @@ import { decodeToken } from "react-jwt";
 import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
 import Navigation from "./components/Common/Navigation/Navigation";
-// import Footer from "./components/Common/Footer";
+import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
 
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
@@ -138,8 +138,7 @@ function App() {
         fontSize: "3rem",
       },
       h3: {
-        fontFamily: "Itim",
-        fontWeight: 400,
+        fontFamily: "Cubano",
       },
       h4: {
         fontFamily: "Cubano",
@@ -172,7 +171,7 @@ function App() {
             <Box
               sx={{
                 display: { xs: "block", md: "flex" },
-                height: "100vh",
+                height: "100%",
               }}
             >
               <Box>
@@ -180,7 +179,7 @@ function App() {
               </Box>
               <Box
                 className="CLASS NAME"
-                sx={{ width: "100%", height: "100%" }}
+                sx={{ width: "100%", height: "100vh" }}
               >
                 <Router login={login} register={register} />
                 {/* <Footer /> */}

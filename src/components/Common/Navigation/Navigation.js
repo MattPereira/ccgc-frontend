@@ -9,11 +9,8 @@ import {
   IconButton,
   Typography,
   Grid,
-  Menu,
   Container,
   Avatar,
-  Tooltip,
-  MenuItem,
   Divider,
   List,
   ListItem,
@@ -37,29 +34,22 @@ import SportsGolfIcon from "@mui/icons-material/SportsGolf";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ListIcon from "@mui/icons-material/List";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
-/** Navbar bar for site that shows on every page
+/** Navigation for site that shows on every page
+ *
+ * Desktop users will see a sidebar
+ *
+ * Mobile users will see top app bar with hamburger dropdown
  *
  * Logged out users see login and signup
  *
  * Rendered by App component
  */
 
-const Navbar = ({ window, logout }) => {
+const Navigation = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
-  console.debug("Navbar", "currentUser=", currentUser);
-  console.debug("Navbar");
-
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  console.debug("Navigation", "currentUser=", currentUser);
+  console.debug("Navigation");
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -120,7 +110,7 @@ const Navbar = ({ window, logout }) => {
   const mobileDrawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", backgroundColor: "black" }}
+      sx={{ textAlign: "center", backgroundColor: "black", height: "100%" }}
     >
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
@@ -169,7 +159,10 @@ const Navbar = ({ window, logout }) => {
             component={NavLink}
             to={page.path}
           >
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
+                {page.icon}
+              </ListItemIcon>
               <ListItemText
                 primary={page.text}
                 primaryTypographyProps={{
@@ -182,6 +175,71 @@ const Navbar = ({ window, logout }) => {
             </ListItemButton>
           </ListItem>
         ))}
+      </List>
+      <List>
+        {currentUser ? (
+          <>
+            <ListItem disablePadding component={Link} to={"/profile"}>
+              <ListItemButton>
+                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
+                  <Avatar
+                    alt="Member Initials"
+                    sx={{
+                      color: "black",
+                      bgcolor: "white",
+                      fontFamily: "Itim",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {currentUser.firstName[0] + currentUser.lastName[0]}
+                  </Avatar>
+                </ListItemIcon>
+                <ListItemText
+                  primary={currentUser.firstName + " " + currentUser.lastName}
+                  primaryTypographyProps={{
+                    fontSize: "1.5rem",
+                    letterSpacing: "0.1rem",
+                    fontFamily: "Cubano",
+                    color: "white",
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => logout()}>
+                <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
+                  <LogoutOutlinedIcon fontSize="large" />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Logout"
+                  primaryTypographyProps={{
+                    fontSize: "1.5rem",
+                    letterSpacing: "0.1rem",
+                    fontFamily: "Cubano",
+                    color: "white",
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </>
+        ) : (
+          <ListItem disablePadding component={Link} to={"/login"}>
+            <ListItemButton>
+              <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
+                <LoginIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Login"
+                primaryTypographyProps={{
+                  fontSize: "1.5rem",
+                  letterSpacing: "0.1rem",
+                  fontFamily: "Cubano",
+                  color: "white",
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </Box>
   );
@@ -215,7 +273,7 @@ const Navbar = ({ window, logout }) => {
     <StyledOuterGrid
       container
       direction="column"
-      sx={{ justifyContent: "space-between", py: 3 }}
+      sx={{ justifyContent: "space-between", py: 1 }}
     >
       <Grid item>
         <List>
@@ -243,98 +301,73 @@ const Navbar = ({ window, logout }) => {
       </Grid>
       <Grid item>
         <Box>
-          {currentUser ? (
-            <>
-              <ListItem disablePadding component={Link} to={"/profile"}>
-                <ListItemButton
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{ color: "black", justifyContent: "center" }}
-                  >
-                    <Avatar
-                      alt="Member Initials"
-                      sx={{
-                        color: "white",
-                        bgcolor: "black",
-                        fontFamily: "Itim",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {currentUser.firstName[0] + currentUser.lastName[0]}
-                    </Avatar>
-                  </ListItemIcon>
-                  <StyledListItemText
-                    primary={currentUser.firstName + " " + currentUser.lastName}
-                  />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton
-                  onClick={() => logout()}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{ color: "black", justifyContent: "center" }}
-                  >
-                    <LogoutOutlinedIcon fontSize="large" />
-                  </ListItemIcon>
-                  <StyledListItemText primary="Logout" />
-                </ListItemButton>
-              </ListItem>
-            </>
-          ) : (
-            <ListItem disablePadding component={Link} to={"/login"}>
-              <ListItemButton
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
-                  <LoginIcon fontSize="large" />
-                </ListItemIcon>
-                <StyledListItemText primary="Login" />
-              </ListItemButton>
-            </ListItem>
-          )}
-
-          {/* {userItems.map((page, index) => (
-            <ListItem
-              key={page.text}
-              disablePadding
-              component={Link}
-              to={page.path}
-            >
-              <ListItemButton
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
-                  {page.icon}
-                </ListItemIcon>
-                <StyledListItemText primary={page.text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
-          {/* <ListItem disablePadding component={Link}>
+          <List>
             {currentUser ? (
-              <ListItemButton onClick={() => logout()}>
-                <ListItemIcon sx={{ color: "black" }}>
-                  <LogoutOutlinedIcon fontSize="large" />
-                </ListItemIcon>
-                <StyledListItemText primary="Logout" />
-              </ListItemButton>
-            ) : null}
-          </ListItem> */}
+              <>
+                <ListItem disablePadding component={Link} to={"/profile"}>
+                  <ListItemButton
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{ color: "black", justifyContent: "center" }}
+                    >
+                      <Avatar
+                        alt="Member Initials"
+                        sx={{
+                          color: "white",
+                          bgcolor: "black",
+                          fontFamily: "Itim",
+                          fontWeight: 700,
+                        }}
+                      >
+                        {currentUser.firstName[0] + currentUser.lastName[0]}
+                      </Avatar>
+                    </ListItemIcon>
+                    <StyledListItemText
+                      primary={
+                        currentUser.firstName + " " + currentUser.lastName
+                      }
+                    />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    onClick={() => logout()}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{ color: "black", justifyContent: "center" }}
+                    >
+                      <LogoutOutlinedIcon fontSize="large" />
+                    </ListItemIcon>
+                    <StyledListItemText primary="Logout" />
+                  </ListItemButton>
+                </ListItem>
+              </>
+            ) : (
+              <ListItem disablePadding component={Link} to={"/login"}>
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{ color: "black", justifyContent: "center" }}
+                  >
+                    <LoginIcon fontSize="large" />
+                  </ListItemIcon>
+                  <StyledListItemText primary="Login" />
+                </ListItemButton>
+              </ListItem>
+            )}
+          </List>
         </Box>
       </Grid>
     </StyledOuterGrid>
@@ -394,65 +427,17 @@ const Navbar = ({ window, logout }) => {
             </Box>
             {currentUser ? (
               <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Member Initials"
-                      sx={{
-                        color: "black",
-                        bgcolor: "white",
-                        fontFamily: "Itim",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {currentUser.firstName[0] + currentUser.lastName[0]}
-                    </Avatar>
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                <Avatar
+                  alt="Member Initials"
+                  sx={{
+                    color: "black",
+                    bgcolor: "white",
+                    fontFamily: "Itim",
+                    fontWeight: 700,
                   }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
                 >
-                  <MenuItem
-                    component={NavLink}
-                    to="/profile"
-                    onClick={handleCloseUserMenu}
-                  >
-                    <Typography textAlign="center">Profile</Typography>
-                  </MenuItem>
-                  {currentUser.isAdmin ? (
-                    <MenuItem
-                      component={NavLink}
-                      to="/dashboard"
-                      onClick={handleCloseUserMenu}
-                    >
-                      <Typography textAlign="center">Dashboard</Typography>
-                    </MenuItem>
-                  ) : null}
-
-                  <MenuItem
-                    component={NavLink}
-                    to="/"
-                    onClick={() => {
-                      handleCloseUserMenu();
-                      logout();
-                    }}
-                  >
-                    <Typography textAlign="center">Logout</Typography>
-                  </MenuItem>
-                </Menu>
+                  {currentUser.firstName[0] + currentUser.lastName[0]}
+                </Avatar>
               </Box>
             ) : (
               <>
@@ -491,6 +476,7 @@ const Navbar = ({ window, logout }) => {
             display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
+              height: "100%",
             },
           }}
         >
@@ -501,4 +487,4 @@ const Navbar = ({ window, logout }) => {
   );
 };
 
-export default Navbar;
+export default Navigation;

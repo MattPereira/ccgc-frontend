@@ -8,13 +8,13 @@ import StandingsTable from "../../components/Standings/StandingsTable";
 import TournamentTable from "../../components/Tournaments/TournamentTable";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
-import Showcase from "../../components/Tournaments/Showcase";
 
 import { Link } from "react-router-dom";
-import { Button, Container, Box, Tab } from "@mui/material";
+import { Button, Container, Box, Tab, Paper, Typography } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import { styled } from "@mui/material/styles";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
@@ -24,9 +24,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
  * which includes all the rounds for that tournament
  *
  * The TournamentDetails component is responsible for:
- * - Displaying the strokes and putts leaderboards
- * - Offering tournament edit and delete buttons for admins
- * - Offering new round creation buttons for all users
+ * - Displaying the scores leaderboard
+ * - Offering add round and add greenie button
  *
  * This is routed to path  "/tournaments/:date"
  *
@@ -97,15 +96,33 @@ const TournamentDetails = () => {
     </Box>
   );
 
+  const tournamentDate = new Date(date).toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+  const StyledHeroPaper = styled(Paper)({
+    // height: "275px",
+    borderRadius: "30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${tournament.courseImg}) bottom / cover no-repeat`,
+    padding: "0.5rem",
+  });
+
   return (
     <>
-      <Showcase
-        date={date}
-        course={tournament.courseName}
-        imgSrc={tournament.courseImg}
-      />
-
-      <Container sx={{ pt: 1.5, textAlign: "center" }}>
+      <Box sx={{ p: 1 }}>
+        <StyledHeroPaper sx={{ height: { xs: "200px", sm: "275px" } }}>
+          <Typography variant="h1" sx={{ color: "white", fontSize: "2.5rem" }}>
+            {tournamentDate}
+          </Typography>
+        </StyledHeroPaper>
+      </Box>
+      <Container sx={{ mt: 1.5, textAlign: "center" }}>
         <TabContext value={value}>
           <Box>
             <TabList

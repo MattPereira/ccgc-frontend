@@ -13,8 +13,6 @@ function Footer() {
     <Box
       sx={{
         bgcolor: "black",
-        bottom: 0,
-        width: "100%",
         borderRadius: "30px",
         py: 2,
       }}

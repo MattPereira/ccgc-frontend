@@ -1,4 +1,3 @@
-// import logo from "../../assets/ccgc_logo.png";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import standingsImage from "../../assets/trophy.webp";
@@ -16,18 +15,14 @@ import { Link } from "react-router-dom";
 
 import homeHeroImage from "../../assets/home-hero.jpg";
 
-/** Homepage component
+/** Homepage component { path :"/" }
  *
- * welcome message and club logo
+ * displays cards for "current events" and "club resources"
  *
- * This is routed to path "/"
+ * displays footer at bottom of page
  *
  * Router -> Homepage
  */
-
-// set it up to make database call that grabs the "newest" tournament
-// button to register for a tournament
-// show who has registered to play in the tournament
 
 const Homepage = () => {
   console.debug("Homepage");
@@ -61,21 +56,21 @@ const Homepage = () => {
         {
           path: `tournaments/${tournament.date}`,
           image: tournament.courseImg,
-          title: "Upcoming Tournament",
+          title: "Next Tournament",
           description: `Join us on ${tournamentDate} at ${tournament.courseName}!`,
         },
         {
           path: "standings",
           image: standingsImage,
           title: "Tour Standings",
-          description: "All club members ranked by points earned for the year",
+          description: "All club members ranked by points earned this season",
         },
         {
           path: "greenies",
           image: greenieImage,
           title: "Closest Greenies",
           description:
-            "The ten nearest to the pin shots on par three holes for the year",
+            "Top 10 shots that landed nearest to the pin on par threes",
         },
       ],
     },
@@ -85,22 +80,22 @@ const Homepage = () => {
         {
           path: "members",
           image: membersImage,
-          title: "Our  Members",
-          description: "Detailed statistics for each club members performance",
+          title: "Members Data",
+          description: "Statistics including handicaps and performace metrics",
         },
         {
           path: "tournaments",
           image: tournamentsImage,
           title: "Past Tournaments",
           description:
-            "Historical records of all past contra costa golf club tournaments",
+            "See the scorecards, greenies, and points for completed tournaments",
         },
         {
           path: "courses",
           image: coursesImage,
           title: "Golf Courses",
           description:
-            "All golf courses in the contra costa golf club database",
+            "The pars, slopes, and ratings for all courses played by our club",
         },
       ],
     },
@@ -108,8 +103,7 @@ const Homepage = () => {
 
   const StyledFadeInBox = styled(Box)({
     animation: "fadeIn 3s",
-    padding: "0rem 0.75rem",
-    paddingTop: "0.75rem",
+    padding: "0.75rem",
     height: "100%",
     "@keyframes fadeIn": {
       "100%": {
@@ -156,15 +150,15 @@ const Homepage = () => {
         container
         flexDirection="column"
         justifyContent="space-between"
-        sx={{ height: "100%" }}
+        sx={{ height: "100%", flexWrap: "nowrap" }}
       >
         <Grid item>
-          <StyledHeroPaper>
+          <StyledHeroPaper elevation={8}>
             <Typography variant="h1" sx={{ color: "white" }}>
               Contra Costa Golf Club
             </Typography>
           </StyledHeroPaper>
-          <Container>
+          <Container maxWidth="xl" disableGutters sx={{ p: { xs: 0, lg: 4 } }}>
             {content.map((section) => (
               <Box sx={{ my: 7 }} key={section.title}>
                 <Typography variant="h2" sx={{ mb: 2 }}>
