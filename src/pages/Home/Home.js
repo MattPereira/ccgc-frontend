@@ -151,7 +151,7 @@ const Homepage = () => {
           />
           <Container maxWidth="xl" disableGutters sx={{ p: { xs: 1, lg: 4 } }}>
             {content.map((section) => (
-              <Box sx={{ my: 7 }} key={section.title}>
+              <Box sx={{ mb: 5, mt: { xs: 4, lg: 0 } }} key={section.title}>
                 <Typography variant="h3" sx={{ mb: 2, ml: 3 }}>
                   {section.title}
                 </Typography>
