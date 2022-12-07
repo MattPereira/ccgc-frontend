@@ -6,7 +6,7 @@ import { Row, Col, Container, Table } from "react-bootstrap";
 import { Box, Typography } from "@mui/material";
 
 import PageHero from "../../components/Common/PageHero/PageHero";
-import membersImage from "../../assets/members.avif";
+import membersImage from "../../assets/members-stats.jpg";
 
 // import MemberCard from "../../components/Members/MemberCard";
 

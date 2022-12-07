@@ -2,7 +2,7 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import standingsImage from "../../assets/tour-standings.webp";
 import greenieImage from "../../assets/greenie.webp";
-import membersImage from "../../assets/members.avif";
+import membersImage from "../../assets/members-stats.jpg";
 import coursesImage from "../../assets/golf-courses.jpg";
 import tournamentsImage from "../../assets/tournaments.jpg";
 import { styled } from "@mui/material/styles";
@@ -81,8 +81,9 @@ const Homepage = () => {
         {
           path: "members",
           image: membersImage,
-          title: "Members Data",
-          description: "Statistics including handicaps and performace metrics",
+          title: "Members Stats",
+          description:
+            "Per round averages and handicap calculations for each club member",
         },
         {
           path: "tournaments",
@@ -96,7 +97,7 @@ const Homepage = () => {
           image: coursesImage,
           title: "Golf Courses",
           description:
-            "The pars, slopes, and ratings for all courses played by our club",
+            "The pars, slopes, handicaps, and ratings for each course played by the club",
         },
       ],
     },
