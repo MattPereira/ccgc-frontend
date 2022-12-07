@@ -36,6 +36,8 @@ const NewRound = () => {
 
   if (!members) return <LoadingSpinner />;
 
+  console.log(rounds);
+
   //Filter out users who have already submitted a round for this tournament
   //So they arent added to form select input as an option
   const usernames = members.map((m) => m.username);

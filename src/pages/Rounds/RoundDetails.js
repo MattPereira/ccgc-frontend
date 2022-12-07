@@ -12,15 +12,7 @@ import TournamentHero from "../../components/Tournaments/TournamentHero";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useTheme } from "@mui/material/styles";
-import {
-  Button,
-  Divider,
-  Typography,
-  Container,
-  Box,
-  Modal,
-  Tab,
-} from "@mui/material";
+import { Button, Typography, Container, Box, Modal, Tab } from "@mui/material";
 
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";

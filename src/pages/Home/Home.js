@@ -1,6 +1,6 @@
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
-import standingsImage from "../../assets/trophy.webp";
+import standingsImage from "../../assets/tour-standings.webp";
 import greenieImage from "../../assets/greenie.webp";
 import membersImage from "../../assets/members.webp";
 import coursesImage from "../../assets/courses.jpg";

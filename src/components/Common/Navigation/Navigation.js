@@ -33,7 +33,7 @@ import GolfCourseIcon from "@mui/icons-material/GolfCourse";
 import SportsGolfIcon from "@mui/icons-material/SportsGolf";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import ListIcon from "@mui/icons-material/List";
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 
 /** Navigation for site that shows on every page
  *
@@ -75,7 +75,7 @@ const Navigation = ({ window, logout }) => {
     },
     {
       text: "Standings",
-      icon: <ListIcon fontSize="large" />,
+      icon: <FormatListNumberedIcon fontSize="large" />,
       path: "/standings",
     },
     {

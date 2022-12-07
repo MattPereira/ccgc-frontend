@@ -133,12 +133,12 @@ function App() {
         textAlign: "center",
       },
       h2: {
+        fontFamily: "Cubano",
+      },
+      h3: {
         fontFamily: "Montserrat",
         fontWeight: 500,
         fontSize: "3rem",
-      },
-      h3: {
-        fontFamily: "Cubano",
       },
       h4: {
         fontFamily: "Cubano",
