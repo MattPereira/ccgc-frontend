@@ -5,19 +5,14 @@ import CcgcApi from "../../api/api";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 
-import {
-  Divider,
-  Typography,
-  Button,
-  Container,
-  Grid,
-  Box,
-  Modal,
-} from "@mui/material";
+import { Typography, Button, Container, Grid, Box, Modal } from "@mui/material";
 
 import GreenieCard from "../../components/Greenies/GreenieCard";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
+import PageHero from "../../components/Common/PageHero/PageHero";
+import greenieImage from "../../assets/greenie.webp";
 
 /** Greenie details page.
  *
@@ -79,73 +74,85 @@ const GreenieDetails = () => {
   };
 
   return (
-    <Container className="py-5">
-      <Typography variant="h1">Greenie Details</Typography>
-      <Divider role="presentation" sx={{ mb: 5, width: "17%" }} />
-
-      <Grid container justifyContent="center">
-        <Grid item xs={12} sm={10} md={8} align="center">
-          <GreenieCard greenie={greenie} />
-          <Box>
-            {currentUser ? (
-              <Box sx={{ my: 3 }}>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="large"
-                  onClick={handleOpen}
-                  sx={{ "&:hover": { color: "white" }, mr: 1 }}
-                >
-                  <HighlightOffIcon /> <span className="ms-2">Delete</span>
-                </Button>
-                <Button
-                  component={Link}
-                  to={`/greenies/${greenie.id}/update`}
-                  variant="contained"
-                  size="large"
-                  sx={{ "&:hover": { color: "white" } }}
-                >
-                  <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-                </Button>
-              </Box>
-            ) : null}
-          </Box>
+    <Box>
+      <PageHero
+        title="Greenie Details"
+        backgroundImage={greenieImage}
+        alt="golf course"
+      />
+      <Container sx={{ pb: 5 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} sm={9} md={6} lg={5} align="center">
+            <Box>
+              {currentUser ? (
+                <Box sx={{ my: 5 }}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="large"
+                    onClick={handleOpen}
+                    sx={{
+                      "&:hover": { color: "white" },
+                      mr: 1,
+                      borderRadius: "30px",
+                    }}
+                  >
+                    <HighlightOffIcon /> <span className="ms-2">Delete</span>
+                  </Button>
+                  <Button
+                    component={Link}
+                    to={`/greenies/${greenie.id}/update`}
+                    variant="contained"
+                    size="large"
+                    sx={{ "&:hover": { color: "white" }, borderRadius: "30px" }}
+                  >
+                    <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+                  </Button>
+                </Box>
+              ) : null}
+            </Box>
+            <GreenieCard greenie={greenie} />
+          </Grid>
         </Grid>
-      </Grid>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" color="white">
-            Are you Sure?
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }} color="white">
-            This action will permanently erase all data associated with this
-            greenie. Please confirm to proceed.
-          </Typography>
-          <Box sx={{ mt: 3, textAlign: "right" }}>
-            <Button
-              variant="contained"
-              onClick={handleClose}
-              sx={{ mr: 2, bgcolor: "gray" }}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h4" color="white">
+              Are you Sure?
+            </Typography>
+            <Typography
+              id="modal-modal-description"
+              sx={{ mt: 2 }}
+              color="white"
             >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="dark"
-              sx={{ color: "white" }}
-              onClick={() => handleDelete(greenie.id)}
-            >
-              Delete
-            </Button>
+              This action will permanently erase all data associated with this
+              greenie. Please confirm to proceed.
+            </Typography>
+            <Box sx={{ mt: 3, textAlign: "right" }}>
+              <Button
+                variant="contained"
+                onClick={handleClose}
+                sx={{ mr: 2, bgcolor: "gray" }}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                color="dark"
+                sx={{ color: "white" }}
+                onClick={() => handleDelete(greenie.id)}
+              >
+                Delete
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Modal>
-    </Container>
+        </Modal>
+      </Container>
+    </Box>
   );
 };
 

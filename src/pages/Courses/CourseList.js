@@ -3,7 +3,10 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import CourseCard from "../../components/Courses/CourseCard";
 
-import { Typography, Divider, Container, Grid } from "@mui/material";
+import { Container, Grid, Box } from "@mui/material";
+
+import PageHero from "../../components/Common/PageHero/PageHero";
+import courseImage from "../../assets/golf-courses.jpg";
 
 /** Show page with all courses listed
  *
@@ -33,24 +36,25 @@ const CourseList = () => {
   if (!courses) return <LoadingSpinner />;
 
   return (
-    <Container className="py-5">
-      <Typography variant="h1">Golf Courses</Typography>
-      <Divider role="presentation" style={{ width: "17%" }} />
-      <Grid container spacing={3} justifyContent="center">
-        {courses.map((c) => (
-          <Grid item xs={12} sm={10} md={8} lg={6} key={c.handle}>
-            <CourseCard
-              key={c.handle}
-              handle={c.handle}
-              name={c.name}
-              rating={c.rating}
-              slope={c.slope}
-              imgUrl={c.imgUrl}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <Box>
+      <PageHero title="Golf Courses" backgroundImage={courseImage} />
+      <Container className="pb-5 pt-4">
+        <Grid container spacing={3} justifyContent="center">
+          {courses.map((c) => (
+            <Grid item xs={12} sm={10} md={8} lg={6} key={c.handle}>
+              <CourseCard
+                key={c.handle}
+                handle={c.handle}
+                name={c.name}
+                rating={c.rating}
+                slope={c.slope}
+                imgUrl={c.imgUrl}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

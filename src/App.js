@@ -8,8 +8,8 @@ import { decodeToken } from "react-jwt";
 import ScrollToTop from "./components/Common/ScrollToTop";
 import Router from "./router/Router";
 import Navigation from "./components/Common/Navigation/Navigation";
-// import Footer from "./components/Common/Footer";
 import LoadingSpinner from "./components/Common/Loading";
+// import Footer from "./components/Common/Footer";
 
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
 import { Box } from "@mui/material";
@@ -117,7 +117,6 @@ function App() {
 
   let theme = createTheme({
     palette: {
-      // mode: "dark",
       primary: {
         main: "#1976d2",
       },
@@ -136,9 +135,7 @@ function App() {
         fontFamily: "Cubano",
       },
       h3: {
-        fontFamily: "Montserrat",
-        fontWeight: 500,
-        fontSize: "3rem",
+        fontFamily: "Cubano",
       },
       h4: {
         fontFamily: "Cubano",

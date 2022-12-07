@@ -3,19 +3,15 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 
 import { Link } from "react-router-dom";
-import {
-  Grid,
-  Typography,
-  Box,
-  Divider,
-  Container,
-  IconButton,
-} from "@mui/material";
+import { Grid, Typography, Box, Container, IconButton } from "@mui/material";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import TournamentsDash from "./TournamentsDash";
 import CoursesDash from "./CoursesDash";
+
+import PageHero from "../../components/Common/PageHero/PageHero";
+import courseImage from "../../assets/golf-courses.jpg";
 
 /** DASHBOARD PAGE
  *
@@ -49,55 +45,46 @@ export default function Dashboard() {
   console.log(tournaments);
 
   return (
-    <Container
-      sx={{ paddingTop: "3rem", paddingBottom: "3rem", textAlign: "center" }}
-    >
-      <Box
-        justifyContent="center"
-        display="flex"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Typography variant="h1">Dashboard</Typography>
+    <Box>
+      <PageHero title="Dashboard" backgroundImage={courseImage} />
+      <Container sx={{ pt: 2, pb: 5, textAlign: "center" }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={7} lg={6}>
+            <Box sx={{ mb: 2 }} />
+            <Typography variant="h3" gutterBottom>
+              Tournaments
+              <IconButton
+                component={Link}
+                to="/tournaments/new"
+                color="primary"
+              >
+                <AddCircleOutlineIcon fontSize="large" />
+              </IconButton>
+            </Typography>
 
-        <Divider role="presentation" sx={{ width: "17%" }} />
-      </Box>
+            <div style={{ height: "650px", width: "380px", margin: "auto" }}>
+              <TournamentsDash tournaments={tournaments} />
+            </div>
+          </Grid>
+          <Grid item xs={12} md={7} lg={6}>
+            <Box sx={{ mb: 2 }} />
 
-      <Grid container justifyContent="center">
-        <Grid item xs={12} md={7} lg={6}>
-          <Box sx={{ mb: 2 }} />
-          <Typography variant="h3" gutterBottom>
-            Tournaments
-            <IconButton component={Link} to="/tournaments/new" color="primary">
-              <AddCircleOutlineIcon fontSize="large" />
-            </IconButton>
-          </Typography>
+            <Typography variant="h3" gutterBottom>
+              Courses
+              <IconButton
+                variant="contained"
+                component={Link}
+                to="/courses/new"
+                color="primary"
+              >
+                <AddCircleOutlineIcon fontSize="large" />
+              </IconButton>
+            </Typography>
 
-          <div style={{ height: "650px", width: "380px", margin: "auto" }}>
-            <TournamentsDash tournaments={tournaments} />
-          </div>
+            <CoursesDash courses={courses} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={7} lg={6}>
-          <Box sx={{ mb: 2 }} />
-
-          <Typography variant="h3" gutterBottom>
-            Courses
-            <IconButton
-              variant="contained"
-              component={Link}
-              to="/courses/new"
-              color="primary"
-            >
-              <AddCircleOutlineIcon fontSize="large" />
-            </IconButton>
-          </Typography>
-
-          <CoursesDash courses={courses} />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Box>
   );
 }

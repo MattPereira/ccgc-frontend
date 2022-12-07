@@ -3,7 +3,10 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import { Link } from "react-router-dom";
 import { Row, Col, Container, Table } from "react-bootstrap";
-import { Typography, Divider, Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+
+import PageHero from "../../components/Common/PageHero/PageHero";
+import membersImage from "../../assets/members.avif";
 
 // import MemberCard from "../../components/Members/MemberCard";
 
@@ -36,58 +39,59 @@ const MemberList = () => {
   console.log(members);
 
   return (
-    <Container className="py-5 text-center">
-      <Box sx={{ display: "inline-block" }}>
-        <Typography variant="h1">Club Members</Typography>
-        <Divider role="presentation" sx={{ width: "60%" }} />
-      </Box>
-
-      <Row className="justify-content-center">
-        <Col md={10} lg={8}>
-          {members.length ? (
-            <Table
-              bordered
-              striped
-              hover
-              responsive
-              variant="light"
-              className="text-center"
-            >
-              <thead>
-                <tr className="table-dark">
-                  <th>NAME</th>
-                  <th>RND</th>
-                  <th>STR</th>
-                  <th>PUT</th>
-                  <th>GRN</th>
-                </tr>
-              </thead>
-              <tbody>
-                {members.map((m) => (
-                  <tr key={m.username}>
-                    <th>
-                      <Link
-                        to={`/members/${m.username}`}
-                        className="text-decoration-none"
-                      >
-                        {m.firstName} {m.lastName[0]}
-                      </Link>
-                    </th>
-                    <td>{m.totalRounds}</td>
-                    <td>{m.avgStrokes}</td>
-                    <td>{m.avgPutts}</td>
-
-                    <td>{m.avgGreenies}</td>
+    <Box>
+      <PageHero title="Members" backgroundImage={membersImage} />
+      <Container className="pb-5 text-center">
+        <Typography variant="h2" sx={{ my: 3 }}>
+          Round Averages
+        </Typography>
+        <Row className="justify-content-center">
+          <Col md={10} lg={8}>
+            {members.length ? (
+              <Table
+                bordered
+                striped
+                hover
+                responsive
+                variant="light"
+                className="text-center"
+              >
+                <thead>
+                  <tr className="table-dark">
+                    <th>NAME</th>
+                    <th>RND</th>
+                    <th>STR</th>
+                    <th>PUT</th>
+                    <th>GRN</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          ) : (
-            <p>Sorry, no results were found!</p>
-          )}
-        </Col>
-      </Row>
-    </Container>
+                </thead>
+                <tbody>
+                  {members.map((m) => (
+                    <tr key={m.username}>
+                      <th>
+                        <Link
+                          to={`/members/${m.username}`}
+                          className="text-decoration-none"
+                        >
+                          {m.firstName} {m.lastName[0]}
+                        </Link>
+                      </th>
+                      <td>{m.totalRounds}</td>
+                      <td>{m.avgStrokes}</td>
+                      <td>{m.avgPutts}</td>
+
+                      <td>{m.avgGreenies}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <p>Sorry, no results were found!</p>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    </Box>
   );
 };
 

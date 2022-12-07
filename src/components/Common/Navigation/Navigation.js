@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import UserContext from "../../Auth/UserContext";
 
 import {
@@ -33,7 +33,7 @@ import GolfCourseIcon from "@mui/icons-material/GolfCourse";
 import SportsGolfIcon from "@mui/icons-material/SportsGolf";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+import ForestIcon from "@mui/icons-material/Forest";
 
 /** Navigation for site that shows on every page
  *
@@ -43,6 +43,8 @@ import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
  *
  * Logged out users see login and signup
  *
+ * On click of logout button, redirects to "/" route
+ *
  * Rendered by App component
  */
 
@@ -50,6 +52,8 @@ const Navigation = ({ window, logout }) => {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);
   console.debug("Navigation");
+
+  const navigate = useNavigate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -70,12 +74,12 @@ const Navigation = ({ window, logout }) => {
     },
     {
       text: "Tournaments",
-      icon: <EmojiEventsIcon fontSize="large" />,
+      icon: <SportsGolfIcon fontSize="large" />,
       path: "/tournaments",
     },
     {
       text: "Standings",
-      icon: <FormatListNumberedIcon fontSize="large" />,
+      icon: <EmojiEventsIcon fontSize="large" />,
       path: "/standings",
     },
     {
@@ -90,7 +94,7 @@ const Navigation = ({ window, logout }) => {
     },
     {
       text: "Courses",
-      icon: <SportsGolfIcon fontSize="large" />,
+      icon: <ForestIcon fontSize="large" />,
       path: "/courses",
     },
     {
@@ -206,7 +210,12 @@ const Navigation = ({ window, logout }) => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton onClick={() => logout()}>
+              <ListItemButton
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
                 <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
                   <LogoutOutlinedIcon fontSize="large" />
                 </ListItemIcon>
@@ -335,7 +344,10 @@ const Navigation = ({ window, logout }) => {
                 </ListItem>
                 <ListItem disablePadding>
                   <ListItemButton
-                    onClick={() => logout()}
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
                     sx={{
                       display: "flex",
                       flexDirection: "column",

@@ -2,8 +2,8 @@ import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/Common/Loading";
 import standingsImage from "../../assets/tour-standings.webp";
 import greenieImage from "../../assets/greenie.webp";
-import membersImage from "../../assets/members.webp";
-import coursesImage from "../../assets/courses.jpg";
+import membersImage from "../../assets/members.avif";
+import coursesImage from "../../assets/golf-courses.jpg";
 import tournamentsImage from "../../assets/tournaments.jpg";
 import { styled } from "@mui/material/styles";
 
@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { Container, Box, Grid, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import PageHero from "../../components/Common/PageHero/PageHero";
 import homeHeroImage from "../../assets/home-hero.jpg";
 
 /** Homepage component { path :"/" }
@@ -103,7 +104,6 @@ const Homepage = () => {
 
   const StyledFadeInBox = styled(Box)({
     animation: "fadeIn 3s",
-    padding: "0.75rem",
     height: "100%",
     "@keyframes fadeIn": {
       "100%": {
@@ -113,15 +113,6 @@ const Homepage = () => {
         opacity: 0,
       },
     },
-  });
-
-  const StyledHeroPaper = styled(Paper)({
-    height: "275px",
-    borderRadius: "30px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${homeHeroImage}) bottom / cover no-repeat`,
   });
 
   const StyledCardPaper = styled(Paper)(({ theme }) => ({
@@ -153,15 +144,14 @@ const Homepage = () => {
         sx={{ height: "100%", flexWrap: "nowrap" }}
       >
         <Grid item>
-          <StyledHeroPaper elevation={8}>
-            <Typography variant="h1" sx={{ color: "white" }}>
-              Contra Costa Golf Club
-            </Typography>
-          </StyledHeroPaper>
-          <Container maxWidth="xl" disableGutters sx={{ p: { xs: 0, lg: 4 } }}>
+          <PageHero
+            title="Contra Costa Golf Club"
+            backgroundImage={homeHeroImage}
+          />
+          <Container maxWidth="xl" disableGutters sx={{ p: { xs: 1, lg: 4 } }}>
             {content.map((section) => (
               <Box sx={{ my: 7 }} key={section.title}>
-                <Typography variant="h2" sx={{ mb: 2, ml: 3 }}>
+                <Typography variant="h3" sx={{ mb: 2, ml: 3 }}>
                   {section.title}
                 </Typography>
                 <Grid container spacing={3}>

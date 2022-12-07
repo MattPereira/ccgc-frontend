@@ -3,10 +3,10 @@ import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
+import PageHero from "../../components/Common/PageHero/PageHero";
+import greenieImage from "../../assets/greenie.webp";
 
-import { Row } from "react-bootstrap";
-
-import { Typography, Divider, Box, Container } from "@mui/material";
+import { Typography, Box, Container } from "@mui/material";
 
 /** Show page with all greenies listed
  *
@@ -41,18 +41,17 @@ const GreenieList = () => {
   console.log(greenies);
 
   return (
-    <Container sx={{ py: 5 }}>
-      <Box sx={{ textAlign: "center" }}>
-        <Box sx={{ display: "inline-block" }}>
-          <Typography variant="h1">Top Greenies</Typography>
-          <Divider role="presentation" sx={{ width: "50%" }} />
+    <Box>
+      <PageHero title="Greenies" backgroundImage={greenieImage} />
+      <Container sx={{ pb: 5 }}>
+        <Typography variant="h2" align="center" sx={{ my: 3 }}>
+          Top 10
+        </Typography>
+        <Box>
+          <GreenieCardList greenies={greenies} />
         </Box>
-      </Box>
-
-      <Box>
-        <GreenieCardList greenies={greenies} />
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 

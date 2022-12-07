@@ -15,6 +15,8 @@ function Footer() {
         bgcolor: "black",
         borderRadius: "30px",
         py: 2,
+        mb: 1,
+        mx: 1,
       }}
     >
       <Grid container justifyContent="center" sx={{ textAlign: "center" }}>

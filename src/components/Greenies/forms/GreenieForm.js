@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import CcgcApi from "../../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, Form, Container, Row, Col } from "react-bootstrap";
+import { Card, Form, Row, Col } from "react-bootstrap";
 import { useTheme } from "@mui/material/styles";
 
-import { Button, Typography, Alert, Box } from "@mui/material";
+import { Button, Typography, Alert, Box, Container } from "@mui/material";
+
+import PageHero from "../../../components/Common/PageHero/PageHero";
+import greenieImage from "../../../assets/greenie.webp";
 
 /** Form to create a new greenie
  *
@@ -101,166 +104,172 @@ const GreenieForm = ({ par3HoleNums, usernames, greenie }) => {
 
   const theme = useTheme();
 
+  const tournamentDate = new Date(
+    date || greenie.tournamentDate
+  ).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  console.log(greenie);
+
   return (
-    <Container className="my-5">
-      <div className="row justify-content-center">
-        <div className="col-sm-10 col-md-8 col-lg-6">
-          <Typography variant="h1" gutterBottom>
-            {greenie ? "Edit" : "Add"} Greenie{" "}
-          </Typography>
-          <Card>
-            <Box
-              sx={{
-                bgcolor: theme.palette.dark.main,
-                borderRadius: "4px 4px 0 0",
-              }}
-            >
-              <Typography
-                variant="h3"
-                align="center"
-                sx={{ color: "white", py: 1 }}
+    <Box>
+      <PageHero
+        backgroundImage={greenieImage}
+        title={greenie ? "Edit Greenie" : "New Greenie"}
+      />
+      <Container sx={{ pb: 5, pt: 3 }}>
+        <div className="row justify-content-center">
+          <div className="col-sm-10 col-md-8 col-lg-6">
+            <Card>
+              <Box
+                sx={{
+                  bgcolor: theme.palette.dark.main,
+                  borderRadius: "4px 4px 0 0",
+                }}
               >
-                {new Date(date || greenie.tournamentDate).toLocaleDateString(
-                  "en-US",
-                  {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  }
-                )}
-              </Typography>
-            </Box>
-            <Card.Body>
-              <Form onSubmit={handleSubmit} className="p-3">
-                <Row className="mb-3 align-items-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="roundId" className="mb-0">
-                      <b>Name</b>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    {greenie ? (
-                      <Form.Control
-                        value={greenie.firstName + " " + greenie.lastName}
-                        className="text-center"
-                        readOnly
-                      ></Form.Control>
-                    ) : (
-                      <Form.Select
-                        name="roundId"
-                        id="roundId"
-                        value={formData.roundId}
-                        onChange={handleChange}
-                      >
-                        {usernames.map((user) => (
-                          <option key={user[0]} value={user[0]}>
-                            {user[1]
-                              .split("-")
-                              .map((n) => n[0].toUpperCase() + n.slice(1))
-                              .join(" ")}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    )}
-                  </Col>
-                </Row>
+                <Typography
+                  variant="h3"
+                  align="center"
+                  sx={{ color: "white", py: 1 }}
+                >
+                  {tournamentDate}
+                </Typography>
+              </Box>
+              <Card.Body>
+                <Form onSubmit={handleSubmit} className="p-3">
+                  <Row className="mb-3 align-items-center">
+                    <Col xs={2}>
+                      <Form.Label htmlFor="roundId" className="mb-0">
+                        <b>Name</b>
+                      </Form.Label>
+                    </Col>
+                    <Col xs={10}>
+                      {greenie ? (
+                        <Form.Control
+                          value={greenie.firstName + " " + greenie.lastName}
+                          className="text-center"
+                          readOnly
+                        ></Form.Control>
+                      ) : (
+                        <Form.Select
+                          name="roundId"
+                          id="roundId"
+                          value={formData.roundId}
+                          onChange={handleChange}
+                        >
+                          {usernames.map((user) => (
+                            <option key={user[0]} value={user[0]}>
+                              {user[1]
+                                .split("-")
+                                .map((n) => n[0].toUpperCase() + n.slice(1))
+                                .join(" ")}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      )}
+                    </Col>
+                  </Row>
 
-                <Row className="mb-3 align-items-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="holeNumber" className="mb-0">
-                      <b>Hole</b>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    {greenie ? (
+                  <Row className="mb-3 align-items-center">
+                    <Col xs={2}>
+                      <Form.Label htmlFor="holeNumber" className="mb-0">
+                        <b>Hole</b>
+                      </Form.Label>
+                    </Col>
+                    <Col xs={10}>
+                      {greenie ? (
+                        <Form.Control
+                          id="holeNumber"
+                          name="holeNumber"
+                          type="number"
+                          value={greenie.holeNumber}
+                          required
+                          readOnly
+                        />
+                      ) : (
+                        <Form.Select
+                          className="form-control"
+                          id="holeNumber"
+                          name="holeNumber"
+                          type="select"
+                          onChange={handleChange}
+                          value={formData.holeNumber}
+                          required
+                        >
+                          {par3HoleNums.map((num) => (
+                            <option key={num} value={num}>
+                              {num}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      )}
+                    </Col>
+                  </Row>
+
+                  <Row className="mb-3 align-items-center">
+                    <Col xs={2}>
+                      <Form.Label htmlFor="feet" className="mb-0">
+                        <b>Feet</b>
+                      </Form.Label>
+                    </Col>
+                    <Col xs={10}>
                       <Form.Control
-                        id="holeNumber"
-                        name="holeNumber"
-                        type="number"
-                        value={greenie.holeNumber}
-                        required
-                        readOnly
-                      />
-                    ) : (
-                      <Form.Select
                         className="form-control"
-                        id="holeNumber"
-                        name="holeNumber"
-                        type="select"
+                        id="feet"
+                        name="feet"
+                        type="number"
+                        min="0"
                         onChange={handleChange}
-                        value={formData.holeNumber}
+                        value={formData.feet}
                         required
-                      >
-                        {par3HoleNums.map((num) => (
-                          <option key={num} value={num}>
-                            {num}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    )}
-                  </Col>
-                </Row>
+                      />
+                    </Col>
+                  </Row>
 
-                <Row className="mb-3 align-items-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="feet" className="mb-0">
-                      <b>Feet</b>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    <Form.Control
-                      className="form-control"
-                      id="feet"
-                      name="feet"
-                      type="number"
-                      min="0"
-                      onChange={handleChange}
-                      value={formData.feet}
-                      required
-                    />
-                  </Col>
-                </Row>
+                  <Row className="mb-3 align-items-center">
+                    <Col xs={2}>
+                      <Form.Label htmlFor="inches" className="mb-0">
+                        <b>Inches</b>
+                      </Form.Label>
+                    </Col>
+                    <Col xs={10}>
+                      <Form.Control
+                        className="form-control"
+                        id="inches"
+                        name="inches"
+                        type="number"
+                        min="0"
+                        max="11"
+                        onChange={handleChange}
+                        value={formData.inches}
+                        required
+                      />
+                    </Col>
+                  </Row>
 
-                <Row className="mb-3 align-items-center">
-                  <Col xs={2}>
-                    <Form.Label htmlFor="inches" className="mb-0">
-                      <b>Inches</b>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={10}>
-                    <Form.Control
-                      className="form-control"
-                      id="inches"
-                      name="inches"
-                      type="number"
-                      min="0"
-                      max="11"
-                      onChange={handleChange}
-                      value={formData.inches}
-                      required
-                    />
-                  </Col>
-                </Row>
+                  {formErrors.length
+                    ? formErrors.map((err) => (
+                        <Alert key={err} variant="danger">
+                          {err}
+                        </Alert>
+                      ))
+                    : null}
 
-                {formErrors.length
-                  ? formErrors.map((err) => (
-                      <Alert key={err} variant="danger">
-                        {err}
-                      </Alert>
-                    ))
-                  : null}
-
-                <div className="text-end">
-                  <Button variant="contained" type="submit">
-                    Submit
-                  </Button>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
+                  <div className="text-end">
+                    <Button variant="contained" type="submit">
+                      Submit
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 

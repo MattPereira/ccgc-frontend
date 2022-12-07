@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import TournamentCard from "../../components/Tournaments/TournamentCard";
+import PageHero from "../../components/Common/PageHero/PageHero";
+import tournamentsImage from "../../assets/tournaments.jpg";
 
 import { Container, Col } from "react-bootstrap";
-import { Divider, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 /** Show page with all tournaments listed
  *
@@ -38,25 +40,25 @@ const TournamentList = () => {
   if (!tournaments) return <LoadingSpinner />;
 
   return (
-    <Container className="py-5">
-      <Typography variant="h1">Tournaments</Typography>
-      <Divider role="presentation" sx={{ width: "17%" }} />
-
-      <div className="text-center row justify-content-center">
-        {tournaments.map((t) => (
-          <Col md={12} lg={6} xl={6} key={t.date}>
-            <TournamentCard
-              key={t.date}
-              date={t.date}
-              courseHandle={t.courseHandle}
-              courseName={t.courseName}
-              tourYears={t.tourYears}
-              imgUrl={t.imgUrl}
-            />
-          </Col>
-        ))}
-      </div>
-    </Container>
+    <Box>
+      <PageHero title="Tournaments" backgroundImage={tournamentsImage} />
+      <Container className="py-5">
+        <div className="text-center row justify-content-center">
+          {tournaments.map((t) => (
+            <Col md={12} lg={6} xl={6} key={t.date}>
+              <TournamentCard
+                key={t.date}
+                date={t.date}
+                courseHandle={t.courseHandle}
+                courseName={t.courseName}
+                tourYears={t.tourYears}
+                imgUrl={t.imgUrl}
+              />
+            </Col>
+          ))}
+        </div>
+      </Container>
+    </Box>
   );
 };
 

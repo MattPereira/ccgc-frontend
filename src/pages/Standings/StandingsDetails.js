@@ -61,7 +61,9 @@ const Standings = () => {
       <Container className="py-5">
         <Row className="justify-content-center">
           <div className="col-lg-8 text-center">
-            <Typography variant="h2">Rankings</Typography>
+            <Typography variant="h2" sx={{ mb: 2 }}>
+              Rankings
+            </Typography>
             <TabContext value={value}>
               <Box>
                 <TabList

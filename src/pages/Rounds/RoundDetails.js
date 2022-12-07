@@ -85,7 +85,7 @@ const RoundDetails = () => {
   };
 
   const date = new Date(round.tournamentDate).toLocaleDateString("en-US", {
-    month: "short",
+    month: "long",
     day: "numeric",
     year: "numeric",
     timeZone: "UTC",
