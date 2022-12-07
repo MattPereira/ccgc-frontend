@@ -260,6 +260,7 @@ const Navigation = ({ window, logout }) => {
     ".MuiDrawer-paper": {
       width: "150px",
       backgroundColor: "#eeeeee",
+      borderWidth: 0,
     },
   });
 
@@ -297,6 +298,7 @@ const Navigation = ({ window, logout }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
+                  py: 2,
                 }}
               >
                 <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
@@ -318,6 +320,7 @@ const Navigation = ({ window, logout }) => {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
+                      py: 2,
                     }}
                   >
                     <ListItemIcon
@@ -351,6 +354,7 @@ const Navigation = ({ window, logout }) => {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
+                      py: 2,
                     }}
                   >
                     <ListItemIcon
@@ -368,6 +372,7 @@ const Navigation = ({ window, logout }) => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
+                    py: 2,
                   }}
                 >
                   <ListItemIcon
