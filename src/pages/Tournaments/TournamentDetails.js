@@ -13,6 +13,7 @@ import TournamentHero from "../../components/Tournaments/TournamentHero";
 
 import { Link } from "react-router-dom";
 import { Button, Container, Box, Tab } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
@@ -106,6 +107,11 @@ const TournamentDetails = () => {
     timeZone: "UTC",
   });
 
+  const StyledTab = styled(Tab)(({ theme }) => ({
+    fontFamily: "Cubano",
+    fontSize: "1.15rem",
+  }));
+
   return (
     <>
       <TournamentHero date={tournamentDate} courseImg={tournament.courseImg} />
@@ -117,26 +123,10 @@ const TournamentDetails = () => {
               onChange={handleChange}
               aria-label="lab API tabs example"
             >
-              <Tab
-                label="Scores"
-                value="1"
-                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-              />
-              <Tab
-                label="Greenies"
-                value="2"
-                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-              />
-              <Tab
-                label="Skins"
-                value="3"
-                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-              />
-              <Tab
-                label="Points"
-                value="4"
-                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
-              />{" "}
+              <StyledTab label="Scores" value="1" />
+              <StyledTab label="Greenies" value="2" />
+              <StyledTab label="Skins" value="3" />
+              <StyledTab label="Points" value="4" />{" "}
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">

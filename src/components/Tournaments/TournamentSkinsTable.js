@@ -12,8 +12,6 @@ import {
 import { styled } from "@mui/material/styles";
 
 export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
-  console.log("SCORES", rounds);
-
   const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
     borderRight: "1px solid #e0e0e0",
   }));
@@ -26,7 +24,7 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
   }));
 
   const StyledHolesRow = styled(TableRow)(({ theme }) => ({
-    backgroundColor: "black",
+    backgroundColor: theme.palette.grey[900],
     ".MuiTableCell-root": {
       color: "white",
       minWidth: "55px",
@@ -64,10 +62,10 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
         elevation={0}
         sx={{ border: "1px solid #F4F4F4" }}
       >
-        <Table size="small">
+        <Table size="small" sx={{ whiteSpace: "nowrap" }}>
           <TableHead>
             <StyledHolesRow>
-              <StyledStickyColumnCell sx={{ backgroundColor: "black" }}>
+              <StyledStickyColumnCell sx={{ backgroundColor: "grey.900" }}>
                 HOLE
               </StyledStickyColumnCell>
               {Array.from({ length: 18 }, (_, i) => (
@@ -88,7 +86,7 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
             </StyledParsRow>
             <StyledHandicapRow>
               <StyledStickyColumnCell sx={{ backgroundColor: "#B59410" }}>
-                HCP
+                HANDICAP
               </StyledStickyColumnCell>
               {Object.values(handicaps).map((p, i) => (
                 <StyledHeaderCell align="center" key={i}>
@@ -103,10 +101,13 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
                 <StyledStickyColumnCell
                   sx={{
                     color: "white",
-                    backgroundColor: "black",
+                    backgroundColor: "#1976d2",
+                    display: "flex",
+                    justifyContent: "space-between",
                   }}
                 >
-                  {round.firstName}
+                  <Box>{round.firstName}</Box>
+                  <Box>@ {round.courseHandicap}</Box>
                 </StyledStickyColumnCell>
                 {Object.values(round.strokes).map((score, i) => (
                   <StyledTableCell align="center" key={i}>
