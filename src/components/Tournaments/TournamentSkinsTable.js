@@ -99,6 +99,7 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
             {rounds.map((round) => (
               <StyledTableRow>
                 <StyledStickyColumnCell
+                  variant="head"
                   sx={{
                     color: "white",
                     backgroundColor: "#1976d2",
