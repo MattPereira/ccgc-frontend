@@ -183,12 +183,26 @@ const RoundForm = ({ availableUsernames, round }) => {
   };
 
   const HOLES = Array.from({ length: 18 }, (v, i) => i + 1);
-  const tournamentDate = new Date(date).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+  let tournamentDate;
+
+  if (round) {
+    tournamentDate = new Date(round.tournamentDate).toLocaleDateString(
+      "en-US",
+      {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      }
+    );
+  } else {
+    tournamentDate = new Date(date).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    });
+  }
 
   return (
     <Box>
