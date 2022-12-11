@@ -7,6 +7,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Typography,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -38,7 +39,7 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
   }));
 
   const StyledHandicapRow = styled(TableRow)(({ theme }) => ({
-    backgroundColor: "#B59410",
+    backgroundColor: "rgb(181, 148, 16)",
     ".MuiTableCell-root": { color: "white", fontWeight: "bold" },
   }));
 
@@ -49,9 +50,11 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.grey[100],
+      ".MuiTableCell-root": { backgroundColor: theme.palette.grey[100] },
     },
     "&:nth-of-type(even)": {
       backgroundColor: theme.palette.grey[200],
+      ".MuiTableCell-root": { backgroundColor: theme.palette.grey[200] },
     },
   }));
 
@@ -67,21 +70,47 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
       return { hole: idx + 1, strokes: value, handicap: handicapValues[idx] };
     });
 
+    let adjustedHandicap = round.courseHandicap / 2;
+
+    const adjustedStrokes = strokes.map((hole) => {
+      if (adjustedHandicap > 18) adjustedHandicap = 18;
+
+      if (hole.handicap < adjustedHandicap) {
+        hole.strokes = hole.strokes - 1;
+      }
+
+      return {
+        hole: hole.hole,
+        strokes: hole.strokes,
+        handicap: hole.handicap,
+      };
+    });
+
+    console.log("STROKES", strokes);
+
+    const playerName = round.username.split("-");
+    const shortName =
+      playerName[0][0].toUpperCase() + playerName[0].slice(1) + " ";
+    // playerName[1][0].toUpperCase();
+
     return {
-      name: round.username,
+      name: shortName,
       courseHandicap: round.courseHandicap,
-      holes: strokes,
+      holes: adjustedStrokes,
     };
   });
-
-  // const adjustedScores = skinsData.map((round) => {
-
-  // })
 
   console.log(`SKINS`, skinsData);
 
   return (
     <Box>
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="p">
+          Subtracting one stroke for the most difficult (player handicap / 2)
+          holes
+        </Typography>
+      </Box>
+
       <TableContainer
         component={Paper}
         elevation={0}
@@ -110,7 +139,9 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
               ))}
             </StyledParsRow>
             <StyledHandicapRow>
-              <StyledStickyColumnCell sx={{ backgroundColor: "#B59410" }}>
+              <StyledStickyColumnCell
+                sx={{ backgroundColor: "rgb(181, 148, 16)" }}
+              >
                 HANDICAP
               </StyledStickyColumnCell>
               {Object.values(handicaps).map((p, i) => (
@@ -121,20 +152,14 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
             </StyledHandicapRow>
           </TableHead>
           <TableBody>
-            {rounds.map((round, idx) => (
+            {skinsData.map((round, idx) => (
               <StyledTableRow key={idx}>
-                <StyledStickyColumnCell
-                  variant="head"
-                  sx={{
-                    color: "white",
-                    backgroundColor: "#1976d2",
-                  }}
-                >
-                  {round.firstName}@{round.courseHandicap}
+                <StyledStickyColumnCell variant="head">
+                  {round.name}
                 </StyledStickyColumnCell>
-                {Object.values(round.strokes).map((score, i) => (
+                {round.holes.map((hole, i) => (
                   <StyledTableCell align="center" key={i}>
-                    {score}
+                    {hole.strokes}
                   </StyledTableCell>
                 ))}
               </StyledTableRow>
