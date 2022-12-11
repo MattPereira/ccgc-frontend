@@ -28,12 +28,12 @@ import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import CloseIcon from "@mui/icons-material/Close";
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
 import GolfCourseIcon from "@mui/icons-material/GolfCourse";
 import SportsGolfIcon from "@mui/icons-material/SportsGolf";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import ForestIcon from "@mui/icons-material/Forest";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 /** Navigation for site that shows on every page
  *
@@ -68,38 +68,38 @@ const Navigation = ({ window, logout }) => {
         // <SvgIcon color="inherit" fontSize="large">
         //   <CcgcLogo />
         // </SvgIcon>
-        <Box component="img" src={ccgcLogo} sx={{ width: "40px" }} />
+        <Box component="img" src={ccgcLogo} sx={{ width: "30px" }} />
       ),
       path: "/",
     },
     {
       text: "Tournaments",
-      icon: <SportsGolfIcon fontSize="large" />,
+      icon: <SportsGolfIcon sx={{ fontSize: "30px" }} />,
       path: "/tournaments",
     },
     {
       text: "Standings",
-      icon: <EmojiEventsIcon fontSize="large" />,
+      icon: <EmojiEventsIcon sx={{ fontSize: "30px" }} />,
       path: "/standings",
     },
     {
       text: "Members",
-      icon: <GroupsIcon fontSize="large" />,
+      icon: <GroupsIcon sx={{ fontSize: "30px" }} />,
       path: "/members",
     },
     {
       text: "Greenies",
-      icon: <GolfCourseIcon fontSize="large" />,
+      icon: <GolfCourseIcon sx={{ fontSize: "30px" }} />,
       path: "/greenies",
     },
     {
       text: "Courses",
-      icon: <ForestIcon fontSize="large" />,
+      icon: <InfoOutlinedIcon sx={{ fontSize: "30px" }} />,
       path: "/courses",
     },
     {
       text: "Dashboard",
-      icon: <DashboardOutlinedIcon fontSize="large" />,
+      icon: <DashboardCustomizeOutlinedIcon sx={{ fontSize: "30px" }} />,
       path: "/dashboard",
     },
   ];
@@ -189,7 +189,7 @@ const Navigation = ({ window, logout }) => {
                   <Avatar
                     alt="Member Initials"
                     sx={{
-                      color: "black",
+                      color: "grey.900",
                       bgcolor: "white",
                       fontFamily: "Itim",
                       fontWeight: 700,
@@ -270,14 +270,14 @@ const Navigation = ({ window, logout }) => {
     flexWrap: "nowrap",
   });
 
-  const StyledListItemText = styled(ListItemText)({
+  const StyledListItemText = styled(ListItemText)(({ theme }) => ({
     ".MuiTypography-root": {
       fontFamily: "Montserrat",
       fontSize: "16px",
       fontWeight: 600,
-      color: "black",
+      color: theme.palette.grey[900],
     },
-  });
+  }));
 
   const sidebar = (
     <StyledOuterGrid
@@ -298,10 +298,12 @@ const Navigation = ({ window, logout }) => {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  py: 2,
+                  py: 1.25,
                 }}
               >
-                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
+                <ListItemIcon
+                  sx={{ color: "grey.900", justifyContent: "center" }}
+                >
                   {page.icon}
                 </ListItemIcon>
                 <StyledListItemText>{page.text}</StyledListItemText>
@@ -320,19 +322,22 @@ const Navigation = ({ window, logout }) => {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      py: 2,
+                      py: 1.25,
                     }}
                   >
                     <ListItemIcon
-                      sx={{ color: "black", justifyContent: "center" }}
+                      sx={{ color: "grey.900", justifyContent: "center" }}
                     >
                       <Avatar
                         alt="Member Initials"
                         sx={{
                           color: "white",
-                          bgcolor: "black",
+                          bgcolor: "grey.900",
                           fontFamily: "Itim",
                           fontWeight: 700,
+                          width: "30px",
+                          height: "30px",
+                          fontSize: "16px",
                         }}
                       >
                         {currentUser.firstName[0] + currentUser.lastName[0]}
@@ -358,9 +363,9 @@ const Navigation = ({ window, logout }) => {
                     }}
                   >
                     <ListItemIcon
-                      sx={{ color: "black", justifyContent: "center" }}
+                      sx={{ color: "grey.900", justifyContent: "center" }}
                     >
-                      <LogoutOutlinedIcon fontSize="large" />
+                      <LogoutOutlinedIcon sx={{ fontSize: "30px" }} />
                     </ListItemIcon>
                     <StyledListItemText primary="Logout" />
                   </ListItemButton>
@@ -378,7 +383,7 @@ const Navigation = ({ window, logout }) => {
                   <ListItemIcon
                     sx={{ color: "black", justifyContent: "center" }}
                   >
-                    <LoginIcon fontSize="large" />
+                    <LoginIcon sx={{ fontSize: "30px" }} />
                   </ListItemIcon>
                   <StyledListItemText primary="Login" />
                 </ListItemButton>

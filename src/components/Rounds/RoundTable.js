@@ -54,7 +54,11 @@ const RoundTable = ({
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      elevation={0}
+      sx={{ border: "1px solid rgb(224, 224, 224)" }}
+    >
       <Table sx={{ display: { xs: "none", lg: "table" } }}>
         <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
           <TableRow>
@@ -210,7 +214,8 @@ const RoundTable = ({
               <TableCell
                 align="center"
                 sx={{
-                  backgroundColor: "lightgray",
+                  backgroundColor: "grey.600",
+                  color: "white",
                   borderRight: "1px solid rgb(224, 224, 224)",
                   fontWeight: "bold",
                 }}
