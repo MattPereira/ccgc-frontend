@@ -398,7 +398,7 @@ const Navigation = ({ window, logout }) => {
     <>
       <StyledDrawer
         variant="permanent"
-        sx={{ display: { xs: "none", sm: "flex" } }}
+        sx={{ display: { xs: "none", md: "flex" } }}
       >
         {sidebar}
       </StyledDrawer>
@@ -407,7 +407,7 @@ const Navigation = ({ window, logout }) => {
         color="dark"
         sx={{
           backgroundColor: "black",
-          display: { xs: "flex", sm: "none" },
+          display: { xs: "flex", md: "none" },
         }}
       >
         <Container maxWidth="xl">

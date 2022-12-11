@@ -55,6 +55,31 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
     },
   }));
 
+  console.log(rounds);
+  console.log(handicaps);
+
+  const skinsData = rounds.map((round) => {
+    const strokesValues = Object.values(round.strokes);
+
+    const handicapValues = Object.values(handicaps);
+
+    const strokes = strokesValues.map((value, idx) => {
+      return { hole: idx + 1, strokes: value, handicap: handicapValues[idx] };
+    });
+
+    return {
+      name: round.username,
+      courseHandicap: round.courseHandicap,
+      holes: strokes,
+    };
+  });
+
+  // const adjustedScores = skinsData.map((round) => {
+
+  // })
+
+  console.log(`SKINS`, skinsData);
+
   return (
     <Box>
       <TableContainer
@@ -96,8 +121,8 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
             </StyledHandicapRow>
           </TableHead>
           <TableBody>
-            {rounds.map((round) => (
-              <StyledTableRow>
+            {rounds.map((round, idx) => (
+              <StyledTableRow key={idx}>
                 <StyledStickyColumnCell
                   variant="head"
                   sx={{
