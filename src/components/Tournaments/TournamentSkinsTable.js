@@ -61,42 +61,42 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
   console.log(rounds);
   console.log(handicaps);
 
-  const skinsData = rounds.map((round) => {
-    const strokesValues = Object.values(round.strokes);
-
+  // Transform rounds data to subtract strokes for each golfer based on their handicap
+  const skinsData = rounds.map((r) => {
+    const strokesValues = Object.values(r.strokes);
     const handicapValues = Object.values(handicaps);
 
-    const strokes = strokesValues.map((value, idx) => {
+    // Create an array of objects like [{ hole: 1, strokes: 4, handicap: 5 }, ...]
+    const round = strokesValues.map((value, idx) => {
       return { hole: idx + 1, strokes: value, handicap: handicapValues[idx] };
     });
 
-    let adjustedHandicap = round.courseHandicap / 2;
+    // Only adjust this many holes
+    let adjustedHandicap = r.courseHandicap / 2;
 
-    const adjustedStrokes = strokes.map((hole) => {
+    // Map over existing hole scores and adjust based on handicap
+    const adjustedRound = round.map((hole) => {
       if (adjustedHandicap > 18) adjustedHandicap = 18;
 
-      if (hole.handicap < adjustedHandicap) {
+      if (hole.handicap <= adjustedHandicap) {
         hole.strokes = hole.strokes - 1;
       }
 
       return {
-        hole: hole.hole,
+        holeNumber: hole.hole,
         strokes: hole.strokes,
         handicap: hole.handicap,
       };
     });
 
-    console.log("STROKES", strokes);
-
-    const playerName = round.username.split("-");
+    const playerName = r.username.split("-");
     const shortName =
       playerName[0][0].toUpperCase() + playerName[0].slice(1) + " ";
-    // playerName[1][0].toUpperCase();
 
     return {
       name: shortName,
-      courseHandicap: round.courseHandicap,
-      holes: adjustedStrokes,
+      courseHandicap: r.courseHandicap,
+      round: adjustedRound,
     };
   });
 
@@ -107,7 +107,7 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
       <Box sx={{ mb: 3 }}>
         <Typography variant="p">
           Subtracting one stroke for the most difficult (player handicap / 2)
-          holes
+          holes for each player
         </Typography>
       </Box>
 
@@ -152,12 +152,12 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
             </StyledHandicapRow>
           </TableHead>
           <TableBody>
-            {skinsData.map((round, idx) => (
+            {skinsData.map((player, idx) => (
               <StyledTableRow key={idx}>
                 <StyledStickyColumnCell variant="head">
-                  {round.name}
+                  {player.name}
                 </StyledStickyColumnCell>
-                {round.holes.map((hole, i) => (
+                {player.round.map((hole, i) => (
                   <StyledTableCell align="center" key={i}>
                     {hole.strokes}
                   </StyledTableCell>
