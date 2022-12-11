@@ -1,6 +1,4 @@
 import React from "react";
-import HolesRow from "../Common/HolesRow/HolesRow";
-import { Link } from "react-router-dom";
 
 // import { Table } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
@@ -65,6 +63,7 @@ const RoundTable = ({
               sx={{
                 color: "white",
                 borderRight: "1px solid rgb(224, 224, 224)",
+                fontWeight: "bold",
               }}
             >
               Hole
@@ -75,6 +74,7 @@ const RoundTable = ({
                 sx={{
                   color: "white",
                   borderRight: "1px solid rgb(224, 224, 224)",
+                  fontWeight: "bold",
                 }}
                 key={uuidv4()}
               >
@@ -87,12 +87,13 @@ const RoundTable = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow sx={{ backgroundColor: "lightgray" }}>
+          <TableRow sx={{ backgroundColor: "gray" }}>
             <TableCell
               align="center"
               sx={{
                 borderRight: "1px solid rgb(224,224,224)",
                 fontWeight: "bold",
+                color: "white",
               }}
             >
               Par
@@ -103,7 +104,8 @@ const RoundTable = ({
                 align="center"
                 sx={{
                   borderRight: "1px solid rgb(224,224,224)",
-                  fontWeight: "bold",
+
+                  color: "white",
                 }}
               >
                 {p}

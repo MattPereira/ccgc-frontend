@@ -14,7 +14,7 @@ import { Button } from "@mui/material";
  * TournamentDetails -> TournamentTable
  */
 
-const TournamentTable = ({ data, type }) => {
+const TournamentScoresTable = ({ data, type }) => {
   console.log("DATA", data);
 
   return (
@@ -84,4 +84,4 @@ const TournamentTable = ({ data, type }) => {
   );
 };
 
-export default TournamentTable;
+export default TournamentScoresTable;

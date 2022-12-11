@@ -43,12 +43,22 @@ const Homepage = () => {
 
   console.log(tournament);
 
-  const tournamentDate = new Date(tournament.date).toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    timeZone: "UTC",
-  });
+  const fullTournamentDate = new Date(tournament.date).toLocaleDateString(
+    "en-US",
+    {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    }
+  );
+
+  const tournamentMonth = new Date(tournament.date).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+    }
+  );
 
   const content = [
     {
@@ -57,8 +67,8 @@ const Homepage = () => {
         {
           path: `tournaments/${tournament.date}`,
           image: tournament.courseImg,
-          title: "Next Tournament",
-          description: `Join us on ${tournamentDate} at ${tournament.courseName}!`,
+          title: `${tournamentMonth} Tournament`,
+          description: `Join us on ${fullTournamentDate} at ${tournament.courseName}`,
         },
         {
           path: "standings",
@@ -81,7 +91,7 @@ const Homepage = () => {
         {
           path: "members",
           image: membersImage,
-          title: "Members Stats",
+          title: "Member Metrics",
           description:
             "Per round averages and handicap calculations for each club member",
         },
@@ -97,7 +107,7 @@ const Homepage = () => {
           image: coursesImage,
           title: "Golf Courses",
           description:
-            "The pars, slopes, handicaps, and ratings for each course played by the club",
+            "The pars, slopes, handicaps, and ratings for each course we play",
         },
       ],
     },
@@ -159,9 +169,9 @@ const Homepage = () => {
                   {section.cards.map((card) => (
                     <Grid item xs={12} md={6} lg={4} key={card.title}>
                       <Link to={card.path} style={{ textDecoration: "none" }}>
-                        <StyledCardPaper elevation={5}>
+                        <StyledCardPaper elevation={0}>
                           <StyledCardImage component="img" src={card.image} />
-                          <Box sx={{ p: 3 }}>
+                          <Box sx={{ px: 3, pt: 3, pb: 5 }}>
                             <StyledCardTitle variant="h5">
                               {card.title}
                             </StyledCardTitle>

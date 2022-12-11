@@ -5,7 +5,8 @@ import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
 
 import StandingsTable from "../../components/Standings/StandingsTable";
-import TournamentTable from "../../components/Tournaments/TournamentTable";
+import ScoresTable from "../../components/Tournaments/TournamentScoresTable";
+import SkinsTable from "../../components/Tournaments/TournamentSkinsTable";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import TournamentHero from "../../components/Tournaments/TournamentHero";
@@ -127,14 +128,19 @@ const TournamentDetails = () => {
                 sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
               />
               <Tab
-                label="Points"
+                label="Skins"
                 value="3"
                 sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
               />
+              <Tab
+                label="Points"
+                value="4"
+                sx={{ fontFamily: "Cubano", fontSize: "1.25rem" }}
+              />{" "}
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
-            <TournamentTable data={scoresLeaderboard} type="strokes" />
+            <ScoresTable data={scoresLeaderboard} type="strokes" />
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="2">
             {greenies.length ? (
@@ -149,6 +155,13 @@ const TournamentDetails = () => {
             ) : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="3">
+            <SkinsTable
+              pars={tournament.pars}
+              handicaps={tournament.handicaps}
+              rounds={tournament.scoresLeaderboard}
+            />
+          </TabPanel>
+          <TabPanel sx={{ px: 0 }} value="4">
             <StandingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
