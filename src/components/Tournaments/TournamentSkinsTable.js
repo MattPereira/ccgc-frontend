@@ -103,12 +103,9 @@ export default function TournamentSkinsTable({ pars, handicaps, rounds }) {
                   sx={{
                     color: "white",
                     backgroundColor: "#1976d2",
-                    display: "flex",
-                    justifyContent: "space-between",
                   }}
                 >
-                  <Box>{round.firstName}</Box>
-                  <Box>@ {round.courseHandicap}</Box>
+                  {round.firstName}@{round.courseHandicap}
                 </StyledStickyColumnCell>
                 {Object.values(round.strokes).map((score, i) => (
                   <StyledTableCell align="center" key={i}>
