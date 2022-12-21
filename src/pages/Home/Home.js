@@ -39,8 +39,13 @@ const Homepage = () => {
     getUpcomingTournament();
   }, []);
 
-  if (!tournament) return <LoadingSpinner />;
+  if (!tournament) {
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 5000);
 
+    return <LoadingSpinner />;
+  }
   console.log(tournament);
 
   const fullTournamentDate = new Date(tournament.date).toLocaleDateString(
