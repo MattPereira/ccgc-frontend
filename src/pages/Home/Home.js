@@ -39,15 +39,7 @@ const Homepage = () => {
     getUpcomingTournament();
   }, []);
 
-  // Repeatedly reloads the homepage. Tweak to fix ?
-  // if (!tournament) {
-  //   setTimeout(() => {
-  //     window.location.reload(true);
-  //   }, 5000);
-
-  //   return <LoadingSpinner />;
-  // }
-  // console.log(tournament);
+  if (!tournament) return <LoadingSpinner />;
 
   const fullTournamentDate = new Date(tournament.date).toLocaleDateString(
     "en-US",
