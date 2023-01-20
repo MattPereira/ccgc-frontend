@@ -80,7 +80,7 @@ const GreenieDetails = () => {
         backgroundImage={greenieImage}
         alt="golf course"
       />
-      <Container sx={{ pb: 5 }}>
+      <Container sx={{ py: 5 }}>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={9} md={6} lg={5} align="center">
             <Box>
