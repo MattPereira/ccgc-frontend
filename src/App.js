@@ -34,7 +34,7 @@ import theme from "./theme";
 function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useLocalStorage("jobly-token");
+  const [token, setToken] = useLocalStorage("ccgc-token");
 
   console.debug(
     "App",
