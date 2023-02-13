@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "../pages/Home/Home";
+import Homepage from "../pages";
 
 import MemberList from "../pages/Members/MemberList";
 import MemberDetails from "../pages/Members/MemberDetails";
@@ -16,8 +16,8 @@ import GreenieDetails from "../pages/Greenies/GreenieDetails";
 import NewGreenie from "../components/Greenies/forms/NewGreenie";
 import UpdateGreenie from "../components/Greenies/forms/UpdateGreenie";
 
-import TournamentList from "../pages/Tournaments/TournamentList";
-import TournamentDetails from "../pages/Tournaments/TournamentDetails";
+import TournamentList from "../pages/tournaments";
+import TournamentDetails from "../pages/tournaments/TournamentDetails";
 import NewTournament from "../components/Tournaments/forms/NewTournament";
 import EditTournament from "../components/Tournaments/forms/EditTournament";
 
@@ -49,7 +49,7 @@ function Router({ login, register, logout }) {
 
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/" element={<Homepage />} />
 
       <Route exact path="/login" element={<LoginForm login={login} />} />
       <Route

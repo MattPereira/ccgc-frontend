@@ -21,7 +21,7 @@ import { Box } from "@mui/material";
  * Router -> TournamentList -> TournamentCard
  */
 
-const TournamentList = () => {
+export default function TournamentList() {
   console.debug("TournamentList");
 
   const [tournaments, setTournaments] = useState(null);
@@ -60,6 +60,4 @@ const TournamentList = () => {
       </Container>
     </Box>
   );
-};
-
-export default TournamentList;
+}

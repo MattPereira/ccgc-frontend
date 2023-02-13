@@ -1,20 +1,22 @@
-import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../components/Common/Loading";
-import standingsImage from "../../assets/tour-standings.webp";
-import greenieImage from "../../assets/greenie.webp";
-import membersImage from "../../assets/members-stats.jpg";
-import coursesImage from "../../assets/golf-courses.jpg";
-import tournamentsImage from "../../assets/tournaments.jpg";
-import { styled } from "@mui/material/styles";
+import standingsImage from "../assets/tour-standings.webp";
+import greenieImage from "../assets/greenie.webp";
+import membersImage from "../assets/members-stats.jpg";
+import coursesImage from "../assets/golf-courses.jpg";
+import tournamentsImage from "../assets/tournaments.jpg";
+import homeHeroImage from "../assets/home-hero.jpg";
 
-import Footer from "../../components/Common/Footer";
+import CcgcApi from "../api/api";
+
+import LoadingSpinner from "../components/Common/Loading";
+import Footer from "../components/Common/Footer";
+
+import { styled } from "@mui/material/styles";
 
 import { useState, useEffect } from "react";
 import { Container, Box, Grid, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
-import homeHeroImage from "../../assets/home-hero.jpg";
+import PageHero from "../components/Common/PageHero/PageHero";
 
 /** Homepage component { path :"/" }
  *
@@ -25,7 +27,7 @@ import homeHeroImage from "../../assets/home-hero.jpg";
  * Router -> Homepage
  */
 
-const Homepage = () => {
+export default function Homepage() {
   console.debug("Homepage");
 
   const [tournament, setTournament] = useState(null);
@@ -192,6 +194,4 @@ const Homepage = () => {
       </Grid>
     </StyledFadeInBox>
   );
-};
-
-export default Homepage;
+}

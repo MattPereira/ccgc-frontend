@@ -134,10 +134,7 @@ function App() {
               <Box>
                 <Navigation logout={logout} />
               </Box>
-              <Box
-                className="CLASS NAME"
-                sx={{ width: "100%", height: "100vh" }}
-              >
+              <Box sx={{ width: "100%", height: "100vh" }}>
                 <Router login={login} register={register} />
                 {/* <Footer /> */}
               </Box>

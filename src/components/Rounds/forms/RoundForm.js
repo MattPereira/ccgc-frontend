@@ -8,7 +8,7 @@ import { Form, Alert, Row, Col } from "react-bootstrap";
 
 import { Button, Paper, Typography, Box, Container, Grid } from "@mui/material";
 
-import TournamentHero from "../../Tournaments/TournamentHero";
+import PageHero from "../../Common/PageHero/PageHero";
 
 /** Form to create a new round
  *
@@ -189,7 +189,7 @@ const RoundForm = ({ availableUsernames, round }) => {
     tournamentDate = new Date(round.tournamentDate).toLocaleDateString(
       "en-US",
       {
-        month: "long",
+        month: "short",
         day: "numeric",
         year: "numeric",
         timeZone: "UTC",
@@ -197,7 +197,7 @@ const RoundForm = ({ availableUsernames, round }) => {
     );
   } else {
     tournamentDate = new Date(date).toLocaleDateString("en-US", {
-      month: "long",
+      month: "short",
       day: "numeric",
       year: "numeric",
       timeZone: "UTC",
@@ -206,9 +206,9 @@ const RoundForm = ({ availableUsernames, round }) => {
 
   return (
     <Box>
-      <TournamentHero
-        date={tournamentDate}
-        courseImg={round ? round.courseImg : "default_black"}
+      <PageHero
+        title={tournamentDate}
+        backgroundImage={round ? round.courseImg : "default_black"}
       />
 
       <Container sx={{ pb: 5, pt: 1 }}>
