@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import CcgcApi from "../../../api/api";
+import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Container } from "react-bootstrap";
 import { Button } from "@mui/material";
-import "./CourseForms.css";
 
 /** Form to create a new course
  *
@@ -11,11 +10,9 @@ import "./CourseForms.css";
  * Submission of form calls the API to save the course and redirects
  * to the newly created course details page.
  *
- * Routed as /courses/new
- * Routes -> NewCourseForm
  */
 
-const CourseForm = ({ course }) => {
+export default function CourseForm({ course }) {
   let navigate = useNavigate();
 
   // const { pars, handicaps } = course || {};
@@ -814,6 +811,4 @@ const CourseForm = ({ course }) => {
       </div>
     </Container>
   );
-};
-
-export default CourseForm;
+}

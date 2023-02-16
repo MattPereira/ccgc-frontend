@@ -7,14 +7,14 @@ html,body {
     // padding-right: 0;
 }
 
-hr {
-    border: 2px solid grey !important;
-    margin: 0rem auto 2.5rem !important;
-}
+// Global styles
 
 th {
     white-space: nowrap;
     overflow: hidden;
 }
 
+input[type="number"] {
+    text-align: center;
+  }
 

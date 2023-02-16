@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../components/Common/Loading";
-import CourseCard from "../../components/Courses/CourseCard";
+import { Link } from "react-router-dom";
 
-import { Container, Grid, Box } from "@mui/material";
+import CcgcApi from "../../api/api";
+
+import { Container, Grid, Box, Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 import PageHero from "../../components/Common/PageHero/PageHero";
+import LoadingSpinner from "../../components/Common/Loading";
 import courseImage from "../../assets/golf-courses.jpg";
 
 /** Show page with all courses listed
@@ -17,7 +19,7 @@ import courseImage from "../../assets/golf-courses.jpg";
  * Router -> CourseList -> CourseCard
  */
 
-const CourseList = () => {
+export default function CourseList() {
   console.debug("CourseList");
 
   const [courses, setCourses] = useState(null);
@@ -56,6 +58,38 @@ const CourseList = () => {
       </Container>
     </Box>
   );
-};
+}
 
-export default CourseList;
+function CourseCard({ handle, rating, slope, name, imgUrl }) {
+  const StyledPaper = styled(Paper)(({ theme }) => ({
+    borderRadius: "30px",
+    backgroundColor: "black",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#eeeeee",
+      color: "black",
+    },
+  }));
+
+  const StyledCardImage = styled(Box)(({ theme }) => ({
+    width: "100%",
+    height: "203.984px",
+    borderRadius: "30px",
+    objectFit: "cover",
+  }));
+
+  return (
+    <Box>
+      <Link to={`/courses/${handle}`} style={{ textDecoration: "none" }}>
+        <StyledPaper elevation={8}>
+          <StyledCardImage component="img" src={imgUrl} />
+          <Box sx={{ py: 2 }}>
+            <Typography variant="h4" align="center">
+              {name}
+            </Typography>
+          </Box>
+        </StyledPaper>
+      </Link>
+    </Box>
+  );
+}

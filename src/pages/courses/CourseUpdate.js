@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CcgcApi from "../../../api/api";
+import CcgcApi from "../../api/api";
 import { useParams } from "react-router-dom";
 import CourseForm from "./CourseForm";
-import LoadingSpinner from "../../../components/Common/Loading";
+import LoadingSpinner from "../../components/Common/Loading";
 
 /** This component is used to fetch course data to pass to <CourseForm/>
  *  in order to populate the form with the course's current data.
@@ -11,7 +11,7 @@ import LoadingSpinner from "../../../components/Common/Loading";
  * Routes -> EditCourse -> CourseForm
  */
 
-const EditCourse = () => {
+export default function EditCourse() {
   const { handle } = useParams();
 
   const [course, setCourse] = useState(null);
@@ -35,6 +35,4 @@ const EditCourse = () => {
   // if (!course) return <LoadingSpinner />;????
 
   return course ? <CourseForm course={course} /> : <LoadingSpinner />;
-};
-
-export default EditCourse;
+}

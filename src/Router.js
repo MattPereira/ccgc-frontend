@@ -7,10 +7,10 @@ import MemberDetails from "./pages/Members/MemberDetails";
 import ProfileForm from "./components/Members/forms/ProfileForm";
 
 /** COURSES */
-import CourseList from "./pages/Courses/CourseList";
-import CourseDetails from "./pages/Courses/CourseDetails";
-import NewCourseForm from "./components/Courses/forms/CourseForm";
-import EditCourse from "./components/Courses/forms/EditCourse";
+import CourseList from "./pages/courses/CourseList";
+import CourseDetails from "./pages/courses/CourseDetails";
+import CourseCreate from "./pages/courses/CourseForm";
+import CourseUpdate from "./pages/courses/CourseUpdate";
 
 /** GREENIES */
 import GreenieList from "./pages/greenies/GreenieList";
@@ -75,8 +75,8 @@ export default function Router({ login, register, logout }) {
 
       <Route exact path="/courses" element={<CourseList />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
-      <Route exact path="/courses/new" element={<NewCourseForm />} />
-      <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
+      <Route exact path="/courses/create" element={<CourseCreate />} />
+      <Route exact path="/courses/update/:handle" element={<CourseUpdate />} />
 
       <Route exact path="/tournaments" element={<TournamentList />} />
       <Route exact path="/tournaments/:date" element={<TournamentDetails />} />

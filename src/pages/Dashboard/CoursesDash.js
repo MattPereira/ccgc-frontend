@@ -34,7 +34,7 @@ export default function CoursesDash({ courses }) {
       sortable: false,
       renderCell: (params) => {
         return (
-          <IconButton component={Link} to={`/courses/${params.row.id}/edit`}>
+          <IconButton component={Link} to={`/courses/update/${params.row.id}`}>
             <EditIcon color="warning"></EditIcon>
           </IconButton>
         );

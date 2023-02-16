@@ -74,7 +74,7 @@ export default function Dashboard() {
               <IconButton
                 variant="contained"
                 component={Link}
-                to="/courses/new"
+                to="/courses/create"
                 color="primary"
               >
                 <AddCircleOutlineIcon fontSize="large" />
