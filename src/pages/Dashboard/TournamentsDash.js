@@ -41,7 +41,7 @@ export default function TournamentsDash({ tournaments }) {
         return (
           <IconButton
             component={Link}
-            to={`/tournaments/${params.row.id}/update`}
+            to={`/tournaments/update/${params.row.id}`}
           >
             <EditIcon color="warning"></EditIcon>
           </IconButton>

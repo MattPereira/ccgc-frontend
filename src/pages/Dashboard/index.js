@@ -55,7 +55,7 @@ export default function Dashboard() {
               Tournaments
               <IconButton
                 component={Link}
-                to="/tournaments/new"
+                to="/tournaments/create/"
                 color="primary"
               >
                 <AddCircleOutlineIcon fontSize="large" />

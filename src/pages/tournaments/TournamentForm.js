@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CcgcApi from "../../../api/api";
+import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { Card, Form, Alert, Row, Container } from "react-bootstrap";
 
@@ -13,8 +13,8 @@ import { Button, Typography } from "@mui/material";
  *
  * Redirects to the tournament details page upon form submission.
  *
- * Routed as /tournaments/new
- * Routes -> NewTournamentForm
+ * Routed as /tournaments/create/
+ * Routes -> TournamentCreateForm
  */
 
 const TournamentForm = ({ courseHandles, tournament }) => {
@@ -31,7 +31,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
   const [formErrors, setFormErrors] = useState([]);
 
   console.debug(
-    "NewTournamentForm",
+    "TournamentCreateForm",
     "courseHandles=",
     courseHandles,
     "formData=",

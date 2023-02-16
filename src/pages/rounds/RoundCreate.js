@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import CcgcApi from "../../../api/api";
-import LoadingSpinner from "../../Common/Loading";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../components/Common/Loading";
+
 import RoundForm from "./RoundForm";
 
-const NewRound = () => {
+export default function AddRound() {
   /** Fetch the members data first to set the select "player" input */
   const { date } = useParams();
 
@@ -15,18 +16,18 @@ const NewRound = () => {
   // Grab all courses from API to make an array of course handles for select input
   useEffect(
     function getMembersOnMount() {
-      console.debug("NewRound useEffect getMembersOnMount");
+      console.debug("AddRound useEffect getMembersOnMount");
 
       async function fetchAllMembers() {
         let members = await CcgcApi.getMembers();
         setMembers(members);
       }
 
-      async function fetchTournament() {
+      async function fetchTournamentRounds() {
         let rounds = await CcgcApi.getRoundsByDate(date);
         setRounds(rounds);
       }
-      fetchTournament();
+      fetchTournamentRounds();
       fetchAllMembers();
     },
     [date]
@@ -51,6 +52,4 @@ const NewRound = () => {
       <RoundForm availableUsernames={availableUsernames} />
     </div>
   );
-};
-
-export default NewRound;
+}

@@ -120,7 +120,7 @@ export default function RoundDetails() {
       </Button>
       <Button
         component={Link}
-        to={`/rounds/${id}/edit`}
+        to={`/rounds/update/${id}`}
         variant="contained"
         size="large"
         sx={{
@@ -462,6 +462,11 @@ function HandicapCalculations({ round }) {
     playerIndex = (
       lowestTwoDiffs.reduce((a, b) => a + b) / lowestTwoDiffs.length
     ).toFixed(2);
+  } else {
+    playerIndex = (
+      ((113 / round.courseSlope) * (round.totalStrokes - round.courseRating)) /
+      2
+    ).toFixed(2);
   }
 
   const courseHandicap = Math.round((playerIndex * round.courseSlope) / 113);
@@ -469,7 +474,7 @@ function HandicapCalculations({ round }) {
   return (
     <Grid container spacing={5} justifyContent="center">
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Past Rounds
         </Typography>
         <TableContainer
@@ -507,25 +512,40 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Player Index
         </Typography>
         <Box sx={{ mb: 2, textAlign: "start" }}>
-          <Typography variant="p" textAlign="start">
-            Average of lowest two score differentials from last four rounds
-            played
-          </Typography>
+          {lowestTwoDiffs.length ? (
+            <Typography variant="p" textAlign="start">
+              Average of lowest two score differentials from last four rounds
+              played.
+            </Typography>
+          ) : (
+            <Typography variant="p" textAlign="start">
+              First round with club computes player index using your first
+              round's score differential divided by 2.
+            </Typography>
+          )}
         </Box>
         <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
-          <Typography variant="h6" fontFamily="cubano">
-            ( {lowestTwoDiffs[0]} + {lowestTwoDiffs[1] || 0} ) ÷ 2 ={" "}
-            <span style={{ color: "green" }}>{playerIndex}</span>
-          </Typography>
+          {lowestTwoDiffs.length ? (
+            <Typography variant="h6" fontFamily="cubano">
+              ( {lowestTwoDiffs[0] || 0} +{" "}
+              {lowestTwoDiffs[1] || lowestTwoDiffs[0]} ) ÷ 2 ={" "}
+              <span style={{ color: "royalblue" }}>{playerIndex}</span>
+            </Typography>
+          ) : (
+            <Typography variant="h6" fontFamily="cubano">
+              {playerIndex * 2} ÷ 2 ={" "}
+              <span style={{ color: "royalblue" }}>{playerIndex}</span>
+            </Typography>
+          )}
         </Box>
       </Grid>
 
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Golf Course
         </Typography>
         <TableContainer
@@ -555,7 +575,7 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Course Handicap
         </Typography>
         <Box sx={{ mb: 2 }}>
@@ -564,7 +584,7 @@ function HandicapCalculations({ round }) {
         <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
           <Typography variant="h5">
             {playerIndex} × {round.courseSlope} ÷ 113 ={" "}
-            <span style={{ color: "green" }}>{courseHandicap}</span>
+            <span style={{ color: "darkred" }}>{courseHandicap}</span>
           </Typography>
         </Box>
       </Grid>

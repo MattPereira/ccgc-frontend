@@ -4,7 +4,7 @@ import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
 
-import StandingsTable from "../../components/Standings/StandingsTable";
+import { RankingsTable } from "../standings/StandingsDetails";
 import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 
@@ -44,6 +44,7 @@ import EditIcon from "@mui/icons-material/Edit";
  * - Displaying the scores leaderboard
  * - Displaying the skins leaderboard
  * - Displaying the greenies associated with a tournament
+ * - Displaying the points leaderboard (comes from StandingsDetails component's function -> RankingsTable)
  * - Offering add round and add greenie button to logged in users
  *
  * This is routed to path  "/tournaments/:date"
@@ -103,7 +104,7 @@ export default function TournamentDetails() {
       <Button
         variant="contained"
         component={Link}
-        to={`/rounds/new/${date}`}
+        to={`/rounds/create/${date}`}
         size="large"
         sx={{
           "&:hover": { color: "white" },
@@ -169,7 +170,7 @@ export default function TournamentDetails() {
             />
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="4">
-            <StandingsTable data={pointsLeaderboard} />
+            <RankingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
 
@@ -232,7 +233,7 @@ function ScoresTable({ data, type }) {
 
             <td>
               <Button
-                to={`/rounds/${r.id}/edit`}
+                to={`/rounds/update/${r.id}`}
                 component={Link}
                 variant="contained"
                 sx={{ p: 0.5, minWidth: "auto" }}

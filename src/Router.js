@@ -1,35 +1,41 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Homepage from "../pages";
 
-import MemberList from "../pages/Members/MemberList";
-import MemberDetails from "../pages/Members/MemberDetails";
-import ProfileForm from "../components/Members/forms/ProfileForm";
+/** MEMBERS (USERS) **/
+import MemberList from "./pages/Members/MemberList";
+import MemberDetails from "./pages/Members/MemberDetails";
+import ProfileForm from "./components/Members/forms/ProfileForm";
 
-import CourseList from "../pages/Courses/CourseList";
-import CourseDetails from "../pages/Courses/CourseDetails";
-import NewCourseForm from "../components/Courses/forms/CourseForm";
-import EditCourse from "../components/Courses/forms/EditCourse";
+/** COURSES */
+import CourseList from "./pages/Courses/CourseList";
+import CourseDetails from "./pages/Courses/CourseDetails";
+import NewCourseForm from "./components/Courses/forms/CourseForm";
+import EditCourse from "./components/Courses/forms/EditCourse";
 
-import GreenieList from "../pages/Greenies/GreenieList";
-import GreenieDetails from "../pages/Greenies/GreenieDetails";
-import NewGreenie from "../components/Greenies/forms/NewGreenie";
-import UpdateGreenie from "../components/Greenies/forms/UpdateGreenie";
+/** GREENIES */
+import GreenieList from "./pages/Greenies/GreenieList";
+import GreenieDetails from "./pages/Greenies/GreenieDetails";
+import NewGreenie from "./components/Greenies/forms/NewGreenie";
+import UpdateGreenie from "./components/Greenies/forms/UpdateGreenie";
 
-import TournamentList from "../pages/tournaments";
-import TournamentDetails from "../pages/tournaments/TournamentDetails";
-import NewTournament from "../components/Tournaments/forms/NewTournament";
-import EditTournament from "../components/Tournaments/forms/EditTournament";
+/** TOURNAMENTS */
+import TournamentList from "./pages/tournaments/TournamentList";
+import TournamentDetails from "./pages/tournaments/TournamentDetails";
+import TournamentCreate from "./pages/tournaments/TournamentCreate";
+import TournamentUpdate from "./pages/tournaments/TournamentUpdate";
 
-import RoundDetails from "../pages/Rounds/RoundDetails";
-import NewRound from "../components/Rounds/forms/NewRound";
-import EditRound from "../components/Rounds/forms/EditRound";
+/** ROUNDS */
+import RoundDetails from "./pages/rounds/RoundDetails";
+import RoundCreate from "./pages/rounds/RoundCreate";
+import RoundUpdate from "./pages/rounds/RoundUpdate";
 
-import LoginForm from "../components/Auth/LoginForm";
-import RegisterForm from "../components/Auth/RegisterForm";
+/** AUTH */
+import LoginForm from "./components/Auth/LoginForm";
+import RegisterForm from "./components/Auth/RegisterForm";
 
-import Standings from "../pages/Standings/StandingsDetails";
-import Dashboard from "../pages/Dashboard";
+import Standings from "./pages/standings/StandingsDetails";
+import Dashboard from "./pages/Dashboard";
+import Homepage from "./pages/Homepage";
 
 /** Site-wide routes.
  *
@@ -40,7 +46,7 @@ import Dashboard from "../pages/Dashboard";
  * Visiting a non-existant route redirects to the homepage.
  */
 
-function Router({ login, register, logout }) {
+export default function Router({ login, register, logout }) {
   console.debug(
     "Routes",
     `login=${typeof login}`,
@@ -68,23 +74,22 @@ function Router({ login, register, logout }) {
       <Route exact path="/members/:username" element={<MemberDetails />} />
 
       <Route exact path="/courses" element={<CourseList />} />
-      <Route exact path="/courses/new" element={<NewCourseForm />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
+      <Route exact path="/courses/new" element={<NewCourseForm />} />
       <Route exact path="/courses/:handle/edit" element={<EditCourse />} />
 
       <Route exact path="/tournaments" element={<TournamentList />} />
-      <Route exact path="/tournaments/new" element={<NewTournament />} />
-
       <Route exact path="/tournaments/:date" element={<TournamentDetails />} />
+      <Route exact path="/tournaments/create/" element={<TournamentCreate />} />
       <Route
         exact
-        path="/tournaments/:date/update"
-        element={<EditTournament />}
+        path="/tournaments/update/:date"
+        element={<TournamentUpdate />}
       />
 
       <Route exact path="/rounds/:id" element={<RoundDetails />} />
-      <Route exact path="/rounds/new/:date" element={<NewRound />} />
-      <Route exact path="/rounds/:id/edit" element={<EditRound />} />
+      <Route exact path="/rounds/create/:date" element={<RoundCreate />} />
+      <Route exact path="/rounds/update/:id" element={<RoundUpdate />} />
 
       <Route exact path="/greenies" element={<GreenieList />} />
       <Route exact path="/greenies/new/:date" element={<NewGreenie />} />
@@ -96,5 +101,3 @@ function Router({ login, register, logout }) {
     </Routes>
   );
 }
-
-export default Router;

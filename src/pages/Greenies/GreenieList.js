@@ -6,7 +6,7 @@ import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import PageHero from "../../components/Common/PageHero/PageHero";
 import greenieImage from "../../assets/greenie.webp";
 
-import { Typography, Box, Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 /** Show page with all greenies listed
  *
@@ -21,7 +21,7 @@ import { Typography, Box, Container } from "@mui/material";
  * Router -> GreenieList -> GreenieCardList -> GreenieCard
  */
 
-const GreenieList = () => {
+export default function GreenieList() {
   console.debug("GreenieList");
   const [greenies, setGreenies] = useState(null);
 
@@ -38,21 +38,16 @@ const GreenieList = () => {
 
   if (!greenies) return <LoadingSpinner />;
 
-  console.log(greenies);
+  // console.log(greenies);
 
   return (
     <Box>
-      <PageHero title="Greenies" backgroundImage={greenieImage} />
-      <Container sx={{ pb: 5 }}>
-        <Typography variant="h2" align="center" sx={{ my: 3 }}>
-          Top 10
-        </Typography>
+      <PageHero title="Closest Greenies" backgroundImage={greenieImage} />
+      <Container sx={{ py: 5 }}>
         <Box>
           <GreenieCardList greenies={greenies} />
         </Box>
       </Container>
     </Box>
   );
-};
-
-export default GreenieList;
+}

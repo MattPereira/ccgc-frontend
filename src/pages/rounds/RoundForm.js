@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
-import CcgcApi from "../../../api/api";
+import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
-import UserContext from "../../Auth/UserContext";
+import UserContext from "../../components/Auth/UserContext";
 
 import { Form, Alert, Row, Col } from "react-bootstrap";
 
 import { Button, Paper, Typography, Box, Container, Grid } from "@mui/material";
 
-import PageHero from "../../Common/PageHero/PageHero";
+import PageHero from "../../components/Common/PageHero/PageHero";
 
 /** Form to create a new round
  *
@@ -19,7 +19,7 @@ import PageHero from "../../Common/PageHero/PageHero";
  *
  * Routed as /rounds/:date/new
  *
- * Routes -> NewRoundForm
+ * Routes -> AddRoundForm
  *
  */
 
