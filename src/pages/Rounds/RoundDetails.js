@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-import RoundTable from "../../components/Rounds/RoundTable";
+// import RoundTable from "../../components/Rounds/RoundTable";
 import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/Greenies/GreenieCardList";
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ import PageHero from "../../components/Common/PageHero/PageHero";
 
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useTheme } from "@mui/material/styles";
 import {
   Button,
   Typography,
@@ -26,7 +25,10 @@ import {
   TableRow,
   TableCell,
   TableContainer,
+  Paper,
 } from "@mui/material";
+
+import { v4 as uuidv4 } from "uuid";
 
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -44,10 +46,7 @@ import TabPanel from "@mui/lab/TabPanel";
  * Router -> RoundDetails -> {AdminButtons, RoundTable}
  */
 
-const RoundDetails = () => {
-  const theme = useTheme();
-  console.log(theme);
-
+export default function RoundDetails() {
   const { id } = useParams();
   const { currentUser } = useContext(UserContext);
   let navigate = useNavigate();
@@ -86,27 +85,6 @@ const RoundDetails = () => {
   if (!round) return <LoadingSpinner />;
   console.log(round);
 
-  //Logic for computing course handicap for a round
-  //Need to add logic to check if this round is the most recent round for a user? if it is not the most recent, show text explaining that handicap calculation can only be seen on most recent round?
-
-  const scoreDiffsArray = round.recentScoreDiffs.map(
-    (diff) => +diff.scoreDifferential
-  );
-  console.log("All Diffs", scoreDiffsArray);
-
-  const lowestTwoDiffs = scoreDiffsArray.sort((a, b) => a - b).slice(0, 2);
-  console.log("Lowest Two Diffs", lowestTwoDiffs);
-
-  let playerIndex = 0;
-
-  if (lowestTwoDiffs.length) {
-    playerIndex = (
-      lowestTwoDiffs.reduce((a, b) => a + b) / lowestTwoDiffs.length
-    ).toFixed(2);
-  }
-
-  const courseHandicap = Math.round((playerIndex * round.courseSlope) / 113);
-
   ////////
   const style = {
     position: "absolute",
@@ -121,25 +99,63 @@ const RoundDetails = () => {
   };
 
   const date = new Date(round.tournamentDate).toLocaleDateString("en-US", {
-    month: "short",
+    month: "long",
     day: "numeric",
     year: "numeric",
     timeZone: "UTC",
   });
 
+  const memberButtons = (
+    <Box sx={{ mb: 3 }}>
+      <Button
+        variant="contained"
+        color="error"
+        size="large"
+        onClick={handleOpen}
+        sx={{
+          mr: 1,
+        }}
+      >
+        <HighlightOffIcon /> <span className="ms-2">Delete</span>
+      </Button>
+      <Button
+        component={Link}
+        to={`/rounds/${id}/edit`}
+        variant="contained"
+        size="large"
+        sx={{
+          ml: 1,
+        }}
+      >
+        <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+      </Button>
+    </Box>
+  );
+
   return (
     <Box>
-      <PageHero title={date} backgroundImage={round.courseImg} />
+      <PageHero
+        title={round.username.split("-").join(" ")}
+        backgroundImage={round.courseImg}
+      />
       <Container sx={{ pb: 3, textAlign: "center" }}>
-        <Box sx={{ mb: 2, mr: 2, textAlign: "end" }}>
-          <Link to={`/tournaments/${round.tournamentDate}`}>
-            Back to Tournament
-          </Link>
-        </Box>
-        <Typography variant="h1">
-          {round.username.split("-").join(" ")}
-        </Typography>
-
+        <Button
+          variant="contained"
+          size="large"
+          color="dark"
+          sx={{
+            color: "white",
+            width: "100%",
+            fontFamily: "cubano",
+            fontSize: "1.4rem",
+            borderRadius: "20px",
+            my: 2,
+          }}
+          component={Link}
+          to={`/tournaments/${date}`}
+        >
+          {date}
+        </Button>
         <TabContext value={value}>
           <Box>
             <TabList
@@ -165,49 +181,8 @@ const RoundDetails = () => {
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
-            <RoundTable
-              roundId={round.id}
-              courseName={round.courseName}
-              tournamentDate={round.tournamentDate}
-              strokes={round.strokes}
-              putts={round.putts}
-              totalStrokes={round.totalStrokes}
-              playerIndex={round.playerIndex}
-              netStrokes={round.netStrokes}
-              totalPutts={round.totalPutts}
-              pars={round.pars}
-            />
-
-            {currentUser ? (
-              <Box sx={{ mt: 5 }}>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="large"
-                  onClick={handleOpen}
-                  sx={{
-                    "&:hover": { color: "white" },
-                    mr: 1,
-                    borderRadius: "30px",
-                  }}
-                >
-                  <HighlightOffIcon /> <span className="ms-2">Delete</span>
-                </Button>
-                <Button
-                  component={Link}
-                  to={`/rounds/${id}/edit`}
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    "&:hover": { color: "white" },
-                    ml: 1,
-                    borderRadius: "30px",
-                  }}
-                >
-                  <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-                </Button>
-              </Box>
-            ) : null}
+            {currentUser ? memberButtons : null}
+            <ScoresTable round={round} />
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="2">
             {round.greenies.length ? (
@@ -215,83 +190,7 @@ const RoundDetails = () => {
             ) : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="3">
-            <Grid container spacing={2} sx={{ mt: 2 }}>
-              <Grid item md={6}>
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                  Golf Course
-                </Typography>
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell>{round.courseName}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Rating</TableCell>
-                      <TableCell>{round.courseRating}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Slope</TableCell>
-                      <TableCell>{round.courseSlope}</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </Grid>
-              <Grid item md={6}>
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                  Last Four Rounds
-                </Typography>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Date</TableCell>
-                      <TableCell>Total Strokes</TableCell>
-                      <TableCell>Score Diff</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {round.recentScoreDiffs.map((diff) => (
-                      <TableRow key={diff.tournamentDate}>
-                        <TableCell>
-                          {new Date(diff.tournamentDate).toLocaleDateString(
-                            "en-US",
-                            {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                              timeZone: "UTC",
-                            }
-                          )}
-                        </TableCell>
-                        <TableCell>{diff.totalStrokes}</TableCell>
-                        <TableCell>{diff.scoreDifferential}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Grid>
-              <Grid item md={6}>
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                  Player Index
-                </Typography>
-                <p>
-                  Average of lowest two score differentials from last four
-                  rounds played
-                </p>
-                <p>
-                  {lowestTwoDiffs[0]} + {lowestTwoDiffs[1]} / 2 = {playerIndex}
-                </p>
-              </Grid>
-              <Grid item md={6}>
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                  Course Handicap
-                </Typography>
-                <p>( Handicap Index × Course Slope ) / 113</p>
-                <p>
-                  {playerIndex} * {round.courseSlope} / 113 = {courseHandicap}
-                </p>
-              </Grid>
-            </Grid>
+            <HandicapCalculations round={round} />
           </TabPanel>
         </TabContext>
 
@@ -335,6 +234,340 @@ const RoundDetails = () => {
       </Container>
     </Box>
   );
-};
+}
 
-export default RoundDetails;
+function ScoresTable({ round }) {
+  console.log("STROKES", round.strokes);
+  const strokes = Object.values(round.strokes);
+  const putts = Object.values(round.putts);
+  const pars = Object.values(round.pars);
+
+  // FOR MOBILE SCREEN SIZE DISPLAY
+  //making an array like [{holeNumber: 1, strokes: 4, putts: 2, par: 3}, {holeNumber: 2, strokes: 4, putts: 2, par: 3}, ...]
+  const mobileRows = [];
+
+  for (let i = 0; i < 18; i++) {
+    mobileRows.push({
+      holeNumber: i + 1,
+      strokes: strokes[i],
+      putts: putts[i],
+      par: pars[i],
+    });
+  }
+
+  return (
+    <TableContainer
+      component={Paper}
+      elevation={0}
+      sx={{ border: "1px solid rgb(224, 224, 224)" }}
+    >
+      <Table sx={{ display: { xs: "none", lg: "table" } }}>
+        <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+                fontWeight: "bold",
+              }}
+            >
+              Hole
+            </TableCell>
+            {[...Array(18)].map((_, i) => (
+              <TableCell
+                align="center"
+                sx={{
+                  color: "white",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                  fontWeight: "bold",
+                }}
+                key={uuidv4()}
+              >
+                {i + 1}
+              </TableCell>
+            ))}
+            <TableCell align="center" sx={{ color: "white" }}>
+              Total
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow sx={{ backgroundColor: "gray" }}>
+            <TableCell
+              align="center"
+              sx={{
+                borderRight: "1px solid rgb(224,224,224)",
+                fontWeight: "bold",
+                color: "white",
+              }}
+            >
+              Par
+            </TableCell>
+            {Object.values(pars).map((p) => (
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{
+                  borderRight: "1px solid rgb(224,224,224)",
+
+                  color: "white",
+                }}
+              >
+                {p}
+              </TableCell>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+            >
+              Strokes
+            </TableCell>
+            {Object.values(strokes).map((s) => (
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              >
+                {s}
+              </TableCell>
+            ))}
+            <TableCell align="center">{round.totalStrokes}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+            >
+              Putts
+            </TableCell>
+            {Object.values(putts).map((p) => (
+              <TableCell
+                key={uuidv4()}
+                align="center"
+                sx={{ borderRight: "1px solid rgb(224,224,224)" }}
+              >
+                {p}
+              </TableCell>
+            ))}
+            <TableCell align="center">{round.totalPutts}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <Table size="small" sx={{ display: { xs: "table", lg: "none" } }}>
+        <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
+          <TableRow>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                py: 1,
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Hole
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Par
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Strokes
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "white",
+                borderRight: "1px solid rgb(224, 224, 224)",
+              }}
+            >
+              Putts
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {mobileRows.map((hole) => (
+            <TableRow key={hole.holeNumber}>
+              <TableCell
+                variant="head"
+                align="center"
+                width="20%"
+                sx={{
+                  backgroundColor: "rgb(33,37,41)",
+                  color: "white",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                }}
+              >
+                {hole.holeNumber}
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{
+                  backgroundColor: "grey.600",
+                  color: "white",
+                  borderRight: "1px solid rgb(224, 224, 224)",
+                  fontWeight: "bold",
+                }}
+                width="20%"
+              >
+                {hole.par}
+              </TableCell>
+
+              <TableCell
+                align="center"
+                width="30%"
+                sx={{ borderRight: "1px solid rgb(224, 224, 224)" }}
+              >
+                {hole.strokes}
+              </TableCell>
+              <TableCell align="center" width="30%">
+                {hole.putts}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+function HandicapCalculations({ round }) {
+  //Logic for computing course handicap for a round
+  //Need to add logic to check if this round is the most recent round for a user? if it is not the most recent, show text explaining that handicap calculation can only be seen on most recent round?
+
+  const scoreDiffsArray = round.recentScoreDiffs.map(
+    (diff) => +diff.scoreDifferential
+  );
+  console.log("All Diffs", scoreDiffsArray);
+
+  const lowestTwoDiffs = scoreDiffsArray.sort((a, b) => a - b).slice(0, 2);
+  console.log("Lowest Two Diffs", lowestTwoDiffs);
+
+  let playerIndex = 0;
+
+  if (lowestTwoDiffs.length) {
+    playerIndex = (
+      lowestTwoDiffs.reduce((a, b) => a + b) / lowestTwoDiffs.length
+    ).toFixed(2);
+  }
+
+  const courseHandicap = Math.round((playerIndex * round.courseSlope) / 113);
+
+  return (
+    <Grid container spacing={5} justifyContent="center">
+      <Grid item xs={12} md={8} lg={6}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Past Rounds
+        </Typography>
+        <TableContainer
+          sx={{ border: "1px solid black", borderRadius: "10px" }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow sx={{ bgcolor: "black", color: "white" }}>
+                <TableCell sx={{ color: "white" }}>Date</TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Total Strokes
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Score Diff
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {round.recentScoreDiffs.map((diff) => (
+                <TableRow key={diff.tournamentDate}>
+                  <TableCell>
+                    {new Date(diff.tournamentDate).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                      timeZone: "UTC",
+                    })}
+                  </TableCell>
+                  <TableCell align="right">{diff.totalStrokes}</TableCell>
+                  <TableCell align="right">{diff.scoreDifferential}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={12} md={8} lg={6}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Player Index
+        </Typography>
+        <Box sx={{ mb: 2, textAlign: "start" }}>
+          <Typography variant="p" textAlign="start">
+            Average of lowest two score differentials from last four rounds
+            played
+          </Typography>
+        </Box>
+        <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
+          <Typography variant="h6" fontFamily="cubano">
+            ( {lowestTwoDiffs[0]} + {lowestTwoDiffs[1] || 0} ) ÷ 2 ={" "}
+            <span style={{ color: "green" }}>{playerIndex}</span>
+          </Typography>
+        </Box>
+      </Grid>
+
+      <Grid item xs={12} md={8} lg={6}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Golf Course
+        </Typography>
+        <TableContainer
+          sx={{ border: "1px solid black", borderRadius: "10px" }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow sx={{ bgcolor: "black", color: "white" }}>
+                <TableCell sx={{ color: "white" }}>Name</TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Rating
+                </TableCell>
+                <TableCell align="right" sx={{ color: "white" }}>
+                  Slope
+                </TableCell>
+              </TableRow>
+              <TableHead />
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>{round.courseName}</TableCell>
+                <TableCell align="right">{round.courseRating}</TableCell>
+                <TableCell align="right">{round.courseSlope}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={12} md={8} lg={6}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Course Handicap
+        </Typography>
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="p">Player Index × Course Slope ÷ 113</Typography>
+        </Box>
+        <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
+          <Typography variant="h5">
+            {playerIndex} × {round.courseSlope} ÷ 113 ={" "}
+            <span style={{ color: "green" }}>{courseHandicap}</span>
+          </Typography>
+        </Box>
+      </Grid>
+    </Grid>
+  );
+}

@@ -5,7 +5,7 @@ export default function PageHero({ title, backgroundImage }) {
     <Box sx={{ p: 1 }}>
       <Paper
         sx={{
-          height: { xs: "200px", sm: "275px" },
+          height: { xs: "150px", sm: "275px" },
           borderRadius: "30px",
           display: "flex",
           justifyContent: "center",
@@ -14,7 +14,10 @@ export default function PageHero({ title, backgroundImage }) {
           padding: "0.5rem",
         }}
       >
-        <Typography variant="h1" sx={{ color: "white", fontSize: "2.5rem" }}>
+        <Typography
+          variant="h1"
+          sx={{ color: "white", fontSize: "2.5rem", mb: 0 }}
+        >
           {title}
         </Typography>
       </Paper>

@@ -17,7 +17,6 @@ import { Typography } from "@mui/material";
  *
  * This is routed to path "/members/:username"
  *
- * Routes -> MemberDetails -> { RoundTable -> {HolesRow, DataRow} }
  *
  */
 

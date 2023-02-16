@@ -36,6 +36,16 @@ let theme = createTheme({
       fontFamily: "Poppins",
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "30px",
+          "&:hover": { color: "white" },
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);

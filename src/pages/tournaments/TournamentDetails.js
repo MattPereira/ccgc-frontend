@@ -235,9 +235,9 @@ function ScoresTable({ data, type }) {
                 to={`/rounds/${r.id}/edit`}
                 component={Link}
                 variant="contained"
-                sx={{ p: 0, minWidth: "auto" }}
+                sx={{ p: 0.5, minWidth: "auto" }}
               >
-                <EditIcon />
+                <EditIcon fontSize="small" />
               </Button>
             </td>
           </tr>
@@ -339,17 +339,10 @@ function SkinsTable({ pars, handicaps, rounds }) {
 
   return (
     <Box>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="p">
-          Subtracting one stroke for the most difficult (player handicap / 2)
-          holes for each player
-        </Typography>
-      </Box>
-
       <TableContainer
         component={Paper}
         elevation={0}
-        sx={{ border: "1px solid #F4F4F4" }}
+        sx={{ border: "1px solid #F4F4F4", mb: 1 }}
       >
         <Table size="small" sx={{ whiteSpace: "nowrap" }}>
           <TableHead>
@@ -402,6 +395,12 @@ function SkinsTable({ pars, handicaps, rounds }) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Box sx={{ mb: 3, textAlign: "start" }}>
+        <Typography variant="p">
+          *Subtracting one stroke for the most difficult player handicap ÷ 2
+          holes for each player
+        </Typography>
+      </Box>
     </Box>
   );
 }
