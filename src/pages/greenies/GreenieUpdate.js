@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../../../api/api";
-import LoadingSpinner from "../../../components/Common/Loading";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../components/Common/Loading";
 import GreenieForm from "./GreenieForm";
 
 /** This component is used to fetch tournament data to pass to <NewGreenieForm/>
  *  to populate the form's golfer select field with
  *  options from the tournament
  *
- *
- *
- * Routed as /greenies/new/:roundId
- * Routes -> NewGreenie -> NewGreenieForm
+ * Path: "/greenies/create/:roundId"
  */
 
-const UpdateGreenie = () => {
+export default function UpdateGreenie() {
   const { id } = useParams();
 
   /** Fetch the greenie data first to set formData state properly */
@@ -45,6 +42,4 @@ const UpdateGreenie = () => {
       <GreenieForm greenie={greenie} />
     </div>
   );
-};
-
-export default UpdateGreenie;
+}

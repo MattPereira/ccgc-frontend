@@ -8,8 +8,6 @@ import CalculationsAccordion from "../../components/Members/CalculationsAccordio
 import { Container, Row, Table } from "react-bootstrap";
 import { Typography } from "@mui/material";
 
-// import GreenieCardTable from "../components/Greenies/GreenieTable";
-
 /** Member details page.
  *
  * On component mount, load the member data from API

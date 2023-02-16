@@ -7,7 +7,7 @@ import LoadingSpinner from "../../components/Common/Loading";
 
 import { Typography, Button, Container, Grid, Box, Modal } from "@mui/material";
 
-import GreenieCard from "../../components/Greenies/GreenieCard";
+import GreenieCard from "../../components/GreenieCard";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
@@ -26,7 +26,7 @@ import greenieImage from "../../assets/greenie.webp";
  *
  */
 
-const GreenieDetails = () => {
+export default function GreenieDetails() {
   const { id } = useParams();
   const { currentUser } = useContext(UserContext);
   let navigate = useNavigate();
@@ -61,6 +61,16 @@ const GreenieDetails = () => {
   console.log(greenie);
   console.log(currentUser);
 
+  const tournamentDate = new Date(greenie.tournamentDate).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }
+  );
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -73,6 +83,33 @@ const GreenieDetails = () => {
     p: 4,
   };
 
+  const memberButtons = (
+    <Box sx={{ my: 5 }}>
+      <Button
+        variant="contained"
+        color="error"
+        size="large"
+        onClick={handleOpen}
+        sx={{
+          "&:hover": { color: "white" },
+          mr: 1,
+          borderRadius: "30px",
+        }}
+      >
+        <HighlightOffIcon /> <span className="ms-2">Delete</span>
+      </Button>
+      <Button
+        component={Link}
+        to={`/greenies/update/${greenie.id}`}
+        variant="contained"
+        size="large"
+        sx={{ "&:hover": { color: "white" }, borderRadius: "30px" }}
+      >
+        <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
+      </Button>
+    </Box>
+  );
+
   return (
     <Box>
       <PageHero
@@ -80,38 +117,29 @@ const GreenieDetails = () => {
         backgroundImage={greenieImage}
         alt="golf course"
       />
-      <Container sx={{ py: 5 }}>
+      <Container sx={{ pb: 5 }}>
+        <Button
+          variant="contained"
+          size="large"
+          color="dark"
+          sx={{
+            color: "white",
+            width: "100%",
+            fontFamily: "cubano",
+            fontSize: "1.4rem",
+            borderRadius: "20px",
+            mt: 1,
+            mb: 2,
+          }}
+          component={Link}
+          to={`/tournaments/${tournamentDate}`}
+        >
+          {tournamentDate}
+        </Button>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={9} md={6} lg={5} align="center">
-            <Box>
-              {currentUser ? (
-                <Box sx={{ my: 5 }}>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    size="large"
-                    onClick={handleOpen}
-                    sx={{
-                      "&:hover": { color: "white" },
-                      mr: 1,
-                      borderRadius: "30px",
-                    }}
-                  >
-                    <HighlightOffIcon /> <span className="ms-2">Delete</span>
-                  </Button>
-                  <Button
-                    component={Link}
-                    to={`/greenies/${greenie.id}/update`}
-                    variant="contained"
-                    size="large"
-                    sx={{ "&:hover": { color: "white" }, borderRadius: "30px" }}
-                  >
-                    <ArrowCircleUpIcon /> <span className="ms-2">Update</span>
-                  </Button>
-                </Box>
-              ) : null}
-            </Box>
             <GreenieCard greenie={greenie} />
+            <Box>{currentUser ? memberButtons : null}</Box>
           </Grid>
         </Grid>
         <Modal
@@ -154,6 +182,4 @@ const GreenieDetails = () => {
       </Container>
     </Box>
   );
-};
-
-export default GreenieDetails;
+}

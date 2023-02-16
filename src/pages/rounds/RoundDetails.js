@@ -4,7 +4,7 @@ import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 // import RoundTable from "../../components/Rounds/RoundTable";
 import UserContext from "../../components/Auth/UserContext";
-import GreenieCardList from "../../components/Greenies/GreenieCardList";
+import GreenieCardList from "../../components/GreenieCardList";
 import { Link } from "react-router-dom";
 
 import PageHero from "../../components/Common/PageHero/PageHero";

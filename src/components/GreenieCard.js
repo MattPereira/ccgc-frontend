@@ -43,17 +43,17 @@ const GreenieCard = ({ greenie }) => {
 
   // const theme = useTheme();
 
-  let points = 1;
+  // let points = 1;
 
-  if (feet < 20) {
-    points += 1;
-  }
-  if (feet < 10) {
-    points += 1;
-  }
-  if (feet < 2) {
-    points += 1;
-  }
+  // if (feet < 20) {
+  //   points += 1;
+  // }
+  // if (feet < 10) {
+  //   points += 1;
+  // }
+  // if (feet < 2) {
+  //   points += 1;
+  // }
 
   const StyledPaper = styled(Paper)(({ theme }) => ({
     borderRadius: "30px",

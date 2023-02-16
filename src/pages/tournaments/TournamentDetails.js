@@ -5,8 +5,8 @@ import CcgcApi from "../../api/api";
 import UserContext from "../../components/Auth/UserContext";
 
 import { RankingsTable } from "../standings/StandingsDetails";
-import GreenieTable from "../../components/Greenies/GreenieTable";
-import GreenieCardList from "../../components/Greenies/GreenieCardList";
+// import GreenieTable from "../../components/Greenies/GreenieTable";
+import GreenieCardList from "../../components/GreenieCardList";
 
 import PageHero from "../../components/Common/PageHero/PageHero";
 
@@ -90,7 +90,7 @@ export default function TournamentDetails() {
           variant="contained"
           color="success"
           component={Link}
-          to={`/greenies/new/${date}`}
+          to={`/greenies/create/${date}`}
           size="large"
           sx={{
             "&:hover": { color: "white" },
@@ -154,7 +154,7 @@ export default function TournamentDetails() {
             {greenies.length ? (
               <>
                 <div className="d-lg-none">
-                  <GreenieTable greenies={greenies} />
+                  <GreeniesTable greenies={greenies} />
                 </div>
                 <div className="d-none d-lg-block">
                   <GreenieCardList greenies={greenies} />
@@ -246,6 +246,39 @@ function ScoresTable({ data, type }) {
       </tbody>
     </BootstrapTable>
   );
+}
+
+function GreeniesTable({ greenies }) {
+  console.log("GREENIES", greenies);
+  return greenies.length ? (
+    <BootstrapTable striped bordered>
+      <thead className="table-dark">
+        <tr>
+          <th>PLAYER</th>
+          <th>HOLE</th>
+          <th>FEET</th>
+          <th>INCH</th>
+        </tr>
+      </thead>
+      <tbody>
+        {greenies.map((g) => (
+          <tr key={g.id}>
+            <th>
+              <Link
+                to={`/rounds/${g.roundId}`}
+                className="text-decoration-none"
+              >
+                {`${g.firstName} ${g.lastName[0]}`}
+              </Link>
+            </th>
+            <td>#{g.holeNumber}</td>
+            <td>{g.feet}</td>
+            <td>{g.inches}</td>
+          </tr>
+        ))}
+      </tbody>
+    </BootstrapTable>
+  ) : null;
 }
 
 function SkinsTable({ pars, handicaps, rounds }) {

@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../../../api/api";
-import LoadingSpinner from "../../../components/Common/Loading";
+import CcgcApi from "../../api/api";
+import LoadingSpinner from "../../components/Common/Loading";
 import GreenieForm from "./GreenieForm";
 
 /** This component is used to fetch tournament data to pass to <NewGreenieForm/>
  *  to populate the form's golfer select field with
  *  options from the tournament
  *
- *
- *
  * Routed as /greenies/:date/new
  * Routes -> NewGreenie -> NewGreenieForm
  */
 
-const NewGreenie = () => {
+export default function GreenieCreate() {
   const { date } = useParams();
-
-  console.log("DATE", date);
 
   /** Fetch the tournament data first to set formData state properly */
   const [rounds, setRounds] = useState(null);
@@ -48,7 +44,6 @@ const NewGreenie = () => {
   console.log("TOURNAMENT", tournament);
 
   const usernames = rounds.map((round) => [round.id, round.username]);
-  console.log(usernames);
 
   //array of par 3 hole numbers for select input
   const par3HoleNums = Object.entries(tournament.pars)
@@ -62,6 +57,4 @@ const NewGreenie = () => {
       <GreenieForm par3HoleNums={par3HoleNums} usernames={usernames} />
     </div>
   );
-};
-
-export default NewGreenie;
+}

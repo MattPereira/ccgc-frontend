@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import CcgcApi from "../../../api/api";
+import CcgcApi from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Form, Row, Col } from "react-bootstrap";
 import { useTheme } from "@mui/material/styles";
 
 import { Button, Typography, Alert, Box, Container } from "@mui/material";
 
-import PageHero from "../../../components/Common/PageHero/PageHero";
-import greenieImage from "../../../assets/greenie.webp";
+import PageHero from "../../components/Common/PageHero/PageHero";
+import greenieImage from "../../assets/greenie.webp";
 
 /** Form to create a new greenie
  *

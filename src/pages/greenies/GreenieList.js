@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 
-import GreenieCardList from "../../components/Greenies/GreenieCardList";
+import GreenieCardList from "../../components/GreenieCardList";
 import PageHero from "../../components/Common/PageHero/PageHero";
 import greenieImage from "../../assets/greenie.webp";
 
