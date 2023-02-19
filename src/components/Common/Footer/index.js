@@ -32,7 +32,7 @@ function Footer() {
           <Typography variant="p" sx={{ color: "white" }}>
             Developed by &nbsp;
             <a
-              href="https://matt-pereira.surge.sh/"
+              href="https://matt-pereira.vercel.app/"
               style={{
                 color: "white",
                 textDecoration: "none",
