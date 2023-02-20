@@ -13,6 +13,8 @@ import {
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
+import SiteHero from "../../components/SiteHero";
+
 /** Register form.
  *
  * Shows form and manages update to state on changes.
@@ -77,93 +79,96 @@ export default function RegisterForm({ register }) {
   };
 
   return (
-    <Container className="py-5">
-      <Grid container justifyContent="center">
-        <Grid item xs={12} md={6}>
-          <StyledPaper elevation={5}>
-            <Box sx={{ p: 3 }}>
-              <Form onSubmit={handleSubmit}>
-                <Typography variant="h1" sx={{ mb: 5 }}>
-                  Register
-                </Typography>
-                <Box sx={{ textAlign: "center", my: 5 }}>
-                  <Typography variant="p">
-                    Already have an account? <Link to="/login">Login here</Link>
+    <Box>
+      <SiteHero />
+      <Container sx={{ py: 5 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <StyledPaper elevation={0}>
+              <Box sx={{ p: 3 }}>
+                <Form onSubmit={handleSubmit}>
+                  <Typography variant="h1" sx={{ mb: 5 }}>
+                    Register
                   </Typography>
-                </Box>
-                <Box sx={{ mb: 3 }}>
-                  <StyledTextField
-                    id="email"
-                    name="email"
-                    label="Email"
-                    type="text"
-                    variant="outlined"
-                    onChange={handleChange}
-                    required
-                    autoComplete="email"
-                    sx={{ width: "100%", bgcolor: "white" }}
-                  />
-                </Box>
-                <Box sx={{ mb: 3 }}>
-                  <StyledTextField
-                    id="password"
-                    name="password"
-                    type="password"
-                    label="Password"
-                    variant="outlined"
-                    onChange={handleChange}
-                    required
-                    autoComplete="email"
-                    sx={{ width: "100%" }}
-                  />
-                </Box>
-                <Box sx={{ mb: 3 }}>
-                  <StyledTextField
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    label="First Name"
-                    variant="outlined"
-                    onChange={handleChange}
-                    required
-                    sx={{ width: "100%" }}
-                  />
-                </Box>
-                <Box sx={{ mb: 3 }}>
-                  <StyledTextField
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    label="Last Name"
-                    variant="outlined"
-                    onChange={handleChange}
-                    required
-                    sx={{ width: "100%" }}
-                  />
-                </Box>
+                  <Box sx={{ textAlign: "center", my: 5 }}>
+                    <Typography variant="p">
+                      Already have an account?{" "}
+                      <Link to="/login">Login here</Link>
+                    </Typography>
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <StyledTextField
+                      id="email"
+                      name="email"
+                      label="Email"
+                      type="text"
+                      variant="outlined"
+                      onChange={handleChange}
+                      required
+                      autoComplete="email"
+                      sx={{ width: "100%", bgcolor: "white" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <StyledTextField
+                      id="password"
+                      name="password"
+                      type="password"
+                      label="Password"
+                      variant="outlined"
+                      onChange={handleChange}
+                      required
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <StyledTextField
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      label="First Name"
+                      variant="outlined"
+                      onChange={handleChange}
+                      required
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <StyledTextField
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      label="Last Name"
+                      variant="outlined"
+                      onChange={handleChange}
+                      required
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
 
-                {formErrors.length
-                  ? formErrors.map((err) => (
-                      <Alert variant="danger" key={err}>
-                        {err}
-                      </Alert>
-                    ))
-                  : null}
+                  {formErrors.length
+                    ? formErrors.map((err) => (
+                        <Alert variant="danger" key={err}>
+                          {err}
+                        </Alert>
+                      ))
+                    : null}
 
-                <Box sx={{ textAlign: "end" }}>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{ borderRadius: "30px", px: 3, py: 1 }}
-                  >
-                    Submit
-                  </Button>
-                </Box>
-              </Form>
-            </Box>
-          </StyledPaper>
+                  <Box sx={{ textAlign: "end" }}>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      sx={{ borderRadius: "30px", px: 3, py: 1 }}
+                    >
+                      Submit
+                    </Button>
+                  </Box>
+                </Form>
+              </Box>
+            </StyledPaper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </Box>
   );
 }

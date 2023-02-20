@@ -153,102 +153,126 @@ export default function Navigation({ window, logout }) {
         </IconButton>
       </Box>
 
-      <Divider sx={{ marginBottom: "0px !important" }} />
-      <List sx={{ py: 3 }}>
-        {pages.map((page) => (
-          <ListItem
-            key={page.text}
-            disablePadding
-            component={NavLink}
-            to={page.path}
-          >
-            <ListItemButton>
-              <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
-                {page.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={page.text}
-                primaryTypographyProps={{
-                  fontSize: "1.5rem",
-                  letterSpacing: "0.1rem",
-                  fontFamily: "Cubano",
-                  color: "white",
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <List>
-        {currentUser ? (
-          <>
-            <ListItem disablePadding component={Link} to={"/profile"}>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: "black", justifyContent: "center" }}>
-                  <Avatar
-                    alt="Member Initials"
-                    sx={{
-                      color: "grey.900",
-                      bgcolor: "white",
-                      fontFamily: "Itim",
-                      fontWeight: 700,
+      <Divider sx={{ border: "2px solid white" }} />
+      <Grid
+        container
+        sx={{
+          flexDirection: "column",
+          justifyContent: "space-between",
+          height: "75%",
+          flexWrap: "nowrap",
+        }}
+      >
+        <Grid item>
+          <List sx={{ py: 3 }}>
+            {pages.map((page) => (
+              <ListItem
+                key={page.text}
+                disablePadding
+                component={NavLink}
+                to={page.path}
+              >
+                <ListItemButton>
+                  <ListItemIcon
+                    sx={{ color: "white", justifyContent: "center" }}
+                  >
+                    {page.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={page.text}
+                    primaryTypographyProps={{
+                      fontSize: "1.5rem",
+                      letterSpacing: "0.1rem",
+                      fontFamily: "Cubano",
+                      color: "white",
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item>
+          <List>
+            {currentUser ? (
+              <>
+                <ListItem disablePadding component={Link} to={"/profile"}>
+                  <ListItemButton>
+                    <ListItemIcon
+                      sx={{ color: "black", justifyContent: "center" }}
+                    >
+                      <Avatar
+                        alt="Member Initials"
+                        sx={{
+                          color: "grey.900",
+                          bgcolor: "white",
+                          fontFamily: "Itim",
+                          fontWeight: 700,
+                        }}
+                      >
+                        {currentUser.firstName[0] + currentUser.lastName[0]}
+                      </Avatar>
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={
+                        currentUser.firstName + " " + currentUser.lastName
+                      }
+                      primaryTypographyProps={{
+                        fontSize: "1.5rem",
+                        letterSpacing: "0.1rem",
+                        fontFamily: "Cubano",
+                        color: "white",
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    onClick={() => {
+                      logout();
+                      navigate("/");
                     }}
                   >
-                    {currentUser.firstName[0] + currentUser.lastName[0]}
-                  </Avatar>
-                </ListItemIcon>
-                <ListItemText
-                  primary={currentUser.firstName + " " + currentUser.lastName}
-                  primaryTypographyProps={{
-                    fontSize: "1.5rem",
-                    letterSpacing: "0.1rem",
-                    fontFamily: "Cubano",
-                    color: "white",
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => {
-                  logout();
-                  navigate("/");
-                }}
-              >
-                <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
-                  <LogoutOutlinedIcon fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Logout"
-                  primaryTypographyProps={{
-                    fontSize: "1.5rem",
-                    letterSpacing: "0.1rem",
-                    fontFamily: "Cubano",
-                    color: "white",
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </>
-        ) : (
-          <ListItem disablePadding component={Link} to={"/login"}>
-            <ListItemButton>
-              <ListItemIcon sx={{ color: "white", justifyContent: "center" }}>
-                <LoginIcon fontSize="large" />
-              </ListItemIcon>
-              <ListItemText
-                primary="Login"
-                primaryTypographyProps={{
-                  fontSize: "1.5rem",
-                  letterSpacing: "0.1rem",
-                  fontFamily: "Cubano",
-                  color: "white",
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        )}
-      </List>
+                    <ListItemIcon
+                      sx={{ color: "white", justifyContent: "center" }}
+                    >
+                      <LogoutOutlinedIcon fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Logout"
+                      primaryTypographyProps={{
+                        fontSize: "1.5rem",
+                        letterSpacing: "0.1rem",
+                        fontFamily: "Cubano",
+                        color: "white",
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </>
+            ) : (
+              <ListItem disablePadding component={Link} to={"/login"}>
+                <ListItemButton>
+                  <ListItemIcon
+                    sx={{ color: "white", justifyContent: "center" }}
+                  >
+                    <LoginIcon fontSize="large" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Login"
+                    primaryTypographyProps={{
+                      fontSize: "1.5rem",
+                      letterSpacing: "0.1rem",
+                      fontFamily: "Cubano",
+                      color: "white",
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            )}
+          </List>
+        </Grid>
+      </Grid>
     </Box>
   );
 

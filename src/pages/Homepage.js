@@ -6,6 +6,7 @@ import tournamentsImage from "../assets/tournaments.jpg";
 
 import CcgcApi from "../api/api";
 
+import SiteHero from "../components/SiteHero";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Footer from "../components/Footer";
 
@@ -19,7 +20,7 @@ import { Link } from "react-router-dom";
  *
  * displays cards for "current events" and "club resources"
  *
- * displays footer at bottom of page
+ * displays footer at bottom of page??
  *
  * Router -> Homepage
  */
@@ -143,15 +144,6 @@ export default function Homepage() {
     marginBottom: "1rem",
   }));
 
-  const StyledHeroPaper = styled(Paper)(({ theme }) => ({
-    borderRadius: "30px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "black",
-    padding: "0.5rem",
-  }));
-
   return (
     <StyledFadeInBox>
       <Grid
@@ -161,16 +153,7 @@ export default function Homepage() {
         sx={{ height: "100%", flexWrap: "nowrap" }}
       >
         <Grid item>
-          <Box sx={{ p: 1.5 }}>
-            <StyledHeroPaper sx={{ height: { xs: "150px", sm: "275px" } }}>
-              <Typography
-                variant="h1"
-                sx={{ color: "white", fontSize: "2.5rem", mb: 0 }}
-              >
-                Contra Costa Golf Club
-              </Typography>
-            </StyledHeroPaper>
-          </Box>
+          <SiteHero />
           <Container maxWidth="xl" disableGutters sx={{ p: { xs: 1, lg: 4 } }}>
             {content.map((section) => (
               <Box sx={{ mb: 5, mt: { xs: 4, lg: 0 } }} key={section.title}>

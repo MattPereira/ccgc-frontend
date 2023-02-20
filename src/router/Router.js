@@ -2,40 +2,41 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 /** MEMBERS (USERS) **/
-import MemberList from "./pages/Members/MemberList";
-import MemberDetails from "./pages/Members/MemberDetails";
-import ProfileForm from "./components/Members/forms/ProfileForm";
+import MemberList from "../pages/members/MemberList";
+import MemberDetails from "../pages/members/MemberDetails";
 
 /** COURSES */
-import CourseList from "./pages/courses/CourseList";
-import CourseDetails from "./pages/courses/CourseDetails";
-import CourseCreate from "./pages/courses/CourseForm";
-import CourseUpdate from "./pages/courses/CourseUpdate";
+import CourseList from "../pages/courses/CourseList";
+import CourseDetails from "../pages/courses/CourseDetails";
+import CourseCreate from "../pages/courses/CourseForm";
+import CourseUpdate from "../pages/courses/CourseUpdate";
 
 /** GREENIES */
-import GreenieList from "./pages/greenies/GreenieList";
-import GreenieDetails from "./pages/greenies/GreenieDetails";
-import GreenieCreate from "./pages/greenies/GreenieCreate";
-import GreenieUpdate from "./pages/greenies/GreenieUpdate";
+import GreenieList from "../pages/greenies/GreenieList";
+import GreenieDetails from "../pages/greenies/GreenieDetails";
+import GreenieCreate from "../pages/greenies/GreenieCreate";
+import GreenieUpdate from "../pages/greenies/GreenieUpdate";
 
 /** TOURNAMENTS */
-import TournamentList from "./pages/tournaments/TournamentList";
-import TournamentDetails from "./pages/tournaments/TournamentDetails";
-import TournamentCreate from "./pages/tournaments/TournamentCreate";
-import TournamentUpdate from "./pages/tournaments/TournamentUpdate";
+import TournamentList from "../pages/tournaments/TournamentList";
+import TournamentDetails from "../pages/tournaments/TournamentDetails";
+import TournamentCreate from "../pages/tournaments/TournamentCreate";
+import TournamentUpdate from "../pages/tournaments/TournamentUpdate";
 
 /** ROUNDS */
-import RoundDetails from "./pages/rounds/RoundDetails";
-import RoundCreate from "./pages/rounds/RoundCreate";
-import RoundUpdate from "./pages/rounds/RoundUpdate";
+import RoundDetails from "../pages/rounds/RoundDetails";
+import RoundCreate from "../pages/rounds/RoundCreate";
+import RoundUpdate from "../pages/rounds/RoundUpdate";
 
 /** AUTH */
-import LoginForm from "./pages/auth/LoginForm";
-import RegisterForm from "./pages/auth/RegisterForm";
+import LoginForm from "../pages/auth/LoginForm";
+import RegisterForm from "../pages/auth/RegisterForm";
+import ProfileForm from "../pages/auth/ProfileForm";
 
-import Standings from "./pages/standings/StandingsDetails";
-import Dashboard from "./pages/Dashboard";
-import Homepage from "./pages/Homepage";
+/** MISCELLANEOUS */
+import Standings from "../pages/standings/StandingsDetails";
+import Dashboard from "../pages/Dashboard";
+import Homepage from "../pages/Homepage";
 
 /** Site-wide routes.
  *

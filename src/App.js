@@ -6,7 +6,7 @@ import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
 import ScrollToTop from "./components/ScrollToTop";
-import Router from "./Router";
+import Router from "./router/Router";
 import Navigation from "./components/Navigation";
 import LoadingSpinner from "./components/LoadingSpinner";
 // import Footer from "./components/Common/Footer";

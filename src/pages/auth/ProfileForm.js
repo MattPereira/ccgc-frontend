@@ -1,11 +1,22 @@
 import React, { useState, useContext } from "react";
-import UserContext from "../../../lib/UserContext";
-import CcgcApi from "../../../api/api";
-import { Card, Form, Alert, Container } from "react-bootstrap";
-import { Button, Box } from "@mui/material";
+import UserContext from "../../lib/UserContext";
+import CcgcApi from "../../api/api";
+import { Form } from "react-bootstrap";
+import {
+  Button,
+  Box,
+  TextField,
+  Grid,
+  Paper,
+  Container,
+  Typography,
+  InputLabel,
+  Alert,
+} from "@mui/material";
 
-import PageHero from "../../../components/PageHero";
-import backgroundImg from "../../../assets/golf-courses.jpg";
+import { styled } from "@mui/material/styles";
+
+import SiteHero from "../../components/SiteHero";
 
 /** Form to edit user profile
  *
@@ -19,7 +30,17 @@ import backgroundImg from "../../../assets/golf-courses.jpg";
  * Routes -> ProfileForm -> Alert
  */
 
-const ProfileForm = () => {
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: "30px",
+  backgroundColor: "#eeeeee",
+}));
+
+const StyledTextField = styled(TextField)({
+  backgroundColor: "white",
+  width: "100%",
+});
+
+export default function ProfileForm() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
@@ -96,92 +117,113 @@ const ProfileForm = () => {
 
   return (
     <Box>
-      <PageHero title="User Profile" backgroundImage={backgroundImg} />
-      <Container className="py-5">
-        <div className="row justify-content-center">
-          <div className="col-md-8 col-lg-6">
-            <Card>
-              <Card.Body className="px-5 py-5">
+      <SiteHero />
+      <Container sx={{ py: 5 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <StyledPaper elevation={0}>
+              <Box sx={{ p: 3 }}>
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="firstName">First Name :</Form.Label>
-                    <Form.Control
+                  <Typography variant="h2" sx={{ mb: 5 }} textAlign="center">
+                    User Profile
+                  </Typography>
+                  <Box sx={{ mb: 3 }}>
+                    <Typography variant="p">
+                      *Beware that password will be changed to the value you
+                      enter in this form.
+                    </Typography>
+                  </Box>
+
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel sx={{ mb: 1 }} htmlFor="firstName">
+                      First Name
+                    </InputLabel>
+                    <StyledTextField
                       id="firstName"
                       name="firstName"
                       type="text"
-                      onChange={handleChange}
+                      variant="outlined"
                       value={formData.firstName}
+                      onChange={handleChange}
                       required
-                    ></Form.Control>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="lastName">Last Name :</Form.Label>
-                    <Form.Control
-                      className="form-control"
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel sx={{ mb: 1 }} htmlFor="lastName">
+                      Last Name
+                    </InputLabel>
+                    <StyledTextField
                       id="lastName"
                       name="lastName"
                       type="text"
-                      onChange={handleChange}
+                      variant="outlined"
                       value={formData.lastName}
+                      onChange={handleChange}
                       required
-                    ></Form.Control>
-                  </Form.Group>
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel sx={{ mb: 1 }} htmlFor="email">
+                      Email
+                    </InputLabel>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email">Email :</Form.Label>
-                    <Form.Control
-                      className="form-control"
+                    <StyledTextField
                       id="email"
                       name="email"
-                      type="text"
-                      onChange={handleChange}
                       value={formData.email}
-                      autoComplete="email"
+                      type="text"
+                      variant="outlined"
+                      onChange={handleChange}
                       required
-                    ></Form.Control>
-                  </Form.Group>
+                      sx={{ width: "100%", bgcolor: "white" }}
+                    />
+                  </Box>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel sx={{ mb: 1 }} htmlFor="password">
+                      Password
+                    </InputLabel>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Password :</Form.Label>
-                    <Form.Control
-                      className="form-control"
+                    <StyledTextField
                       id="password"
                       name="password"
                       type="password"
+                      variant="outlined"
                       onChange={handleChange}
-                      value={formData.password}
                       required
-                      autoComplete="current-password"
-                    ></Form.Control>
-                  </Form.Group>
+                      sx={{ width: "100%" }}
+                    />
+                  </Box>
 
                   {formErrors.length
                     ? formErrors.map((err) => (
-                        <Alert key={err} variant="danger">
+                        <Alert variant="danger" key={err}>
                           {err}
                         </Alert>
                       ))
                     : null}
 
-                  <div className="text-end">
-                    <Button variant="contained" type="submit">
+                  <Box sx={{ textAlign: "end" }}>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      sx={{ borderRadius: "30px", px: 3, py: 1 }}
+                    >
                       Submit
                     </Button>
-                  </div>
+                  </Box>
                 </Form>
-              </Card.Body>
-            </Card>
+              </Box>
+            </StyledPaper>
             {updateConfirmed ? (
-              <Alert className="mt-3" variant="success">
+              <Alert severity="success" sx={{ mt: 3, borderRadius: "20px" }}>
                 Profile information updated!
               </Alert>
             ) : null}
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );
-};
-
-export default ProfileForm;
+}
