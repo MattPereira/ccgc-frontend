@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import CcgcApi from "../../api/api";
 // import TournamentCard from "../../components/Tournaments/TournamentCard";
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import tournamentsImage from "../../assets/tournaments.jpg";
 import { Link } from "react-router-dom";
 

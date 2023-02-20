@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 
 import { Button, Typography, Alert, Box, Container } from "@mui/material";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import greenieImage from "../../assets/greenie.webp";
 
 /** Form to create a new greenie

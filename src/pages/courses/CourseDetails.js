@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CcgcApi from "../../api/api";
+import { v4 as uuidv4 } from "uuid";
 
+import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import HolesRow from "../../components/Common/HolesRow/HolesRow";
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import courseImage from "../../assets/golf-courses.jpg";
 
 import { Container, Row, Table } from "react-bootstrap";
-
 import { Box } from "@mui/material";
-
-import { v4 as uuidv4 } from "uuid";
 
 /** Course details page.
  *
@@ -101,7 +98,13 @@ function CourseTable({ pars, handicaps, slope, rating }) {
   return (
     <Table responsive bordered hover className="text-center">
       <thead>
-        <HolesRow />
+        <tr className="table-dark">
+          <th>HOLE</th>
+          {Array.from({ length: 18 }, (_, i) => (
+            <th key={i + 1}>{i + 1}</th>
+          ))}
+          <th>TOT</th>
+        </tr>
       </thead>
       <tbody>
         <tr className="table-secondary">

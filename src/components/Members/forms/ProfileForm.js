@@ -4,7 +4,7 @@ import CcgcApi from "../../../api/api";
 import { Card, Form, Alert, Container } from "react-bootstrap";
 import { Button, Box } from "@mui/material";
 
-import PageHero from "../../../components/Common/PageHero/PageHero";
+import PageHero from "../../../components/PageHero";
 import backgroundImg from "../../../assets/golf-courses.jpg";
 
 /** Form to edit user profile

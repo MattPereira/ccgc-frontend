@@ -8,7 +8,7 @@ import { Form, Alert, Row, Col } from "react-bootstrap";
 
 import { Button, Paper, Typography, Box, Container, Grid } from "@mui/material";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 
 /** Form to create a new round
  *

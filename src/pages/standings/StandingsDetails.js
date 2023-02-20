@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 // import StandingsTable from "../../components/Standings/StandingsTable";
 // import PointsDetails from "../../components/Standings/PointsDetails";
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import standingsImage from "../../assets/tour-standings.webp";
 
 import { Container, Row, Table } from "react-bootstrap";

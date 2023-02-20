@@ -6,7 +6,7 @@ import CcgcApi from "../../api/api";
 import { Container, Grid, Box, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import courseImage from "../../assets/golf-courses.jpg";
 

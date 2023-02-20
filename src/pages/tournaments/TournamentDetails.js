@@ -8,7 +8,7 @@ import { RankingsTable } from "../standings/StandingsDetails";
 // import GreenieTable from "../../components/Greenies/GreenieTable";
 import GreenieCardList from "../../components/GreenieCardList";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 
 import { Link } from "react-router-dom";
 import { Table as BootstrapTable } from "react-bootstrap";

@@ -11,7 +11,7 @@ import GreenieCard from "../../components/GreenieCard";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import greenieImage from "../../assets/greenie.webp";
 
 /** Greenie details page.

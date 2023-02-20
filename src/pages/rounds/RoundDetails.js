@@ -7,7 +7,7 @@ import UserContext from "../../lib/UserContext";
 import GreenieCardList from "../../components/GreenieCardList";
 import { Link } from "react-router-dom";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";

@@ -3,7 +3,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import CcgcApi from "../../api/api";
 
 import GreenieCardList from "../../components/GreenieCardList";
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import greenieImage from "../../assets/greenie.webp";
 
 import { Box, Container } from "@mui/material";

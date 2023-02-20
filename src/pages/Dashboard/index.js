@@ -10,7 +10,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import TournamentsDash from "./TournamentsDash";
 import CoursesDash from "./CoursesDash";
 
-import PageHero from "../../components/Common/PageHero/PageHero";
+import PageHero from "../../components/PageHero";
 import courseImage from "../../assets/golf-courses.jpg";
 
 /** DASHBOARD PAGE
