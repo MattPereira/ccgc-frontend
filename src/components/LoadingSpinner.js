@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "../../../assets/ccgc_logo.png";
-import "./index.scss";
+import logo from "../assets/ccgc_logo.png";
 
 import { Typography, Box, Grid } from "@mui/material";
 
 /** Loading message used by components that fetch API data. */
 
-function LoadingSpinner() {
+export default function LoadingSpinner() {
   return (
     <Box sx={{ mt: 20 }}>
       <Grid
@@ -23,8 +22,16 @@ function LoadingSpinner() {
               width: "100%",
               boxShadow: "rgba(0, 0, 0, 0.4) 0px 0px 30px",
               borderRadius: "100%",
+              animation: "rotation 12s infinite linear",
+              "@keyframes rotation": {
+                from: {
+                  transform: "rotate(0deg)",
+                },
+                to: {
+                  transform: "rotate(359deg)",
+                },
+              },
             }}
-            className="rotate"
           />
           <Typography sx={{ textAlign: "center" }}></Typography>
         </Grid>
@@ -32,5 +39,3 @@ function LoadingSpinner() {
     </Box>
   );
 }
-
-export default LoadingSpinner;

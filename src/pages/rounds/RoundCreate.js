@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 import RoundForm from "./RoundForm";
 

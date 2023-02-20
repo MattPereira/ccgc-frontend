@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import CcgcApi from "../../api/api";
 
 import UserContext from "../../lib/UserContext";

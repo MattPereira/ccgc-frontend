@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { Link } from "react-router-dom";
 import CalculationsAccordion from "../../components/Members/CalculationsAccordion";
 

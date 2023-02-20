@@ -3,7 +3,7 @@ import UserContext from "../../lib/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 import { Typography, Button, Container, Grid, Box, Modal } from "@mui/material";
 

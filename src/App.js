@@ -5,10 +5,10 @@ import UserContext from "./lib/UserContext";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 
-import ScrollToTop from "./components/Common/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 import Router from "./Router";
-import Navigation from "./components/Common/Navigation/Navigation";
-import LoadingSpinner from "./components/Common/Loading";
+import Navigation from "./components/Navigation";
+import LoadingSpinner from "./components/LoadingSpinner";
 // import Footer from "./components/Common/Footer";
 
 import { ThemeProvider, Box } from "@mui/material";

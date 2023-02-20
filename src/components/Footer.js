@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as MPLogo } from "../../../assets/MP_CIRCLE.svg";
+import { ReactComponent as MPLogo } from "../assets/MP_CIRCLE.svg";
 import { Box, Grid, Typography } from "@mui/material";
 
 import { SvgIcon } from "@mui/material";

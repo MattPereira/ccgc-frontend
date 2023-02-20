@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import CcgcApi from "../../api/api";
 // import TournamentCard from "../../components/Tournaments/TournamentCard";
 import PageHero from "../../components/Common/PageHero/PageHero";

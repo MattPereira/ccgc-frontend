@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import UserContext from "../../../lib/UserContext";
+import UserContext from "../lib/UserContext";
+import ccgcLogo from "../assets/ccgc_logo_nav.png";
 
+import { styled } from "@mui/material/styles";
 import {
   AppBar,
   Box,
@@ -21,10 +23,7 @@ import {
   // SvgIcon,
 } from "@mui/material";
 
-import { styled } from "@mui/material/styles";
-
 import MenuIcon from "@mui/icons-material/Menu";
-import ccgcLogo from "../../../assets/ccgc_logo_nav.png";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import CloseIcon from "@mui/icons-material/Close";
@@ -48,7 +47,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
  * Rendered by App component
  */
 
-const Navigation = ({ window, logout }) => {
+export default function Navigation({ window, logout }) {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);
   console.debug("Navigation");
@@ -507,6 +506,4 @@ const Navigation = ({ window, logout }) => {
       </Box>
     </>
   );
-};
-
-export default Navigation;
+}

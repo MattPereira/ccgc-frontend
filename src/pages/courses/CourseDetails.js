@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CcgcApi from "../../api/api";
 
-import LoadingSpinner from "../../components/Common/Loading";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import HolesRow from "../../components/Common/HolesRow/HolesRow";
 import PageHero from "../../components/Common/PageHero/PageHero";
 import courseImage from "../../assets/golf-courses.jpg";

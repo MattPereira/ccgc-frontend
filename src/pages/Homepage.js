@@ -6,8 +6,8 @@ import tournamentsImage from "../assets/tournaments.jpg";
 
 import CcgcApi from "../api/api";
 
-import LoadingSpinner from "../components/Common/Loading";
-import Footer from "../components/Common/Footer";
+import LoadingSpinner from "../components/LoadingSpinner";
+import Footer from "../components/Footer";
 
 import { styled } from "@mui/material/styles";
 
