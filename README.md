@@ -1,24 +1,24 @@
 
 # [Contra Costa Golf Club](https://ccgc.vercel.app/)
 
-|             |             |
-| ----------- | ----------- |
-| [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)  | <p>A full-stack web application live at [https://ccgc.vercel.app/](https://ccgc.vercel.app/)</p><ul><li>[Frontend Repository](https://github.com/MattPereira/ccgc-frontend)</li><li>[Backend Repository](https://github.com/MattPereira/ccgc-backend)</li></ul>    |
+|     Logo        |     Live Site        |   Repositories    |
+| ----------- | ----------- | --------        |
+| [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)  | <p> [https://ccgc.vercel.app/](https://ccgc.vercel.app/)</p>    |       <p>[Frontend](https://github.com/MattPereira/ccgc-frontend)</p><p>[Backend](https://github.com/MattPereira/ccgc-backend)</p>         |
 
 
 
 
 ## Description
-The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments), [greenies](https://ccgc.vercel.app/greenies), [members](https://ccgc.vercel.app/members), [courses](https://ccgc.vercel.app/courses), and [standings](https://ccgc.vercel.app/standings) data for the contra costa golf club. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
+A full-stack web application that manages all of the [tournaments](https://ccgc.vercel.app/tournaments), [greenies](https://ccgc.vercel.app/greenies), [members](https://ccgc.vercel.app/members), [courses](https://ccgc.vercel.app/courses), and [standings](https://ccgc.vercel.app/standings) data for the contra costa golf club. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
 
 
 ## Features
 **Full CRUD**
-  * Regular Users can create, update, and delete their round data (strokes, putts and greenies) 
+  * Regular users can create, update, and delete their round data (strokes, putts and greenies) 
   * Admin users can additionally manage golf course, tournament, and member data
 
-**Internal API**
-  * deployed on heroku at [contra-costa-golf-club.herokuapp.com](https://contra-costa-golf-club.herokuapp.com/)
+**Custom Internal API**
+  * deployed on Railway at [https://ccgc.up.railway.app/](https://contra-costa-golf-club.herokuapp.com/)
   * JSON Schema validation
   
 **User authentication and authorization**
@@ -61,5 +61,5 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
 
 
 ## Testing
-* 180 Backend tests with [SuperTest](https://www.npmjs.com/package/supertest)
+* 180 Backend tests covering all the API endpoints
 * Run using "npm test"
