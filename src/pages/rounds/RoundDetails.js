@@ -34,6 +34,9 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
+import { useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
+
 /** Round details page.
  *
  * On component mount, load the round data from API
@@ -237,7 +240,8 @@ export default function RoundDetails() {
 }
 
 function ScoresTable({ round }) {
-  console.log("STROKES", round.strokes);
+  const theme = useTheme();
+  console.log("THEME", theme);
   const strokes = Object.values(round.strokes);
   const putts = Object.values(round.putts);
   const pars = Object.values(round.pars);
@@ -262,7 +266,7 @@ function ScoresTable({ round }) {
       sx={{ border: "1px solid rgb(224, 224, 224)" }}
     >
       <Table sx={{ display: { xs: "none", lg: "table" } }}>
-        <TableHead sx={{ backgroundColor: "rgb(33,37,41)" }}>
+        <TableHead sx={{ bgcolor: "dark.main" }}>
           <TableRow>
             <TableCell
               align="center"
@@ -448,6 +452,8 @@ function HandicapCalculations({ round }) {
   //Logic for computing course handicap for a round
   //Need to add logic to check if this round is the most recent round for a user? if it is not the most recent, show text explaining that handicap calculation can only be seen on most recent round?
 
+  const theme = useTheme();
+
   const scoreDiffsArray = round.recentScoreDiffs.map(
     (diff) => +diff.scoreDifferential
   );
@@ -471,6 +477,11 @@ function HandicapCalculations({ round }) {
 
   const courseHandicap = Math.round((playerIndex * round.courseSlope) / 113);
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    fontFamily: "Cubano",
+    fontSize: "1.15rem",
+  }));
+
   return (
     <Grid container spacing={5} justifyContent="center">
       <Grid item xs={12} md={8} lg={6}>
@@ -481,30 +492,34 @@ function HandicapCalculations({ round }) {
           sx={{ border: "1px solid black", borderRadius: "10px" }}
         >
           <Table>
-            <TableHead>
-              <TableRow sx={{ bgcolor: "black", color: "white" }}>
-                <TableCell sx={{ color: "white" }}>Date</TableCell>
-                <TableCell align="right" sx={{ color: "white" }}>
-                  Total Strokes
-                </TableCell>
-                <TableCell align="right" sx={{ color: "white" }}>
+            <TableHead sx={{ bgcolor: "dark.main", color: "white" }}>
+              <TableRow>
+                <StyledTableCell sx={{ color: "white" }}>Date</StyledTableCell>
+                <StyledTableCell align="right" sx={{ color: "white" }}>
+                  Total
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ color: "white" }}>
                   Score Diff
-                </TableCell>
+                </StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {round.recentScoreDiffs.map((diff) => (
                 <TableRow key={diff.tournamentDate}>
-                  <TableCell>
+                  <StyledTableCell>
                     {new Date(diff.tournamentDate).toLocaleDateString("en-US", {
-                      month: "short",
+                      month: "numeric",
                       day: "numeric",
                       year: "numeric",
                       timeZone: "UTC",
                     })}
-                  </TableCell>
-                  <TableCell align="right">{diff.totalStrokes}</TableCell>
-                  <TableCell align="right">{diff.scoreDifferential}</TableCell>
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {diff.totalStrokes}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {diff.scoreDifferential}
+                  </StyledTableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -512,12 +527,16 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, color: "primary.main" }}>
           Player Index
         </Typography>
         <Box sx={{ mb: 2, textAlign: "start" }}>
           {lowestTwoDiffs.length ? (
-            <Typography variant="p" textAlign="start">
+            <Typography
+              variant="p"
+              textAlign="start"
+              sx={{ fontSize: "1.2rem" }}
+            >
               Average of lowest two score differentials from last four rounds
               played.
             </Typography>
@@ -545,7 +564,7 @@ function HandicapCalculations({ round }) {
       </Grid>
 
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, color: "success.main" }}>
           Golf Course
         </Typography>
         <TableContainer
@@ -553,38 +572,73 @@ function HandicapCalculations({ round }) {
         >
           <Table>
             <TableHead>
-              <TableRow sx={{ bgcolor: "black", color: "white" }}>
-                <TableCell sx={{ color: "white" }}>Name</TableCell>
-                <TableCell align="right" sx={{ color: "white" }}>
+              <TableRow sx={{ bgcolor: "dark.main", color: "white" }}>
+                <StyledTableCell sx={{ color: "white" }}>Name</StyledTableCell>
+                <StyledTableCell align="right" sx={{ color: "white" }}>
                   Rating
-                </TableCell>
-                <TableCell align="right" sx={{ color: "white" }}>
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ color: "white" }}>
                   Slope
-                </TableCell>
+                </StyledTableCell>
               </TableRow>
-              <TableHead />
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell>{round.courseName}</TableCell>
-                <TableCell align="right">{round.courseRating}</TableCell>
-                <TableCell align="right">{round.courseSlope}</TableCell>
+                <StyledTableCell>{round.courseName}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {round.courseRating}
+                </StyledTableCell>
+                <StyledTableCell align="right" sx={{ color: "success.main" }}>
+                  {round.courseSlope}
+                </StyledTableCell>
               </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, color: "#d32f2f" }}>
           Course Handicap
         </Typography>
         <Box sx={{ mb: 2 }}>
-          <Typography variant="p">Player Index × Course Slope ÷ 113</Typography>
+          <Typography variant="p" sx={{ fontSize: "1.2rem" }}>
+            Player Index × Course Slope ÷ 113
+          </Typography>
         </Box>
         <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
           <Typography variant="h5">
-            {playerIndex} × {round.courseSlope} ÷ 113 ={" "}
-            <span style={{ color: "darkred" }}>{courseHandicap}</span>
+            <Typography
+              component="span"
+              sx={{
+                color: "primary.main",
+                fontSize: "inherit",
+                fontFamily: "inherit",
+              }}
+            >
+              {playerIndex}
+            </Typography>{" "}
+            ×{" "}
+            <Typography
+              component="span"
+              sx={{
+                color: "success.main",
+                fontSize: "inherit",
+                fontFamily: "inherit",
+              }}
+            >
+              {round.courseSlope}
+            </Typography>{" "}
+            ÷ 113 ={" "}
+            <Typography
+              component="span"
+              sx={{
+                color: "error.main",
+                fontSize: "inherit",
+                fontFamily: "inherit",
+              }}
+            >
+              {courseHandicap}
+            </Typography>
           </Typography>
         </Box>
       </Grid>

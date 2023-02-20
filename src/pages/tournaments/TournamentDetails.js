@@ -183,7 +183,7 @@ export default function TournamentDetails() {
 function ScoresTable({ data, type }) {
   return (
     <BootstrapTable responsive bordered striped variant="light">
-      <thead class="table-dark">
+      <thead className="table-dark">
         <tr>
           <th>NO</th>
           <th>PLAYER</th>

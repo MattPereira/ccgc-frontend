@@ -2,7 +2,7 @@ import { Paper, Typography, Box } from "@mui/material";
 
 export default function PageHero({ title, backgroundImage }) {
   return (
-    <Box sx={{ p: 1 }}>
+    <Box sx={{ p: 1.5 }}>
       <Paper
         sx={{
           height: { xs: "150px", sm: "275px" },

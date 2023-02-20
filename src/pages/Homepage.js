@@ -155,10 +155,26 @@ export default function Homepage() {
         sx={{ height: "100%", flexWrap: "nowrap" }}
       >
         <Grid item>
-          <PageHero
-            title="Contra Costa Golf Club"
-            backgroundImage={homeHeroImage}
-          />
+          <Box sx={{ p: 1.5 }}>
+            <Paper
+              sx={{
+                height: { xs: "150px", sm: "275px" },
+                borderRadius: "30px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: `black`,
+                padding: "0.5rem",
+              }}
+            >
+              <Typography
+                variant="h1"
+                sx={{ color: "white", fontSize: "2.5rem", mb: 0 }}
+              >
+                Contra Costa Golf Club
+              </Typography>
+            </Paper>
+          </Box>
           <Container maxWidth="xl" disableGutters sx={{ p: { xs: 1, lg: 4 } }}>
             {content.map((section) => (
               <Box sx={{ mb: 5, mt: { xs: 4, lg: 0 } }} key={section.title}>
