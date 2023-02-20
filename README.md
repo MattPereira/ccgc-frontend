@@ -3,8 +3,8 @@
 
 |             |             |
 | ----------- | ----------- |
-| [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)  | <p>A full-stack web application live at [https://ccgc.vercel.app/](https://ccgc.vercel.app/)</p>[Frontend Repository](https://github.com/MattPereira/ccgc-frontend)<p>[Backend Repository](https://github.com/MattPereira/ccgc-backend)</p>     |
-|    |         |
+| [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)  | <p>A full-stack web application live at [https://ccgc.vercel.app/](https://ccgc.vercel.app/)</p><ul><li>[Frontend Repository](https://github.com/MattPereira/ccgc-frontend)</li><li>[Backend Repository](https://github.com/MattPereira/ccgc-backend)</li></ul>    |
+
 
 
 
@@ -45,11 +45,13 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
 
 ## Database Schema
 
+![image](https://user-images.githubusercontent.com/73561520/220162284-03d9c105-65e5-45f8-9487-929dcce4b8f1.png)
 
 
 
 ## Tech Stack
 * React
+* React Router
 * Express
 * PostgreSQL
 * Material UI
@@ -59,5 +61,5 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
 
 
 ## Testing
-* 180 back-end tests with [SuperTest](https://www.npmjs.com/package/supertest)
+* 180 Backend tests with [SuperTest](https://www.npmjs.com/package/supertest)
 * Run using "npm test"
