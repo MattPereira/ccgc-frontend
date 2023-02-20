@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
 
-import UserContext from "../../components/Auth/UserContext";
+import UserContext from "../../lib/UserContext";
 import GreenieCardList from "../../components/GreenieCardList";
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import UserContext from "../../Auth/UserContext";
+import UserContext from "../../../lib/UserContext";
 
 import {
   AppBar,

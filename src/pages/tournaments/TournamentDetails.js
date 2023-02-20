@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-import UserContext from "../../components/Auth/UserContext";
+import UserContext from "../../lib/UserContext";
 
 import { RankingsTable } from "../standings/StandingsDetails";
 // import GreenieTable from "../../components/Greenies/GreenieTable";

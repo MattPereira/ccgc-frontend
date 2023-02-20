@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
-import UserContext from "./components/Auth/UserContext";
+import UserContext from "./lib/UserContext";
 import CcgcApi from "./api/api";
 import { decodeToken } from "react-jwt";
 

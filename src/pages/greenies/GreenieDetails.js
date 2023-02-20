@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import UserContext from "../../components/Auth/UserContext";
+import UserContext from "../../lib/UserContext";
 import { useParams, useNavigate } from "react-router-dom";
 import CcgcApi from "../../api/api";
 import { Link } from "react-router-dom";
