@@ -35,7 +35,6 @@ function Footer() {
               href="https://matt-pereira.vercel.app/"
               style={{
                 color: "white",
-                textDecoration: "none",
               }}
               target="_blank"
               rel="noopener noreferrer"

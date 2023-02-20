@@ -1,13 +1,11 @@
 
 # [Contra Costa Golf Club](https://ccgc.vercel.app/)
-#### A full-stack web application deployed at [https://ccgc.vercel.app/](https://ccgc.vercel.app/)
 
-[<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)
+|             |             |
+| ----------- | ----------- |
+| [<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)  | <p>A full-stack web application live at [https://ccgc.vercel.app/](https://ccgc.vercel.app/)</p>[Frontend Repository](https://github.com/MattPereira/ccgc-frontend)<p>[Backend Repository](https://github.com/MattPereira/ccgc-backend)</p>     |
+|    |         |
 
-
-
-[Front-End](https://github.com/MattPereira/ccgc-frontend) | 
-[Back-End](https://github.com/MattPereira/ccgc-backend)
 
 
 ## Description
@@ -15,9 +13,9 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
 
 
 ## Features
-**Full CRUD for all registered users**
-  * Regular Users can create,update, and delete their round scores (strokes and putts and greenies) 
-  * Admin users can additionally add new golf course data and create new tournaments
+**Full CRUD**
+  * Regular Users can create, update, and delete their round data (strokes, putts and greenies) 
+  * Admin users can additionally manage golf course, tournament, and member data
 
 **Internal API**
   * deployed on heroku at [contra-costa-golf-club.herokuapp.com](https://contra-costa-golf-club.herokuapp.com/)
@@ -45,6 +43,11 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
   * Course Handicap: (Handicap Index * Slope) / 113
   * Net Strokes: Total Strokes - Course Handicap
 
+## Database Schema
+
+
+
+
 ## Tech Stack
 * React
 * Express
@@ -56,6 +59,5 @@ The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments),
 
 
 ## Testing
-* 104 front-end tests with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 * 180 back-end tests with [SuperTest](https://www.npmjs.com/package/supertest)
 * Run using "npm test"
