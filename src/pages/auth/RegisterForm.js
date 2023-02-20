@@ -11,7 +11,7 @@ import {
   Grid,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import ccgclogo from "../../assets/ccgc_logo.png";
+import { Link } from "react-router-dom";
 
 /** Register form.
  *
@@ -29,10 +29,10 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: "#eeeeee",
 }));
 
-const StyledCardImage = styled(Box)(({ theme }) => ({
-  width: "50%",
-  borderRadius: "30px",
-}));
+const StyledTextField = styled(TextField)({
+  backgroundColor: "white",
+  width: "100%",
+});
 
 export default function RegisterForm({ register }) {
   const navigate = useNavigate();
@@ -81,23 +81,18 @@ export default function RegisterForm({ register }) {
       <Grid container justifyContent="center">
         <Grid item xs={12} md={6}>
           <StyledPaper elevation={5}>
-            <Box
-              sx={{
-                backgroundColor: "black",
-                borderRadius: "30px",
-                textAlign: "center",
-                py: 3,
-              }}
-            >
-              <StyledCardImage component="img" src={ccgclogo} />
-            </Box>
             <Box sx={{ p: 3 }}>
               <Form onSubmit={handleSubmit}>
                 <Typography variant="h1" sx={{ mb: 5 }}>
                   Register
                 </Typography>
+                <Box sx={{ textAlign: "center", my: 5 }}>
+                  <Typography variant="p">
+                    Already have an account? <Link to="/login">Login here</Link>
+                  </Typography>
+                </Box>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="email"
                     name="email"
                     label="Email"
@@ -106,11 +101,11 @@ export default function RegisterForm({ register }) {
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    sx={{ width: "100%" }}
+                    sx={{ width: "100%", bgcolor: "white" }}
                   />
                 </Box>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="password"
                     name="password"
                     type="password"
@@ -123,7 +118,7 @@ export default function RegisterForm({ register }) {
                   />
                 </Box>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="firstName"
                     name="firstName"
                     type="text"
@@ -135,7 +130,7 @@ export default function RegisterForm({ register }) {
                   />
                 </Box>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="lastName"
                     name="lastName"
                     type="text"

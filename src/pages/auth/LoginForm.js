@@ -29,10 +29,10 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: "#eeeeee",
 }));
 
-const StyledCardImage = styled(Box)(({ theme }) => ({
-  width: "50%",
-  borderRadius: "30px",
-}));
+const StyledTextField = styled(TextField)({
+  backgroundColor: "white",
+  width: "100%",
+});
 
 const LoginForm = ({ login }) => {
   const navigate = useNavigate();
@@ -78,27 +78,23 @@ const LoginForm = ({ login }) => {
 
   return (
     <Container sx={{ py: 5 }}>
-      <Typography variant="h1" sx={{ mb: 3 }}>
-        Login
-      </Typography>
       <Grid container justifyContent="center">
         <Grid item xs={12} md={6}>
           <StyledPaper elevation={5}>
-            <Box
-              sx={{
-                backgroundColor: "black",
-                borderRadius: "30px",
-                textAlign: "center",
-                py: 3,
-              }}
-            >
-              <StyledCardImage component="img" src={ccgclogo} />
+            <Typography variant="h1" sx={{ pt: 3 }}>
+              Login
+            </Typography>
+            <Box sx={{ textAlign: "center", mt: 5 }}>
+              <Typography variant="p">
+                Don't have an account yet?{" "}
+                <Link to="/register">Register here</Link>
+              </Typography>
             </Box>
 
             <Box sx={{ pt: 4, pb: 3, px: 3 }}>
               <Form onSubmit={handleSubmit}>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="email"
                     name="email"
                     label="Email"
@@ -111,7 +107,7 @@ const LoginForm = ({ login }) => {
                   />
                 </Box>
                 <Box sx={{ mb: 3 }}>
-                  <TextField
+                  <StyledTextField
                     id="password"
                     name="password"
                     type="password"
@@ -145,11 +141,6 @@ const LoginForm = ({ login }) => {
           </StyledPaper>
         </Grid>
       </Grid>
-      <Box sx={{ textAlign: "center", mt: 5 }}>
-        <Typography variant="p">
-          Don't have an account yet? <Link to="/register">Register here</Link>
-        </Typography>
-      </Box>
     </Container>
   );
 };

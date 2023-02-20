@@ -30,8 +30,8 @@ import RoundCreate from "./pages/rounds/RoundCreate";
 import RoundUpdate from "./pages/rounds/RoundUpdate";
 
 /** AUTH */
-import LoginForm from "./components/Auth/LoginForm";
-import RegisterForm from "./components/Auth/RegisterForm";
+import LoginForm from "./pages/auth/LoginForm";
+import RegisterForm from "./pages/auth/RegisterForm";
 
 import Standings from "./pages/standings/StandingsDetails";
 import Dashboard from "./pages/Dashboard";

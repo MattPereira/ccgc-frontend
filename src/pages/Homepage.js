@@ -3,7 +3,6 @@ import greenieImage from "../assets/greenie.webp";
 import membersImage from "../assets/members-stats.jpg";
 import coursesImage from "../assets/golf-courses.jpg";
 import tournamentsImage from "../assets/tournaments.jpg";
-import homeHeroImage from "../assets/home-hero.jpg";
 
 import CcgcApi from "../api/api";
 
@@ -15,8 +14,6 @@ import { styled } from "@mui/material/styles";
 import { useState, useEffect } from "react";
 import { Container, Box, Grid, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
-import PageHero from "../components/Common/PageHero/PageHero";
 
 /** Homepage component { path :"/" }
  *
@@ -146,6 +143,15 @@ export default function Homepage() {
     marginBottom: "1rem",
   }));
 
+  const StyledHeroPaper = styled(Paper)(({ theme }) => ({
+    borderRadius: "30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "black",
+    padding: "0.5rem",
+  }));
+
   return (
     <StyledFadeInBox>
       <Grid
@@ -156,24 +162,14 @@ export default function Homepage() {
       >
         <Grid item>
           <Box sx={{ p: 1.5 }}>
-            <Paper
-              sx={{
-                height: { xs: "150px", sm: "275px" },
-                borderRadius: "30px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: `black`,
-                padding: "0.5rem",
-              }}
-            >
+            <StyledHeroPaper sx={{ height: { xs: "150px", sm: "275px" } }}>
               <Typography
                 variant="h1"
                 sx={{ color: "white", fontSize: "2.5rem", mb: 0 }}
               >
                 Contra Costa Golf Club
               </Typography>
-            </Paper>
+            </StyledHeroPaper>
           </Box>
           <Container maxWidth="xl" disableGutters sx={{ p: { xs: 1, lg: 4 } }}>
             {content.map((section) => (

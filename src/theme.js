@@ -41,6 +41,8 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "30px",
+          fontFamily: "Cubano",
+          fontSize: "1.2rem",
           "&:hover": { color: "white" },
         },
       },

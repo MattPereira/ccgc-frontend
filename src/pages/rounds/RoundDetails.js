@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/Common/Loading";
 import CcgcApi from "../../api/api";
-// import RoundTable from "../../components/Rounds/RoundTable";
+
 import UserContext from "../../components/Auth/UserContext";
 import GreenieCardList from "../../components/GreenieCardList";
 import { Link } from "react-router-dom";
@@ -451,8 +451,6 @@ function ScoresTable({ round }) {
 function HandicapCalculations({ round }) {
   //Logic for computing course handicap for a round
   //Need to add logic to check if this round is the most recent round for a user? if it is not the most recent, show text explaining that handicap calculation can only be seen on most recent round?
-
-  const theme = useTheme();
 
   const scoreDiffsArray = round.recentScoreDiffs.map(
     (diff) => +diff.scoreDifferential
