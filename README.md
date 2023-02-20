@@ -1,5 +1,5 @@
 
-# [Contra Costa Golf Club](https://ccgc.surge.sh/)
+# [Contra Costa Golf Club](https://ccgc.vercel.app/)
 #### A full-stack web application deployed at [ccgc.surge.sh/](https://ccgc.surge.sh/)
 
 ![](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-[<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.surge.sh/)
+[<img src="https://i.ibb.co/72nKCSf/ccgc-Logo11.png" width="200" height="250"/>](https://ccgc.vercel.app/)
 
 
 
@@ -16,7 +16,7 @@
 
 
 ## Description
-The site displays all of the [tournaments](https://ccgc.surge.sh/tournaments), [greenies](https://ccgc.surge.sh/greenies), [members](https://ccgc.surge.sh/members), [courses](https://ccgc.surge.sh/courses), and [standings](https://ccgc.surge.sh/standings) data for the 2021-22 season. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
+The site displays all of the [tournaments](https://ccgc.vercel.app/tournaments), [greenies](https://ccgc.vercel.app/greenies), [members]https://ccgc.vercel.app/members), [courses](https://ccgc.vercel.app/courses), and [standings](https://ccgc.vercel.app/standings) data for the 2021-22 season. Tournament data tables are sorted in ascending order to display the winners of each round. Additionally, all users are able to input their strokes, putts, and greenies for each round. Upon submission of any new, edited, or deleted data, tour points are automatically recalculated. 
 
 
 ## Features
@@ -51,11 +51,10 @@ The site displays all of the [tournaments](https://ccgc.surge.sh/tournaments), [
   * Net Strokes: Total Strokes - Course Handicap
 
 ## Tech Stack
-* [React](https://reactjs.org/)
-* [Express](https://expressjs.com/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [React-Bootstrap](https://react-bootstrap.github.io/)
-* [Bootstrap 5](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
+* React
+* Express
+* PostgreSQL
+* Material UI
 * JavaScript
 * HTML
 * CSS
