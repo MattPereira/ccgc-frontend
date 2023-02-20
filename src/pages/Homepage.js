@@ -36,7 +36,10 @@ export default function Homepage() {
     async function getUpcomingTournament() {
       setTournament(await CcgcApi.getUpcomingTournament());
     }
-    getUpcomingTournament();
+
+    const timer = setTimeout(() => getUpcomingTournament(), 5000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (!tournament) return <LoadingSpinner />;
