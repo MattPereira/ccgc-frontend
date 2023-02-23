@@ -37,9 +37,7 @@ export default function Homepage() {
       setTournament(await CcgcApi.getUpcomingTournament());
     }
 
-    const timer = setTimeout(() => getUpcomingTournament(), 5000);
-
-    return () => clearTimeout(timer);
+    getUpcomingTournament();
   }, []);
 
   if (!tournament) return <LoadingSpinner />;
