@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "REACT_APP_BASE_URL=https://ccgc-backend.onrender.com/ react-scripts build",
+    "build": "REACT_APP_BASE_URL=https://ccgc-backend.onrender.com react-scripts build",
     "pre-deploy": "cp build/index.html build/200.html",
     "deploy": "surge build --domain https://ccgc.surge.sh"
   },
