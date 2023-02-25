@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CcgcApi from "../../api/api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
-import { Typography, Box, Tab } from "@mui/material";
+import { Typography, Box, Tab, Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 // import StandingsTable from "../../components/Standings/StandingsTable";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import PageHero from "../../components/PageHero";
 import standingsImage from "../../assets/tour-standings.webp";
 
-import { Container, Row, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -57,9 +57,9 @@ export default function StandingsDetails() {
     <Box>
       <PageHero title="Tour Standings" backgroundImage={standingsImage} />
 
-      <Container className="py-5">
-        <Row className="justify-content-center">
-          <div className="col-lg-8 text-center">
+      <Container sx={{ py: 5 }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} lg={9} sx={{ textAlign: "center" }}>
             <Typography variant="h3" sx={{ mb: 2 }}>
               Rankings
             </Typography>
@@ -91,11 +91,11 @@ export default function StandingsDetails() {
                 <RankingsTable data={standings} />
               </TabPanel>
             </TabContext>
-            <div className="my-5">
+            <Box sx={{ my: 5 }}>
               <PointsTables />
-            </div>
-          </div>
-        </Row>
+            </Box>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

@@ -4,6 +4,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 /** MEMBERS (USERS) **/
 import MemberList from "../pages/members/MemberList";
 import MemberDetails from "../pages/members/MemberDetails";
+import MemberCreate from "../pages/members/MemberCreate";
+import MemberUpdate from "../pages/members/MemberUpdate";
 
 /** COURSES */
 import CourseList from "../pages/courses/CourseList";
@@ -35,7 +37,7 @@ import ProfileForm from "../pages/auth/ProfileForm";
 
 /** MISCELLANEOUS */
 import Standings from "../pages/standings/StandingsDetails";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/dashboard/DashboardDetails";
 import Homepage from "../pages/Homepage";
 
 /** Site-wide routes.
@@ -73,6 +75,12 @@ export default function Router({ login, register, logout }) {
 
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />
+      <Route exact path="/members/create" element={<MemberCreate />} />
+      <Route
+        exact
+        path="/members/update/:username"
+        element={<MemberUpdate />}
+      />
 
       <Route exact path="/courses" element={<CourseList />} />
       <Route exact path="/courses/:handle" element={<CourseDetails />} />
