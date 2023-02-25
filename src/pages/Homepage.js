@@ -42,6 +42,8 @@ export default function Homepage() {
 
   if (!tournament) return <LoadingSpinner />;
 
+  if (tournament) return <LoadingSpinner />;
+
   const fullTournamentDate = new Date(tournament.date).toLocaleDateString(
     "en-US",
     {

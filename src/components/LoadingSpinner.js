@@ -33,7 +33,11 @@ export default function LoadingSpinner() {
               },
             }}
           />
-          <Typography sx={{ textAlign: "center" }}></Typography>
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <Typography variant="p" fontSize="1.5rem">
+              Waking up the server...
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Box>
