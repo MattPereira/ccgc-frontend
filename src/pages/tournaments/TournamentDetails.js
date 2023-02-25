@@ -118,6 +118,40 @@ export default function TournamentDetails() {
     </Box>
   );
 
+  const AddGreenieButton = tournament.scoresLeaderboard.length ? (
+    <Button
+      variant="contained"
+      color="success"
+      component={Link}
+      to={`/greenies/create/${date}`}
+      size="large"
+      sx={{
+        "&:hover": { color: "white" },
+        marginRight: "0.5rem",
+        borderRadius: "30px",
+      }}
+    >
+      <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
+    </Button>
+  ) : null;
+
+  const AddRoundButton = (
+    <Button
+      variant="contained"
+      component={Link}
+      to={`/rounds/create/${date}`}
+      size="large"
+      sx={{
+        "&:hover": { color: "white" },
+        width: "138.906px",
+        marginLeft: "0.5rem",
+        borderRadius: "30px",
+      }}
+    >
+      <AddCircleOutlineIcon /> <span className="ms-2">Round</span>
+    </Button>
+  );
+
   const tournamentDate = new Date(date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -149,6 +183,7 @@ export default function TournamentDetails() {
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
             <ScoresTable data={scoresLeaderboard} type="strokes" />
+            {currentUser ? AddRoundButton : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="2">
             {greenies.length ? (
@@ -161,6 +196,7 @@ export default function TournamentDetails() {
                 </div>
               </>
             ) : null}
+            {currentUser ? AddGreenieButton : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="3">
             <SkinsTable
@@ -173,8 +209,6 @@ export default function TournamentDetails() {
             <RankingsTable data={pointsLeaderboard} />
           </TabPanel>
         </TabContext>
-
-        {currentUser ? AddBtns : null}
       </Container>
     </>
   );
@@ -431,8 +465,8 @@ function SkinsTable({ pars, handicaps, rounds }) {
       </TableContainer>
       <Box sx={{ mb: 3, textAlign: "start" }}>
         <Typography variant="p">
-          *Subtracting one stroke for the most difficult player handicap ÷ 2
-          holes for each player
+          *Subtract one stroke for the most difficult player handicap ÷ 2 holes
+          for each player.
         </Typography>
       </Box>
     </Box>
