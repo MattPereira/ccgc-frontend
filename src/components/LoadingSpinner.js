@@ -6,7 +6,7 @@ import { Typography, Box, Grid } from "@mui/material";
 /** Loading message used by components that fetch API data. */
 
 export default function LoadingSpinner() {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
 
   useEffect(function startTimer() {
     const timer = setInterval(() => {
@@ -49,7 +49,7 @@ export default function LoadingSpinner() {
           />
           <Box sx={{ textAlign: "center", mt: 4 }}>
             <Typography variant="p" fontSize="1.5rem">
-              Waking up the server... {timeLeft}
+              Please wait while the server spins up... {timeLeft}
             </Typography>
           </Box>
         </Grid>

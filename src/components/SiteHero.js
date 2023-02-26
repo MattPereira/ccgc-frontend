@@ -1,4 +1,6 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography, Grid } from "@mui/material";
+
+import ccgcLogo from "../assets/ccgc_logo_nav.png";
 
 export default function SiteHero() {
   return (
@@ -14,12 +16,47 @@ export default function SiteHero() {
           padding: "0.5rem",
         }}
       >
-        <Typography
-          variant="h1"
-          sx={{ color: "white", fontSize: "2.5rem", mb: 0 }}
+        <Grid
+          container
+          sx={{ alignItems: "center", justifyContent: "center" }}
+          spacing={2}
         >
-          Contra Costa Golf Club
-        </Typography>
+          <Grid item sx={{ display: { xs: "none", lg: "flex" } }}>
+            <Box
+              component="img"
+              src={ccgcLogo}
+              alt="CCGC Logo"
+              sx={{
+                width: { xs: "100px", lg: "150px", xl: "200px" },
+                height: "auto",
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="h1"
+              sx={{
+                color: "white",
+                fontSize: "2.5rem",
+                mb: 0,
+                display: { xs: "none", lg: "block" },
+              }}
+            >
+              Contra Costa Golf Club
+            </Typography>
+            <Typography
+              variant="h1"
+              sx={{
+                color: "white",
+                fontSize: "2.5rem",
+                mb: 0,
+                display: { xs: "block", lg: "none" },
+              }}
+            >
+              Contra Costa <div>Golf Club</div>
+            </Typography>
+          </Grid>
+        </Grid>
       </Paper>
     </Box>
   );

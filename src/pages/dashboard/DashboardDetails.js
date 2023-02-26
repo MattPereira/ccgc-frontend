@@ -18,8 +18,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import PageHero from "../../components/PageHero";
-import courseImage from "../../assets/golf-courses.jpg";
+import SiteHero from "../../components/SiteHero";
+import Modal from "../../components/Modal";
 
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -51,25 +51,65 @@ export default function Dashboard() {
   const [members, setMembers] = useState(null);
   const [value, setValue] = useState("1");
 
+  const [open, setOpen] = useState(false);
+  const [variant, setVariant] = useState("success.main");
+  const [message, setMessage] = useState("This is the modal message!");
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const handleTournamentDelete = async (date) => {
-    await CcgcApi.deleteTournament(date);
-    setTournaments(tournaments.filter((t) => t.date !== date));
+    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
+
+    try {
+      await CcgcApi.deleteTournament(date);
+      setTournaments(tournaments.filter((t) => t.date !== date));
+      setVariant("success.dark");
+      setMessage(`Tournament on ${formattedDate} successfully deleted!`);
+      setOpen(true);
+    } catch (err) {
+      setVariant("error.dark");
+      setMessage(
+        `Deletion of tournament on ${formattedDate} not allowed since scores have been entered for this tournament!`
+      );
+      setOpen(true);
+      console.log("THE ERROR", err);
+    }
   };
 
   const handleCourseDelete = async (handle) => {
-    await CcgcApi.deleteCourse(handle);
-    setCourses(courses.filter((c) => c.handle !== handle));
+    try {
+      await CcgcApi.deleteCourse(handle);
+      setCourses(courses.filter((c) => c.handle !== handle));
+      setVariant("success.dark");
+      setMessage(`Course ${handle} successfully deleted!`);
+      setOpen(true);
+    } catch (err) {
+      setVariant("error.dark");
+      setMessage(
+        `Deletion of ${handle} not allowed since a tournament has been played at this course!`
+      );
+      setOpen(true);
+      console.log("THE ERROR", err);
+    }
   };
 
   const handleMemberDelete = async (username) => {
     try {
       await CcgcApi.deleteMember(username);
       setMembers(members.filter((m) => m.username !== username));
+      setVariant("success.dark");
+      setMessage(`Member ${username} successfully deleted!`);
+      setOpen(true);
     } catch (err) {
+      setVariant("error.dark");
+      setMessage("Cannot delete a member if they have scores in the database!");
+      setOpen(true);
       console.log("THE ERROR", err);
     }
   };
@@ -103,7 +143,7 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <PageHero title="Dashboard" backgroundImage={courseImage} />
+      <SiteHero title="Dashboard" />
       <Container sx={{ pt: 2, pb: 5, textAlign: "center" }}>
         <TabContext value={value}>
           <Box>
@@ -282,6 +322,12 @@ export default function Dashboard() {
           </Box>
         </TabContext>
       </Container>
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        message={message}
+        variant={variant}
+      />
     </Box>
   );
 }
