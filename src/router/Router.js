@@ -75,7 +75,7 @@ export default function Router({ login, register, logout }) {
 
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/:username" element={<MemberDetails />} />
-      <Route exact path="/members/create" element={<MemberCreate />} />
+      <Route exact path="/members/create" element={<RegisterForm />} />
       <Route
         exact
         path="/members/update/:username"

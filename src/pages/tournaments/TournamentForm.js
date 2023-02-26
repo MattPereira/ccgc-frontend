@@ -166,6 +166,7 @@ const TournamentForm = ({ courseHandles, tournament }) => {
                       value={formData.tourYears}
                       required
                     >
+                      <option>2021-22</option>
                       <option>2022-23</option>
                       <option>2023-24</option>
                       <option>2024-25</option>

@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/ccgc_logo.png";
 
 import { Typography, Box, Grid } from "@mui/material";
@@ -6,6 +6,20 @@ import { Typography, Box, Grid } from "@mui/material";
 /** Loading message used by components that fetch API data. */
 
 export default function LoadingSpinner() {
+  const [timeLeft, setTimeLeft] = useState(10);
+
+  useEffect(function startTimer() {
+    const timer = setInterval(() => {
+      setTimeLeft((timeLeft) => timeLeft - 1);
+    }, 1000);
+
+    if (timeLeft === 0) {
+      clearInterval(timer);
+    } else {
+      return () => clearInterval(timer);
+    }
+  });
+
   return (
     <Box sx={{ mt: 20 }}>
       <Grid
@@ -35,7 +49,7 @@ export default function LoadingSpinner() {
           />
           <Box sx={{ textAlign: "center", mt: 4 }}>
             <Typography variant="p" fontSize="1.5rem">
-              Waking up the server...
+              Waking up the server... {timeLeft}
             </Typography>
           </Box>
         </Grid>

@@ -64,6 +64,20 @@ class CcgcApi {
     return res.user;
   }
 
+  /***** Admin can add a new member */
+  static async createMember(data) {
+    let res = await this.request(`users`, data, "post");
+    return res.user;
+  }
+
+  /***** Admin can update a member */
+
+  /***** Admin can delete a member */
+  static async deleteMember(username) {
+    let res = await this.request(`users/${username}`, {}, "delete");
+    return res.deleted;
+  }
+
   //////////////////// COURSE ROUTES ////////////////////
   /** Get all courses */
   static async getCourses() {

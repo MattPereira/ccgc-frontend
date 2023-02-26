@@ -82,42 +82,6 @@ export default function TournamentDetails() {
 
   const { greenies, scoresLeaderboard, pointsLeaderboard } = tournament;
 
-  //buttons for adding rounds and greenies to a tournament
-  const AddBtns = (
-    <Box sx={{ pb: 5 }}>
-      {tournament.scoresLeaderboard.length ? (
-        <Button
-          variant="contained"
-          color="success"
-          component={Link}
-          to={`/greenies/create/${date}`}
-          size="large"
-          sx={{
-            "&:hover": { color: "white" },
-            marginRight: "0.5rem",
-            borderRadius: "30px",
-          }}
-        >
-          <AddCircleOutlineIcon /> <span className="ms-2">Greenie</span>
-        </Button>
-      ) : null}
-      <Button
-        variant="contained"
-        component={Link}
-        to={`/rounds/create/${date}`}
-        size="large"
-        sx={{
-          "&:hover": { color: "white" },
-          width: "138.906px",
-          marginLeft: "0.5rem",
-          borderRadius: "30px",
-        }}
-      >
-        <AddCircleOutlineIcon /> <span className="ms-2">Round</span>
-      </Button>
-    </Box>
-  );
-
   const AddGreenieButton = tournament.scoresLeaderboard.length ? (
     <Button
       variant="contained"

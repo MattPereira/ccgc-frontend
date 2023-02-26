@@ -66,8 +66,12 @@ export default function Dashboard() {
   };
 
   const handleMemberDelete = async (username) => {
-    await CcgcApi.deleteMember(username);
-    setMembers(members.filter((m) => m.username !== username));
+    try {
+      await CcgcApi.deleteMember(username);
+      setMembers(members.filter((m) => m.username !== username));
+    } catch (err) {
+      console.log("THE ERROR", err);
+    }
   };
 
   /* On component mount, load tournaments from API */
@@ -146,17 +150,17 @@ export default function Dashboard() {
                       <Grid item sx={{ flexGrow: 2 }}>
                         <StyledTypography>
                           {new Date(t.date).toLocaleDateString("en-Us", {
-                            month: "numeric",
+                            month: "long",
                             day: "numeric",
                             year: "numeric",
                           })}
                         </StyledTypography>
                       </Grid>
-                      <Grid item sx={{ flexGrow: 2 }}>
+                      {/* <Grid item sx={{ flexGrow: 2 }}>
                         <StyledTypography>
                           {t.courseName.split(" ").slice(0, 2).join(" ")}
                         </StyledTypography>
-                      </Grid>
+                      </Grid> */}
                       <Grid item>
                         <IconButton
                           component={Link}
