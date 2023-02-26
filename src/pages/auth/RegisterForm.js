@@ -79,6 +79,7 @@ export default function RegisterForm({ register }) {
     e.preventDefault();
 
     // if the register function is defined (passed in as prop) through the router
+    // the register function will login the user and redirect to the homepage
     if (register) {
       //register function passes form data up to parent App component
       let result = await register(formData);
@@ -87,7 +88,10 @@ export default function RegisterForm({ register }) {
       } else {
         setFormErrors(result.errors);
       }
-    } else {
+    }
+    // if the register function is not defined (passed in as prop) through the router
+    // then an admin is creating a user and will be redirected to the dashboard
+    else {
       let result = await CcgcApi.createMember(formData);
       console.log("RESULT", result);
       if (result.username) {
@@ -171,35 +175,36 @@ export default function RegisterForm({ register }) {
                         sx={{ width: "100%" }}
                       />
                     </Box>
-
-                    <Box sx={{ mb: 3 }}>
-                      <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <FormLabel sx={{ mr: 3 }} id="user-type">
-                          Authorization
-                        </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="user-type"
-                          name="row-radio-buttons-group"
-                          value={formData.isAdmin}
-                          onChange={handleChange}
-                          defaultValue={formData.isAdmin ? true : false}
-                        >
-                          <FormControlLabel
-                            value={false}
-                            name="isAdmin"
-                            control={<Radio />}
-                            label="Regular"
-                          />
-                          <FormControlLabel
-                            value={true}
-                            name="isAdmin"
-                            control={<Radio />}
-                            label="Admin"
-                          />
-                        </RadioGroup>
+                    {register ? null : (
+                      <Box sx={{ mb: 3 }}>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <FormLabel sx={{ mr: 3 }} id="user-type">
+                            Authorization
+                          </FormLabel>
+                          <RadioGroup
+                            row
+                            aria-labelledby="user-type"
+                            name="row-radio-buttons-group"
+                            value={formData.isAdmin}
+                            onChange={handleChange}
+                            defaultValue={formData.isAdmin ? true : false}
+                          >
+                            <FormControlLabel
+                              value={false}
+                              name="isAdmin"
+                              control={<Radio />}
+                              label="Regular"
+                            />
+                            <FormControlLabel
+                              value={true}
+                              name="isAdmin"
+                              control={<Radio />}
+                              label="Admin"
+                            />
+                          </RadioGroup>
+                        </Box>
                       </Box>
-                    </Box>
+                    )}
 
                     {formErrors.length
                       ? formErrors.map((err) => (
