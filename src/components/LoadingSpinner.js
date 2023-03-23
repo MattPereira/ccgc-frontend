@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
 import logo from "../assets/ccgc_logo.png";
 
-import { Typography, Box, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 /** Loading message used by components that fetch API data. */
 
 export default function LoadingSpinner() {
-  const [timeLeft, setTimeLeft] = useState(20);
+  // const [timeLeft, setTimeLeft] = useState(20);
 
-  useEffect(function startTimer() {
-    const timer = setInterval(() => {
-      setTimeLeft((timeLeft) => timeLeft - 1);
-    }, 1000);
+  // useEffect(function startTimer() {
+  //   const timer = setInterval(() => {
+  //     setTimeLeft((timeLeft) => timeLeft - 1);
+  //   }, 1000);
 
-    if (timeLeft === 0) {
-      clearInterval(timer);
-    } else {
-      return () => clearInterval(timer);
-    }
-  });
+  //   if (timeLeft === 0) {
+  //     clearInterval(timer);
+  //   } else {
+  //     return () => clearInterval(timer);
+  //   }
+  // });
 
   return (
     <Box sx={{ mt: 20 }}>
@@ -47,11 +46,11 @@ export default function LoadingSpinner() {
               },
             }}
           />
-          <Box sx={{ textAlign: "center", mt: 4 }}>
+          {/* <Box sx={{ textAlign: "center", mt: 4 }}>
             <Typography variant="p" fontSize="1.5rem">
               Please wait while the server spins up... {timeLeft}
             </Typography>
-          </Box>
+          </Box> */}
         </Grid>
       </Grid>
     </Box>
