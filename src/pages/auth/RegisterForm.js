@@ -19,7 +19,6 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 import SiteHero from "../../components/SiteHero";
-import Modal from "../../components/Modal";
 
 import CcgcApi from "../../api/api";
 

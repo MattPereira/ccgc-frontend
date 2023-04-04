@@ -67,11 +67,17 @@ const LoginForm = ({ login }) => {
 
     formData.email = formData.email.toLowerCase();
     console.log(formData.email);
-    let result = await login(formData);
-    if (result.success) {
-      navigate("/");
-    } else {
-      setFormErrors(result.errors);
+
+    try {
+      let result = await login(formData);
+      if (result.success) {
+        navigate("/");
+      } else {
+        setFormErrors(result.errors);
+      }
+    } catch (e) {
+      console.error("LoginForm handleSubmit error", e);
+      setFormErrors(["Login failed for cloud reasons"]);
     }
   };
 

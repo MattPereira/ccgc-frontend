@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 /** MEMBERS (USERS) **/
 import MemberList from "../pages/members/MemberList";
 import MemberDetails from "../pages/members/MemberDetails";
-import MemberCreate from "../pages/members/MemberCreate";
+// import MemberCreate from "../pages/members/MemberCreate";
 import MemberUpdate from "../pages/members/MemberUpdate";
 
 /** COURSES */
