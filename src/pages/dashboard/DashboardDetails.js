@@ -287,7 +287,8 @@ export default function Dashboard() {
                     <Grid container spacing={2} sx={{ alignItems: "center" }}>
                       <Grid item sx={{ flexGrow: 1, textAlign: "start" }}>
                         <StyledTypography>
-                          {m.firstName} {m.lastName}{" "}
+                          {m.firstName} {m.lastName} ({" "}
+                          <span style={{ color: "blue" }}>{m.email}</span> )
                         </StyledTypography>
                       </Grid>
 

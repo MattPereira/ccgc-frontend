@@ -26,6 +26,7 @@ import {
   TableBody,
   TableHead,
   Typography,
+  Grid,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import TabContext from "@mui/lab/TabContext";
@@ -131,7 +132,7 @@ export default function TournamentDetails() {
   return (
     <>
       <PageHero title={tournamentDate} backgroundImage={tournament.courseImg} />
-      <Container sx={{ mt: 1.5, textAlign: "center" }}>
+      <Container sx={{ mt: 1.5 }}>
         <TabContext value={value}>
           <Box>
             <TabList
@@ -142,7 +143,7 @@ export default function TournamentDetails() {
               <StyledTab label="Scores" value="1" />
               <StyledTab label="Greenies" value="2" />
               <StyledTab label="Skins" value="3" />
-              <StyledTab label="Points" value="4" />{" "}
+              <StyledTab label="Results" value="4" />{" "}
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
@@ -170,7 +171,11 @@ export default function TournamentDetails() {
             />
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="4">
-            <RankingsTable data={pointsLeaderboard} />
+            <ResultsTab
+              tournament={tournament}
+              pointsLeaderboard={pointsLeaderboard}
+              greenies={greenies}
+            />
           </TabPanel>
         </TabContext>
       </Container>
@@ -434,5 +439,101 @@ function SkinsTable({ pars, handicaps, rounds }) {
         </Typography>
       </Box>
     </Box>
+  );
+}
+
+function ResultsTab({ tournament, pointsLeaderboard, greenies }) {
+  console.log(`GREENIES`, greenies);
+
+  const sortedByPutts = [...tournament.scoresLeaderboard].sort(
+    (a, b) => a.totalPutts - b.totalPutts
+  );
+
+  console.log(`SORTED BY PUTTS`, sortedByPutts);
+
+  return (
+    <>
+      <Box>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h3" align="center" gutterBottom>
+              Strokes
+            </Typography>
+            <BootstrapTable responsive bordered striped variant="light">
+              <thead className="table-dark">
+                <tr>
+                  <th>POSITION</th>
+                  <th>NAME</th>
+                  <th>NET</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tournament.scoresLeaderboard.length >= 3 && (
+                  <>
+                    <tr>
+                      <td>1</td>
+                      <td>{tournament.scoresLeaderboard[0].firstName}</td>
+                      <td>{tournament.scoresLeaderboard[0].netStrokes}</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>{tournament.scoresLeaderboard[1].firstName}</td>
+                      <td>{tournament.scoresLeaderboard[1].netStrokes}</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>{tournament.scoresLeaderboard[2].firstName}</td>
+                      <td>{tournament.scoresLeaderboard[2].netStrokes}</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </BootstrapTable>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h3" align="center" gutterBottom>
+              PUTTS
+            </Typography>
+            <BootstrapTable responsive bordered striped variant="light">
+              <thead className="table-dark">
+                <tr>
+                  <th>POSITION</th>
+                  <th>NAME</th>
+                  <th>TOTAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedByPutts.length >= 3 && (
+                  <>
+                    <tr>
+                      <td>1</td>
+                      <td>{sortedByPutts[0].firstName}</td>
+                      <td>{sortedByPutts[0].totalPutts}</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>{sortedByPutts[1].firstName}</td>
+                      <td>{sortedByPutts[1].totalPutts}</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>{sortedByPutts[2].firstName}</td>
+                      <td>{sortedByPutts[2].totalPutts}</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </BootstrapTable>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box>
+        <Typography variant="h3" gutterBottom align="center">
+          Points
+        </Typography>
+        <RankingsTable data={pointsLeaderboard} />
+      </Box>
+    </>
   );
 }

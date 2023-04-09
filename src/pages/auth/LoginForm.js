@@ -114,7 +114,7 @@ const LoginForm = ({ login }) => {
                       sx={{ width: "100%" }}
                     />
                   </Box>
-                  <Box sx={{ mb: 3 }}>
+                  {/* <Box sx={{ mb: 3 }}>
                     <StyledTextField
                       id="password"
                       name="password"
@@ -126,7 +126,7 @@ const LoginForm = ({ login }) => {
                       autoComplete="email"
                       sx={{ width: "100%" }}
                     />
-                  </Box>
+                  </Box> */}
                   {formErrors.length
                     ? formErrors.map((err) => (
                         <Alert variant="danger" key={err}>
