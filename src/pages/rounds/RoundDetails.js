@@ -109,7 +109,7 @@ export default function RoundDetails() {
   });
 
   const memberButtons = (
-    <Box sx={{ mb: 3 }}>
+    <Box sx={{ mt: 3, textAlign: "center" }}>
       <Button
         variant="contained"
         color="error"
@@ -140,27 +140,12 @@ export default function RoundDetails() {
       <PageHero
         title={round.username.split("-").join(" ")}
         backgroundImage={round.courseImg}
+        tournamentDate={date}
+        isRoundHero={true}
       />
-      <Container sx={{ pb: 3, textAlign: "center" }}>
-        <Button
-          variant="contained"
-          size="large"
-          color="dark"
-          sx={{
-            color: "white",
-            width: "100%",
-            fontFamily: "cubano",
-            fontSize: "1.4rem",
-            borderRadius: "20px",
-            my: 2,
-          }}
-          component={Link}
-          to={`/tournaments/${date}`}
-        >
-          {date}
-        </Button>
+      <Container sx={{ pb: 3 }}>
         <TabContext value={value}>
-          <Box>
+          <Box sx={{ mt: 2 }}>
             <TabList
               centered
               onChange={handleChange}
@@ -184,8 +169,8 @@ export default function RoundDetails() {
             </TabList>
           </Box>
           <TabPanel sx={{ px: 0 }} value="1">
-            {currentUser ? memberButtons : null}
             <ScoresTable round={round} />
+            {currentUser ? memberButtons : null}
           </TabPanel>
           <TabPanel sx={{ px: 0 }} value="2">
             {round.greenies.length ? (
@@ -481,9 +466,14 @@ function HandicapCalculations({ round }) {
   }));
 
   return (
-    <Grid container spacing={5} justifyContent="center">
+    <Grid
+      container
+      spacing={5}
+      justifyContent="center"
+      sx={{ textAlign: "center" }}
+    >
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, color: "#ef6c00" }}>
           Past Rounds
         </Typography>
         <TableContainer
@@ -515,7 +505,7 @@ function HandicapCalculations({ round }) {
                   <StyledTableCell align="right">
                     {diff.totalStrokes}
                   </StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell align="right" sx={{ color: "#ef6c00" }}>
                     {diff.scoreDifferential}
                   </StyledTableCell>
                 </TableRow>
@@ -525,7 +515,7 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2, color: "primary.main" }}>
+        <Typography variant="h4" sx={{ mb: 2, color: "#6d1b7b" }}>
           Player Index
         </Typography>
         <Box sx={{ mb: 2, textAlign: "start" }}>
@@ -548,14 +538,17 @@ function HandicapCalculations({ round }) {
         <Box sx={{ border: "1px solid black", borderRadius: "10px", py: 0.5 }}>
           {lowestTwoDiffs.length ? (
             <Typography variant="h6" fontFamily="cubano">
-              ( {lowestTwoDiffs[0] || 0} +{" "}
-              {lowestTwoDiffs[1] || lowestTwoDiffs[0]} ) ÷ 2 ={" "}
-              <span style={{ color: "royalblue" }}>{playerIndex}</span>
+              ({" "}
+              <span style={{ color: "#ef6c00" }}>
+                {lowestTwoDiffs[0] || 0} +{" "}
+                {lowestTwoDiffs[1] || lowestTwoDiffs[0]}
+              </span>{" "}
+              ) ÷ 2 = <span style={{ color: "#6d1b7b" }}>{playerIndex}</span>
             </Typography>
           ) : (
             <Typography variant="h6" fontFamily="cubano">
               {playerIndex * 2} ÷ 2 ={" "}
-              <span style={{ color: "royalblue" }}>{playerIndex}</span>
+              <span style={{ color: "#6d1b7b" }}>{playerIndex}</span>
             </Typography>
           )}
         </Box>
@@ -608,7 +601,7 @@ function HandicapCalculations({ round }) {
             <Typography
               component="span"
               sx={{
-                color: "primary.main",
+                color: "#6d1b7b",
                 fontSize: "inherit",
                 fontFamily: "inherit",
               }}

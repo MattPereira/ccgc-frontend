@@ -36,15 +36,15 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage("ccgc-token");
 
-  console.debug(
-    "App",
-    "infoLoaded=",
-    infoLoaded,
-    "currentUser=",
-    currentUser,
-    "token=",
-    token
-  );
+  // console.debug(
+  //   "App",
+  //   "infoLoaded=",
+  //   infoLoaded,
+  //   "currentUser=",
+  //   currentUser,
+  //   "token=",
+  //   token
+  // );
 
   /**Load user info from API. loadUserInfo() only runs if user is logged in and has a token.
    * loadUserInfo() only needs to re-run when a user logs out, so the value of the token
@@ -53,7 +53,7 @@ function App() {
 
   useEffect(
     function loadUserInfo() {
-      console.debug("App useEffect loadUserInfo", "token=", token);
+      // console.debug("App useEffect loadUserInfo", "token=", token);
 
       async function getCurrentUser() {
         if (token) {
@@ -62,7 +62,6 @@ function App() {
             //put token on the API class and use it to call the API
             CcgcApi.token = token;
             let currentUser = await CcgcApi.getUser(username);
-            console.log("CURRENT USER", currentUser);
             setCurrentUser(currentUser);
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);

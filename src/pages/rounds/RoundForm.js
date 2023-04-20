@@ -1,14 +1,66 @@
 import React, { useState, useContext } from "react";
 import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserContext from "../../lib/UserContext";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 
-import { Form, Alert, Row, Col } from "react-bootstrap";
+import {
+  Button,
+  Typography,
+  Box,
+  Container,
+  Grid,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Alert,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
 
-import { Button, Paper, Typography, Box, Container, Grid } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 import PageHero from "../../components/PageHero";
+
+/** STYLES */
+
+const StyledAccordion = styled((props) => (
+  <Accordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  borderRadius: "4px",
+  // "&:not(:last-child)": {
+  //   borderBottom: 0,
+  // },
+  "&:before": {
+    display: "none",
+  },
+}));
+
+const StyledAccordionSummary = styled((props) => (
+  <AccordionSummary
+    expandIcon={
+      <ArrowForwardIosSharpIcon sx={{ fontSize: "1rem", color: "white" }} />
+    }
+    {...props}
+  />
+))(({ theme }) => ({
+  color: "white",
+  backgroundColor: "black",
+  borderRadius: "4px",
+
+  flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(90deg)",
+  },
+  "& .MuiAccordionSummary-content": {
+    marginLeft: theme.spacing(1),
+  },
+}));
 
 /** Form to create a new round
  *
@@ -23,14 +75,18 @@ import PageHero from "../../components/PageHero";
  *
  */
 
-const RoundForm = ({ availableUsernames, round }) => {
+const RoundForm = ({ availableUsernames, round, courseImg }) => {
   let navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const { date } = useParams();
-
   const { strokes, putts } = round || {};
 
-  console.log("AVAILABLE: ", availableUsernames);
+  const [formErrors, setFormErrors] = useState([]);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleAccordionChange = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
 
   //Gracefully handling react requirement that form input value not be null lol
   const [formData, setFormData] = useState({
@@ -76,8 +132,6 @@ const RoundForm = ({ availableUsernames, round }) => {
     putts17: putts ? (putts.hole17 === null ? "" : putts.hole17) : "",
     putts18: putts ? (putts.hole18 === null ? "" : putts.hole18) : "",
   });
-
-  const [formErrors, setFormErrors] = useState([]);
 
   console.debug("RoundForm", "formData=", formData, "formErrors=", formErrors);
 
@@ -182,7 +236,9 @@ const RoundForm = ({ availableUsernames, round }) => {
     }
   };
 
-  const HOLES = Array.from({ length: 18 }, (v, i) => i + 1);
+  // const HOLES = Array.from({ length: 18 }, (v, i) => i + 1);
+  const frontNine = Array.from({ length: 9 }, (v, i) => i + 1);
+  const backNine = Array.from({ length: 9 }, (v, i) => i + 10);
   let tournamentDate;
 
   if (round) {
@@ -204,144 +260,196 @@ const RoundForm = ({ availableUsernames, round }) => {
     });
   }
 
+  const formattedName = round.username
+    .split("-")
+    .map((name) => {
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    })
+    .join(" ");
+
   return (
     <Box>
       <PageHero
-        title={tournamentDate}
-        backgroundImage={round ? round.courseImg : "default_black"}
+        title={round ? tournamentDate : "Create Round"}
+        backgroundImage={round ? round.courseImg : courseImg}
       />
 
-      <Container sx={{ pb: 5, pt: 1 }}>
+      <Container sx={{ pb: 5, pt: 1 }} disableGutters>
         <Grid container justifyContent="center">
-          <Grid item xs={12} md={6}>
-            <Paper variant="outlined" sx={{ borderRadius: "30px" }}>
+          <Grid item xs={12} sm={10} md={8} lg={6}>
+            <form className="p-3" onSubmit={handleSubmit}>
               {round ? (
                 <Box
                   sx={{
-                    textAlign: "center",
-                    bgcolor: "rgb(33, 37, 41)",
-                    borderRadius: "30px",
-                    py: 3,
+                    mb: 3,
+                    mt: 1,
                   }}
                 >
-                  <Typography
-                    variant="h3"
-                    component={Link}
-                    to={`/rounds/${round.id}`}
-                    sx={{ textDecoration: "none", color: "white" }}
-                  >
-                    {round.username
-                      .split("-")
-                      .map((name) => {
-                        return name.charAt(0).toUpperCase() + name.slice(1);
-                      })
-                      .join(" ")}{" "}
+                  <Typography variant="h3" align="center">
+                    {formattedName}
                   </Typography>
                 </Box>
-              ) : null}
-              <Form className="p-3" onSubmit={handleSubmit}>
-                {round ? null : (
-                  <Row className="mb-3 align-items-center justify-content-center text-center">
-                    <Col xs={2}>
-                      <Form.Label htmlFor="username" className="fw-bold mb-0">
-                        Name
-                      </Form.Label>
-                    </Col>
-                    <Col xs={10}>
-                      <Form.Select
-                        className="form-control"
-                        id="username"
-                        name="username"
-                        type="select"
-                        onChange={handleChange}
-                        value={formData.username}
-                        required
-                      >
-                        {availableUsernames.map((username) => (
-                          <option key={username} value={username}>
-                            {username
-                              .split("-")
-                              .map((name) => {
-                                return (
-                                  name.charAt(0).toUpperCase() + name.slice(1)
-                                );
-                              })
-                              .join(" ")}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Col>
-                  </Row>
-                )}
+              ) : (
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h3" align="center" gutterBottom>
+                    {tournamentDate}
+                  </Typography>
+                  <FormControl fullWidth>
+                    <InputLabel id="username" htmlFor="username">
+                      Player
+                    </InputLabel>
 
-                <Row className="text-center justify-content-center mb-2">
-                  <Col xs={2}>
-                    <Form.Label className="fw-bold">
-                      <u>Hole</u>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={5}>
-                    <Form.Label className="fw-bold">
-                      <u>Strokes</u>
-                    </Form.Label>
-                  </Col>
-                  <Col xs={5}>
-                    <Form.Label className="fw-bold">
-                      <u>Putts</u>
-                    </Form.Label>
-                  </Col>
-                </Row>
+                    <Select
+                      id="username"
+                      name="username"
+                      label="Player"
+                      onChange={handleChange}
+                      value={formData.username}
+                      required
+                    >
+                      {availableUsernames.map((username) => (
+                        <MenuItem key={username} value={username}>
+                          {username
+                            .split("-")
+                            .map((name) => {
+                              return (
+                                name.charAt(0).toUpperCase() + name.slice(1)
+                              );
+                            })
+                            .join(" ")}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+              )}
 
-                {HOLES.map((num) => (
-                  <Row
-                    key={num}
-                    className="align-items-center justify-content-center text-center mb-3"
-                  >
-                    <Col xs={2}>
-                      <Form.Label className="fw-bold mb-0">#{num}</Form.Label>
-                    </Col>
-                    <Col xs={5}>
-                      <Form.Control
-                        className="form-control"
-                        id={`strokes${num}`}
-                        name={`strokes${num}`}
-                        type="number"
-                        min="1"
-                        onChange={handleChange}
-                        value={eval(`formData.strokes${num}`)}
-                      ></Form.Control>
-                    </Col>
-                    <Col xs={5}>
-                      <Form.Control
-                        className="form-control"
-                        id={`putts${num}`}
-                        name={`putts${num}`}
-                        type="number"
-                        min="0"
-                        onChange={handleChange}
-                        value={eval(`formData.putts${num}`)}
-                      ></Form.Control>
-                    </Col>
-                  </Row>
-                ))}
+              <StyledAccordion
+                elevation={0}
+                expanded={expanded === "panel1"}
+                onChange={handleAccordionChange("panel1")}
+              >
+                <StyledAccordionSummary
+                  aria-controls="front-nine-content"
+                  id="front-nine-header"
+                >
+                  <Typography variant="h4">Front 9</Typography>
+                </StyledAccordionSummary>
+                <AccordionDetails>
+                  <Grid container sx={{ mb: 2, mt: 1 }}>
+                    <Grid item xs={6}>
+                      <Typography variant="h5" align="center">
+                        Strokes
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography variant="h5" align="center">
+                        Putts
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  {frontNine.map((num) => (
+                    <Grid container spacing={2} key={num} sx={{ mb: 1.5 }}>
+                      <Grid item xs={6}>
+                        <TextField
+                          id={`strokes${num}`}
+                          name={`strokes${num}`}
+                          label={`Hole ${num}`}
+                          type="number"
+                          min="1"
+                          onChange={handleChange}
+                          value={formData[`strokes${num}`]}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <TextField
+                          id={`putts${num}`}
+                          name={`putts${num}`}
+                          label={`Hole ${num}`}
+                          type="number"
+                          min="0"
+                          onChange={handleChange}
+                          value={formData[`putts${num}`]}
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                  ))}
+                </AccordionDetails>
+              </StyledAccordion>
+              <StyledAccordion
+                elevation={0}
+                expanded={expanded === "panel2"}
+                onChange={handleAccordionChange("panel2")}
+              >
+                <StyledAccordionSummary
+                  aria-controls="back-nine-content"
+                  id="back-nine-header"
+                >
+                  <Typography variant="h4">Back 9</Typography>
+                </StyledAccordionSummary>
+                <AccordionDetails>
+                  <Grid container sx={{ mb: 2, mt: 1 }}>
+                    <Grid item xs={6}>
+                      <Typography variant="h5" align="center">
+                        Strokes
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography variant="h5" align="center">
+                        Putts
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                  {backNine.map((num) => (
+                    <Grid container spacing={2} key={num} sx={{ mb: 1.5 }}>
+                      <Grid item xs={6}>
+                        <TextField
+                          id={`strokes${num}`}
+                          name={`strokes${num}`}
+                          label={`Hole ${num}`}
+                          type="number"
+                          min="1"
+                          onChange={handleChange}
+                          value={formData[`strokes${num}`]}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <TextField
+                          id={`putts${num}`}
+                          name={`putts${num}`}
+                          label={`Hole ${num}`}
+                          type="number"
+                          min="0"
+                          onChange={handleChange}
+                          value={formData[`putts${num}`]}
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                  ))}
+                </AccordionDetails>
+              </StyledAccordion>
 
-                <Row className="justify-content-end">
-                  <Col xs={10}>
-                    <Row style={{ padding: "12px 12px 0px" }}>
-                      <Button variant="contained" type="submit" size="large">
-                        Submit
-                      </Button>
-                    </Row>
-                  </Col>
-                </Row>
-              </Form>
-            </Paper>
+              <Box sx={{ textAlign: "end", mt: 3 }}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  sx={{ width: "150px", borderRadius: "4px" }}
+                >
+                  Submit
+                </Button>
+              </Box>
+            </form>
           </Grid>
         </Grid>
 
         {formErrors.length
           ? formErrors.map((err) => (
-              <Alert key={err} variant="danger">
+              <Alert key={err} severity="danger">
                 {err}
               </Alert>
             ))

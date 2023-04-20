@@ -12,6 +12,7 @@ export default function AddRound() {
 
   const [members, setMembers] = useState(null);
   const [rounds, setRounds] = useState(null);
+  const [courseImg, setCourseImg] = useState(null);
 
   // Grab all courses from API to make an array of course handles for select input
   useEffect(
@@ -27,6 +28,12 @@ export default function AddRound() {
         let rounds = await CcgcApi.getRoundsByDate(date);
         setRounds(rounds);
       }
+
+      async function fetchTournament() {
+        const tournament = await CcgcApi.getTournament(date);
+        setCourseImg(tournament.courseImg);
+      }
+      fetchTournament();
       fetchTournamentRounds();
       fetchAllMembers();
     },
@@ -35,9 +42,11 @@ export default function AddRound() {
 
   console.log("MEMBERS", members);
 
-  if (!members) return <LoadingSpinner />;
+  if (!members || !rounds || !courseImg) return <LoadingSpinner />;
 
-  console.log(rounds);
+  console.log("ROUNDS", rounds);
+
+  console.log("MEMBERS", members);
 
   //Filter out users who have already submitted a round for this tournament
   //So they arent added to form select input as an option
@@ -49,7 +58,10 @@ export default function AddRound() {
 
   return (
     <div>
-      <RoundForm availableUsernames={availableUsernames} />
+      <RoundForm
+        availableUsernames={availableUsernames}
+        courseImg={courseImg}
+      />
     </div>
   );
 }
