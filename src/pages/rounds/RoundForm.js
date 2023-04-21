@@ -1,10 +1,7 @@
+// External Imports
 import React, { useState, useContext } from "react";
-import CcgcApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import UserContext from "../../lib/UserContext";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-
 import {
   Button,
   Typography,
@@ -21,13 +18,15 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import { styled } from "@mui/material/styles";
 
+// Internal Imports
+import UserContext from "../../lib/UserContext";
 import PageHero from "../../components/PageHero";
+import CcgcApi from "../../api/api";
 
-/** STYLES */
-
+/***** MUI Styles *****/
 const StyledAccordion = styled((props) => (
   <Accordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -64,15 +63,11 @@ const StyledAccordionSummary = styled((props) => (
 
 /** Form to create a new round
  *
- *
  * Displays new round form and handles changes to local form state.
  * Submission of form calls the API to save the round and redirects
  * to the tournament details page.
  *
- * Routed as /rounds/:date/new
- *
- * Routes -> AddRoundForm
- *
+ * Routed as /rounds/create/:date
  */
 
 const RoundForm = ({ availableUsernames, round, courseImg }) => {
@@ -154,18 +149,6 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
    *  - set current user info throughout the site
    */
 
-  const {
-    strokes1,
-    strokes2,
-    strokes3,
-    strokes4,
-    strokes5,
-    strokes6,
-    strokes7,
-    strokes8,
-    strokes9,
-  } = formData;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -174,15 +157,15 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
       tournamentDate: round ? round.tournamentDate : date,
       username: formData.username,
       strokes: {
-        hole1: strokes1 === "" ? null : +strokes1,
-        hole2: strokes2 === "" ? null : +strokes2,
-        hole3: strokes3 === "" ? null : +strokes3,
-        hole4: strokes4 === "" ? null : +strokes4,
-        hole5: strokes5 === "" ? null : +strokes5,
-        hole6: strokes6 === "" ? null : +strokes6,
-        hole7: strokes7 === "" ? null : +strokes7,
-        hole8: strokes8 === "" ? null : +strokes8,
-        hole9: strokes9 === "" ? null : +strokes9,
+        hole1: formData.strokes1 === "" ? null : +formData.strokes1,
+        hole2: formData.strokes2 === "" ? null : +formData.strokes2,
+        hole3: formData.strokes3 === "" ? null : +formData.strokes3,
+        hole4: formData.strokes4 === "" ? null : +formData.strokes4,
+        hole5: formData.strokes5 === "" ? null : +formData.strokes5,
+        hole6: formData.strokes6 === "" ? null : +formData.strokes6,
+        hole7: formData.strokes7 === "" ? null : +formData.strokes7,
+        hole8: formData.strokes8 === "" ? null : +formData.strokes8,
+        hole9: formData.strokes9 === "" ? null : +formData.strokes9,
         hole10: formData.strokes10 === "" ? null : +formData.strokes10,
         hole11: formData.strokes11 === "" ? null : +formData.strokes11,
         hole12: formData.strokes12 === "" ? null : +formData.strokes12,
@@ -271,10 +254,20 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
       .join(" ");
   }
 
+  console.log("formData", formData);
+
+  // Naive progress tracker for how many holes played that only looks at strokes NOT putts
+  const frontProgress = Object.values(formData)
+    .slice(1, 10)
+    .filter((item) => item !== "").length;
+  const backProgress = Object.values(formData)
+    .slice(10, 19)
+    .filter((item) => item !== "").length;
+
   return (
     <Box>
       <PageHero
-        title={round ? tournamentDate : "Create Round"}
+        title={tournamentDate}
         backgroundImage={round ? round.courseImg : courseImg}
       />
 
@@ -296,7 +289,7 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
               ) : (
                 <Box sx={{ mb: 3 }}>
                   <Typography variant="h3" align="center" gutterBottom>
-                    {tournamentDate}
+                    Create Round
                   </Typography>
                   <FormControl fullWidth>
                     <InputLabel id="username" htmlFor="username">
@@ -337,7 +330,16 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
                   aria-controls="front-nine-content"
                   id="front-nine-header"
                 >
-                  <Typography variant="h4">Front 9</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <Typography variant="h4">Front</Typography>
+                    <Typography variant="h4">{frontProgress} / 9</Typography>
+                  </Box>
                 </StyledAccordionSummary>
                 <AccordionDetails>
                   <Grid container sx={{ mb: 2, mt: 1 }}>
@@ -391,7 +393,16 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
                   aria-controls="back-nine-content"
                   id="back-nine-header"
                 >
-                  <Typography variant="h4">Back 9</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <Typography variant="h4">Back</Typography>
+                    <Typography variant="h4">{backProgress} / 9</Typography>
+                  </Box>
                 </StyledAccordionSummary>
                 <AccordionDetails>
                   <Grid container sx={{ mb: 2, mt: 1 }}>
