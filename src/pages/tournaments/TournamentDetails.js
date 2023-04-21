@@ -356,6 +356,17 @@ function SkinsTable({ pars, handicaps, rounds }) {
 
   console.log(`SKINS`, skinsData);
 
+  // TODO: Figure out how to determine if there is a winner for each hole and who is the winner
+  // Maybe start with transforming skinsData to be [{ holeNumber: 1, scores: [{name: "Dave", strokes: 4}, {name: "Tom", strokes: 3}]}]
+  // const winners = skinsData.map((item) => {
+  //   return {
+  //     name: item.name,
+  //     hole: item.round[0].holeNumber,
+  //     score: item.round[0].strokes,
+  //   };
+  // });
+  // console.log(`WINNERS`, winners);
+
   return (
     <Box>
       <TableContainer

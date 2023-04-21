@@ -92,12 +92,12 @@ const LoginForm = ({ login }) => {
               <Typography variant="h1" sx={{ pt: 3 }}>
                 Login
               </Typography>
-              <Box sx={{ textAlign: "center", mt: 5 }}>
+              {/* <Box sx={{ textAlign: "center", mt: 5 }}>
                 <Typography variant="p">
                   Don't have an account yet?{" "}
                   <Link to="/register">Register here</Link>
                 </Typography>
-              </Box>
+              </Box> */}
 
               <Box sx={{ pt: 4, pb: 3, px: 3 }}>
                 <Form onSubmit={handleSubmit}>
