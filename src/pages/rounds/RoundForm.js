@@ -260,12 +260,16 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
     });
   }
 
-  const formattedName = round.username
-    .split("-")
-    .map((name) => {
-      return name.charAt(0).toUpperCase() + name.slice(1);
-    })
-    .join(" ");
+  let formattedName;
+
+  if (round) {
+    formattedName = round.username
+      .split("-")
+      .map((name) => {
+        return name.charAt(0).toUpperCase() + name.slice(1);
+      })
+      .join(" ");
+  }
 
   return (
     <Box>
