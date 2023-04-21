@@ -267,6 +267,7 @@ function GreeniesTable({ greenies }) {
   ) : null;
 }
 
+/******************* SKINS TABLE ********************/
 function SkinsTable({ pars, handicaps, rounds }) {
   const StyledHeaderCell = styled(TableCell)(({ theme }) => ({
     borderRight: "1px solid #e0e0e0",
@@ -294,12 +295,13 @@ function SkinsTable({ pars, handicaps, rounds }) {
   }));
 
   const StyledHandicapRow = styled(TableRow)(({ theme }) => ({
-    backgroundColor: "rgb(181, 148, 16)",
+    backgroundColor: theme.palette.primary.main,
     ".MuiTableCell-root": { color: "white", fontWeight: "bold" },
   }));
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     borderRight: "1px solid #e0e0e0",
+    textAlign: "center",
   }));
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -312,9 +314,6 @@ function SkinsTable({ pars, handicaps, rounds }) {
       ".MuiTableCell-root": { backgroundColor: theme.palette.grey[200] },
     },
   }));
-
-  console.log(rounds);
-  console.log(handicaps);
 
   // Transform rounds data to subtract strokes for each golfer based on their handicap
   const skinsData = rounds.map((r) => {
@@ -333,8 +332,9 @@ function SkinsTable({ pars, handicaps, rounds }) {
     const adjustedRound = round.map((hole) => {
       if (adjustedHandicap > 18) adjustedHandicap = 18;
 
+      // take a stroke off if handicap is less than or equal to the hole handicap
       if (hole.handicap <= adjustedHandicap) {
-        hole.strokes = hole.strokes - 1;
+        hole.strokes = (hole.strokes - 1).toString();
       }
 
       return {
@@ -345,8 +345,7 @@ function SkinsTable({ pars, handicaps, rounds }) {
     });
 
     const playerName = r.username.split("-");
-    const shortName =
-      playerName[0][0].toUpperCase() + playerName[0].slice(1) + " ";
+    const shortName = playerName[0][0].toUpperCase() + playerName[0].slice(1);
 
     return {
       name: shortName,
@@ -387,9 +386,7 @@ function SkinsTable({ pars, handicaps, rounds }) {
               ))}
             </StyledParsRow>
             <StyledHandicapRow>
-              <StyledStickyColumnCell
-                sx={{ backgroundColor: "rgb(181, 148, 16)" }}
-              >
+              <StyledStickyColumnCell sx={{ backgroundColor: "primary.main" }}>
                 HANDICAP
               </StyledStickyColumnCell>
               {Object.values(handicaps).map((p, i) => (
@@ -406,7 +403,12 @@ function SkinsTable({ pars, handicaps, rounds }) {
                   {player.name}
                 </StyledStickyColumnCell>
                 {player.round.map((hole, i) => (
-                  <StyledTableCell align="center" key={i}>
+                  <StyledTableCell
+                    key={i}
+                    sx={{
+                      color: typeof hole.strokes === "string" ? "red" : "black",
+                    }}
+                  >
                     {hole.strokes}
                   </StyledTableCell>
                 ))}
@@ -417,8 +419,9 @@ function SkinsTable({ pars, handicaps, rounds }) {
       </TableContainer>
       <Box sx={{ mb: 3, textAlign: "start" }}>
         <Typography variant="p">
-          *Subtract one stroke for the most difficult player handicap ÷ 2 holes
-          for each player.
+          Skins game subtracts one stroke for the most difficult player handicap
+          ÷ 2 holes for each golfer. Adjusted hole scores are shown in{" "}
+          <span style={{ color: "red" }}>red</span>.
         </Typography>
       </Box>
     </Box>
@@ -431,6 +434,11 @@ function ResultsTab({ tournament, pointsLeaderboard, greenies }) {
   // sort rounds by total putts and slice to only top 3
   const puttsWinners = [...tournament.scoresLeaderboard]
     .sort((a, b) => a.totalPutts - b.totalPutts)
+    .slice(0, 3);
+
+  // sort rounds by net strokes and slice to only top 3
+  const strokesWinners = [...tournament.scoresLeaderboard]
+    .sort((a, b) => a.netStrokes - b.netStrokes)
     .slice(0, 3);
 
   console.log(`SORTED BY PUTTS`, puttsWinners);
@@ -458,25 +466,14 @@ function ResultsTab({ tournament, pointsLeaderboard, greenies }) {
                 </tr>
               </thead>
               <tbody>
-                {tournament.scoresLeaderboard.length >= 3 && (
-                  <>
-                    <tr>
-                      <td>1</td>
-                      <td>{tournament.scoresLeaderboard[0].firstName}</td>
-                      <td>{tournament.scoresLeaderboard[0].netStrokes}</td>
+                {strokesWinners.length &&
+                  strokesWinners.map((player, idx) => (
+                    <tr key={idx}>
+                      <td>{idx + 1}</td>
+                      <td>{player.firstName}</td>
+                      <td>{player.netStrokes}</td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>{tournament.scoresLeaderboard[1].firstName}</td>
-                      <td>{tournament.scoresLeaderboard[1].netStrokes}</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>{tournament.scoresLeaderboard[2].firstName}</td>
-                      <td>{tournament.scoresLeaderboard[2].netStrokes}</td>
-                    </tr>
-                  </>
-                )}
+                  ))}
               </tbody>
             </BootstrapTable>
           </Grid>

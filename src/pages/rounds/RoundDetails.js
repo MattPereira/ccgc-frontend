@@ -473,7 +473,7 @@ function HandicapCalculations({ round }) {
       sx={{ textAlign: "center" }}
     >
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2, color: "#ef6c00" }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Past Rounds
         </Typography>
         <TableContainer
@@ -515,7 +515,7 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2, color: "#6d1b7b" }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Player Index
         </Typography>
         <Box sx={{ mb: 2, textAlign: "start" }}>
@@ -543,19 +543,19 @@ function HandicapCalculations({ round }) {
                 {lowestTwoDiffs[0] || 0} +{" "}
                 {lowestTwoDiffs[1] || lowestTwoDiffs[0]}
               </span>{" "}
-              ) ÷ 2 = <span style={{ color: "#6d1b7b" }}>{playerIndex}</span>
+              ) ÷ 2 = <span style={{ color: "royalblue" }}>{playerIndex}</span>
             </Typography>
           ) : (
             <Typography variant="h6" fontFamily="cubano">
               {playerIndex * 2} ÷ 2 ={" "}
-              <span style={{ color: "#6d1b7b" }}>{playerIndex}</span>
+              <span style={{ color: "royalblue" }}>{playerIndex}</span>
             </Typography>
           )}
         </Box>
       </Grid>
 
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2, color: "success.main" }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Golf Course
         </Typography>
         <TableContainer
@@ -588,7 +588,7 @@ function HandicapCalculations({ round }) {
         </TableContainer>
       </Grid>
       <Grid item xs={12} md={8} lg={6}>
-        <Typography variant="h4" sx={{ mb: 2, color: "#d32f2f" }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           Course Handicap
         </Typography>
         <Box sx={{ mb: 2 }}>
@@ -601,7 +601,7 @@ function HandicapCalculations({ round }) {
             <Typography
               component="span"
               sx={{
-                color: "#6d1b7b",
+                color: "royalblue",
                 fontSize: "inherit",
                 fontFamily: "inherit",
               }}
