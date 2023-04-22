@@ -39,8 +39,9 @@ const StyledTextField = styled(TextField)({
  * - calls register function prop
  * - redirects to "/" route
  *
- * Routes -> RegisterForm
- * Routed to "/register"
+ * NOTE: sing the register prop to conditionally render
+ *
+ * Used for paths "/register" and "/members/create" (which is admin only)
  */
 
 export default function RegisterForm({ register }) {
@@ -175,7 +176,7 @@ export default function RegisterForm({ register }) {
                         sx={{ width: "100%" }}
                       />
                     </Box>
-                    {register ? null : (
+                    {!register && (
                       <Box sx={{ mb: 3 }}>
                         <Box sx={{ display: "flex", alignItems: "center" }}>
                           <FormLabel sx={{ mr: 3 }} id="user-type">

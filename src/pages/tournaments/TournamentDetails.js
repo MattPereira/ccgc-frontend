@@ -99,7 +99,7 @@ export default function TournamentDetails() {
         title={tournamentDate}
         backgroundImage={tournament.courseImg}
         tournamentDate={date}
-        hasScores={tournament.scoresLeaderboard.length}
+        hasScores={tournament.scoresLeaderboard.length ? true : false}
       />
       <Container sx={{ mt: 1.5 }}>
         <TabContext value={value}>
