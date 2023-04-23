@@ -92,6 +92,7 @@ export default function ProfileForm() {
       lastName: formData.lastName,
       email: formData.email,
       password: formData.password,
+      username: currentUser.username,
     };
 
     let updatedUser;
@@ -129,8 +130,8 @@ export default function ProfileForm() {
                   </Typography>
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="p">
-                      *Beware that password will be changed to the value you
-                      enter in this form.
+                      Password is not currently being used so enter anything.
+                      All other fields should update appropriately on submit.
                     </Typography>
                   </Box>
 
