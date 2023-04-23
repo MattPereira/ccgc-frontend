@@ -267,9 +267,14 @@ const RoundForm = ({ availableUsernames, round, courseImg }) => {
   return (
     <Box>
       <PageHero
-        title={tournamentDate}
+        title={round ? "Update Round" : "Create Round"}
         backgroundImage={round ? round.courseImg : courseImg}
       />
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 1 }}>
+        <Typography variant="h4" align="center">
+          {tournamentDate}
+        </Typography>
+      </Box>
 
       <Container sx={{ pb: 5, pt: 1 }} disableGutters>
         <Grid container justifyContent="center">

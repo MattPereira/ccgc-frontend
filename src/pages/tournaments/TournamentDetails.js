@@ -96,11 +96,16 @@ export default function TournamentDetails() {
   return (
     <>
       <PageHero
-        title={tournamentDate}
+        title="Tournament"
         backgroundImage={tournament.courseImg}
         tournamentDate={date}
         hasScores={tournament.scoresLeaderboard.length ? true : false}
       />
+      <Box sx={{ bgcolor: "primary.main", color: "white", py: 1 }}>
+        <Typography variant="h4" align="center">
+          {tournamentDate}
+        </Typography>
+      </Box>
       <Container sx={{ mt: 1.5 }}>
         <TabContext value={value}>
           <Box>
