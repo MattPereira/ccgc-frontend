@@ -198,7 +198,7 @@ export default function RoundDetails() {
               color="white"
             >
               This action will permanently erase all data associated with this
-              round including greenies. Please confirm to proceed.
+              round including greenies. Proceed with caution.
             </Typography>
             <Box sx={{ mt: 3, textAlign: "right" }}>
               <Button
